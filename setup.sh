@@ -50,7 +50,7 @@ fi
 read -p "⤷ Would you like to install custom icons and cursors? (y/n): " install_themes
 if [[ "$install_themes" =~ ^[Yy]$ ]]; then
     echo "⤷ Running theme setup script..."
-    ./setup-theme.sh
+    ./theme-setup.sh
 else
     echo "⤷ Skipping theme setup."
 fi
