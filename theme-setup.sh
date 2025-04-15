@@ -63,5 +63,5 @@ extract_archives "$CURSOR_ARCHIVES_DIR" "cursor"
 echo
 echo "✅ Theming assets installed to '$TARGET_DIR'"
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-echo "✨ Tip: Use GNOME Tweaks / XFCE Settings to apply them"
+echo "✨ Tip: Don't forget to check out the wallpapers repo"
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
