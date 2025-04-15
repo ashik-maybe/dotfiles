@@ -1,61 +1,27 @@
-# Dotfiles - Personal Linux Setup
+# Dotfiles
 
-This repository contains my personal dotfiles, configurations, and setup scripts for a clean and minimal Linux environment. The configuration covers various aspects of my system, including terminal setup, system optimizations, fonts, custom scripts, and theming.
+A clean and minimal set of configurations and scripts to enhance your Linux setup.
 
-## 📦 Contents
+## Purpose
 
-- **`setup.sh`**: Main script for setting up and configuring dotfiles.
-- **`install-deps.sh`**: Script to install required dependencies.
-- **`theme-setup.sh`**: A separate script for installing and setting up the WhiteSur icon theme and Phinger cursors.
-- **`bin/`**: Custom scripts for daily tasks and automation.
-- **`fonts/`**: Fonts used in the setup.
-- **`config/`**: Configuration files for various applications like foot, etc.
+This repository includes custom dotfiles, scripts, and themes to streamline your Linux environment. It allows you to quickly set up personal preferences, icons, cursors, fonts, and system tweaks.
 
-## 🎨 Theme Setup
+## How to Run the Code
 
-The `theme-setup.sh` script allows you to easily install the **WhiteSur icon theme** and **Phinger cursors** on your system. You can choose from a variety of color variants and configure the icons with bold and alternative options. Additionally, the script checks for the presence of GNOME Tweaks and installs it if necessary for GNOME users.
+1. **Set up Dotfiles and Configurations:**
 
-### 🛠️ Usage
+   Run the following to copy necessary configurations and scripts to your home directory:
 
-1. Clone this repository:
-    ```bash
-    git clone https://github.com/ashik-maybe/dotfiles.git
-    cd dotfiles
-    ```
+   ```bash
+   bash setup.sh
+   ```
 
-2. Run the theming setup script:
-    ```bash
-    ./theme-setup.sh
-    ```
+2. **Set up Themes, Icons, and Cursors:**
 
-   This will install the WhiteSur icon theme and Phinger cursors, with options for customizing the icon theme and cursors.
+   Run the following to install and apply the WhiteSur icon theme, Phinger cursors, and fonts from local archives:
 
-### 🌈 Icon Theme Customization
+   ```bash
+   bash theme-setup.sh
+   ```
 
-During installation, you will be prompted to choose:
-- **Color variant**: Select from options like default, purple, pink, red, orange, yellow, green, grey, or all.
-- **Alternative icons**: Whether to install redesigned MacOS default icons.
-- **Bold panel icons**: Whether to install bold icons, recommended for high-resolution displays.
-
-### 🖱️ Cursor Installation
-
-You can also opt to install **Phinger cursors**, which are available through the script.
-
-### 📦 Sources
-- WhiteSur Icons: [GitHub - WhiteSur Icons](https://github.com/vinceliuice/WhiteSur-icon-theme)
-- WhiteSur GTK Theme: [GitHub - WhiteSur GTK](https://github.com/vinceliuice/WhiteSur-gtk-theme)
-- Phinger Cursors: [GitHub - Phinger Cursors](https://github.com/phisch/phinger-cursors)
-
-## 🚀 Installation
-
-You can use the provided installation scripts to easily configure your Linux system, install dependencies, set up icons, and customize your environment.
-
----
-
-## ✨ Contributions
-
-Feel free to fork this repository, contribute improvements, or submit issues for any bugs or suggestions.
-
----
-
-Happy theming!
+Follow the prompts for customization during the setup!
