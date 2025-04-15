@@ -1,72 +1,46 @@
 #!/bin/bash
-
 set -e
 
-# ╭──────────────────────────────────────────────╮
-# │              Dotfiles Setup Script           │
-# │             Clean • Minimal • Smooth         │
-# ╰──────────────────────────────────────────────╯
+echo "==> Starting dotfiles setup..."
 
-# Copy file or directory with confirmation
-safe_copy() {
+# Force copy a file or directory
+force_copy() {
     local src="$1" dest="$2"
-    if [[ -e "$dest" || -L "$dest" ]]; then
-        read -p "→ '$dest' exists. Overwrite? (y/n): " confirm
-        [[ "$confirm" =~ ^[Yy]$ ]] || { echo "⤷ Skipped: $dest"; return; }
-    fi
+    rm -rf "$dest"
     cp -rf "$src" "$dest"
-    echo "✔ Copied → $dest"
+    echo "✓ Copied $src → $dest"
 }
 
-# Make all .sh scripts executable in a given directory
+# Make all .sh scripts executable
 make_scripts_executable() {
-    local dir="$1"
-    find "$dir" -type f -name "*.sh" -exec chmod +x {} \;
-    echo "✔ Made scripts in '$dir' executable"
+    find "$1" -type f -name "*.sh" -exec chmod +x {} \;
+    echo "✓ Made scripts executable in $1"
 }
-
-echo "⚙️  Starting setup..."
 
 # 1. .bashrc
-echo "⤷ Setting up .bashrc"
-safe_copy "home/.bashrc" "$HOME/.bashrc"
+echo "-> Copying .bashrc"
+force_copy "home/.bashrc" "$HOME/.bashrc"
 
-# 2. bin/
-echo "⤷ Installing custom scripts to ~/bin"
+# 2. ~/bin
+echo "-> Installing scripts to ~/bin"
 mkdir -p "$HOME/bin"
-safe_copy "home/bin/." "$HOME/bin"
+force_copy "home/bin/." "$HOME/bin"
 make_scripts_executable "$HOME/bin"
 
 # 3. foot.ini
-if command -v foot &> /dev/null; then
-    echo "⤷ foot terminal detected"
+if command -v foot &>/dev/null; then
+    echo "-> foot terminal detected"
     mkdir -p "$HOME/.config/foot"
-    safe_copy "config/foot/foot.ini" "$HOME/.config/foot/foot.ini"
+    force_copy "config/foot/foot.ini" "$HOME/.config/foot/foot.ini"
 else
-    echo "⚠️  foot terminal not found — skipping foot.ini"
+    echo "--> foot terminal not found, skipping foot.ini"
 fi
 
-# 4. Ensure executable permission for theme and font setup scripts
-echo "⤷ Ensuring executable permissions for theme and font setup scripts..."
-chmod +x ./setup-themes.sh
-chmod +x ./setup-fonts.sh
+# 4. Setup scripts
+chmod +x ./setup-themes.sh ./setup-fonts.sh
 
-# 5. Ask about custom themes installation
-read -p "⤷ Would you like to install custom icons and cursors? (y/n): " install_themes
-if [[ "$install_themes" =~ ^[Yy]$ ]]; then
-    echo "⤷ Running theme setup script..."
-    ./setup-themes.sh
-else
-    echo "⤷ Skipping theme setup."
-fi
+# 5. Run optional scripts
+read -p "Run theme setup? (y/n): " a && [[ "$a" =~ ^[Yy]$ ]] && ./setup-themes.sh
+read -p "Run font setup? (y/n): " b && [[ "$b" =~ ^[Yy]$ ]] && ./setup-fonts.sh
 
-# 6. Ask about custom font installation
-read -p "⤷ Would you like to install custom fonts? (y/n): " install_fonts
-if [[ "$install_fonts" =~ ^[Yy]$ ]]; then
-    echo "⤷ Running font setup script..."
-    ./setup-fonts.sh
-else
-    echo "⤷ Skipping font setup."
-fi
-
-echo "✅ Setup complete!"
+echo "==> Dotfiles setup complete."
