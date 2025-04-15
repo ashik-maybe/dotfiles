@@ -46,13 +46,27 @@ else
     echo "⚠️  foot terminal not found — skipping foot.ini"
 fi
 
-# 4. Ask about custom themes installation
+# 4. Ensure executable permission for theme and font setup scripts
+echo "⤷ Ensuring executable permissions for theme and font setup scripts..."
+chmod +x ./setup-themes.sh
+chmod +x ./setup-fonts.sh
+
+# 5. Ask about custom themes installation
 read -p "⤷ Would you like to install custom icons and cursors? (y/n): " install_themes
 if [[ "$install_themes" =~ ^[Yy]$ ]]; then
     echo "⤷ Running theme setup script..."
-    ./theme-setup.sh
+    ./setup-themes.sh
 else
     echo "⤷ Skipping theme setup."
+fi
+
+# 6. Ask about custom font installation
+read -p "⤷ Would you like to install custom fonts? (y/n): " install_fonts
+if [[ "$install_fonts" =~ ^[Yy]$ ]]; then
+    echo "⤷ Running font setup script..."
+    ./setup-fonts.sh
+else
+    echo "⤷ Skipping font setup."
 fi
 
 echo "✅ Setup complete!"
