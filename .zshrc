@@ -74,6 +74,10 @@ bindkey '^U' backward-kill-line
 bindkey "^[[A" history-beginning-search-backward
 bindkey "^[[B" history-beginning-search-forward
 
+# Word navigation (Alt + Arrow)
+bindkey '^[[1;3D' backward-word   # Alt + Left Arrow
+bindkey '^[[1;3C' forward-word    # Alt + Right Arrow
+
 # =============================================================================
 # 🧱 Zsh Options & Settings
 # =============================================================================
