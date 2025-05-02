@@ -37,6 +37,7 @@ zinit light Aloxaf/fzf-tab
 zinit snippet OMZP::git
 zinit snippet OMZP::sudo
 zinit snippet OMZP::command-not-found
+# zinit snippet OMZP::extract
 
 # =============================================================================
 # 🚀 Performance-Sensitive Plugins
@@ -120,8 +121,22 @@ alias gcm='git commit'
 alias gbr='git branch'
 alias glg='git log --oneline --graph'
 
-# Custom function: Create and enter a directory
-mkcd() { mkdir -p "$1" && cd "$1"; }
+# Custom aliases
+alias prd='cd ~/Documents/development/projects/'
+alias ghd='cd ~/Documents/GitHub/'
+alias ar='$HOME/scripts/aria2c_script.sh'
+alias yt='$HOME/scripts/yt-dlp_script.sh'
+alias x='$HOME/scripts/unarchive_script.sh'
+
+# Function: Move up N directories
+function up() {
+    local depth=${1:-1}
+    local path=""
+    for ((i=1; i<=depth; i++)); do
+        path="../$path"
+    done
+    cd "$path" || echo "Failed to go up $depth directories"
+}
 
 # =============================================================================
 # 🚀 Starship Prompt
