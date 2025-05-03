@@ -138,7 +138,6 @@ alias glg='git log --oneline --graph'
 alias top='btop'
 alias prd='cd ~/Documents/development/projects/'
 alias ghd='cd ~/Documents/GitHub/'
-# alias zellij='$HOME/bin/zellij'
 alias ar='$HOME/scripts/aria2c_script.sh'
 alias yt='$HOME/scripts/yt-dlp_script.sh'
 alias x='$HOME/scripts/unarchive_script.sh'
@@ -152,6 +151,9 @@ function up() {
     done
     cd "$path" || echo "Failed to go up $depth directories"
 }
+
+# Add $HOME/bin to the PATH for user-specific binaries
+export PATH=$PATH:$HOME/bin
 
 # =============================================================================
 # 🚀 Starship Prompt
