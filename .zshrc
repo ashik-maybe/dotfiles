@@ -85,15 +85,24 @@ bindkey '^[[1;3C' forward-word    # Alt + Right Arrow
 setopt autocd interactivecomments magicequalsubst notify
 setopt hist_ignore_all_dups hist_find_no_dups sharehistory appendhistory
 
-# History size (10k entries)
-HISTSIZE=10000
-SAVEHIST=$HISTSIZE
+# History
+HISTSIZE=5000
 HISTFILE=~/.zsh_history
+SAVEHIST=$HISTSIZE
+HISTDUP=erase
+setopt appendhistory
+setopt sharehistory
+setopt hist_ignore_space
+setopt hist_ignore_all_dups
+setopt hist_save_no_dups
+setopt hist_ignore_dups
+setopt hist_find_no_dups
 
 # Completion styling (colors, fuzzy matching)
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
+
 
 # =============================================================================
 # 🌐 Environment Variables
