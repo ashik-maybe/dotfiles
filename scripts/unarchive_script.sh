@@ -11,7 +11,7 @@ log() {
 }
 
 die() {
-    echo "✖ Error: $1" >&2
+    echo "❌ Error: $1" >&2
     exit 1
 }
 
@@ -80,4 +80,4 @@ case "$file" in
         ;;
 esac
 
-log "✔ Extraction complete."
+log "✅ Extraction complete."
