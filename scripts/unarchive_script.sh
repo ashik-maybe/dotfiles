@@ -1,104 +1,83 @@
-#!/usr/bin/env zsh
+#!/bin/bash
+set -euo pipefail
 
-# unarchive - Extract any supported archive format
-# Usage: unarchive <file>
-# Options: -n (dry run), -v (verbose), -f (force overwrite)
-
-setopt localoptions no_unset
-
-local file depth=1 verbose=0 dry_run=0
-
-while getopts "vnf" opt; do
-  case "$opt" in
-    v) verbose=1 ;;
-    n) dry_run=1 ;;
-    f) depth=0 ;;  # Force overwrite (skip folder creation)
-    *) echo "Usage: $0 [-v] [-n] [-f] <file>" >&2; exit 1 ;;
-  esac
-done
-shift $((OPTIND - 1))
-
-[ -z "$1" ] && echo "Usage: unarchive <file>" >&2 && exit 1
-[ ! -f "$1" ] && echo "Error: '$1' is not a valid file." >&2 && exit 1
-
-local filename="$(basename -- "$1")"
-local target_dir="${filename%.*}"
-
-# Handle nested extensions (e.g., .tar.gz → "file.tar" → "file")
-case "$filename" in
-  *.tar.gz|*.tar.bz2|*.tar.xz|*.tar.zst)
-    target_dir="${target_dir%.*}"
-    ;;
-esac
-
-# Check dependencies
-for cmd in tar gunzip bunzip2 unxz unlzma 7z unzip unrar; do
-  command -v "$cmd" >/dev/null || {
-    echo "Error: Required command '$cmd' not found." >&2
-    exit 1
-  }
+# Optional tools (only check these)
+for cmd in unzip unrar 7z; do
+    command -v "$cmd" >/dev/null 2>&1 || { echo "Warning: '$cmd' not found. Some formats may not be supported." >&2; }
 done
 
-[ "$depth" -eq 1 ] && mkdir -p "$target_dir" || target_dir="."
-
-[ "$verbose" -eq 1 ] && echo "Extracting '$filename' into './$target_dir/'..."
-
-[ "$dry_run" -eq 1 ] && exit 0
-
-# Extraction logic
-case "$1" in
-  *.tar.bz2|*.tbz2)
-    tar --bzip2 -xf "$1" -C "$target_dir"
-    ;;
-  *.tar.gz|*.tgz)
-    tar --gzip -xf "$1" -C "$target_dir"
-    ;;
-  *.tar.xz|*.txz)
-    tar --xz -xf "$1" -C "$target_dir"
-    ;;
-  *.tar.zst|*.tzst)
-    tar --zstd -xf "$1" -C "$target_dir"
-    ;;
-  *.tar.lz|*.tlz)
-    tar --lzip -xf "$1" -C "$target_dir"
-    ;;
-  *.tar)
-    tar -xf "$1" -C "$target_dir"
-    ;;
-  *.gz)
-    gunzip -c "$1" > "$target_dir/${filename%.gz}"
-    ;;
-  *.bz2)
-    bunzip2 -c "$1" > "$target_dir/${filename%.bz2}"
-    ;;
-  *.xz)
-    unxz -c "$1" > "$target_dir/${filename%.xz}"
-    ;;
-  *.lzma)
-    unlzma -c "$1" > "$target_dir/${filename%.lzma}"
-    ;;
-  *.zst)
-    zstd -d "$1" -o "$target_dir/${filename%.zst}"
-    ;;
-  *.zip)
-    unzip "$1" -d "$target_dir"
-    ;;
-  *.rar)
-    unrar x -inul "$1" "$target_dir/"
-    ;;
-  *.7z)
-    7z x "$1" -o"$target_dir" >/dev/null
-    ;;
-  *.Z)
-    uncompress "$1"
-    ;;
-  *)
-    echo "Unsupported file type: $1" >&2
-    exit 1
-    ;;
-esac
-
-[ $? -eq 0 ] && echo "✅ Extraction complete." || {
-  echo "❌ Failed to extract '$1'." >&2
-  exit 1
+log() {
+    echo "$@"
 }
+
+die() {
+    echo "✖ Error: $1" >&2
+    exit 1
+}
+
+if [ $# -ne 1 ]; then
+    echo "Usage: $0 <file>"
+    exit 1
+fi
+
+file="$1"
+[ -f "$file" ] || die "'$file' is not a valid file."
+
+filename="$(basename "$file")"
+target_dir="${filename%%.*}"
+mkdir -p "$target_dir" || die "Failed to create target directory '$target_dir'."
+
+log "Extracting '$file' into './$target_dir/'..."
+
+case "$file" in
+    *.tar.*|*.tar)
+        if ! tar -xf "$file" -C "$target_dir"; then
+            die "Failed to extract '$file' with tar."
+        fi
+        ;;
+    *.gz)
+        if ! gunzip -c "$file" > "$target_dir/${filename%.gz}"; then
+            die "Failed to extract '$file' with gunzip."
+        fi
+        ;;
+    *.bz2)
+        if ! bunzip2 -c "$file" > "$target_dir/${filename%.bz2}"; then
+            die "Failed to extract '$file' with bunzip2."
+        fi
+        ;;
+    *.xz)
+        if ! unxz -c "$file" > "$target_dir/${filename%.xz}"; then
+            die "Failed to extract '$file' with unxz."
+        fi
+        ;;
+    *.lzma)
+        if ! unlzma -c "$file" > "$target_dir/${filename%.lzma}"; then
+            die "Failed to extract '$file' with unlzma."
+        fi
+        ;;
+    *.zip)
+        if ! unzip -q "$file" -d "$target_dir"; then
+            die "Failed to extract '$file' with unzip."
+        fi
+        ;;
+    *.rar)
+        if ! unrar x -inul "$file" "$target_dir/"; then
+            die "Failed to extract '$file' with unrar."
+        fi
+        ;;
+    *.7z)
+        if ! 7z x "$file" -o"$target_dir" >/dev/null; then
+            die "Failed to extract '$file' with 7z."
+        fi
+        ;;
+    *.Z)
+        if ! uncompress -c "$file" > "$target_dir/${filename%.Z}"; then
+            die "Failed to extract '$file' with uncompress."
+        fi
+        ;;
+    *)
+        die "Unsupported file type: '$file'"
+        ;;
+esac
+
+log "✔ Extraction complete."
