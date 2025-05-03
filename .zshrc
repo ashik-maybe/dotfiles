@@ -143,16 +143,6 @@ alias ar='$HOME/scripts/aria2c_script.sh'
 alias yt='$HOME/scripts/yt-dlp_script.sh'
 alias x='$HOME/scripts/unarchive_script.sh'
 
-# Function: Move up N directories
-function up() {
-    local depth=${1:-1}
-    local path=""
-    for ((i=1; i<=depth; i++)); do
-        path="../$path"
-    done
-    cd "$path" || echo "Failed to go up $depth directories"
-}
-
 # Add $HOME/bin to the PATH for user-specific binaries
 export PATH=$PATH:$HOME/bin
 
