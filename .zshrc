@@ -126,8 +126,10 @@ alias gbr='git branch'
 alias glg='git log --oneline --graph'
 
 # Custom aliases
+alias top='btop'
 alias prd='cd ~/Documents/development/projects/'
 alias ghd='cd ~/Documents/GitHub/'
+alias zellij='$HOME/bin/zellij'
 alias ar='$HOME/scripts/aria2c_script.sh'
 alias yt='$HOME/scripts/yt-dlp_script.sh'
 alias x='$HOME/scripts/unarchive_script.sh'
