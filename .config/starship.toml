@@ -1,53 +1,92 @@
 # ~/.config/starship.toml
 
-# Set Catppuccin Mocha palette
+# 🎨 Catppuccin Mocha Palette
 [palettes.catppuccin_mocha]
 rosewater = "#f5e0dc"
-flamingo = "#f2cdcd"
-pink = "#f5c2e7"
-mauve = "#cba6f7"
-red = "#f38ba8"
-maroon = "#eba0ac"
-peach = "#fab387"
-yellow = "#f9e2af"
-green = "#a6e3a1"
-teal = "#94e2d5"
-sky = "#89dceb"
-sapphire = "#74c7ec"
-blue = "#89b4fa"
-lavender = "#b4befe"
-text = "#cdd6f4"
-subtext1 = "#bac2de"
-subtext0 = "#a6adc8"
-overlay2 = "#9399b2"
-overlay1 = "#7f849c"
-overlay0 = "#6c7086"
-surface2 = "#585b70"
-surface1 = "#45475a"
-surface0 = "#313244"
-base = "#1e1e2e"
-mantle = "#181825"
-crust = "#11111b"
+flamingo  = "#f2cdcd"
+pink      = "#f5c2e7"
+mauve     = "#cba6f7"
+red       = "#f38ba8"
+maroon    = "#eba0ac"
+peach     = "#fab387"
+yellow    = "#f9e2af"
+green     = "#a6e3a1"
+teal      = "#94e2d5"
+sky       = "#89dceb"
+sapphire  = "#74c7ec"
+blue      = "#89b4fa"
+lavender  = "#b4befe"
+text      = "#cdd6f4"
+subtext1  = "#bac2de"
+subtext0  = "#a6adc8"
+overlay2  = "#9399b2"
+overlay1  = "#7f849c"
+overlay0  = "#6c7086"
+surface2  = "#585b70"
+surface1  = "#45475a"
+surface0  = "#313244"
+base      = "#1e1e2e"
+mantle    = "#181825"
+crust     = "#11111b"
 
-# Use the palette
 palette = "catppuccin_mocha"
 
-# Git branch with icon + color
+# 🧠 General Format
+format = """
+[](overlay1)\
+$username\
+[](fg:overlay1 bg:surface0)\
+$directory\
+[](fg:surface0 bg:overlay0)\
+$git_branch\
+$git_status\
+[](fg:overlay0 bg:base)\
+$cmd_duration\
+$jobs\
+$character
+"""
+
+# 👤 Username
+[username]
+style_user = "bold lavender"
+show_always = true
+
+# 📂 Current Directory
+[directory]
+style = "bold blue"
+truncation_length = 3
+truncation_symbol = "…/"
+read_only = " "
+read_only_style = "red"
+
+#  Git Branch
 [git_branch]
 symbol = " "
 style = "bold green"
 
-# Git status (±1, +1, ?1)
+# ✚ Git Status
 [git_status]
-modified = "[± $files](bold yellow)"
-staged = "[+ $files](bold green)"
-untracked = "[? $files](bold blue)"
+modified = "[± $count](bold yellow)"
+staged   = "[+ $count](bold green)"
+untracked= "[? $count](bold blue)"
+conflicted = "[~ $count](bold red)"
+deleted  = "[- $count](red)"
+style    = ""
 
-# Command duration (e.g., "took 3s")
+# ⏱️ Command Duration
 [cmd_duration]
-format = "took [$duration](bold red) "
+min_time = 500
+format = " [took $duration](bold red)"
 
-# Prompt symbol (e.g., "❯")
+# ⚙️ Background Jobs
+[jobs]
+symbol = " "
+style = "bold peach"
+number_threshold = 1
+
+# ❯ Prompt Symbol
 [character]
-success_symbol = "❯"
-error_symbol = "✖"
+success_symbol = "[❯](bold green)"
+error_symbol = "[✖](bold red)"
+vicmd_symbol = "[❮](bold yellow)"
+disabled = false
