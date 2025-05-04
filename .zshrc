@@ -1,6 +1,4 @@
-# =============================================================================
-# 🧩 Zinit Plugin Manager Setup (MUST be first)
-# =============================================================================
+        # 🧩 Zinit Plugin Manager Setup (MUST be first)
 
 # Ensure Zinit is installed
 if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
@@ -17,16 +15,14 @@ source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
 autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 
-# =============================================================================
-# 🔧 Zsh Completion System (MUST come early)
-# =============================================================================
+        # 🔧 Zsh Completion System (MUST come early)
+
 # Initialize Zsh's native completion system
 autoload -Uz compinit
 compinit
 
-# =============================================================================
-# 🔌 Core Plugins
-# =============================================================================
+        # 🔌 Core Plugins
+
 # Basic completions for common tools (e.g., git, sudo)
 zinit light zsh-users/zsh-completions
 
@@ -39,9 +35,8 @@ zinit snippet OMZP::sudo
 zinit snippet OMZP::command-not-found
 # zinit snippet OMZP::extract
 
-# =============================================================================
-# 🚀 Performance-Sensitive Plugins
-# =============================================================================
+        # 🚀 Performance-Sensitive Plugins
+
 # Delay syntax highlighting to improve startup speed
 zinit ice wait'!0'
 zinit light zsh-users/zsh-syntax-highlighting
@@ -50,9 +45,8 @@ zinit light zsh-users/zsh-syntax-highlighting
 zinit ice wait'2'
 zinit light zsh-users/zsh-autosuggestions
 
-# =============================================================================
-# 📂 Directory Navigation & History
-# =============================================================================
+        # 📂 Directory Navigation & History
+
 # Fast directory navigation (e.g., `j proj` -> jumps to ~/Projects)
 zinit light skywind3000/z.lua
 alias j='z'  # Short alias for z.lua
@@ -61,9 +55,7 @@ alias j='z'  # Short alias for z.lua
 bindkey '^R' history-incremental-search-backward
 bindkey '^S' history-incremental-search-forward
 
-# =============================================================================
-# ⌨️ Keybindings & Shortcuts
-# =============================================================================
+        # ⌨️ Keybindings & Shortcuts
 
 # VS Code-like bindings
 bindkey '^[[1;5D' backward-word   # Ctrl + ←
@@ -75,9 +67,8 @@ bindkey '^U' backward-kill-line    # Ctrl + U → Delete to start of line
 bindkey '^W' backward-kill-word    # Ctrl + W → Delete previous word
 
 
-# =============================================================================
-# 🧱 Zsh Options & Settings
-# =============================================================================
+        # 🧱 Zsh Options & Settings
+
 # Enable useful Zsh options
 setopt autocd interactivecomments magicequalsubst notify
 setopt hist_ignore_all_dups hist_find_no_dups sharehistory appendhistory
@@ -100,18 +91,15 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 
+        # 🌐 Environment Variables
 
-# =============================================================================
-# 🌐 Environment Variables
-# =============================================================================
 # Set default editor to VS Code
 export EDITOR='code'
 export VISUAL='code'
 # export TERMINAL=foot  # Terminal emulator name
 
-# =============================================================================
-# 🧰 Aliases & Custom Functions
-# =============================================================================
+        # 🧰 Aliases & Custom Functions
+
 # System shortcuts
 alias c='clear'
 alias q='exit'
@@ -143,8 +131,7 @@ alias x='$HOME/scripts/unarchive_script.sh'
 # Add $HOME/bin to the PATH for user-specific binaries
 export PATH=$PATH:$HOME/bin
 
-# =============================================================================
-# 🚀 Starship Prompt
-# =============================================================================
+        # 🚀 Starship Prompt
+
 # Initialize Starship (https://starship.rs) at the end
 eval "$(starship init zsh)"
