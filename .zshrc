@@ -64,19 +64,16 @@ bindkey '^S' history-incremental-search-forward
 # =============================================================================
 # ⌨️ Keybindings & Shortcuts
 # =============================================================================
-# Common keybindings (Ctrl+A/E/K/U for line editing)
-bindkey '^A' beginning-of-line
-bindkey '^E' end-of-line
-bindkey '^K' kill-line
-bindkey '^U' backward-kill-line
 
-# Arrow-key fallback for history search
-bindkey "^[[A" history-beginning-search-backward
-bindkey "^[[B" history-beginning-search-forward
+# VS Code-like bindings
+bindkey '^[[1;5D' backward-word   # Ctrl + ←
+bindkey '^[[1;5C' forward-word    # Ctrl + →
+bindkey '^A' beginning-of-line     # Ctrl + A → Start of line
+bindkey '^E' end-of-line           # Ctrl + E → End of line
+bindkey '^K' kill-line             # Ctrl + K → Delete to end of line
+bindkey '^U' backward-kill-line    # Ctrl + U → Delete to start of line
+bindkey '^W' backward-kill-word    # Ctrl + W → Delete previous word
 
-# Word navigation (Alt + Arrow)
-bindkey '^[[1;3D' backward-word   # Alt + Left Arrow
-bindkey '^[[1;3C' forward-word    # Alt + Right Arrow
 
 # =============================================================================
 # 🧱 Zsh Options & Settings
