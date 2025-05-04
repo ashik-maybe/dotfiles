@@ -1,5 +1,5 @@
-theme "catppuccin-mocha"  // Set the theme to Catppuccin Mocha
-// simplified_ui true        // Use a cleaner, minimal UI (hides borders, etc.)
+theme "nord"  // Set the theme to Catppuccin Mocha
+simplified_ui true        // Use a cleaner, minimal UI (hides borders, etc.)
 
 default_layout "default"  
 default_shell "zsh"       // Launch Zellij panes with Zsh by default
