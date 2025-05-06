@@ -127,6 +127,7 @@ alias d='cd ~/Downloads'
 alias p='cd ~/WorkSpace/Projects'
 alias ar='$HOME/scripts/aria2c_script.sh'
 alias yt='$HOME/scripts/yt-dlp_script.sh'
+alias k='$HOME/scripts/archive_script.sh'
 alias x='$HOME/scripts/unarchive_script.sh'
 
 # Add $HOME/bin to the PATH for user-specific binaries
