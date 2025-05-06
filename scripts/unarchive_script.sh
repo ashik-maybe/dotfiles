@@ -3,7 +3,7 @@ set -euo pipefail
 
 # Optional tools (only check these)
 for cmd in unzip unrar 7z; do
-    command -v "$cmd" >/dev/null 2>&1 || { echo "Warning: '$cmd' not found. Some formats may not be supported." >&2; }
+    command -v "$cmd" >/dev/null 2>&1 || { echo "⚠️ Warning: '$cmd' not found. Some formats may not be supported." >&2; }
 done
 
 log() {
@@ -27,7 +27,14 @@ filename="$(basename "$file")"
 target_dir="${filename%%.*}"
 mkdir -p "$target_dir" || die "Failed to create target directory '$target_dir'."
 
-log "Extracting '$file' into './$target_dir/'..."
+# File size for progress info
+FILE_SIZE=$(stat -c%s "$file")
+log "📁 File:   $filename"
+log "📦 Size:   $(numfmt --to=iec $FILE_SIZE)"
+log "📂 Extracting into: './$target_dir/'..."
+
+# Start extraction process
+start_time=$(date +%s)
 
 case "$file" in
     *.tar.*|*.tar)
@@ -80,4 +87,23 @@ case "$file" in
         ;;
 esac
 
+# End extraction time
+end_time=$(date +%s)
+elapsed_time=$((end_time - start_time))
+
+# Show stats
+log "📊 File extraction complete."
+log "⏱️ Extraction took: $elapsed_time seconds"
+
+# Calculate and show extracted folder size
+EXTRACTED_SIZE=$(du -sb "$target_dir" | cut -f1)
+log "📦 Extracted size: $(numfmt --to=iec $EXTRACTED_SIZE)"
+
+# Show progress bar if pv is available
+if command -v pv &>/dev/null; then
+    log "📈 Showing extraction progress..."
+    pv -n "$file" | tar -xf - -C "$target_dir" | awk '{print "Extracted " $1 " bytes"}'
+fi
+
 log "✅ Extraction complete."
+
