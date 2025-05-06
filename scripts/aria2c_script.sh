@@ -7,39 +7,43 @@ DOWNLOAD_DIR="$HOME/Downloads"
 download_file() {
     local URL="$1"
     local NEW_NAME="$2"
+
+    echo -e "\n📥 Starting download from:"
+    echo -e "🔗 $URL\n"
     
-    # Start the aria2c download with optimized options for maximum speed
+    # Start the aria2c download with optimized options
     aria2c -d "$DOWNLOAD_DIR" -x 16 -s 16 --max-connection-per-server=8 --split=16 --disable-ipv6 --no-netrc "$URL"
-    
+
     # Get the filename of the downloaded file
     FILENAME=$(basename "$URL")
-    FILE_EXT="${FILENAME##*.}"  # Extract the file extension
-    
+    FILE_EXT="${FILENAME##*.}"
+
     # Rename the file if a new name is provided
     if [ -n "$NEW_NAME" ]; then
         mv "$DOWNLOAD_DIR/$FILENAME" "$DOWNLOAD_DIR/$NEW_NAME.$FILE_EXT"
         FILENAME="$NEW_NAME.$FILE_EXT"
+        echo -e "📝 File renamed to: $NEW_NAME.$FILE_EXT"
     fi
 
-    echo "File downloaded to: $DOWNLOAD_DIR/$FILENAME"
-    echo "Download complete."
+    # Get file size in human-readable format
+    FILE_SIZE=$(du -h "$DOWNLOAD_DIR/$FILENAME" | cut -f1)
+
+    echo -e "✅ File saved to: $DOWNLOAD_DIR/$FILENAME"
+    echo -e "📏 File size: $FILE_SIZE"
+    echo -e "📦 Download complete.\n"
 }
 
 # Check if URL is passed as an argument
 if [ -z "$1" ]; then
-    # If no URL is passed, prompt for the URL
-    echo "Enter the download URL:"
+    echo -e "🔗 Enter the download URL:"
     read -p "> " URL
 else
     URL="$1"
 fi
 
 # Optional renaming
-if [ -n "$2" ]; then
-    NEW_NAME="$2"
-else
-    NEW_NAME=""
-fi
+NEW_NAME="${2:-}"
 
 # Download the file
 download_file "$URL" "$NEW_NAME"
+
