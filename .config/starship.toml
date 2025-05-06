@@ -31,7 +31,6 @@ format = """\
 $directory\
 $git_branch\
 $git_status\
-$custom.warp\
 $cmd_duration\
 $character\
 """
@@ -74,19 +73,3 @@ format = "took [$duration](bold red) "
 [character]
 success_symbol = "[❯](bold nord14) "
 error_symbol = "[✖](bold nord11) "
-
-# =========================
-# Cloudflare WARP Status
-# =========================
-[custom.warp]
-command = "warp-cli status | grep -q 'Connected' && echo ''"
-when = "command -v warp-cli >/dev/null && warp-cli status | grep -q 'Connected'"
-format = "[ $output ](bold nord7)"
-disabled = true
-detect_extensions = []
-detect_files = []
-detect_folders = []
-
-# To disable this module if redundant (e.g. in GNOME tray), set:
-# disabled = true
-# or just comment out the whole [custom.warp] block.
