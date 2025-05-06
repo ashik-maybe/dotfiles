@@ -1,0 +1,75 @@
+# ~/.config/starship.toml
+
+# =========================
+# Nord color palette
+# =========================
+[palettes.nord]
+nord0 = "#2E3440"
+nord1 = "#3B4252"
+nord2 = "#434C5E"
+nord3 = "#4C566A"
+nord4 = "#D8DEE9"
+nord5 = "#E5E9F0"
+nord6 = "#ECEFF4"
+nord7 = "#8FBCBB"
+nord8 = "#88C0D0"
+nord9 = "#81A1C1"
+nord10 = "#5E81AC"
+nord11 = "#BF616A"
+nord12 = "#D08770"
+nord13 = "#EBCB8B"
+nord14 = "#A3BE8C"
+nord15 = "#B48EAD"
+
+# Use the palette
+palette = "nord"
+
+# =========================
+# Prompt Format
+# =========================
+format = """\
+$directory\
+$git_branch\
+$git_status\
+$cmd_duration\
+$character\
+"""
+
+# =========================
+# Directory
+# =========================
+[directory]
+truncation_length = 3
+truncation_symbol = "…/"
+style = "bold blue"
+read_only = " "
+read_only_style = "bold red"
+
+# =========================
+# Git Branch
+# =========================
+[git_branch]
+symbol = " "
+style = "bold green"
+
+# =========================
+# Git Status
+# =========================
+[git_status]
+modified = "[± $files](nord13 bold)"
+staged = "[+ $files](nord14 bold)"
+untracked = "[? $files](nord8 bold)"
+
+# =========================
+# Command Duration
+# =========================
+[cmd_duration]
+min_time = 1000
+format = "took [$duration](bold red) "
+
+# =========================
+# Prompt Symbol
+# =========================
+[character]
+success_symbol = "[❯](bold nord14) "
+error_symbol = "[✖](bold nord11) "
