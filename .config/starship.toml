@@ -1,4 +1,8 @@
-# Set Nord palette
+# ~/.config/starship.toml
+
+# =========================
+# Nord color palette
+# =========================
 [palettes.nord]
 nord0 = "#2E3440"
 nord1 = "#3B4252"
@@ -20,7 +24,9 @@ nord15 = "#B48EAD"
 # Use the palette
 palette = "nord"
 
-# Prompt format — customize order here
+# =========================
+# Prompt Format
+# =========================
 format = """\
 $directory\
 $git_branch\
@@ -30,37 +36,57 @@ $cmd_duration\
 $character\
 """
 
-# Git branch with icon + color
+# =========================
+# Directory
+# =========================
+[directory]
+truncation_length = 3
+truncation_symbol = "…/"
+style = "bold blue"
+read_only = " "
+read_only_style = "bold red"
+
+# =========================
+# Git Branch
+# =========================
 [git_branch]
 symbol = " "
 style = "bold green"
 
-# Git status (±1, +1, ?1)
+# =========================
+# Git Status
+# =========================
 [git_status]
-modified = "[± $files](bold yellow)"
-staged = "[+ $files](bold green)"
-untracked = "[? $files](bold blue)"
+modified = "[± $files](nord13 bold)"
+staged = "[+ $files](nord14 bold)"
+untracked = "[? $files](nord8 bold)"
 
-# Command duration (e.g., "took 3s")
+# =========================
+# Command Duration
+# =========================
 [cmd_duration]
+min_time = 1000
 format = "took [$duration](bold red) "
 
-# Prompt symbol
+# =========================
+# Prompt Symbol
+# =========================
 [character]
-success_symbol = "❯"
-error_symbol = "✖"
+success_symbol = "[❯](bold nord14) "
+error_symbol = "[✖](bold nord11) "
 
-# ==============================
-# Cloudflare WARP Status Module
-# ==============================
-# To hide this module (e.g. GNOME already shows it):
-# → Set `disabled = true` below
-# → Or comment out the entire block
+# =========================
+# Cloudflare WARP Status
+# =========================
 [custom.warp]
 command = "warp-cli status | grep -q 'Connected' && echo ''"
 when = "command -v warp-cli >/dev/null && warp-cli status | grep -q 'Connected'"
-format = "[ $output ](bold cyan)"
+format = "[ $output ](bold nord7)"
 disabled = true
 detect_extensions = []
 detect_files = []
 detect_folders = []
+
+# To disable this module if redundant (e.g. in GNOME tray), set:
+# disabled = true
+# or just comment out the whole [custom.warp] block.
