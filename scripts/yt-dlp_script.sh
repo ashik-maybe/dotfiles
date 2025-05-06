@@ -20,16 +20,17 @@ download_video() {
     local NEW_NAME=$5
 
     # Download and process media using yt-dlp with specified options
+    echo "📥 Downloading from: $URL"
     "$YTDL_PATH" -f "$FORMAT" $EXTRA_OPTS --paths "$OUTPUT_DIR" "$URL"
 
     # Rename the file if a new name is provided
     if [ -n "$NEW_NAME" ]; then
         FILE_EXT=$(echo "$FORMAT" | grep -q "audio" && echo "mp3" || echo "mp4")
         mv "$OUTPUT_DIR/$(yt-dlp -e --get-filename -o '%(title)s.%(ext)s' "$URL")" "$OUTPUT_DIR/$NEW_NAME.$FILE_EXT"
-        echo "File renamed to: $NEW_NAME.$FILE_EXT"
+        echo "📝 File renamed to: $NEW_NAME.$FILE_EXT"
     fi
 
-    echo "Download complete: $URL"
+    echo "✅ Download complete: $URL"
 }
 
 # Main functionality
@@ -39,16 +40,16 @@ main() {
 
     # If no URL is provided, prompt for one
     if [ -z "$URL" ]; then
-        read -rp "Enter the video URL: " URL
+        read -rp "🔗 Enter the video URL: " URL
     fi
 
     # Prompt for download option selection
-    echo "Select download type and quality:"
-    echo "0. MP3 (128kbps)"
-    echo "1. MP4 (480p)"
-    echo "2. MP4 (720p)"
-    echo "3. MP4 (1080p)"
-    read -rp "Enter option number: " OPTION
+    echo -e "\n🔧 Select download type and quality:"
+    echo "0. 🎵 MP3 (128kbps)"
+    echo "1. 🎥 MP4 (480p)"
+    echo "2. 🎥 MP4 (720p)"
+    echo "3. 🎥 MP4 (1080p)"
+    read -rp "📋 Enter option number: " OPTION
 
     case $OPTION in
         0)
@@ -72,7 +73,7 @@ main() {
             EXTRA_OPTS="--embed-thumbnail --add-metadata --merge-output-format mp4 --embed-chapters --write-subs --write-auto-subs --embed-subs --compat-options no-keep-subs --sub-langs en"
             ;;
         *)
-            echo "Invalid option selected."
+            echo "❌ Invalid option selected."
             exit 1
             ;;
     esac
@@ -81,8 +82,9 @@ main() {
     download_video "$URL" "$FORMAT" "$OUTPUT_DIR" "$EXTRA_OPTS" "$NEW_NAME"
 
     # Exit after completing the download
-    echo "Exiting script. Run again to download another file."
+    echo -e "\n👋 Exiting script. Run again to download another file."
 }
 
 # Execute the script
 main "$@"
+
