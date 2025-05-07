@@ -44,7 +44,7 @@ if [ "$USE_ZIP" -eq 1 ]; then
   ARCHIVE="${OUTFILE:-$NAME.zip}"
   [ -f "$ARCHIVE" ] && [ "$FORCE" -ne 1 ] && echo "❌ '$ARCHIVE' exists. Use -f to overwrite." && exit 1
   echo "📁 Folder: $FOLDER"
-  echo "🛠 Compressing as .zip (max)"
+  echo "🛠 Compressing with: zip -r -9"
   zip -r -9 -q "$ARCHIVE" "$FOLDER"
 else
   COMP="zstd --ultra -22 -T0"
