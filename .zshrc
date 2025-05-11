@@ -130,6 +130,17 @@ alias yt='$HOME/scripts/yt-dlp_script.sh'
 alias k='$HOME/scripts/archive_script.sh'
 alias x='$HOME/scripts/unarchive_script.sh'
 
+# 📦 System Update (DNF + Flatpak)
+upgrade() {
+    echo -e "\033[1m→ Refreshing DNF metadata and upgrading packages...\033[0m"
+    sudo dnf upgrade --refresh -y
+
+    echo -e "\033[1m→ Updating Flatpak packages...\033[0m"
+    flatpak update -y
+
+    echo -e "\033[1m✓ System fully updated.\033[0m"
+}
+
 # Add $HOME/bin to the PATH for user-specific binaries
 export PATH=$PATH:$HOME/bin
 
