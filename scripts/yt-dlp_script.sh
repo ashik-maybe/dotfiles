@@ -25,7 +25,7 @@ download_video() {
 
     # Rename the file if a new name is provided
     if [ -n "$NEW_NAME" ]; then
-        FILE_EXT=$(echo "$FORMAT" | grep -q "audio" && echo "mp3" || echo "mp4")
+        FILE_EXT=$(echo "$FORMAT" | grep -q "audio" && echo "mp3" || echo "mkv")
         mv "$OUTPUT_DIR/$(yt-dlp -e --get-filename -o '%(title)s.%(ext)s' "$URL")" "$OUTPUT_DIR/$NEW_NAME.$FILE_EXT"
         echo "📝 File renamed to: $NEW_NAME.$FILE_EXT"
     fi
@@ -46,9 +46,9 @@ main() {
     # Prompt for download option selection
     echo -e "\n🔧 Select download type and quality:"
     echo "0. 🎵 MP3 (128kbps)"
-    echo "1. 🎥 MP4 (480p)"
-    echo "2. 🎥 MP4 (720p)"
-    echo "3. 🎥 MP4 (1080p)"
+    echo "1. 🎥 MKV (480p)"
+    echo "2. 🎥 MKV (720p)"
+    echo "3. 🎥 MKV (1080p)"
     read -rp "📋 Enter option number: " OPTION
 
     case $OPTION in
@@ -60,17 +60,17 @@ main() {
         1)
             FORMAT="bestvideo[height<=480]+bestaudio/best[height<=480]"
             OUTPUT_DIR="$VIDEO_DOWNLOAD_DIR"
-            EXTRA_OPTS="--embed-thumbnail --add-metadata --merge-output-format mp4 --embed-chapters --write-subs --write-auto-subs --embed-subs --compat-options no-keep-subs --sub-langs en"
+            EXTRA_OPTS="--embed-thumbnail --add-metadata --merge-output-format mkv --embed-chapters --write-subs --write-auto-subs --embed-subs --compat-options no-keep-subs --sub-langs en"
             ;;
         2)
             FORMAT="bestvideo[height<=720]+bestaudio/best[height<=720]"
             OUTPUT_DIR="$VIDEO_DOWNLOAD_DIR"
-            EXTRA_OPTS="--embed-thumbnail --add-metadata --merge-output-format mp4 --embed-chapters --write-subs --write-auto-subs --embed-subs --compat-options no-keep-subs --sub-langs en"
+            EXTRA_OPTS="--embed-thumbnail --add-metadata --merge-output-format mkv --embed-chapters --write-subs --write-auto-subs --embed-subs --compat-options no-keep-subs --sub-langs en"
             ;;
         3)
             FORMAT="bestvideo[height<=1080]+bestaudio/best[height<=1080]"
             OUTPUT_DIR="$VIDEO_DOWNLOAD_DIR"
-            EXTRA_OPTS="--embed-thumbnail --add-metadata --merge-output-format mp4 --embed-chapters --write-subs --write-auto-subs --embed-subs --compat-options no-keep-subs --sub-langs en"
+            EXTRA_OPTS="--embed-thumbnail --add-metadata --merge-output-format mkv --embed-chapters --write-subs --write-auto-subs --embed-subs --compat-options no-keep-subs --sub-langs en"
             ;;
         *)
             echo "❌ Invalid option selected."
