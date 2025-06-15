@@ -1,50 +1,91 @@
-### Dotfiles  
-Minimal GNU Stow-managed dotfiles setup  
+# 🗂️ Dotfiles by ashik-maybe
+
+This repo contains my personal dotfiles. They're designed for a **fresh Linux installation** (Fedora in particular), and reflect my preferred terminal, shell, fonts, and more.
+
+> ⚠️ **Note:** These configs are pretty specific to my setup — tweak as needed for your own!
 
 ---
 
-#### 🧰 Install  
+## 🚀 Quick Start
+
+Here’s how to get up and running:
+
+### 1. Install Nerd Font (Hack)
+
+Download the [Hack Nerd Font](https://www.nerdfonts.com/font-downloads) and place it in your fonts directory:
+
 ```bash
-# Install dependencies  
-sudo dnf install git stow  
+mkdir -p ~/.local/share/fonts
+# Move the downloaded font file into this directory
+```
 
-# Clone repo  
-git clone https://github.com/YOUR_USERNAME/dotfiles ~/.dotfiles  
+### 2. Get Zellij (Terminal Multiplexer)
 
-# Apply configs  
-cd ~/.dotfiles  
-stow .  
+Download Zellij from [zellij.dev](https://zellij.dev/) and place the binary in your local bin:
 
-# Install Starship (if needed)  
-curl -sS https://starship.rs/install.sh | sh  
+```bash
+mkdir -p ~/bin
+# Move the Zellij binary into ~/bin
+```
 
-# Reload shell  
-source ~/.zshrc  
+Make sure `~/bin` is in your `PATH`.
+
+### 3. Install Foot Terminal
+
+I prefer the [Foot terminal](https://codeberg.org/dnkl/foot):
+
+```bash
+sudo dnf install foot
+```
+
+### 4. Set Up Zsh
+
+Install Zsh:
+
+```bash
+sudo dnf install zsh
+```
+
+Make it your default shell:
+
+```bash
+chsh -s $(which zsh)
+```
+
+### 5. Install Starship Prompt
+
+You'll need [Starship](https://starship.rs/) for that sweet prompt setup:
+
+```bash
+curl -sS https://starship.rs/install.sh | sh
+```
+
+### 6. Lua Dependency
+
+My Zsh config uses some Lua-powered extensions, so you’ll need Lua:
+
+```bash
+sudo dnf install lua
 ```
 
 ---
 
-#### 🔁 Revert  
-```bash  
-# Remove symlinks  
-cd ~/.dotfiles  
-stow -D .  
+## 📦 Dotfiles Installation
 
-# Delete repo (optional)  
-rm -rf ~/.dotfiles  
-```  
+Now for the fun part — cloning and stowing:
 
----
-
-#### 📁 Structure  
-- `.zshrc` (Zinit/Zsh config)  
-- `.config/foot/foot.ini`  
-- `.fonts/` (Fonts like Bengali, Windows11 etc.)  
+```bash
+cd ~
+sudo dnf install git stow
+git clone https://github.com/ashik-maybe/dotfiles ~/.dotfiles
+cd ~/.dotfiles
+stow .
+source ~/.zshrc
+```
 
 ---
 
-#### ⚠️ Notes  
-- Back up existing files before `stow` (e.g., `~/.zshrc.bak`)  
-- Fonts require `fc-cache -fv` after install  
-- Add new configs to `~/dotfiles/`, then rerun `stow .`  
-- No fluff. Just works.
+## 📌 Notes
+
+* These dotfiles are designed for **Fedora**, but can be adapted for other distros.
+* You’ll want to tweak some things if your environment differs (e.g., paths, shells, fonts).
