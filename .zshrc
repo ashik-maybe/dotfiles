@@ -85,19 +85,6 @@ fi
 # Colorful grep
 alias grep='grep --color=auto'
 
-# Git
-alias ga='git add'
-alias gb='git branch'
-alias gc='git commit'
-alias gco='git checkout'
-alias gl='git pull'
-alias gp='git push'
-alias gs='git status'
-alias gcm='git commit -m'
-alias gbr='git branch -r'
-alias gcp='git cherry-pick'
-alias glg='git log --oneline --graph'
-
 # Misc
 alias please='sudo $(fc -ln -1)'
 alias reload='source ~/.zshrc && echo "✓ Reloaded ~/.zshrc"'
