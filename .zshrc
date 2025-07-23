@@ -38,11 +38,16 @@ zinit light zsh-users/zsh-autosuggestions              # Suggest commands as you
 zinit light zsh-users/zsh-completions                  # Extra completions
 zinit light Aloxaf/fzf-tab                             # Fuzzy tab completion (modern, super fast)
 zinit light zsh-users/zsh-syntax-highlighting          # Highlight commands (MUST be last)
-
 zinit light ajeetdsouza/zoxide                         # `z` alternative with smarter logic
 eval "$(zoxide init zsh)"
 
 # ────── SMART ALIASES ────────────────────────────
+# Custom Scripts
+alias ar='$HOME/scripts/aria2c_script.sh'
+alias yt='$HOME/scripts/yt-dlp_script.sh'
+alias k='$HOME/scripts/archive_script.sh'
+alias x='$HOME/scripts/unarchive_script.sh'
+
 # Navigation
 alias c='clear'
 alias q='exit'
@@ -97,14 +102,3 @@ alias glg='git log --oneline --graph'
 alias please='sudo $(fc -ln -1)'
 alias reload='source ~/.zshrc && echo "✓ Reloaded ~/.zshrc"'
 alias upgrade='sudo dnf upgrade --refresh -y && flatpak update -y'
-
-# Optional WARP toggle (Cloudflare VPN)
-warp-toggle() {
-  local status=$(warp-cli status 2>/dev/null | grep 'Status update' | awk -F': ' '{print $2}' | tr -d '\r')
-  if [[ "$status" == "Connected" ]]; then
-    echo "→ Disconnecting WARP..." && warp-cli disconnect && echo "✓ Disconnected."
-  else
-    echo "→ Connecting WARP..." && warp-cli connect && echo "✓ Connected."
-  fi
-}
-alias wt="warp-toggle"
