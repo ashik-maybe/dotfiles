@@ -94,7 +94,7 @@ source  ~/.zshrc
 
 ---
 
-#### 🅰 Fonts
+#### ▪ Fonts
 
 - ['Iosevka', 'Iosevka Term'](https://github.com/be5invis/Iosevka/releases) for [VS Code](https://code.visualstudio.com/download)
 
