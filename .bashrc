@@ -55,14 +55,20 @@ alias rm='rm -iv'
 alias rmdir='rmdir -v'
 
 ## 🧾 Enhanced ls
-if command -v eza &>/dev/null; then
-  alias ls='eza --icons'
-  alias ll='eza -lh --icons'
-  alias la='eza -a --icons'
+if command -v lsd &>/dev/null; then
+  alias ls='lsd --color=auto --group-directories-first'
+  alias ll='lsd -lh --group-directories-first'
+  alias la='lsd -a --color=auto --group-directories-first'
 else
-  alias ls='ls --color=auto -h'
-  alias ll='ls -lh'
-  alias la='ls -A'
+  if command -v eza &>/dev/null; then
+    alias ls='eza --icons'
+    alias ll='eza -lh --icons'
+    alias la='eza -a --icons'
+  else
+    alias ls='ls --color=auto -h'
+    alias ll='ls -lh'
+    alias la='ls -A'
+  fi
 fi
 
 ## 🐱 Pretty cat
