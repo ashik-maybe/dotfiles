@@ -1,8 +1,4 @@
-# 🗂️ Dotfiles by ashik-maybe
-
-This repo contains my personal dotfiles. They're designed for a **fresh Linux installation** (Fedora in particular), and reflect my preferred terminal, shell, fonts, and more.
-
-> ⚠️ **Note:** These configs are pretty specific to my setup — tweak as needed for your own!
+# 🗂️ Dotfiles
 
 ---
 
@@ -10,16 +6,7 @@ This repo contains my personal dotfiles. They're designed for a **fresh Linux in
 
 Here’s how to get up and running:
 
-### 1. Install Nerd Font (Hack)
-
-Download the [Hack Nerd Font](https://www.nerdfonts.com/font-downloads) and place it in your fonts directory:
-
-```bash
-mkdir -p ~/.local/share/fonts
-# Move the downloaded font file into this directory
-```
-
-### 2. Get Zellij (Terminal Multiplexer)
+### 1. Get Zellij (Terminal Multiplexer)
 
 Download Zellij from [zellij.dev](https://zellij.dev/) and place the binary in your local bin:
 
@@ -30,7 +17,7 @@ mkdir -p ~/bin
 
 Make sure `~/bin` is in your `PATH`.
 
-### 3. Install Foot Terminal
+### 2. Install Foot Terminal
 
 I prefer the [Foot terminal](https://codeberg.org/dnkl/foot):
 
@@ -38,7 +25,7 @@ I prefer the [Foot terminal](https://codeberg.org/dnkl/foot):
 sudo dnf install foot
 ```
 
-### 4. Set Up Zsh
+### 3. Set Up Zsh
 
 Install Zsh:
 
@@ -52,7 +39,7 @@ Make it your default shell:
 chsh -s $(which zsh)
 ```
 
-### 5. Install Starship Prompt
+### 4. Install Starship Prompt
 
 You'll need [Starship](https://starship.rs/) for that sweet prompt setup:
 
@@ -60,12 +47,18 @@ You'll need [Starship](https://starship.rs/) for that sweet prompt setup:
 curl -sS https://starship.rs/install.sh | sh
 ```
 
-### 6. Lua Dependency
+### 5. Dependencies
 
-My Zsh config uses some Lua-powered extensions, so you’ll need Lua:
+This Zsh config uses some Lua-powered extensions, so you’ll need Lua:
 
 ```bash
 sudo dnf install lua
+```
+
+and these packages;
+
+```bash
+sudo dnf install bat fzf lsd zoxide
 ```
 
 ---
@@ -87,5 +80,8 @@ source ~/.zshrc
 
 ## 📌 Notes
 
-* These dotfiles are designed for **Fedora**, but can be adapted for other distros.
-* You’ll want to tweak some things if your environment differs (e.g., paths, shells, fonts).
+### Fonts
+
+- ['Iosevka', 'Iosevka Term'](https://github.com/be5invis/Iosevka) for [VS Code](https://code.visualstudio.com/download)
+
+- [MesloLGLDZNerdFont](https://www.nerdfonts.com/font-downloads) for [foot](https://codeberg.org/dnkl/foot)
