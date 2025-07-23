@@ -6,7 +6,7 @@ Here’s how to get up and running:
 
 ### 1. Get [Zellij](https://zellij.dev/)
 
-###### A terminal workspace with batteries included
+> A terminal workspace with batteries included
 
 ```bash
 mkdir -p ~/bin
@@ -17,7 +17,7 @@ Make sure `~/bin` is in your `PATH`.
 
 ### 2. Install [foot](https://codeberg.org/dnkl/foot)
 
-###### A fast, lightweight and minimalistic Wayland terminal emulator
+> A fast, lightweight and minimalistic Wayland terminal emulator
 
 ```bash
 sudo dnf install foot
