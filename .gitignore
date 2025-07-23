@@ -1,0 +1,6 @@
+# .gitignore - tells Git which files/directories to exclude from version control
+
+# Ignore everything in .fonts except the common tracked ones
+.fonts/*
+# !.fonts/Common-Bangla-Fonts/
+# !.fonts/Common-Windows-Fonts/
