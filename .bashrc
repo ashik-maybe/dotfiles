@@ -100,7 +100,7 @@ alias k='$HOME/scripts/archive_script.sh'
 alias x='$HOME/scripts/unarchive_script.sh'
 alias zellij='zellij'
 
-# ────── 📦 SYSTEM UPDATER FUNCTION ──────────────────
+# ────── 📦 CUSTOM FUNCTIONS ──────────────────
 upgrade() {
   echo -e "\033[1m→ Refreshing DNF metadata and upgrading packages...\033[0m"
   sudo dnf upgrade --refresh -y
@@ -110,6 +110,33 @@ upgrade() {
 
   echo -e "\033[1m✓ System fully updated.\033[0m"
 }
+
+warp-toggle() {
+  local ORANGE='\033[38;5;208m'
+  local LIGHT_ORANGE='\033[38;5;214m'
+  local GREEN='\033[0;32m'
+  local RED='\033[0;31m'
+  local BOLD='\033[1m'
+  local RESET='\033[0m'
+
+  local status=$(warp-cli status 2>/dev/null | grep 'Status update' | awk -F': ' '{print $2}' | tr -d '\r')
+
+  case "$status" in
+    Connected)
+      echo -e "${LIGHT_ORANGE}→ Disconnecting Cloudflare WARP...${RESET}"
+      warp-cli disconnect &>/dev/null && \
+        echo -e "${GREEN}✓ Cloudflare WARP ${BOLD}disconnected${RESET}${GREEN}.${RESET}" || \
+        echo -e "${RED}✗ Failed to disconnect Cloudflare WARP.${RESET}"
+      ;;
+    *)
+      echo -e "${ORANGE}→ Connecting Cloudflare WARP...${RESET}"
+      warp-cli connect &>/dev/null && \
+        echo -e "${GREEN}✓ Cloudflare WARP ${BOLD}connected${RESET}${GREEN}.${RESET}" || \
+        echo -e "${RED}✗ Failed to connect Cloudflare WARP.${RESET}"
+      ;;
+  esac
+}
+alias wt="warp-toggle"
 
 # ────── 🙏 SUDO LAST COMMAND ─────────────────────────
 alias please='sudo $(history -p !!)'
