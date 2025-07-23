@@ -4,9 +4,9 @@
 
 Here’s how to get up and running:
 
-### 1. Get Zellij (Terminal Multiplexer)
+### 1. Get [Zellij](https://zellij.dev/)
 
-Download Zellij from [zellij.dev](https://zellij.dev/) and place the binary in your local bin:
+###### A terminal workspace with batteries included
 
 ```bash
 mkdir -p ~/bin
@@ -15,39 +15,17 @@ mkdir -p ~/bin
 
 Make sure `~/bin` is in your `PATH`.
 
-### 2. Install Foot Terminal
+### 2. Install [foot](https://codeberg.org/dnkl/foot)
 
-I prefer the [Foot terminal](https://codeberg.org/dnkl/foot):
+###### A fast, lightweight and minimalistic Wayland terminal emulator
 
 ```bash
 sudo dnf install foot
 ```
 
-### 3. Set Up Zsh
+### 3. Dependencies
 
-Install Zsh:
-
-```bash
-sudo dnf install zsh
-```
-
-Make it your default shell:
-
-```bash
-chsh -s $(which zsh)
-```
-
-### 4. Install Starship Prompt
-
-You'll need [Starship](https://starship.rs/) for that sweet prompt setup:
-
-```bash
-curl -sS https://starship.rs/install.sh | sh
-```
-
-### 5. Dependencies
-
-This Zsh config uses some Lua-powered extensions, so you’ll need Lua:
+This Zsh config uses some Lua-powered extensions, so;
 
 ```bash
 sudo dnf install lua
@@ -57,6 +35,25 @@ and these packages;
 
 ```bash
 sudo dnf install bat fzf lsd zoxide
+```
+
+### 4. Set Up Zsh
+
+```bash
+sudo dnf install zsh
+```
+
+Make it the default shell;
+
+```bash
+chsh -s $(which zsh)
+```
+
+### 5. Install [Starship](https://starship.rs/) Prompt
+
+```bash
+curl -sS https://starship.rs/install.sh | sh
+# Running this command would upgrade starship
 ```
 
 ---
