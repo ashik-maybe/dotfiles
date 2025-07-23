@@ -1,75 +1,190 @@
-# ~/.config/starship.toml
+[aws]
+symbol = "  "
 
-# =========================
-# Nord color palette
-# =========================
-[palettes.nord]
-nord0 = "#2E3440"
-nord1 = "#3B4252"
-nord2 = "#434C5E"
-nord3 = "#4C566A"
-nord4 = "#D8DEE9"
-nord5 = "#E5E9F0"
-nord6 = "#ECEFF4"
-nord7 = "#8FBCBB"
-nord8 = "#88C0D0"
-nord9 = "#81A1C1"
-nord10 = "#5E81AC"
-nord11 = "#BF616A"
-nord12 = "#D08770"
-nord13 = "#EBCB8B"
-nord14 = "#A3BE8C"
-nord15 = "#B48EAD"
+[buf]
+symbol = " "
 
-# Use the palette
-palette = "nord"
+[bun]
+symbol = " "
 
-# =========================
-# Prompt Format
-# =========================
-format = """\
-$directory\
-$git_branch\
-$git_status\
-$cmd_duration\
-$character\
-"""
+[c]
+symbol = " "
 
-# =========================
-# Directory
-# =========================
+[cpp]
+symbol = " "
+
+[cmake]
+symbol = " "
+
+[conda]
+symbol = " "
+
+[crystal]
+symbol = " "
+
+[dart]
+symbol = " "
+
+[deno]
+symbol = " "
+
 [directory]
-truncation_length = 3
-truncation_symbol = "…/"
-style = "bold blue"
-read_only = " "
-read_only_style = "bold red"
+read_only = " 󰌾"
 
-# =========================
-# Git Branch
-# =========================
+[docker_context]
+symbol = " "
+
+[elixir]
+symbol = " "
+
+[elm]
+symbol = " "
+
+[fennel]
+symbol = " "
+
+[fossil_branch]
+symbol = " "
+
+[gcloud]
+symbol = "  "
+
 [git_branch]
-symbol = " "
-style = "bold green"
+symbol = " "
 
-# =========================
-# Git Status
-# =========================
-[git_status]
-modified = "[± $files](nord13 bold)"
-staged = "[+ $files](nord14 bold)"
-untracked = "[? $files](nord8 bold)"
+[git_commit]
+tag_symbol = '  '
 
-# =========================
-# Command Duration
-# =========================
-[cmd_duration]
-min_time = 1000
-format = "took [$duration](bold red) "
+[golang]
+symbol = " "
 
-# =========================
-# Prompt Symbol
-# =========================
-[character]
-success_symbol = "[❯](bold nord14) "
-error_symbol = "[✖](bold nord11) "
+[guix_shell]
+symbol = " "
+
+[haskell]
+symbol = " "
+
+[haxe]
+symbol = " "
+
+[hg_branch]
+symbol = " "
+
+[hostname]
+ssh_symbol = " "
+
+[java]
+symbol = " "
+
+[julia]
+symbol = " "
+
+[kotlin]
+symbol = " "
+
+[lua]
+symbol = " "
+
+[memory_usage]
+symbol = "󰍛 "
+
+[meson]
+symbol = "󰔷 "
+
+[nim]
+symbol = "󰆥 "
+
+[nix_shell]
+symbol = " "
+
+[nodejs]
+symbol = " "
+
+[ocaml]
+symbol = " "
+
+[os.symbols]
+Alpaquita = " "
+Alpine = " "
+AlmaLinux = " "
+Amazon = " "
+Android = " "
+Arch = " "
+Artix = " "
+CachyOS = " "
+CentOS = " "
+Debian = " "
+DragonFly = " "
+Emscripten = " "
+EndeavourOS = " "
+Fedora = " "
+FreeBSD = " "
+Garuda = "󰛓 "
+Gentoo = " "
+HardenedBSD = "󰞌 "
+Illumos = "󰈸 "
+Kali = " "
+Linux = " "
+Mabox = " "
+Macos = " "
+Manjaro = " "
+Mariner = " "
+MidnightBSD = " "
+Mint = " "
+NetBSD = " "
+NixOS = " "
+Nobara = " "
+OpenBSD = "󰈺 "
+openSUSE = " "
+OracleLinux = "󰌷 "
+Pop = " "
+Raspbian = " "
+Redhat = " "
+RedHatEnterprise = " "
+RockyLinux = " "
+Redox = "󰀘 "
+Solus = "󰠳 "
+SUSE = " "
+Ubuntu = " "
+Unknown = " "
+Void = " "
+Windows = "󰍲 "
+
+[package]
+symbol = "󰏗 "
+
+[perl]
+symbol = " "
+
+[php]
+symbol = " "
+
+[pijul_channel]
+symbol = " "
+
+[pixi]
+symbol = "󰏗 "
+
+[python]
+symbol = " "
+
+[rlang]
+symbol = "󰟔 "
+
+[ruby]
+symbol = " "
+
+[rust]
+symbol = "󱘗 "
+
+[scala]
+symbol = " "
+
+[swift]
+symbol = " "
+
+[zig]
+symbol = " "
+
+[gradle]
+symbol = " "
