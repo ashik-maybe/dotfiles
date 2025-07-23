@@ -1,106 +1,46 @@
-# ── GENERAL SETTINGS ─────────────────────────────
 format = """
-[](#1a1a1a)\
-$username$hostname$directory$git_branch$git_status$cmd_duration\
-[](#1a1a1a)\
-\n$character
-"""
-
-right_format = """
-$time
-"""
-
-# ── PROMPT SEGMENTS ─────────────────────────────
-[character]
-success_symbol = "[➜](bold green)"
-error_symbol = "[➜](bold red)"
-vicmd_symbol = "[](bold yellow)"
-format = "$symbol "
+$username\
+$hostname\
+$directory\
+$git_branch\
+$git_state\
+$git_status\
+$cmd_duration\
+$line_break\
+$python\
+$character"""
 
 [directory]
-style = "bold #5fb8ff"
-format = "[ $path ]($style)"
-truncation_length = 3
-truncation_symbol = "…/"
+style = "blue"
 
-[username]
-show_always = true
-style_user = "#88c400"
-style_root = "bold red"
-format = "[ $user ]($style)"
-
-[hostname]
-ssh_only = true
-format = "[@$hostname](bold yellow) "
+[character]
+success_symbol = "[❯](purple)"
+error_symbol = "[❯](red)"
+vimcmd_symbol = "[❮](green)"
 
 [git_branch]
-format = "[ $branch](#ef91df) "
+format = "[$branch]($style)"
+style = "bright-black"
 
 [git_status]
-style = "#f69d6a"
-format = "([$all_status$ahead_behind ]($style))"
+format = "[[(*$conflicted$untracked$modified$staged$renamed$deleted)](218) ($ahead_behind$stashed)]($style)"
+style = "cyan"
+conflicted = "​"
+untracked = "​"
+modified = "​"
+staged = "​"
+renamed = "​"
+deleted = "​"
+stashed = "≡"
+
+[git_state]
+format = '\([$state( $progress_current/$progress_total)]($style)\) '
+style = "bright-black"
 
 [cmd_duration]
-min_time = 200
-format = "[took $duration](dimmed)"
+format = "[$duration]($style) "
+style = "yellow"
 
-# ── LANGUAGE & TOOLCHAINS ──────────────────────
 [python]
-symbol = ""
-format = "[${symbol} ${version}](#88c400) "
-
-[nodejs]
-symbol = ""
-format = "[${symbol} ${version}](#5fb8ff) "
-
-[rust]
-symbol = "󱘗"
-format = "[${symbol} ${version}](#de99f0) "
-
-[golang]
-symbol = ""
-format = "[${symbol} ${version}](#00ca9a) "
-
-[lua]
-symbol = ""
-format = "[${symbol} ${version}](#5fc940) "
-
-[php]
-symbol = ""
-format = "[${symbol} ${version}](#c5b300) "
-
-[package]
-symbol = "󰏗"
-format = "[${symbol} $version](dimmed white) "
-
-[docker_context]
-symbol = ""
-format = "[${symbol} $context](bold blue) "
-
-# ── TIME ────────────────────────────────────────
-[time]
-disabled = false
-time_format = "%H:%M"
-style = "dimmed"
-format = "[ $time ]($style)"
-
-# ── OPTIONAL SYMBOL OVERRIDES ───────────────────
-[os]
-disabled = true
-
-[git_commit]
-tag_symbol = "  "
-only_detached = false
-
-# ── DISABLED MODULES ────────────────────────────
-[battery]
-disabled = true
-
-[memory_usage]
-disabled = true
-
-[env_var]
-disabled = true
-
-[shell]
-disabled = true
+format = "[$virtualenv]($style) "
+style = "bright-black"
