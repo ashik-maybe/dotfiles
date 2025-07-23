@@ -2,10 +2,14 @@
 export PATH="$HOME/.local/bin:$HOME/bin:$PATH"
 export EDITOR='code'
 export VISUAL='code'
-# export TERMINAL=foot  # Uncomment and set if needed
+# export TERMINAL=foot  # Uncomment if using a custom terminal
 
 # ────── 🌟 STARSHIP PROMPT ──────────────────────────
-command -v starship &>/dev/null && eval "$(starship init bash)"
+if command -v starship &>/dev/null; then
+  eval "$(starship init bash)"
+else
+  PS1='\u@\h:\w\$ '
+fi
 
 # ────── 🔁 HISTORY BEHAVIOR ─────────────────────────
 export HISTCONTROL=ignoredups:erasedups
@@ -14,21 +18,26 @@ export HISTFILESIZE=20000
 shopt -s histappend
 PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 
-# ────── 🧠 COMPLETION ───────────────────────────────
-if [ -f /etc/bash_completion ]; then
+# ────── 🧠 BASH COMPLETION ──────────────────────────
+if [ -f /usr/share/bash-completion/bash_completion ]; then
+  . /usr/share/bash-completion/bash_completion
+elif [ -f /etc/bash_completion ]; then
   . /etc/bash_completion
 fi
 
-# ────── 🧹 AUTO ENHANCEMENTS ────────────────────────
+# Enable completion for aliases
+if shopt -q progcomp; then
+  complete -cf sudo
+fi
+
+# ────── ⚡️ AUTO ENHANCEMENTS ────────────────────────
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 command -v thefuck &>/dev/null && eval "$(thefuck --alias)"
+command -v zoxide &>/dev/null && eval "$(zoxide init bash)"
 
-# ────── 🎨 LOGIN WELCOME MESSAGE ────────────────────
-command -v neofetch &>/dev/null && neofetch
+# ────── 🪄 ALIASES ───────────────────────────────────
 
-# ────── 🪄 SMART ALIASES ─────────────────────────────
-
-## Core navigation
+## 📁 Navigation
 alias c='clear'
 alias q='exit'
 alias ..='cd ..'
@@ -36,58 +45,60 @@ alias ...='cd ../..'
 alias ....='cd ../../..'
 alias d='cd ~/Downloads'
 alias p='cd ~/WorkSpace/Projects'
+alias cd='z'  # zoxide override
 
-## File operations (safe)
+## 🗂️ File Operations (safe)
 alias mkdir='mkdir -pv'
 alias cp='cp -iv'
 alias mv='mv -iv'
 alias rm='rm -iv'
 alias rmdir='rmdir -v'
 
-## Enhanced ls
-if command -v exa &>/dev/null; then
-  alias ls='exa --icons'
-  alias ll='exa -lh --icons'
-  alias la='exa -a --icons'
+## 🧾 Enhanced ls
+if command -v eza &>/dev/null; then
+  alias ls='eza --icons'
+  alias ll='eza -lh --icons'
+  alias la='eza -a --icons'
 else
   alias ls='ls --color=auto -h'
   alias ll='ls -lh'
   alias la='ls -A'
 fi
 
-## Enhanced cat
+## 🐱 Pretty cat
 if command -v batcat &>/dev/null; then
   alias cat='batcat --paging=never'
 elif command -v bat &>/dev/null; then
   alias cat='bat --paging=never'
 fi
 
-## grep highlight
+## 🔍 Better grep
 alias grep='grep --color=auto'
 
-## Top replacement
+## 📊 System Monitor
 command -v btop &>/dev/null && alias top='btop'
 
-## Git shortcuts
-alias gst='git status'
-alias gs='git status'
+## 🔧 Git Shortcuts
 alias ga='git add'
+alias gb='git branch'
+alias gbr='git branch -r'
 alias gc='git commit'
-alias gcm='git commit'
-alias gp='git push'
+alias gcm='git commit -m'
+alias gco='git checkout'
+alias gcp='git cherry-pick'
+alias gd='git diff'
 alias gl='git pull'
 alias glg='git log --oneline --graph'
-alias gb='git branch'
-alias gbr='git branch'
-alias gd='git diff'
-alias gco='git checkout'
+alias gp='git push'
+alias gs='git status'
+alias gst='git status'
 
-## Custom tool aliases
-alias z=zellij
+## 🧰 Custom Scripts
 alias ar='$HOME/scripts/aria2c_script.sh'
 alias yt='$HOME/scripts/yt-dlp_script.sh'
 alias k='$HOME/scripts/archive_script.sh'
 alias x='$HOME/scripts/unarchive_script.sh'
+alias zellij='zellij'
 
 # ────── 📦 SYSTEM UPDATER FUNCTION ──────────────────
 upgrade() {
