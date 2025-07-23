@@ -6,7 +6,7 @@ Here’s how to get up and running:
 
 ### 1. Get [Zellij](https://zellij.dev/)
 
-> A terminal workspace with batteries included
+_A terminal workspace with batteries included_
 
 ```bash
 mkdir -p ~/bin
@@ -17,7 +17,7 @@ Make sure `~/bin` is in your `PATH`.
 
 ### 2. Install [foot](https://codeberg.org/dnkl/foot)
 
-> A fast, lightweight and minimalistic Wayland terminal emulator
+_A fast, lightweight and minimalistic Wayland terminal emulator_
 
 ```bash
 sudo dnf install foot
@@ -80,3 +80,5 @@ source ~/.zshrc
 - ['Iosevka', 'Iosevka Term'](https://github.com/be5invis/Iosevka/releases) for [VS Code](https://code.visualstudio.com/download)
 
 - [MesloLGLDZNerdFont](https://www.nerdfonts.com/font-downloads) for [foot](https://codeberg.org/dnkl/foot)
+
+Store these fonts in **`~/.local/share/fonts`**
