@@ -1,190 +1,106 @@
-[aws]
-symbol = "  "
+# ── GENERAL SETTINGS ─────────────────────────────
+format = """
+[](#1a1a1a)\
+$username$hostname$directory$git_branch$git_status$cmd_duration\
+[](#1a1a1a)\
+\n$character
+"""
 
-[buf]
-symbol = " "
+right_format = """
+$time
+"""
 
-[bun]
-symbol = " "
-
-[c]
-symbol = " "
-
-[cpp]
-symbol = " "
-
-[cmake]
-symbol = " "
-
-[conda]
-symbol = " "
-
-[crystal]
-symbol = " "
-
-[dart]
-symbol = " "
-
-[deno]
-symbol = " "
+# ── PROMPT SEGMENTS ─────────────────────────────
+[character]
+success_symbol = "[➜](bold green)"
+error_symbol = "[➜](bold red)"
+vicmd_symbol = "[](bold yellow)"
+format = "$symbol "
 
 [directory]
-read_only = " 󰌾"
+style = "bold #5fb8ff"
+format = "[ $path ]($style)"
+truncation_length = 3
+truncation_symbol = "…/"
 
-[docker_context]
-symbol = " "
-
-[elixir]
-symbol = " "
-
-[elm]
-symbol = " "
-
-[fennel]
-symbol = " "
-
-[fossil_branch]
-symbol = " "
-
-[gcloud]
-symbol = "  "
-
-[git_branch]
-symbol = " "
-
-[git_commit]
-tag_symbol = '  '
-
-[golang]
-symbol = " "
-
-[guix_shell]
-symbol = " "
-
-[haskell]
-symbol = " "
-
-[haxe]
-symbol = " "
-
-[hg_branch]
-symbol = " "
+[username]
+show_always = true
+style_user = "#88c400"
+style_root = "bold red"
+format = "[ $user ]($style)"
 
 [hostname]
-ssh_symbol = " "
+ssh_only = true
+format = "[@$hostname](bold yellow) "
 
-[java]
-symbol = " "
+[git_branch]
+format = "[ $branch](#ef91df) "
 
-[julia]
-symbol = " "
+[git_status]
+style = "#f69d6a"
+format = "([$all_status$ahead_behind ]($style))"
 
-[kotlin]
-symbol = " "
+[cmd_duration]
+min_time = 200
+format = "[took $duration](dimmed)"
 
-[lua]
-symbol = " "
-
-[memory_usage]
-symbol = "󰍛 "
-
-[meson]
-symbol = "󰔷 "
-
-[nim]
-symbol = "󰆥 "
-
-[nix_shell]
-symbol = " "
+# ── LANGUAGE & TOOLCHAINS ──────────────────────
+[python]
+symbol = ""
+format = "[${symbol} ${version}](#88c400) "
 
 [nodejs]
-symbol = " "
-
-[ocaml]
-symbol = " "
-
-[os.symbols]
-Alpaquita = " "
-Alpine = " "
-AlmaLinux = " "
-Amazon = " "
-Android = " "
-Arch = " "
-Artix = " "
-CachyOS = " "
-CentOS = " "
-Debian = " "
-DragonFly = " "
-Emscripten = " "
-EndeavourOS = " "
-Fedora = " "
-FreeBSD = " "
-Garuda = "󰛓 "
-Gentoo = " "
-HardenedBSD = "󰞌 "
-Illumos = "󰈸 "
-Kali = " "
-Linux = " "
-Mabox = " "
-Macos = " "
-Manjaro = " "
-Mariner = " "
-MidnightBSD = " "
-Mint = " "
-NetBSD = " "
-NixOS = " "
-Nobara = " "
-OpenBSD = "󰈺 "
-openSUSE = " "
-OracleLinux = "󰌷 "
-Pop = " "
-Raspbian = " "
-Redhat = " "
-RedHatEnterprise = " "
-RockyLinux = " "
-Redox = "󰀘 "
-Solus = "󰠳 "
-SUSE = " "
-Ubuntu = " "
-Unknown = " "
-Void = " "
-Windows = "󰍲 "
-
-[package]
-symbol = "󰏗 "
-
-[perl]
-symbol = " "
-
-[php]
-symbol = " "
-
-[pijul_channel]
-symbol = " "
-
-[pixi]
-symbol = "󰏗 "
-
-[python]
-symbol = " "
-
-[rlang]
-symbol = "󰟔 "
-
-[ruby]
-symbol = " "
+symbol = ""
+format = "[${symbol} ${version}](#5fb8ff) "
 
 [rust]
-symbol = "󱘗 "
+symbol = "󱘗"
+format = "[${symbol} ${version}](#de99f0) "
 
-[scala]
-symbol = " "
+[golang]
+symbol = ""
+format = "[${symbol} ${version}](#00ca9a) "
 
-[swift]
-symbol = " "
+[lua]
+symbol = ""
+format = "[${symbol} ${version}](#5fc940) "
 
-[zig]
-symbol = " "
+[php]
+symbol = ""
+format = "[${symbol} ${version}](#c5b300) "
 
-[gradle]
-symbol = " "
+[package]
+symbol = "󰏗"
+format = "[${symbol} $version](dimmed white) "
+
+[docker_context]
+symbol = ""
+format = "[${symbol} $context](bold blue) "
+
+# ── TIME ────────────────────────────────────────
+[time]
+disabled = false
+time_format = "%H:%M"
+style = "dimmed"
+format = "[ $time ]($style)"
+
+# ── OPTIONAL SYMBOL OVERRIDES ───────────────────
+[os]
+disabled = true
+
+[git_commit]
+tag_symbol = "  "
+only_detached = false
+
+# ── DISABLED MODULES ────────────────────────────
+[battery]
+disabled = true
+
+[memory_usage]
+disabled = true
+
+[env_var]
+disabled = true
+
+[shell]
+disabled = true
