@@ -47,6 +47,7 @@ alias ar='$HOME/scripts/aria2c_script.sh'
 alias yt='$HOME/scripts/yt-dlp_script.sh'
 alias k='$HOME/scripts/archive_script.sh'
 alias x='$HOME/scripts/unarchive_script.sh'
+alias wt='$HOME/scripts/toggle-cloudflare-warp.sh'
 
 # Navigation
 alias c='clear'
