@@ -21,12 +21,18 @@ download_video() {
 
     # Download and process media using yt-dlp with specified options
     echo "📥 Downloading from: $URL"
+
+    # Use --print to get the final filename after download
+    local DOWNLOADED_FILE
+    DOWNLOADED_FILE=$("$YTDL_PATH" -f "$FORMAT" $EXTRA_OPTS --paths "$OUTPUT_DIR" --print "%(filename)s" "$URL")
+
+    # Now perform the download
     "$YTDL_PATH" -f "$FORMAT" $EXTRA_OPTS --paths "$OUTPUT_DIR" "$URL"
 
     # Rename the file if a new name is provided
-    if [ -n "$NEW_NAME" ]; then
-        FILE_EXT=$(echo "$FORMAT" | grep -q "audio" && echo "mp3" || echo "mkv")
-        mv "$OUTPUT_DIR/$(yt-dlp -e --get-filename -o '%(title)s.%(ext)s' "$URL")" "$OUTPUT_DIR/$NEW_NAME.$FILE_EXT"
+    if [ -n "$NEW_NAME" ] && [ -n "$DOWNLOADED_FILE" ]; then
+        FILE_EXT="${DOWNLOADED_FILE##*.}"
+        mv "$OUTPUT_DIR/$DOWNLOADED_FILE" "$OUTPUT_DIR/$NEW_NAME.$FILE_EXT"
         echo "📝 File renamed to: $NEW_NAME.$FILE_EXT"
     fi
 
@@ -87,4 +93,3 @@ main() {
 
 # Execute the script
 main "$@"
-
