@@ -90,3 +90,19 @@ alias grep='grep --color=auto'
 alias please='sudo $(fc -ln -1)'
 alias reload='source ~/.zshrc && echo "✓ Reloaded ~/.zshrc"'
 alias upgrade='sudo dnf upgrade --refresh -y && flatpak update -y'
+
+# Go
+
+export GOPATH=$HOME/go
+export PATH=$PATH:$GOPATH/bin
+
+# Mise
+
+eval "$($HOME/.local/bin/mise activate zsh)"
+
+# bun completions
+[ -s "/home/ash/.bun/_bun" ] && source "/home/ash/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
