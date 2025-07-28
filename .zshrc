@@ -57,8 +57,8 @@ zinit light ajeetdsouza/zoxide
 zinit light zsh-users/zsh-syntax-highlighting
 
 # ────── ALIASES: NAVIGATION ──────────────────────
-alias ..='cd ..'     # Up 1 dir
-alias ...='cd ../..' # Up 2 dirs
+alias ..='cd ..'
+alias ...='cd ../..'
 alias ....='cd ../../..'
 alias c='clear'
 alias q='exit'
