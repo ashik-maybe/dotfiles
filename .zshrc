@@ -83,6 +83,7 @@ alias grep='grep --color=auto'
 # ────── ALIASES: SHORTCUTS & UTILS ───────────────
 please() { sudo $(fc -lLn -1); } # sudo last cmd
 alias upgrade='sudo dnf upgrade --refresh -y && flatpak update -y'
+alias vite='npm create vite@latest'
 alias lzd='lazydocker'
 
 # ────── CUSTOM SCRIPTS ───────────────────────────
