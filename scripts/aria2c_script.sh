@@ -83,6 +83,7 @@ expand_url() {
 
 # === Parse Args ===
 parse_args() {
+    local URLS_INPUT=()
     while [[ $# -gt 0 ]]; do
         case $1 in
             -d|--dir)
@@ -140,8 +141,9 @@ parse_args() {
         # Last is a custom name
         NEW_NAME="$last"
         unset 'URLS_INPUT[$last_idx]'
-        URLS_INPUT=("${URLS_INPUT[@]}") # Re-index
     fi
+    # Re-index array
+    URLS_INPUT=("${URLS_INPUT[@]}")
 
     # Expand all URLs
     URLS=()
@@ -185,6 +187,62 @@ download_files() {
     for url in "${URLS[@]}"; do
         echo "🔗 $url"
     done
+
+    # === Cleanup: Only remove partials if NOT resuming ===
+    if ! $RESUME; then
+        local urls_to_remove=()
+        for url in "${URLS[@]}"; do
+            local basename_url=$(basename "$url" | cut -d'?' -f1 | cut -d'#' -f1)
+            local filepath="$DOWNLOAD_DIR/$basename_url"
+            local control_file="$filepath.aria2"
+
+            local should_remove=false
+
+            # Case 1: .aria2 control file exists → partial download → safe to clean
+            if [[ -f "$control_file" ]]; then
+                warn "Removing partial control file: $basename_url.aria2"
+                rm -f "$control_file"
+                should_remove=true
+            fi
+
+            # Case 2: file exists but control file exists or zero size → likely incomplete
+            if [[ -f "$filepath" ]] && ([[ -f "$control_file" ]] || [[ ! -s "$filepath" ]]); then
+                warn "Removing incomplete/corrupted file: $basename_url"
+                rm -f "$filepath"
+                should_remove=true
+            fi
+
+            # Case 3: file exists, no control file → it's complete!
+            if [[ -f "$filepath" ]] && [[ ! -f "$control_file" ]]; then
+                warn "Completed file already exists: $basename_url"
+                if $QUIET; then
+                    log "Skipping (quiet mode): $basename_url"
+                    urls_to_remove+=("$url")
+                else
+                    read -p "🔁 Overwrite '$basename_url'? [y/N] " -n1 -r
+                    echo
+                    if [[ "$REPLY" =~ ^[Yy]$ ]]; then
+                        rm -f "$filepath"
+                        success "Overwritten: $basename_url"
+                    else
+                        log "Skipping download: $basename_url"
+                        urls_to_remove+=("$url")
+                    fi
+                fi
+            fi
+        done
+
+        # Remove skipped URLs from the list
+        for url in "${urls_to_remove[@]}"; do
+            URLS=("${URLS[@]/$url}")
+        done
+    fi
+
+    # Exit if no URLs left
+    if [ ${#URLS[@]} -eq 0 ]; then
+        warn "No downloads to process."
+        exit 0
+    fi
 
     # If single URL and NEW_NAME, use -o
     if [ ${#URLS[@]} -eq 1 ] && [ -n "$NEW_NAME" ]; then
