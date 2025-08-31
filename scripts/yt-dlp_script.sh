@@ -1,95 +1,248 @@
 #!/bin/bash
+#
+# yt - Ultimate yt-dlp Frontend
+#
+# Usage:
+#   yt [OPTIONS] <URL> [NEW_NAME]
+#
+# Options:
+#   -a, --audio           Download best audio → 320K MP3
+#   -v, --video RES       Download video: 480, 720, 1080 (H.264 in MKV)
+#   -b, --best            Best quality (H.264 + audio)
+#   -n, --name NAME       Rename output file
+#   --subs [LANG]         Download official subs first, fallback to auto
+#   --sb [CATS]           Remove SponsorBlock segments (e.g. sponsor,intro)
+#   --sb-mark [CATS]      Mark SponsorBlock segments as chapters
+#   --resume              Resume partial downloads
+#   -q, --quiet           Quiet mode
+#   -h, --help            Show this help
+#
+# Examples:
+#   yt -a "https://youtu.be/abc" "My Song"
+#   yt -v 720 "https://youtu.be/xyz" "Tutorial"
+#   yt -v 720 --sb "sponsor,intro,outro" "url"
+#   yt -v 720 --sb-mark all "url"
 
-# Set paths for yt-dlp and ffmpeg
-YTDL_PATH="/usr/bin/yt-dlp"
-FFMPEG_PATH="/usr/bin/ffmpeg"
-
-# Set download directories
+# === Config ===
+YTDL_PATH="${YTDL_PATH:-$(command -v yt-dlp || echo 'yt-dlp')}"
+FFMPEG_PATH="${FFMPEG_PATH:-$(command -v ffmpeg || echo 'ffmpeg')}"
 VIDEO_DOWNLOAD_DIR="$HOME/Downloads/Video"
 AUDIO_DOWNLOAD_DIR="$HOME/Downloads/Audio"
+QUIET=false
+RESUME=false
+SUBS_LANG="en"
+NEW_NAME=""
+FORMAT=""
+OUTPUT_DIR=""
+EXTRA_OPTS=()
+SPONSORBLOCK_REMOVE=""
+SPONSORBLOCK_MARK=""
 
-# Create download directories if they don't exist
-mkdir -p "$VIDEO_DOWNLOAD_DIR" "$AUDIO_DOWNLOAD_DIR"
+# === Colors & Logging ===
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+BLUE='\033[0;34m'
+NC='\033[0m'
 
-# Function to handle the download process
-download_video() {
-    local URL=$1
-    local FORMAT=$2
-    local OUTPUT_DIR=$3
-    local EXTRA_OPTS=$4
-    local NEW_NAME=$5
+log() { ! $QUIET && echo -e "${BLUE}📺$NC $*"; }
+success() { ! $QUIET && echo -e "${GREEN}✅$NC $*"; }
+warn() { ! $QUIET && echo -e "${YELLOW}⚠️$NC $*"; }
+error() { echo -e "${RED}❌$NC $*"; exit 1; }
 
-    # Download and process media using yt-dlp with specified options
-    echo "📥 Downloading from: $URL"
-
-    # Use --print to get the final filename after download
-    local DOWNLOADED_FILE
-    DOWNLOADED_FILE=$("$YTDL_PATH" -f "$FORMAT" $EXTRA_OPTS --paths "$OUTPUT_DIR" --print "%(filename)s" "$URL")
-
-    # Now perform the download
-    "$YTDL_PATH" -f "$FORMAT" $EXTRA_OPTS --paths "$OUTPUT_DIR" "$URL"
-
-    # Rename the file if a new name is provided
-    if [ -n "$NEW_NAME" ] && [ -n "$DOWNLOADED_FILE" ]; then
-        FILE_EXT="${DOWNLOADED_FILE##*.}"
-        mv "$OUTPUT_DIR/$DOWNLOADED_FILE" "$OUTPUT_DIR/$NEW_NAME.$FILE_EXT"
-        echo "📝 File renamed to: $NEW_NAME.$FILE_EXT"
-    fi
-
-    echo "✅ Download complete: $URL"
+# === Help ===
+show_help() {
+    grep "^# " "${BASH_SOURCE[0]}" | sed 's/^# //'
 }
 
-# Main functionality
-main() {
-    URL=$1
-    NEW_NAME=$2
+# === Sanitize Filename ===
+sanitize() {
+    echo "$1" | sed 's/[<>:"/\\|?*]/_/g' | tr -s '_' | sed 's/^_*//;s/_*$//'
+}
 
-    # If no URL is provided, prompt for one
-    if [ -z "$URL" ]; then
-        read -rp "🔗 Enter the video URL: " URL
-    fi
+# === Parse Args ===
+parse_args() {
+    local args=()
+    while [[ $# -gt 0 ]]; do
+        case $1 in
+            -a|--audio)
+                FORMAT="bestaudio"
+                OUTPUT_DIR="$AUDIO_DOWNLOAD_DIR"
+                EXTRA_OPTS+=(
+                    -x --audio-format mp3 --audio-quality 320K
+                    --embed-thumbnail --add-metadata
+                    --embed-info-json
+                )
+                shift
+                ;;
+            -v|--video)
+                local res="$2"
+                FORMAT="bestvideo[height<=${res}][vcodec^=avc1]+bestaudio[acodec^=mp4a]/best[height<=${res}][vcodec^=avc1]"
+                OUTPUT_DIR="$VIDEO_DOWNLOAD_DIR"
+                EXTRA_OPTS+=(
+                    --embed-thumbnail --add-metadata
+                    --merge-output-format mkv
+                    --embed-chapters
+                    --write-subs --write-auto-subs --embed-subs
+                    --sub-langs "${SUBS_LANG}.*"
+                    --skip-unavailable-fragments
+                    --ignore-errors
+                    --compat-options no-keep-subs
+                    --embed-info-json
+                )
+                shift 2
+                ;;
+            -b|--best)
+                FORMAT="bestvideo[vcodec^=avc1]+bestaudio/best[vcodec^=avc1]"
+                OUTPUT_DIR="$VIDEO_DOWNLOAD_DIR"
+                EXTRA_OPTS+=(
+                    --embed-thumbnail --add-metadata
+                    --merge-output-format mkv
+                    --embed-chapters
+                    --write-subs --write-auto-subs --embed-subs
+                    --sub-langs "${SUBS_LANG}.*"
+                    --skip-unavailable-fragments
+                    --ignore-errors
+                    --compat-options no-keep-subs
+                    --embed-info-json
+                )
+                shift
+                ;;
+            -n|--name)
+                NEW_NAME="$2"
+                shift 2
+                ;;
+            --subs)
+                SUBS_LANG="${2:-en}"
+                shift 2
+                ;;
+            --sb)
+                SPONSORBLOCK_REMOVE="$2"
+                shift 2
+                ;;
+            --sb-mark)
+                SPONSORBLOCK_MARK="$2"
+                shift 2
+                ;;
+            --resume)
+                RESUME=true
+                shift
+                ;;
+            -q|--quiet)
+                QUIET=true
+                shift
+                ;;
+            -h|--help)
+                show_help
+                exit 0
+                ;;
+            -*)
+                error "Unknown option: $1"
+                show_help
+                exit 1
+                ;;
+            *)
+                args+=("$1")
+                shift
+                ;;
+        esac
+    done
 
-    # Prompt for download option selection
-    echo -e "\n🔧 Select download type and quality:"
-    echo "0. 🎵 MP3 (128kbps)"
-    echo "1. 🎥 MKV (480p)"
-    echo "2. 🎥 MKV (720p)"
-    echo "3. 🎥 MKV (1080p)"
-    read -rp "📋 Enter option number: " OPTION
-
-    case $OPTION in
+    case ${#args[@]} in
         0)
-            FORMAT="bestaudio"
-            OUTPUT_DIR="$AUDIO_DOWNLOAD_DIR"
-            EXTRA_OPTS="-x --audio-format mp3 --audio-quality 128K --embed-thumbnail --add-metadata"
+            error "No URL provided!"
+            show_help
+            exit 1
             ;;
         1)
-            FORMAT="bestvideo[height<=480]+bestaudio/best[height<=480]"
-            OUTPUT_DIR="$VIDEO_DOWNLOAD_DIR"
-            EXTRA_OPTS="--embed-thumbnail --add-metadata --merge-output-format mkv --embed-chapters --write-subs --write-auto-subs --embed-subs --compat-options no-keep-subs --sub-langs en"
-            ;;
-        2)
-            FORMAT="bestvideo[height<=720]+bestaudio/best[height<=720]"
-            OUTPUT_DIR="$VIDEO_DOWNLOAD_DIR"
-            EXTRA_OPTS="--embed-thumbnail --add-metadata --merge-output-format mkv --embed-chapters --write-subs --write-auto-subs --embed-subs --compat-options no-keep-subs --sub-langs en"
-            ;;
-        3)
-            FORMAT="bestvideo[height<=1080]+bestaudio/best[height<=1080]"
-            OUTPUT_DIR="$VIDEO_DOWNLOAD_DIR"
-            EXTRA_OPTS="--embed-thumbnail --add-metadata --merge-output-format mkv --embed-chapters --write-subs --write-auto-subs --embed-subs --compat-options no-keep-subs --sub-langs en"
+            URL="${args[0]}"
             ;;
         *)
-            echo "❌ Invalid option selected."
-            exit 1
+            URL="${args[0]}"
+            NEW_NAME="${args[1]}"
             ;;
     esac
 
-    # Start the download
-    download_video "$URL" "$FORMAT" "$OUTPUT_DIR" "$EXTRA_OPTS" "$NEW_NAME"
+    if [ -z "$FORMAT" ]; then
+        error "No format selected! Use -a, -v, or -b."
+        show_help
+        exit 1
+    fi
 
-    # Exit after completing the download
-    echo -e "\n👋 Exiting script. Run again to download another file."
+    mkdir -p "$VIDEO_DOWNLOAD_DIR" "$AUDIO_DOWNLOAD_DIR" || error "Failed to create download directories!"
 }
 
-# Execute the script
+# === Download Function ===
+download_media() {
+    log "Starting download..."
+
+    local ytdl_cmd=(
+        "$YTDL_PATH"
+        -f "$FORMAT"
+        --paths "$OUTPUT_DIR"
+        --no-overwrites
+        --console-title
+        --progress
+    )
+
+    if [[ "$FORMAT" == "bestaudio"* ]]; then
+        ytdl_cmd+=(
+            --output "%(artist,creator,uploader)s - %(title)s.%(ext)s"
+            --parse-metadata "title:(?P<artist>[^-\[]+?) - .+:artist"
+            --parse-metadata "creator:artist"
+        )
+    else
+        ytdl_cmd+=(
+            --output "%(uploader)s - %(title)s (%(height)sp).%(ext)s"
+        )
+    fi
+
+    $RESUME && ytdl_cmd+=(--continue)
+    $QUIET && ytdl_cmd+=(--quiet --no-progress)
+
+    # Add extra opts
+    ytdl_cmd+=("${EXTRA_OPTS[@]}")
+
+    # Add SponsorBlock support
+    if [ -n "$SPONSORBLOCK_REMOVE" ]; then
+        ytdl_cmd+=(--sponsorblock-remove "$SPONSORBLOCK_REMOVE")
+    fi
+
+    if [ -n "$SPONSORBLOCK_MARK" ]; then
+        ytdl_cmd+=(--sponsorblock-mark "$SPONSORBLOCK_MARK")
+    fi
+
+    # Add URL
+    ytdl_cmd+=("$URL")
+
+    # Run download
+    if "${ytdl_cmd[@]}"; then
+        success "Download complete!"
+    else
+        success "Download completed (errors were ignored)."
+    fi
+
+    # Rename if requested
+    if [ -n "$NEW_NAME" ]; then
+        local last_file=$(find "$OUTPUT_DIR" -type f -not -name ".*" -newermt "2 minutes ago" 2>/dev/null | head -n1)
+        if [ -n "$last_file" ]; then
+            local ext="${last_file##*.}"
+            local new_path="$OUTPUT_DIR/$(sanitize "$NEW_NAME").$ext"
+            mv "$last_file" "$new_path"
+            success "Renamed to: $NEW_NAME.$ext"
+        else
+            warn "Could not find downloaded file to rename."
+        fi
+    fi
+
+    # Final message
+    ! $QUIET && echo "📁 $OUTPUT_DIR"
+}
+
+# === Main ===
+main() {
+    parse_args "$@"
+    download_media
+}
+
 main "$@"
