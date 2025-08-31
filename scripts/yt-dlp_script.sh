@@ -7,12 +7,13 @@
 #
 # Options:
 #   -a, --audio           Download best audio → 320K MP3
-#   -v, --video RES       Download video: 480, 720, 1080 (H.264 in MKV)
+#   -v, --video RES       Download video: 480, 720, 1080 (H.264 in MKV/MP4)
 #   -b, --best            Best quality (H.264 + audio)
 #   -n, --name NAME       Rename output file
 #   --subs [LANG]         Download official subs first, fallback to auto
 #   --sb [CATS]           Remove SponsorBlock segments (e.g. sponsor,intro)
 #   --sb-mark [CATS]      Mark SponsorBlock segments as chapters
+#   --mp4                 Output as MP4 (better thumbnail & device support)
 #   --resume              Resume partial downloads
 #   -q, --quiet           Quiet mode
 #   -h, --help            Show this help
@@ -20,8 +21,8 @@
 # Examples:
 #   yt -a "https://youtu.be/abc" "My Song"
 #   yt -v 720 "https://youtu.be/xyz" "Tutorial"
-#   yt -v 720 --sb "sponsor,intro,outro" "url"
-#   yt -v 720 --sb-mark all "url"
+#   yt -v 720 --mp4 "url"
+#   yt -v 720 --sb "sponsor,intro" "url"
 
 # === Config ===
 YTDL_PATH="${YTDL_PATH:-$(command -v yt-dlp || echo 'yt-dlp')}"
@@ -37,6 +38,7 @@ OUTPUT_DIR=""
 EXTRA_OPTS=()
 SPONSORBLOCK_REMOVE=""
 SPONSORBLOCK_MARK=""
+USE_MP4=false
 
 # === Colors & Logging ===
 RED='\033[0;31m'
@@ -81,7 +83,6 @@ parse_args() {
                 OUTPUT_DIR="$VIDEO_DOWNLOAD_DIR"
                 EXTRA_OPTS+=(
                     --embed-thumbnail --add-metadata
-                    --merge-output-format mkv
                     --embed-chapters
                     --write-subs --write-auto-subs --embed-subs
                     --sub-langs "${SUBS_LANG}.*"
@@ -97,7 +98,6 @@ parse_args() {
                 OUTPUT_DIR="$VIDEO_DOWNLOAD_DIR"
                 EXTRA_OPTS+=(
                     --embed-thumbnail --add-metadata
-                    --merge-output-format mkv
                     --embed-chapters
                     --write-subs --write-auto-subs --embed-subs
                     --sub-langs "${SUBS_LANG}.*"
@@ -123,6 +123,10 @@ parse_args() {
             --sb-mark)
                 SPONSORBLOCK_MARK="$2"
                 shift 2
+                ;;
+            --mp4)
+                USE_MP4=true
+                shift
                 ;;
             --resume)
                 RESUME=true
@@ -167,6 +171,13 @@ parse_args() {
         error "No format selected! Use -a, -v, or -b."
         show_help
         exit 1
+    fi
+
+    # Set output format
+    if $USE_MP4; then
+        EXTRA_OPTS+=(--merge-output-format mp4)
+    else
+        EXTRA_OPTS+=(--merge-output-format mkv)
     fi
 
     mkdir -p "$VIDEO_DOWNLOAD_DIR" "$AUDIO_DOWNLOAD_DIR" || error "Failed to create download directories!"
