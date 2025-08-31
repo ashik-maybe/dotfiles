@@ -80,6 +80,8 @@ alias la='lsd -a'
 alias cat='bat --paging=never'
 alias grep='grep --color=auto'
 
+alias du='dust'
+
 # ────── ALIASES: SHORTCUTS & UTILS ───────────────
 please() { sudo $(fc -lLn -1); } # sudo last cmd
 alias upgrade='sudo dnf upgrade --refresh -y && flatpak update -y'
