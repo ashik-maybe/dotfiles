@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# ar - Smart Aria2 Downloader
+# ar - Smart Aria2 Downloader + Auto-Organizer
 #
 # Usage:
 #   ar [OPTIONS] <URL...> [NEW_NAME]
@@ -13,7 +13,7 @@
 #   -d, --dir DIR       Set download directory
 #   -r, --resume        Resume partial downloads
 #   -j, --jobs N        Max concurrent downloads (default: 2)
-#   -q, --quiet         Quiet mode
+#   -q, --quiet         Quiet mode (no prompts, no organize)
 #   -h, --help          Show help
 #
 # Examples:
@@ -157,6 +157,73 @@ parse_args() {
     mkdir -p "$DOWNLOAD_DIR" || { error "Failed to create directory!"; exit 1; }
 }
 
+# === Organize Downloads by Type ===
+organize_downloads() {
+    local moved=0
+    local skipped=0
+
+    for filepath in "$DOWNLOAD_DIR"/*; do
+        [[ -f "$filepath" ]] || continue
+
+        local filename=$(basename "$filepath")
+        local ext="${filename##*.}"
+        local moved_flag=false
+
+        # Convert extension to lowercase
+        ext=$(echo "$ext" | tr '[:upper:]' '[:lower:]')
+
+        case "$ext" in
+            # Video
+            mp4|mkv|avi|mov|wmv|flv|webm|m4v)
+                dest_dir="${XDG_VIDEOS_DIR:-$HOME/Video}"
+                mkdir -p "$dest_dir" && mv -n "$filepath" "$dest_dir/" && moved_flag=true
+                ;;
+
+            # Audio
+            mp3|flac|wav|ogg|aac|m4a|wma)
+                dest_dir="${XDG_MUSIC_DIR:-$HOME/Audio}"
+                mkdir -p "$dest_dir" && mv -n "$filepath" "$dest_dir/" && moved_flag=true
+                ;;
+
+            # Images
+            jpg|jpeg|png|gif|bmp|webp|svg|tiff)
+                dest_dir="${XDG_PICTURES_DIR:-$HOME/Images}"
+                mkdir -p "$dest_dir" && mv -n "$filepath" "$dest_dir/" && moved_flag=true
+                ;;
+
+            # Documents
+            pdf|doc|docx|txt|rtf|odt|epub|mobi|djvu|ppt|pptx)
+                dest_dir="${XDG_DOCUMENTS_DIR:-$HOME/Documents}"
+                mkdir -p "$dest_dir" && mv -n "$filepath" "$dest_dir/" && moved_flag=true
+                ;;
+
+            # Archives / ISOs
+            zip|rar|7z|tar|gz|bz2|xz|iso|dmg|tgz|tar.gz|tar.xz|tar.bz2)
+                dest_dir="${XDG_DOWNLOAD_DIR:-$HOME/Archives}"
+                mkdir -p "$dest_dir" && mv -n "$filepath" "$dest_dir/" && moved_flag=true
+                ;;
+            *)
+                ((skipped++))
+                continue
+                ;;
+        esac
+
+        if $moved_flag; then
+            success "Moved: $filename → ${dest_dir##*/}/"
+            ((moved++))
+        else
+            warn "Already exists: $filename in ${dest_dir##*/}/ (skipped)"
+        fi
+    done
+
+    if [ $moved -gt 0 ]; then
+        log "Organized $moved file(s) into category folders."
+    fi
+    if [ $skipped -gt 0 ] && ! $QUIET; then
+        warn "Skipped $skipped file(s) — unknown or already exist."
+    fi
+}
+
 # === Download Function ===
 download_files() {
     local total=${#URLS[@]}
@@ -196,23 +263,19 @@ download_files() {
             local filepath="$DOWNLOAD_DIR/$basename_url"
             local control_file="$filepath.aria2"
 
-            local should_remove=false
-
-            # Case 1: .aria2 control file exists → partial download → safe to clean
+            # Case 1: .aria2 control file exists → partial download → clean
             if [[ -f "$control_file" ]]; then
                 warn "Removing partial control file: $basename_url.aria2"
                 rm -f "$control_file"
-                should_remove=true
             fi
 
-            # Case 2: file exists but control file exists or zero size → likely incomplete
+            # Case 2: file exists but control file or zero size → incomplete
             if [[ -f "$filepath" ]] && ([[ -f "$control_file" ]] || [[ ! -s "$filepath" ]]); then
                 warn "Removing incomplete/corrupted file: $basename_url"
                 rm -f "$filepath"
-                should_remove=true
             fi
 
-            # Case 3: file exists, no control file → it's complete!
+            # Case 3: complete file exists
             if [[ -f "$filepath" ]] && [[ ! -f "$control_file" ]]; then
                 warn "Completed file already exists: $basename_url"
                 if $QUIET; then
@@ -232,7 +295,7 @@ download_files() {
             fi
         done
 
-        # Remove skipped URLs from the list
+        # Remove skipped URLs
         for url in "${urls_to_remove[@]}"; do
             URLS=("${URLS[@]/$url}")
         done
@@ -244,7 +307,7 @@ download_files() {
         exit 0
     fi
 
-    # If single URL and NEW_NAME, use -o
+    # Build aria2 command
     if [ ${#URLS[@]} -eq 1 ] && [ -n "$NEW_NAME" ]; then
         local filename=$(basename "${URLS[0]}" | cut -d'?' -f1 | cut -d'#' -f1)
         local ext="${filename##*.}"
@@ -253,13 +316,55 @@ download_files() {
         echo "📁 $DOWNLOAD_DIR/$final_name"
         "${aria_cmd[@]}" "${URLS[0]}"
     else
-        # Batch mode
         echo "📁 Batch mode: ${#URLS[@]} file(s)"
         printf '%s\n' "${URLS[@]}" | "${aria_cmd[@]}" -i -
     fi
 
+    # === After download: Show size + organize ===
     if [ $? -eq 0 ]; then
         success "All downloads completed!"
+
+        # === Calculate total downloaded size (no bc, no floating point) ===
+        local total_bytes=0
+        local downloaded_files=()
+
+        # Reconstruct file paths
+        if [ ${#URLS[@]} -eq 1 ] && [ -n "$NEW_NAME" ]; then
+            local filename=$(basename "${URLS[0]}" | cut -d'?' -f1 | cut -d'#' -f1)
+            local ext="${filename##*.}"
+            local final_name="$NEW_NAME.$ext"
+            downloaded_files+=("$DOWNLOAD_DIR/$final_name")
+        else
+            for url in "${URLS[@]}"; do
+                local filename=$(basename "$url" | cut -d'?' -f1 | cut -d'#' -f1)
+                downloaded_files+=("$DOWNLOAD_DIR/$filename")
+            done
+        fi
+
+        # Sum sizes
+        for file in "${downloaded_files[@]}"; do
+            [[ -f "$file" ]] || continue
+            local size
+            size=$(stat -c %s "$file" 2>/dev/null) || continue
+            ((total_bytes += size))
+        done
+
+        # Format size (B → KB → MB → GB) with integer math
+        if [ $total_bytes -lt 1024 ]; then
+            log "Total downloaded: ${total_bytes} B"
+        elif [ $total_bytes -lt 1048576 ]; then
+            log "Total downloaded: $(( (total_bytes + 1023) / 1024 )) KB"
+        elif [ $total_bytes -lt 1073741824 ]; then
+            log "Total downloaded: $(( (total_bytes + 1048575) / 1048576 )) MB"
+        else
+            log "Total downloaded: $(( (total_bytes + 1073741823) / 1073741824 )) GB"
+        fi
+
+        # Organize unless quiet
+        if ! $QUIET; then
+            log "Organizing files by type..."
+            organize_downloads
+        fi
     else
         error "One or more downloads failed."
         exit 1
