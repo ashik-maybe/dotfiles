@@ -42,7 +42,7 @@ and these packages;
 
 ```bash
 
-sudo  dnf  install  bat  fzf  lsd  zoxide
+sudo  dnf  install  bat dust  fd-find  fzf  lsd  ripgrep  zoxide
 
 ```
 
