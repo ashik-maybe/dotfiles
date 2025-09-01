@@ -82,6 +82,9 @@ alias grep='grep --color=auto'
 
 alias du='dust'
 
+alias find='fdfind'
+alias grep='rg'
+
 # ────── ALIASES: SHORTCUTS & UTILS ───────────────
 please() { sudo $(fc -lLn -1); } # sudo last cmd
 alias upgrade='sudo dnf upgrade --refresh -y && flatpak update -y'
