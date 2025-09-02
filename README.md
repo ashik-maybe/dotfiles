@@ -82,9 +82,9 @@ cd  ~
 
 sudo  dnf  install  git  stow
 
-git  clone  https://github.com/ashik-maybe/dotfiles  ~/.dotfiles
+git  clone  https://github.com/ashik-maybe/dotfiles  ~/dotfiles
 
-cd  ~/.dotfiles
+cd  ~/dotfiles
 
 stow  .
 
