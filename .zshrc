@@ -1,15 +1,10 @@
-# ~/.zshrc — Optimized, minimal startup time
-
 # ────── ENVIRONMENT ──────────────────────────────
 export EDITOR="code"                             # CLI editor
 export VISUAL="code"                             # GUI editor
-export GOPATH="$HOME/go"                         # Go workspace
-export BUN_INSTALL="$HOME/.bun"                  # bun JS runtime
 
-export PATH="$HOME/.local/bin:$PATH"             # User local binaries
-export PATH="$HOME/bin:$PATH"                    # User binaries
-export PATH="$GOPATH/bin:$PATH"                  # Go binaries
-export PATH="$BUN_INSTALL/bin:$PATH"             # Bun binaries
+# User binaries (keep these, likely still useful)
+export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/bin:$PATH"
 
 # ────── PROMPT (Starship) ────────────────────────
 command -v starship &>/dev/null && eval "$(starship init zsh)"
@@ -29,6 +24,7 @@ if [[ ! -f ~/.zcompdump || ~/.zcompdump -ot ~/.zshrc ]]; then
 else
   compinit -C -d ~/.zcompdump
 fi
+
 zstyle ':completion:*' menu select
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*'
 zstyle ':completion:*' group-name ''
@@ -38,8 +34,7 @@ zstyle ':completion:*:descriptions' format '[%d]'
 ZINIT_HOME="${HOME}/.zinit"
 if [[ ! -f "$ZINIT_HOME/bin/zinit.zsh" ]]; then
   echo "→ Installing Zinit..."
-  mkdir -p "$ZINIT_HOME" &&
-  git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME/bin"
+  mkdir -p "$ZINIT_HOME" && git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME/bin"
 fi
 source "$ZINIT_HOME/bin/zinit.zsh"
 
@@ -49,11 +44,11 @@ zinit light-mode for \
   zsh-users/zsh-completions \
   Aloxaf/fzf-tab
 
-# `zoxide` (needs eval, delay it a bit)
+# zoxide (smart cd replacement)
 zinit ice wait lucid atinit"eval \"\$(zoxide init zsh)\""
 zinit light ajeetdsouza/zoxide
 
-# Syntax highlighting (must load last)
+# Syntax highlighting (must be last)
 zinit light zsh-users/zsh-syntax-highlighting
 
 # ────── ALIASES: NAVIGATION ──────────────────────
@@ -74,19 +69,13 @@ alias rmdir='rmdir -v'
 
 # ────── ALIASES: REPLACEMENTS ────────────────────
 alias ls='lsd --color=auto --group-directories-first'
-alias ll='lsd -lh'
-alias la='lsd -a'
-
 alias cat='bat --paging=never'
-alias grep='grep --color=auto'
-
-alias du='dust'
-
-alias find='fdfind'
 alias grep='rg'
+alias du='dust'
+alias find='fdfind'
 
 # ────── ALIASES: SHORTCUTS & UTILS ───────────────
-please() { sudo $(fc -lLn -1); } # sudo last cmd
+please() { sudo $(fc -lLn -1); } # sudo last command
 alias upgrade='sudo dnf upgrade --refresh -y && flatpak update -y'
 alias vite='npm create vite@latest'
 alias lzd='lazydocker'
@@ -96,7 +85,3 @@ alias ar="$HOME/scripts/aria2c_script.sh"
 alias yt="$HOME/scripts/yt-dlp_script.sh"
 alias k="$HOME/scripts/archive_script.sh"
 alias x="$HOME/scripts/unarchive_script.sh"
-
-# ────── TOOL INITS (Conditional) ─────────────────
-[[ -s "$BUN_INSTALL/_bun" ]] && source "$BUN_INSTALL/_bun"
-[[ -x "$HOME/.local/bin/mise" ]] && eval "$($HOME/.local/bin/mise activate zsh)"
