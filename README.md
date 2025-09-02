@@ -96,7 +96,7 @@ source  ~/.zshrc
 
 #### ▪ Fonts
 
-- ['Iosevka', 'Iosevka Term'](https://github.com/be5invis/Iosevka/releases) for [VS Code](https://code.visualstudio.com/download)
+- [Monaspace Variable](https://monaspace.githubnext.com/) for [VS Code](https://code.visualstudio.com/download)
 
 - [MesloLGLDZNerdFont](https://www.nerdfonts.com/font-downloads) for [foot](https://codeberg.org/dnkl/foot)
 
