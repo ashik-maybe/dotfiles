@@ -1,0 +1,137 @@
+# ~/.config/alacritty/alacritty.toml
+
+[general]
+import = [
+  "~/.config/alacritty/themes/catppuccin-mocha.toml"
+]
+live_config_reload = true
+
+# Environment
+[env]
+TERM = "xterm-256color"
+
+# Window configuration
+[window]
+dimensions = { columns = 100, lines = 35 }
+padding = { x = 12, y = 12 }
+dynamic_padding = true
+decorations = "full"
+startup_mode = "Windowed"
+opacity = 0.90
+dynamic_title = true
+
+# Scrolling
+[scrolling]
+history = 10000
+multiplier = 3
+
+# Font configuration
+[font]
+normal = { family = "MesloLGLDZ Nerd Font", style = "Regular" }
+bold = { family = "MesloLGLDZ Nerd Font", style = "Bold" }
+italic = { family = "MesloLGLDZ Nerd Font", style = "Italic" }
+size = 13.0
+builtin_box_drawing = true
+
+# Colors (will be overridden by imported theme)
+[colors]
+[colors.primary]
+background = "#2E3440"
+foreground = "#D8DEE9"
+[colors.cursor]
+text = "#2E3440"
+cursor = "#D8DEE9"
+
+# Bell
+[bell]
+animation = "EaseOutExpo"
+color = "#88C0D0"
+duration = 150
+
+# Selection
+[selection]
+semantic_escape_chars = ",│`|:\"' ()[]{}<>"
+
+# Cursor
+[cursor]
+style = { shape = "Beam", blinking = "On" }
+blink_interval = 500
+unfocused_hollow = true
+
+# Terminal shell
+[terminal]
+shell = { program = "/usr/bin/zsh", args = ["-l"] }
+osc52 = "CopyPaste"
+
+# Mouse behavior - FIXED: Remove the old structure
+[mouse]
+hide_when_typing = true
+
+# Mouse bindings
+[[mouse.bindings]]
+mouse = "Middle"
+action = "Paste"
+
+# Keyboard shortcuts
+[[keyboard.bindings]]
+key = "C"
+mods = "Control|Shift"
+action = "Copy"
+
+[[keyboard.bindings]]
+key = "V"
+mods = "Control|Shift"
+action = "Paste"
+
+[[keyboard.bindings]]
+key = "N"
+mods = "Control|Shift"
+action = "SpawnNewInstance"
+
+[[keyboard.bindings]]
+key = "Q"
+mods = "Control|Shift"
+action = "Quit"
+
+[[keyboard.bindings]]
+key = "Equals"
+mods = "Control"
+action = "IncreaseFontSize"
+
+[[keyboard.bindings]]
+key = "Minus"
+mods = "Control"
+action = "DecreaseFontSize"
+
+[[keyboard.bindings]]
+key = "Key0"
+mods = "Control"
+action = "ResetFontSize"
+
+[[keyboard.bindings]]
+key = "F11"
+action = "ToggleFullscreen"
+
+[[keyboard.bindings]]
+key = "PageUp"
+mods = "Shift"
+action = "ScrollPageUp"
+
+[[keyboard.bindings]]
+key = "PageDown"
+mods = "Shift"
+action = "ScrollPageDown"
+
+# URL hints
+[[hints.enabled]]
+command = "xdg-open"
+hyperlinks = true
+post_processing = true
+persist = false
+mouse.enabled = true
+binding = { key = "O", mods = "Control|Shift" }
+regex = "(ipfs:|ipns:|magnet:|mailto:|gemini://|gopher://|https://|http://|news:|file:|git://|ssh:|ftp://)[^\u0000-\u001F\u007F-\u009F<>\"\\s{-}\\^⟨⟩`\\\\]+"
+
+# Debug settings
+[debug]
+log_level = "Off"
