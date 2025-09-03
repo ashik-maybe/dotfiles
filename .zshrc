@@ -68,6 +68,7 @@ alias rm='rm -Iv'
 alias rmdir='rmdir -v'
 
 # ────── ALIASES: REPLACEMENTS ────────────────────
+alias neofetch='fastfetch'
 alias top='btop'
 alias ls='lsd --color=auto --group-directories-first'
 alias cat='bat --paging=never'
