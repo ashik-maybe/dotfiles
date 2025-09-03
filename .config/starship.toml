@@ -1,8 +1,6 @@
-# Starship Prompt - Elegant & Educational
-# Text-only, no icons, clear labels, teaches as you go
+# Starship Prompt - Zen Text Mode
 
 add_newline = false
-
 
 # Prompt
 [character]
@@ -11,7 +9,6 @@ error_symbol = "x "
 vimcmd_symbol = "< "
 format = "[$symbol](bold green)"
 
-
 # Directory
 [directory]
 format = "$path"
@@ -19,27 +16,28 @@ truncation_length = 2
 truncation_symbol = "…/"
 read_only = " [read-only]"
 
-
-# Git
+# Git Branch
 [git_branch]
 symbol = "on "
 format = " $symbol$branch"
 truncation_length = 14
 
+# Git Status - Zen Text: short, spaced, meaningful
 [git_status]
 format = " ($all_status$ahead_behind)"
-conflicted = "conflict"
-ahead = "ahead"
-behind = "behind"
-diverged = "diverged"
-up_to_date = ""
-untracked = "untracked"
-modified = "changed"
-staged = "staged"
-deleted = "deleted"
-renamed = "renamed"
-stashed = "stashed"
 
+# Use short phrases with trailing space for natural flow
+conflicted = "conflict "
+ahead = "ahead "
+behind = "behind "
+diverged = "diverged "
+up_to_date = ""  # clean — no need to say it
+untracked = "untracked "
+modified = "changed "
+staged = "staged "
+deleted = "deleted "
+renamed = "renamed "
+stashed = "stashed "
 
 # Docker
 [container]
@@ -50,7 +48,6 @@ format = " $symbol$name"
 symbol = "ctx:"
 format = " $symbol$context"
 
-
 # Cloud
 [aws]
 symbol = "aws:"
@@ -59,7 +56,6 @@ format = " $symbol$profile"
 [gcloud]
 symbol = "gcp:"
 format = " $symbol$profile"
-
 
 # Languages
 [python]
@@ -96,13 +92,11 @@ format = " via $symbol$version"
 symbol = ".NET "
 format = " via $symbol$version"
 
-
 # Conda
 [conda]
 symbol = "conda "
 format = " via $symbol$environment"
 ignore_base = true
-
 
 # Package version
 [package]
@@ -110,19 +104,16 @@ symbol = "pkg "
 version_format = "v${raw}"
 format = " is $symbol$version"
 
-
 # Sudo warning
 [sudo]
 symbol = "sudo"
 format = " [$symbol](bold red)"
 
-
-# Show if command took >500ms
+# Command duration
 [cmd_duration]
 min_time = 500
 format = " (took $duration)"
 style = "dim"
-
 
 # Error status
 [status]
@@ -133,6 +124,15 @@ not_found_symbol = "[!FOUND] "
 sigint_symbol = "[INT] "
 disabled = false
 
+# Kubernetes
+[kubernetes]
+format = " [kube: $context/$namespace](bold blue)"
+disabled = false
+
+# SSH awareness
+[hostname]
+ssh_only = true
+format = " [via $hostname](bold yellow)"
 
 # Disabled modules
 [nix_shell]
@@ -142,10 +142,6 @@ disabled = true
 [memory_usage]
 disabled = true
 [time]
-disabled = true
-[hostname]
-disabled = true
-[kubernetes]
 disabled = true
 [os]
 disabled = true
