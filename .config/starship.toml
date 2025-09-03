@@ -1,234 +1,151 @@
-# =============================================
-#   STARSHIP PROMPT - BEGINNER MENTOR MODE
-#   No OS junk. More words. Zero confusion.
-#   Teaches you Git, Docker, AWS, venv, etc.
-#   Works on ANY terminal. No Nerd Fonts.
-# =============================================
+# Starship Prompt - Elegant & Educational
+# Text-only, no icons, clear labels, teaches as you go
 
 add_newline = false
 
 
-# =============================================
-#   PROMPT SYMBOL: Simple and clear
-# =============================================
-
+# Prompt
 [character]
-success_symbol = " > "
-error_symbol = " x "
-vimcmd_symbol = " : "
-format = "$symbol"
+success_symbol = "> "
+error_symbol = "x "
+vimcmd_symbol = "< "
+format = "[$symbol](bold green)"
 
 
-# =============================================
-#   DIRECTORY: Clean, short path
-# =============================================
-
+# Directory
 [directory]
-format = " $path"
+format = "$path"
 truncation_length = 2
 truncation_symbol = "…/"
-read_only = " [READ-ONLY]"
+read_only = " [read-only]"
 
 
-# =============================================
-#   GIT BRANCH - Show clearly
-# =============================================
-
+# Git
 [git_branch]
-symbol = "branch:"
-format = " [$symbol$branch](bold green)"
+symbol = "on "
+format = " $symbol$branch"
 truncation_length = 14
 
-
-# =============================================
-#   GIT STATUS - Use words, not mystery symbols
-# =============================================
-
 [git_status]
-format = " [$all_status$ahead_behind]"
-
-# Descriptive labels — you’ll learn what they mean
-conflicted = "CONFLICT"
-ahead = "AHEAD:"
-behind = "BEHIND:"
-diverged = "DIVERGED"
-up_to_date = ""  # Hide if clean
-untracked = "UNTRACKED"
-modified = "MODIFIED"
-staged = "STAGED"
-deleted = "DELETED"
-renamed = "RENAMED"
-stashed = "STASHED"
+format = " ($all_status$ahead_behind)"
+conflicted = "conflict"
+ahead = "ahead"
+behind = "behind"
+diverged = "diverged"
+up_to_date = ""
+untracked = "untracked"
+modified = "changed"
+staged = "staged"
+deleted = "deleted"
+renamed = "renamed"
+stashed = "stashed"
 
 
-# =============================================
-#   DOCKER - You're in a container? You need to know.
-# =============================================
-
+# Docker
 [container]
-symbol = "docker:"
-format = " [$symbol$name](bold yellow)"
-
-
-# =============================================
-#   DOCKER CONTEXT (CLI context)
-# =============================================
+symbol = "in "
+format = " $symbol$name"
 
 [docker_context]
 symbol = "ctx:"
-format = " [$symbol$context](yellow)"
+format = " $symbol$context"
 
 
-# =============================================
-#   AWS - Which account are you touching?
-# =============================================
-
+# Cloud
 [aws]
 symbol = "aws:"
-format = " [$symbol$profile](bold blue)"
-disabled = false
-
-
-# =============================================
-#   GCLOUD / GOOGLE CLOUD
-# =============================================
+format = " $symbol$profile"
 
 [gcloud]
 symbol = "gcp:"
-format = " [$symbol$profile](bold cyan)"
+format = " $symbol$profile"
 
 
-# =============================================
-#   PYTHON - Show version and warn about venv
-# =============================================
-
+# Languages
 [python]
-format = " [py:$version](cyan)"
-version_format = "v${raw}"
-pyenv_version_name = false
+symbol = "py "
+version_format = "${raw}"
+format = " via $symbol$version"
 
-# Show when in a virtual environment
 [env_var]
 variable = "VIRTUAL_ENV"
-format = " [PYTHON VENV](bold purple)"
-
-
-# =============================================
-#   NODE.JS
-# =============================================
+format = " (venv)"
+style = "bold purple"
 
 [nodejs]
-format = " [node:$version](bold green)"
-version_format = "v${raw}"
-
-
-# =============================================
-#   RUST
-# =============================================
+symbol = "node "
+version_format = "${raw}"
+format = " via $symbol$version"
 
 [rust]
-format = " [rust:$version](white)"
-version_format = "v${raw}"
+symbol = "rs "
+version_format = "${raw}"
+format = " via $symbol$version"
 
-
-# =============================================
-#   GO
-# =============================================
-
-[go]
-format = " [go:$version](blue)"
-version_format = "v${raw}"
-
-
-# =============================================
-#   JAVA
-# =============================================
+[golang]
+symbol = "go "
+version_format = "${raw}"
+format = " via $symbol$version"
 
 [java]
-format = " [java:$version](red)"
-version_format = "v${raw}"
-
-
-# =============================================
-#   .NET
-# =============================================
+symbol = "java "
+version_format = "${raw}"
+format = " via $symbol$version"
 
 [dotnet]
-format = " [.net:$version](magenta)"
-version_format = "v${raw}"
+symbol = ".NET "
+format = " via $symbol$version"
 
 
-# =============================================
-#   CONDA - Show when active
-# =============================================
-
+# Conda
 [conda]
-format = " [conda:$environment](bold yellow)"
-ignore_base = true  # Only show if NOT in 'base'
+symbol = "conda "
+format = " via $symbol$environment"
+ignore_base = true
 
 
-# =============================================
-#   PACKAGE VERSION (helpful in projects)
-# =============================================
-
+# Package version
 [package]
-format = " [pkg:$version](dim)"
+symbol = "pkg "
 version_format = "v${raw}"
-disabled = false
+format = " is $symbol$version"
 
 
-# =============================================
-#   SUDO - BIG RED FLAG
-# =============================================
-
+# Sudo warning
 [sudo]
-format = " [SUDO: ROOT ACCESS]"
-style = "bold red"
+symbol = "sudo"
+format = " [$symbol](bold red)"
 
 
-# =============================================
-#   COMMAND DURATION (only if slow)
-# =============================================
-
+# Show if command took >500ms
 [cmd_duration]
-min_time = 1000
-format = " [took:$duration](dim)"
+min_time = 500
+format = " (took $duration)"
+style = "dim"
 
 
-# =============================================
-#   ERROR STATUS
-# =============================================
-
+# Error status
 [status]
-symbol = "ERROR"
-format = " [$error_code](bold red)"
-not_executable = " [NOT EXECUTABLE]"
-not_found = " [COMMAND NOT FOUND]"
-sigint = " [INTERRUPTED]"
+symbol = "[x](bold red) "
+format = " $symbol$error_code"
+not_executable_symbol = "[!EXEC] "
+not_found_symbol = "[!FOUND] "
+sigint_symbol = "[INT] "
 disabled = false
 
 
-# =============================================
-#   DISABLED MODULES (keep clean)
-# =============================================
-
+# Disabled modules
 [nix_shell]
 disabled = true
-
 [localip]
 disabled = true
-
 [memory_usage]
 disabled = true
-
 [time]
 disabled = true
-
 [hostname]
 disabled = true
-
 [kubernetes]
 disabled = true
-
 [os]
-disabled = true  # YOU SAID NO OS — SO WE DISABLE IT
+disabled = true
