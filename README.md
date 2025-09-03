@@ -6,7 +6,7 @@ Here’s how to get up and running:
 
 ### 1. Get [Zellij](https://zellij.dev/)
 
-_A terminal workspace with batteries included_
+_A terminal workspace with batteries included._
 
 ```bash
 
@@ -20,7 +20,7 @@ mkdir  -p  ~/bin
 
 ### 2. Install [Alacritty](https://alacritty.org/index.html)
 
-_A fast, lightweight and minimalistic Wayland terminal emulator_
+_Alacritty is a modern terminal emulator that comes with sensible defaults, but allows for extensive configuration._
 
 ```bash
 
