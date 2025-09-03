@@ -1,190 +1,234 @@
-[aws]
-symbol = "  "
+# =============================================
+#   STARSHIP PROMPT - BEGINNER MENTOR MODE
+#   No OS junk. More words. Zero confusion.
+#   Teaches you Git, Docker, AWS, venv, etc.
+#   Works on ANY terminal. No Nerd Fonts.
+# =============================================
 
-[buf]
-symbol = " "
+add_newline = false
 
-[bun]
-symbol = " "
 
-[c]
-symbol = " "
+# =============================================
+#   PROMPT SYMBOL: Simple and clear
+# =============================================
 
-[cpp]
-symbol = " "
+[character]
+success_symbol = " > "
+error_symbol = " x "
+vimcmd_symbol = " : "
+format = "$symbol"
 
-[cmake]
-symbol = " "
 
-[conda]
-symbol = " "
-
-[crystal]
-symbol = " "
-
-[dart]
-symbol = " "
-
-[deno]
-symbol = " "
+# =============================================
+#   DIRECTORY: Clean, short path
+# =============================================
 
 [directory]
-read_only = " 󰌾"
+format = " $path"
+truncation_length = 2
+truncation_symbol = "…/"
+read_only = " [READ-ONLY]"
 
-[docker_context]
-symbol = " "
 
-[elixir]
-symbol = " "
-
-[elm]
-symbol = " "
-
-[fennel]
-symbol = " "
-
-[fossil_branch]
-symbol = " "
-
-[gcloud]
-symbol = "  "
+# =============================================
+#   GIT BRANCH - Show clearly
+# =============================================
 
 [git_branch]
-symbol = " "
+symbol = "branch:"
+format = " [$symbol$branch](bold green)"
+truncation_length = 14
 
-[git_commit]
-tag_symbol = '  '
 
-[golang]
-symbol = " "
+# =============================================
+#   GIT STATUS - Use words, not mystery symbols
+# =============================================
 
-[guix_shell]
-symbol = " "
+[git_status]
+format = " [$all_status$ahead_behind]"
 
-[haskell]
-symbol = " "
+# Descriptive labels — you’ll learn what they mean
+conflicted = "CONFLICT"
+ahead = "AHEAD:"
+behind = "BEHIND:"
+diverged = "DIVERGED"
+up_to_date = ""  # Hide if clean
+untracked = "UNTRACKED"
+modified = "MODIFIED"
+staged = "STAGED"
+deleted = "DELETED"
+renamed = "RENAMED"
+stashed = "STASHED"
 
-[haxe]
-symbol = " "
 
-[hg_branch]
-symbol = " "
+# =============================================
+#   DOCKER - You're in a container? You need to know.
+# =============================================
 
-[hostname]
-ssh_symbol = " "
+[container]
+symbol = "docker:"
+format = " [$symbol$name](bold yellow)"
 
-[java]
-symbol = " "
 
-[julia]
-symbol = " "
+# =============================================
+#   DOCKER CONTEXT (CLI context)
+# =============================================
 
-[kotlin]
-symbol = " "
+[docker_context]
+symbol = "ctx:"
+format = " [$symbol$context](yellow)"
 
-[lua]
-symbol = " "
 
-[memory_usage]
-symbol = "󰍛 "
+# =============================================
+#   AWS - Which account are you touching?
+# =============================================
 
-[meson]
-symbol = "󰔷 "
+[aws]
+symbol = "aws:"
+format = " [$symbol$profile](bold blue)"
+disabled = false
 
-[nim]
-symbol = "󰆥 "
 
-[nix_shell]
-symbol = " "
+# =============================================
+#   GCLOUD / GOOGLE CLOUD
+# =============================================
 
-[nodejs]
-symbol = " "
+[gcloud]
+symbol = "gcp:"
+format = " [$symbol$profile](bold cyan)"
 
-[ocaml]
-symbol = " "
 
-[os.symbols]
-Alpaquita = " "
-Alpine = " "
-AlmaLinux = " "
-Amazon = " "
-Android = " "
-Arch = " "
-Artix = " "
-CachyOS = " "
-CentOS = " "
-Debian = " "
-DragonFly = " "
-Emscripten = " "
-EndeavourOS = " "
-Fedora = " "
-FreeBSD = " "
-Garuda = "󰛓 "
-Gentoo = " "
-HardenedBSD = "󰞌 "
-Illumos = "󰈸 "
-Kali = " "
-Linux = " "
-Mabox = " "
-Macos = " "
-Manjaro = " "
-Mariner = " "
-MidnightBSD = " "
-Mint = " "
-NetBSD = " "
-NixOS = " "
-Nobara = " "
-OpenBSD = "󰈺 "
-openSUSE = " "
-OracleLinux = "󰌷 "
-Pop = " "
-Raspbian = " "
-Redhat = " "
-RedHatEnterprise = " "
-RockyLinux = " "
-Redox = "󰀘 "
-Solus = "󰠳 "
-SUSE = " "
-Ubuntu = " "
-Unknown = " "
-Void = " "
-Windows = "󰍲 "
-
-[package]
-symbol = "󰏗 "
-
-[perl]
-symbol = " "
-
-[php]
-symbol = " "
-
-[pijul_channel]
-symbol = " "
-
-[pixi]
-symbol = "󰏗 "
+# =============================================
+#   PYTHON - Show version and warn about venv
+# =============================================
 
 [python]
-symbol = " "
+format = " [py:$version](cyan)"
+version_format = "v${raw}"
+pyenv_version_name = false
 
-[rlang]
-symbol = "󰟔 "
+# Show when in a virtual environment
+[env_var]
+variable = "VIRTUAL_ENV"
+format = " [PYTHON VENV](bold purple)"
 
-[ruby]
-symbol = " "
+
+# =============================================
+#   NODE.JS
+# =============================================
+
+[nodejs]
+format = " [node:$version](bold green)"
+version_format = "v${raw}"
+
+
+# =============================================
+#   RUST
+# =============================================
 
 [rust]
-symbol = "󱘗 "
+format = " [rust:$version](white)"
+version_format = "v${raw}"
 
-[scala]
-symbol = " "
 
-[swift]
-symbol = " "
+# =============================================
+#   GO
+# =============================================
 
-[zig]
-symbol = " "
+[go]
+format = " [go:$version](blue)"
+version_format = "v${raw}"
 
-[gradle]
-symbol = " "
+
+# =============================================
+#   JAVA
+# =============================================
+
+[java]
+format = " [java:$version](red)"
+version_format = "v${raw}"
+
+
+# =============================================
+#   .NET
+# =============================================
+
+[dotnet]
+format = " [.net:$version](magenta)"
+version_format = "v${raw}"
+
+
+# =============================================
+#   CONDA - Show when active
+# =============================================
+
+[conda]
+format = " [conda:$environment](bold yellow)"
+ignore_base = true  # Only show if NOT in 'base'
+
+
+# =============================================
+#   PACKAGE VERSION (helpful in projects)
+# =============================================
+
+[package]
+format = " [pkg:$version](dim)"
+version_format = "v${raw}"
+disabled = false
+
+
+# =============================================
+#   SUDO - BIG RED FLAG
+# =============================================
+
+[sudo]
+format = " [SUDO: ROOT ACCESS]"
+style = "bold red"
+
+
+# =============================================
+#   COMMAND DURATION (only if slow)
+# =============================================
+
+[cmd_duration]
+min_time = 1000
+format = " [took:$duration](dim)"
+
+
+# =============================================
+#   ERROR STATUS
+# =============================================
+
+[status]
+symbol = "ERROR"
+format = " [$error_code](bold red)"
+not_executable = " [NOT EXECUTABLE]"
+not_found = " [COMMAND NOT FOUND]"
+sigint = " [INTERRUPTED]"
+disabled = false
+
+
+# =============================================
+#   DISABLED MODULES (keep clean)
+# =============================================
+
+[nix_shell]
+disabled = true
+
+[localip]
+disabled = true
+
+[memory_usage]
+disabled = true
+
+[time]
+disabled = true
+
+[hostname]
+disabled = true
+
+[kubernetes]
+disabled = true
+
+[os]
+disabled = true  # YOU SAID NO OS — SO WE DISABLE IT
