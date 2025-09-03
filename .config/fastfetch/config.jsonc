@@ -1,33 +1,91 @@
 {
   "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
+  "logo": {
+    "type": "auto",
+    "source": "auto",
+    "width": 25,
+    "height": 15,
+    "padding": {
+      "right": 2
+    },
+    "preserveAspectRatio": true
+  },
+  "display": {
+    "color": {
+      "keys": "blue",
+      "title": "cyan"
+    },
+    "key": {
+      "width": 14,
+      "type": "string"
+    },
+    "percent": {
+      "type": 3,
+      "color": {
+        "green": "green",
+        "yellow": "yellow",
+        "red": "red"
+      }
+    }
+  },
   "modules": [
-    "title",
-    "separator",
-    "os",
-    "host",
-    "kernel",
-    "uptime",
-    "packages",
-    "shell",
-    // "display",
-    "de",
-    // "wm",
-    // "wmtheme",
-    // "theme",
-    // "icons",
-    // "font",
-    // "cursor",
-    "terminal",
-    // "terminalfont",
-    "cpu",
-    "gpu",
-    "memory",
-    "swap",
-    "disk",
-    "localip",
-    "battery",
-    "poweradapter",
-    // "locale",
+    {
+      "type": "title",
+      "keyColor": "cyan",
+      "color": "bold"
+    },
+    {
+      "type": "os",
+      "key": "  OS",
+      "keyColor": "blue"
+    },
+    {
+      "type": "kernel",
+      "key": "  Kernel",
+      "keyColor": "blue"
+    },
+    {
+      "type": "uptime",
+      "key": "  Uptime",
+      "keyColor": "blue"
+    },
+    {
+      "type": "packages",
+      "key": "  Packages",
+      "keyColor": "blue"
+    },
+    {
+      "type": "shell",
+      "key": "  Shell",
+      "keyColor": "blue"
+    },
+    {
+      "type": "terminal",
+      "key": "  Terminal",
+      "keyColor": "blue"
+    },
+    {
+      "type": "cpu",
+      "key": "  CPU",
+      "keyColor": "blue",
+      "format": "{cores-physical}C/{cores-logical}T {name}"
+    },
+    {
+      "type": "memory",
+      "key": "󰍛  Memory",
+      "keyColor": "blue",
+      "percent": {
+        "type": 3
+      }
+    },
+    {
+      "type": "disk",
+      "key": "  Disk",
+      "keyColor": "blue",
+      "percent": {
+        "type": 3
+      }
+    },
     "break",
     "colors"
   ]
