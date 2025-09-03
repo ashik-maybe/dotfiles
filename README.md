@@ -18,13 +18,13 @@ mkdir  -p  ~/bin
 
 > Make sure `~/bin` is in your `PATH`.
 
-### 2. Install [foot](https://codeberg.org/dnkl/foot)
+### 2. Install [Alacritty](https://alacritty.org/index.html)
 
 _A fast, lightweight and minimalistic Wayland terminal emulator_
 
 ```bash
 
-sudo  dnf  install  foot
+sudo dnf install alacritty
 
 ```
 
@@ -98,7 +98,7 @@ source  ~/.zshrc
 
 - [Monaspace Variable](https://monaspace.githubnext.com/) for [VS Code](https://code.visualstudio.com/download)
 
-- [MesloLGLDZNerdFont](https://www.nerdfonts.com/font-downloads) for [foot](https://codeberg.org/dnkl/foot)
+- [MesloLGLDZNerdFont](https://www.nerdfonts.com/font-downloads) for [Alacritty](https://alacritty.org/index.html)
 
 ⚠ Store these fonts in **`~/.local/share/fonts`**
 
