@@ -1,12 +1,11 @@
-theme "nord"  // Set the theme to Catppuccin Mocha
-simplified_ui true        // Use a cleaner, minimal UI (hides borders, etc.)
+theme "catppuccin-macchiato"
 
-default_layout "default"  
-default_shell "zsh"       // Launch Zellij panes with Zsh by default
-mouse_mode true           // Enable mouse support for easier pane resizing
+default_layout "default"
+default_shell "zsh"
+mouse_mode true
 
 ui {
     pane_frames {
-        rounded_corners true  // Enable rounded corners around panes
+        rounded_corners true
     }
 }
