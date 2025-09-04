@@ -1,57 +1,52 @@
-# ────── ENVIRONMENT ──────────────────────────────
-export EDITOR="code"                             # CLI editor
-export VISUAL="code"                             # GUI editor
+# ~/.zshrc ────────────────────────────────────────────────────
+# Minimal, fast, VS Code–style terminal editing
+# Plugins: zinit + fzf-tab + zoxide + lsd/bat/rg
+# Key: Ctrl+E, Ctrl+Z/Y, Ctrl+K, ^R, fzf-tab
 
-# User binaries (keep these, likely still useful)
-export PATH="$HOME/.local/bin:$PATH"
-export PATH="$HOME/bin:$PATH"
+# Environment
+export EDITOR="code"
+export VISUAL="code"
+export PATH="$HOME/.local/bin:$HOME/bin:$PATH"
 
-# ────── PROMPT (Starship) ────────────────────────
-command -v starship &>/dev/null && eval "$(starship init zsh)"
+# Prompt
+command -v starship >/dev/null && eval "$(starship init zsh)"
 
-# ────── HISTORY SETTINGS ─────────────────────────
+# History
+HISTFILE="$HOME/.zsh_history"
 HISTSIZE=10000
 SAVEHIST=20000
-HISTFILE="$HOME/.zsh_history"
-
 setopt HIST_IGNORE_ALL_DUPS SHARE_HISTORY APPEND_HISTORY INC_APPEND_HISTORY
-setopt EXTENDEDGLOB CORRECT AUTOCD NO_BEEP
+setopt EXTENDED_GLOB CORRECT AUTO_CD NO_BEEP
 
-# ────── TAB COMPLETION (Cached) ──────────────────
+# Completion
 autoload -Uz compinit
-if [[ ! -f ~/.zcompdump || ~/.zcompdump -ot ~/.zshrc ]]; then
-  compinit -C
-else
-  compinit -C -d ~/.zcompdump
-fi
+[[ ! -f "$ZDOTDIR/.zcompdump" || "$ZDOTDIR/.zcompdump" -ot "$ZDOTDIR/.zshrc" ]] && \
+  compinit || compinit -d "$ZDOTDIR/.zcompdump"
 
 zstyle ':completion:*' menu select
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*'
-zstyle ':completion:*' group-name ''
-zstyle ':completion:*:descriptions' format '[%d]'
+zstyle ':completion:*:descriptions' format '%U%F{blue}%d%f%u'
 
-# ────── ZINIT (Plugin Manager) ───────────────────
-ZINIT_HOME="${HOME}/.zinit"
-if [[ ! -f "$ZINIT_HOME/bin/zinit.zsh" ]]; then
-  echo "→ Installing Zinit..."
-  mkdir -p "$ZINIT_HOME" && git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME/bin"
-fi
+# Plugin Manager
+ZINIT_HOME="$HOME/.zinit"
+[[ ! -f "$ZINIT_HOME/bin/zinit.zsh" ]] && {
+  mkdir -p "$ZINIT_HOME"
+  git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME/bin"
+}
 source "$ZINIT_HOME/bin/zinit.zsh"
 
-# ────── PLUGINS (Lazy where possible) ────────────
+# Plugins
 zinit light-mode for \
   zsh-users/zsh-autosuggestions \
   zsh-users/zsh-completions \
   Aloxaf/fzf-tab
 
-# zoxide (smart cd replacement)
 zinit ice wait lucid atinit"eval \"\$(zoxide init zsh)\""
 zinit light ajeetdsouza/zoxide
 
-# Syntax highlighting (must be last)
 zinit light zsh-users/zsh-syntax-highlighting
 
-# ────── ALIASES: NAVIGATION ──────────────────────
+# Aliases
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
@@ -60,14 +55,12 @@ alias q='exit'
 alias d='cd ~/Downloads'
 alias p='cd ~/WorkSpace/Projects'
 
-# ────── ALIASES: FILE OPS / LISTING ──────────────
 alias mkdir='mkdir -pv'
 alias cp='cp -iv'
 alias mv='mv -iv'
 alias rm='rm -Iv'
 alias rmdir='rmdir -v'
 
-# ────── ALIASES: REPLACEMENTS ────────────────────
 alias neofetch='fastfetch'
 alias top='btop'
 alias ls='lsd --color=auto --group-directories-first'
@@ -76,55 +69,65 @@ alias grep='rg'
 alias du='dust'
 alias find='fdfind'
 
-# ────── ALIASES: SHORTCUTS & UTILS ───────────────
-please() { sudo $(fc -lLn -1); } # sudo last command
+please() { sudo $(fc -lLn -1); }
 alias upgrade='sudo dnf upgrade --refresh -y && flatpak update -y'
 alias vite='npm create vite@latest'
 alias lzd='lazydocker'
 
-# ────── CUSTOM SCRIPTS ───────────────────────────
 alias ar="$HOME/scripts/aria2c_script.sh"
 alias yt="$HOME/scripts/yt-dlp_script.sh"
 alias k="$HOME/scripts/archive_script.sh"
 alias x="$HOME/scripts/unarchive_script.sh"
 
-#   KEYBINDINGS: Editor-Style Navigation (VS Code / Emacs-like)
+# Keybindings (VS Code style)
+bindkey -e
+autoload -U select-word-style && select-word-style bash
 
-bindkey -e  # Use emacs keybindings
+bindkey '\e[1;5D'  backward-word
+bindkey '\e[1;5C'  forward-word
+bindkey '\ed'      backward-word
+bindkey '\e\'      forward-word
 
-# Word movement
-bindkey '\e[1;5D'  backward-word            # Ctrl+Left
-bindkey '\e[1;5C'  forward-word             # Ctrl+Right
-bindkey '\ed'      backward-word            # Alt+Left  (macOS)
-bindkey '\e\'      forward-word             # Alt+Right (macOS)
+bindkey '\C-w'     backward-kill-word
+bindkey '\e[3;5~'  kill-word
 
-# Delete word by word
-bindkey '\C-w'     backward-kill-word       # Ctrl+Backspace
-bindkey '\e[3;5~'  kill-word                # Ctrl+Delete
+bindkey '\e[H'     beginning-of-line
+bindkey '\e[F'     end-of-line
+bindkey '\e[1~'    beginning-of-line
+bindkey '\e[4~'    end-of-line
 
-# Line navigation
-bindkey '\e[H'     beginning-of-line        # Home
-bindkey '\e[F'     end-of-line              # End
-bindkey '\e[1~'    beginning-of-line        # Home (alternate)
-bindkey '\e[4~'    end-of-line              # End (alternate)
+bindkey '\e[1;5H'  beginning-of-buffer-or-history
+bindkey '\e[1;5F'  end-of-buffer-or-history
 
-# Buffer navigation (for multi-line commands or history)
-bindkey '\e[1;5H'  beginning-of-buffer-or-history  # Ctrl+Home
-bindkey '\e[1;5F'  end-of-buffer-or-history        # Ctrl+End
+bindkey '^K'       kill-line
+bindkey '^U'       backward-kill-line
+bindkey '^X'       kill-whole-line
+bindkey '^L'       clear-screen
+bindkey '^Z'       undo
 
-# Line editing shortcuts
-bindkey '^K'       kill-line                # Ctrl+K: kill to end of line
-bindkey '^U'       backward-kill-line       # Ctrl+U: kill to start of line
-bindkey '^X'       kill-whole-line          # Ctrl+X: cut entire line
-bindkey '^L'       clear-screen             # Ctrl+L: clear screen
+redo() { zle undo }
+zle -N redo && bindkey '^Y' redo
 
-# Search
-bindkey '^R'       history-incremental-pattern-search-backward  # Incremental history search
+vi-cancel-line() { zle .reset-prompt; zle -y .kill-line; }
+zle -N vi-cancel-line && bindkey '^C' vi-cancel-line
 
-# Insert last argument of previous command
-bindkey '\e.'      insert-last-word         # Alt+.
+bindkey '\e.'      insert-last-word
 
-# Use fzf for history search if available
-if (( $+commands[fzf] )); then
-  bindkey '^R' fzf-history-widget
-fi
+autoload -U edit-command-line
+zle -N edit-command-line && bindkey '^E' edit-command-line
+
+# fzf-tab previews
+zstyle ':fzf-tab:complete:cd:*'  fzf-preview 'lsd --color=always $realpath'
+zstyle ':fzf-tab:complete:ls:*'  fzf-preview 'lsd --color=always $realpath'
+zstyle ':fzf-tab:complete:bat:*' fzf-preview 'bat --color=always --line-range :50 $realpath'
+zstyle ':fzf-tab:complete:cat:*' fzf-preview 'head -n 50 $realpath | bat -l txt --color=always'
+zstyle ':fzf-tab:complete:*'     fzf-preview 'file $realpath 2>/dev/null || echo "no preview"'
+zstyle ':fzf-tab:*' fzf-bindings '?:toggle-preview'
+
+# History search
+(( $+commands[fzf] )) && bindkey '^R' fzf-history-widget || \
+                         bindkey '^R' history-incremental-pattern-search-backward
+
+# Optional: Alt+D to duplicate line
+# edit-line-duplicate() { LBUFFER="$BUFFER"$'\n'"$BUFFER"; }
+# zle -N edit-line-duplicate && bindkey '\e\d' edit-line-duplicate
