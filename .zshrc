@@ -1,5 +1,5 @@
 # ~/.zshrc ────────────────────────────────────────────────────
-# Minimal, fast, VS Code–style terminal editing
+# Minimal, fast, VS Code–style terminal
 # Plugins: zinit + fzf-tab + zoxide + lsd/bat/rg
 # Key: Ctrl+E, Ctrl+Z/Y, Ctrl+K, ^R, fzf-tab
 
@@ -18,7 +18,7 @@ SAVEHIST=20000
 setopt HIST_IGNORE_ALL_DUPS SHARE_HISTORY APPEND_HISTORY INC_APPEND_HISTORY
 setopt EXTENDED_GLOB CORRECT AUTO_CD NO_BEEP
 
-# Completion
+# Completion (cached)
 autoload -Uz compinit
 [[ ! -f "$ZDOTDIR/.zcompdump" || "$ZDOTDIR/.zcompdump" -ot "$ZDOTDIR/.zshrc" ]] && \
   compinit || compinit -d "$ZDOTDIR/.zcompdump"
@@ -27,7 +27,7 @@ zstyle ':completion:*' menu select
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*'
 zstyle ':completion:*:descriptions' format '%U%F{blue}%d%f%u'
 
-# Plugin Manager
+# Plugin Manager (zinit)
 ZINIT_HOME="$HOME/.zinit"
 [[ ! -f "$ZINIT_HOME/bin/zinit.zsh" ]] && {
   mkdir -p "$ZINIT_HOME"
@@ -35,7 +35,7 @@ ZINIT_HOME="$HOME/.zinit"
 }
 source "$ZINIT_HOME/bin/zinit.zsh"
 
-# Plugins
+# Plugins (lazy-loaded where possible)
 zinit light-mode for \
   zsh-users/zsh-autosuggestions \
   zsh-users/zsh-completions \
@@ -44,9 +44,9 @@ zinit light-mode for \
 zinit ice wait lucid atinit"eval \"\$(zoxide init zsh)\""
 zinit light ajeetdsouza/zoxide
 
-zinit light zsh-users/zsh-syntax-highlighting
+zinit light zsh-users/zsh-syntax-highlighting  # must be last
 
-# Aliases
+# Aliases: Navigation
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
@@ -55,12 +55,14 @@ alias q='exit'
 alias d='cd ~/Downloads'
 alias p='cd ~/WorkSpace/Projects'
 
+# Aliases: File ops
 alias mkdir='mkdir -pv'
 alias cp='cp -iv'
 alias mv='mv -iv'
 alias rm='rm -Iv'
 alias rmdir='rmdir -v'
 
+# Aliases: Modern replacements
 alias neofetch='fastfetch'
 alias top='btop'
 alias ls='lsd --color=auto --group-directories-first'
@@ -69,54 +71,76 @@ alias grep='rg'
 alias du='dust'
 alias find='fdfind'
 
-please() { sudo $(fc -lLn -1); }
+# Aliases: Utils
+please() { sudo $(fc -lLn -1); }  # re-run last command with sudo
 alias upgrade='sudo dnf upgrade --refresh -y && flatpak update -y'
 alias vite='npm create vite@latest'
 alias lzd='lazydocker'
 
+# Cloudflare WARP toggle
+# Parses "Status update: Connected" from warp-cli status
+toggle-warp() {
+  if warp-cli status 2>/dev/null | grep -q 'Status update: Connected'; then
+    warp-cli disconnect >/dev/null && printf "🔸 disconnected\n"
+  else
+    warp-cli connect >/dev/null && printf "🔹 connected\n"
+  fi
+}
+alias warp=toggle-warp
+
+# Aliases: Custom scripts
 alias ar="$HOME/scripts/aria2c_script.sh"
 alias yt="$HOME/scripts/yt-dlp_script.sh"
 alias k="$HOME/scripts/archive_script.sh"
 alias x="$HOME/scripts/unarchive_script.sh"
 
-# Keybindings (VS Code style)
+# Keybindings: Emacs mode (VS Code style)
 bindkey -e
-autoload -U select-word-style && select-word-style bash
+autoload -U select-word-style && select-word-style bash  # smarter word boundaries
 
+# Word movement
 bindkey '\e[1;5D'  backward-word
 bindkey '\e[1;5C'  forward-word
 bindkey '\ed'      backward-word
 bindkey '\e\'      forward-word
 
+# Delete word
 bindkey '\C-w'     backward-kill-word
 bindkey '\e[3;5~'  kill-word
 
+# Line navigation
 bindkey '\e[H'     beginning-of-line
 bindkey '\e[F'     end-of-line
 bindkey '\e[1~'    beginning-of-line
 bindkey '\e[4~'    end-of-line
 
+# Buffer navigation (multi-line / history)
 bindkey '\e[1;5H'  beginning-of-buffer-or-history
 bindkey '\e[1;5F'  end-of-buffer-or-history
 
+# Line editing
 bindkey '^K'       kill-line
 bindkey '^U'       backward-kill-line
 bindkey '^X'       kill-whole-line
 bindkey '^L'       clear-screen
 bindkey '^Z'       undo
 
+# Redo (like Ctrl+Y in editors)
 redo() { zle undo }
 zle -N redo && bindkey '^Y' redo
 
+# Cancel line (like Esc in editor)
 vi-cancel-line() { zle .reset-prompt; zle -y .kill-line; }
 zle -N vi-cancel-line && bindkey '^C' vi-cancel-line
 
+# Insert last arg of prev command
 bindkey '\e.'      insert-last-word
 
+# Edit command in $EDITOR (Ctrl+E)
 autoload -U edit-command-line
 zle -N edit-command-line && bindkey '^E' edit-command-line
 
-# fzf-tab previews
+# fzf-tab: preview on tab complete
 zstyle ':fzf-tab:complete:cd:*'  fzf-preview 'lsd --color=always $realpath'
 zstyle ':fzf-tab:complete:ls:*'  fzf-preview 'lsd --color=always $realpath'
 zstyle ':fzf-tab:complete:bat:*' fzf-preview 'bat --color=always --line-range :50 $realpath'
@@ -124,10 +148,10 @@ zstyle ':fzf-tab:complete:cat:*' fzf-preview 'head -n 50 $realpath | bat -l txt 
 zstyle ':fzf-tab:complete:*'     fzf-preview 'file $realpath 2>/dev/null || echo "no preview"'
 zstyle ':fzf-tab:*' fzf-bindings '?:toggle-preview'
 
-# History search
+# History search: fzf if available, fallback to incremental
 (( $+commands[fzf] )) && bindkey '^R' fzf-history-widget || \
                          bindkey '^R' history-incremental-pattern-search-backward
 
-# Optional: Alt+D to duplicate line
+# Optional: Alt+D to duplicate current line
 # edit-line-duplicate() { LBUFFER="$BUFFER"$'\n'"$BUFFER"; }
 # zle -N edit-line-duplicate && bindkey '\e\d' edit-line-duplicate
