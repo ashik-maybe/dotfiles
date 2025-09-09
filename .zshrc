@@ -69,6 +69,7 @@ alias ls='lsd --color=auto --group-directories-first'
 alias cat='bat --paging=never'
 alias grep='rg'
 alias du='dust'
+alias df='duf'
 alias find='fdfind'
 
 # Aliases: Utils
