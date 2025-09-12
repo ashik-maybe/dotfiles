@@ -1,108 +1,118 @@
+// https://github.com/dacrab/fastfetch-config
+
 {
   "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
   "logo": {
-    "type": "builtin",
-    "height": 15,
-    "width": 30,
     "padding": {
-      "right": 1
+      "top": 2,
+      "left": 1,
+      "right": 2
     }
   },
+  "display": {
+    "separator": "  "
+  },
   "modules": [
-    // — Host (single line) — anchor point
+    // Title
     {
-      "type": "host",
-      "key": "• Host",
-      "keyColor": "green"
+      "type": "title",
+      "format": "{#1}╭───────────── {#}{user-name-colored}"
     },
-
-    // — Hardware (inline group)
+    // System Information
     {
-      "type": "cpu",
-      "key": "• CPU",
-      "keyColor": "green"
+      "type": "custom",
+      "format": "{#1}│ {#}System Information"
     },
-    {
-      "type": "gpu",
-      "key": "• GPU",
-      "keyColor": "green"
-    },
-    {
-      "type": "memory",
-      "key": "• RAM",
-      "keyColor": "green"
-    },
-    {
-      "type": "disk",
-      "key": "• Disk",
-      "keyColor": "green"
-    },
-
-    // — Software (inline group)
     {
       "type": "os",
-      "key": "• OS",
-      "keyColor": "yellow"
+      "key": "{#separator}│  {#keys}󰍹 OS"
     },
     {
       "type": "kernel",
-      "key": "• Kernel",
-      "keyColor": "yellow"
+      "key": "{#separator}│  {#keys}󰒋 Kernel"
+    },
+    {
+      "type": "uptime",
+      "key": "{#separator}│  {#keys}󰅐 Uptime"
     },
     {
       "type": "packages",
-      "key": "• Packages",
-      "keyColor": "yellow"
+      "key": "{#separator}│  {#keys}󰏖 Packages",
+      "format": "{all}"
     },
     {
-      "type": "shell",
-      "key": "• Shell",
-      "keyColor": "yellow"
+      "type": "custom",
+      "format": "{#1}│"
     },
-
-    // — Environment (tight group)
+    // Desktop Environment
+    {
+      "type": "custom",
+      "format": "{#1}│ {#}Desktop Environment"
+    },
     {
       "type": "de",
-      "key": "• DE",
-      "keyColor": "blue"
+      "key": "{#separator}│  {#keys}󰧨 DE"
     },
     {
       "type": "wm",
-      "key": "• WM",
-      "keyColor": "blue"
+      "key": "{#separator}│  {#keys}󱂬 WM"
     },
     {
-      "type": "terminal",
-      "key": "• Term",
-      "keyColor": "blue"
-    },
-
-    // — Time (minimalist trio)
-    {
-      "type": "uptime",
-      "key": "• Uptime",
-      "keyColor": "magenta"
+      "type": "wmtheme",
+      "key": "{#separator}│  {#keys}󰉼 Theme"
     },
     {
-      "type": "datetime",
-      "key": "• DateTime",
-      "keyColor": "magenta"
+      "type": "display",
+      "key": "{#separator}│  {#keys}󰹑 Resolution"
     },
-
-    // — OS Age: only if you need it — otherwise remove
     {
-      "type": "command",
-      "key": "• OS Age",
-      "keyColor": "magenta",
-      "text": "birth_install=$(stat -c %W /); current=$(date +%s); time_progression=$((current - birth_install)); days_difference=$((time_progression / 86400)); echo $days_difference days"
+      "type": "shell",
+      "key": "{#separator}│  {#keys}󰞷 Shell"
     },
-
-    // — Final whisper: color palette, tiny
+    {
+      "type": "terminalfont",
+      "key": "{#separator}│  {#keys}󰛖 Font"
+    },
+    {
+      "type": "custom",
+      "format": "{#1}│"
+    },
+    // Hardware Information
+    {
+      "type": "custom",
+      "format": "{#1}│ {#}Hardware Information"
+    },
+    {
+      "type": "cpu",
+      "key": "{#separator}│  {#keys}󰻠 CPU"
+    },
+    {
+      "type": "gpu",
+      "key": "{#separator}│  {#keys}󰢮 GPU"
+    },
+    {
+      "type": "memory",
+      "key": "{#separator}│  {#keys}󰍛 Memory"
+    },
+    {
+      "type": "disk",
+      "key": "{#separator}│  {#keys}󰋊 Disk (/)",
+      "folders": "/"
+    },
+    {
+      "type": "custom",
+      "format": "{#1}│"
+    },
+    // Colors
     {
       "type": "colors",
-      "paddingLeft": 1,
-      "symbol": "circle",
-      "paddingTop": 0
+      "key": "{#separator}│",
+      "symbol": "circle"
+    },
+    // Footer
+    {
+      "type": "custom",
+      "format": "{#1}╰───────────────────────────────╯"
     }
   ]
 }
