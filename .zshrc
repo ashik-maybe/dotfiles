@@ -78,22 +78,12 @@ alias upgrade='sudo dnf upgrade --refresh -y && flatpak update -y'
 alias vite='npm create vite@latest'
 alias lzd='lazydocker'
 
-# Cloudflare WARP toggle
-# Parses "Status update: Connected" from warp-cli status
-toggle-warp() {
-  if warp-cli status 2>/dev/null | grep -q 'Status update: Connected'; then
-    warp-cli disconnect >/dev/null && printf "🔸 disconnected\n"
-  else
-    warp-cli connect >/dev/null && printf "🔹 connected\n"
-  fi
-}
-alias warp=toggle-warp
-
 # Aliases: Custom scripts
 alias ar="$HOME/scripts/aria2c_script.sh"
 alias yt="$HOME/scripts/yt-dlp_script.sh"
 alias k="$HOME/scripts/archive_script.sh"
 alias x="$HOME/scripts/unarchive_script.sh"
+alias warp="$HOME/scripts/toggle-warp_script.sh"
 
 # Keybindings: Emacs mode (VS Code style)
 bindkey -e
