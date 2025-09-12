@@ -14,9 +14,17 @@ mkdir  -p  ~/bin
 
 ```
 
-⚠ Move the Zellij binary into `~/bin`
+⚠ Move the `zellij` binary into `~/bin`
 
 > Make sure `~/bin` is in your `PATH`.
+
+### 1.1. Get [asdf](https://asdf-vm.com/)
+
+_Manage all your runtime versions with one tool!_
+
+Download the non-darwin binary from [here](https://github.com/asdf-vm/asdf/releases)
+
+⚠ Move the `asdf` binary into `~/bin`
 
 ### 2. Install [Alacritty](https://alacritty.org/index.html)
 
