@@ -1,13 +1,11 @@
-# https://github.com/mattmc3/zephyr/blob/main/plugins/prompt/themes/prezto.toml
-# prezto - mimic the default prezto prompt (sorin)
-#
+# Prezto's Prompt (Sorin)
 
 add_newline = false
 
 # A minimal left prompt
 format = """$python$directory$character"""
 
-# move the rest of the prompt to the right
+# Move the rest of the prompt to the right — explicit, clean, no duplication
 right_format = """$status$git_branch$git_status"""
 
 [character]
