@@ -80,10 +80,16 @@ up_to_date = ''
 
 # --- Directory ---
 [directory]
-style = "blue"
-truncation_length = 1
-truncation_symbol = ""
-fish_style_pwd_dir_length = 1
+truncation_length = 3
+truncation_symbol = '…/'
+truncate_to_repo = true
+style = 'blue'
+repo_root_style = 'bold blue'
+before_repo_root_style = 'dimmed blue'
+read_only = ' '
+read_only_style = 'red'
+home_symbol = '~'
+use_os_path_sep = true
 
 # --- Line Break ---
 [line_break]
