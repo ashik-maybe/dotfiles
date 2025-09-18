@@ -86,9 +86,9 @@ truncate_to_repo = true
 style = 'blue'
 repo_root_style = 'bold blue'
 before_repo_root_style = 'dimmed blue'
-read_only = ' '
-read_only_style = 'red'
-home_symbol = '~'
+# read_only = ' [RO]'
+# read_only_style = 'red'
+# home_symbol = ' ~'
 use_os_path_sep = true
 
 # --- Line Break ---
