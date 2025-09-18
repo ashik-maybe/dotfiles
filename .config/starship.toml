@@ -1,11 +1,10 @@
-# Prezto's Prompt (Sorin)
-
 add_newline = false
 
-# A minimal left prompt
-format = """$python$directory$character"""
+# Left prompt: directory on first line, character on second
+format = """ $directory
+ $character"""
 
-# Move the rest of the prompt to the right — explicit, clean, no duplication
+# Right prompt: git context above the input line
 right_format = """$status$git_branch$git_status"""
 
 [character]
@@ -13,40 +12,88 @@ success_symbol = "[❯](red)[❯](yellow)[❯](green)"
 error_symbol = "[❯](red)[❯](yellow)[❯](green)"
 vicmd_symbol = "[❮](green)[❮](yellow)[❮](red)"
 
+# --- Git Branch ---
 [git_branch]
-format = '[$branch]($style) '
+format = '[$symbol$branch(:$remote_branch)]($style) '
+symbol = ' '
 style = 'bold green'
+truncation_length = 20
+truncation_symbol = '…'
+# only show remote if different
+always_show_remote = false
+# don't clutter if on main/master
+# ignore_branches = ["main", "master"]
 
-[python]
-format = '[(\($virtualenv\) )]($style)'
-style = 'white'
+# --- Git Commit ---
+[git_commit]
+format = '[$hash$tag]($style) '
+style = 'bold dimmed green'
+commit_hash_length = 7
+tag_symbol = ' tag:'
+tag_disabled = false
+# Only show commit when detached or not on branch
+only_detached = true
+# Consider up to 3 recent tags for display
+tag_max_candidates = 3
 
+# --- Git State (rebase, merge, etc.) ---
+[git_state]
+format = '[($state$progress)]($style) '
+style = 'bold yellow'
+rebase = 'REBASING'
+merge = 'MERGING'
+revert = 'REVERTING'
+cherry_pick = 'CHERRY-PICK'
+bisect = 'BISECT'
+am = 'AM'
+am_or_rebase = 'AM/REBASE'
+# Show progress like: (REBASING 3/10)
+progress = ' $progress_current/$progress_total'
+
+# --- Git Metrics (added/deleted lines) ---
+[git_metrics]
+disabled = false
+format = '[+$added]($added_style) [-$deleted]($deleted_style) '
+added_style = 'bold green'
+deleted_style = 'bold red'
+# Only show if there are actual changes
+only_nonzero_diffs = true
+# Ignore submodule changes
+ignore_submodules = true
+
+# --- Git Status (your existing text-based config) ---
 [git_status]
-format = '$all_status$ahead_behind '
-ahead = '[⬆](bold purple) '
-behind = '[⬇](bold purple) '
-staged = '[✚](green) '
-deleted = '[✖](red) '
-renamed = '[➜](purple) '
-stashed = '[✭](cyan) '
-untracked = '[◼](white) '
-modified = '[✱](blue) '
-conflicted = '[═](yellow) '
-diverged = '⇕ '
+format = '[$all_status$ahead_behind]($style) '
+style = 'bold yellow'
+
+ahead = 'ahead'
+behind = 'behind'
+staged = 'staged'
+deleted = 'deleted'
+renamed = 'renamed'
+stashed = 'stashed'
+untracked = 'untracked'
+modified = 'modified'
+conflicted = 'conflicted'
+diverged = 'diverged'
 up_to_date = ''
 
+# --- Directory ---
 [directory]
 style = "blue"
 truncation_length = 1
 truncation_symbol = ""
 fish_style_pwd_dir_length = 1
 
-[cmd_duration]
-format = '[$duration]($style) '
-
+# --- Line Break ---
 [line_break]
-disabled = true
+disabled = false
 
+# --- Status (exit code) ---
 [status]
 disabled = false
 symbol = '✘ '
+
+# --- Command Duration (optional, if you want it) ---
+[cmd_duration]
+format = '[$duration]($style) '
