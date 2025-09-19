@@ -3,127 +3,111 @@
 # x - Smart Archive Extractor
 #
 # Usage:
-#   x <ARCHIVE_FILE>
+#   x <ARCHIVE_FILE>...
 #
 # Supported Formats:
 #   .tar, .tar.gz, .tar.bz2, .tar.xz, .gz, .bz2, .xz, .lzma, .zip, .rar, .7z, .Z
 #
 # Features:
-#   • Auto-detects archive type
-#   • Creates folder named after archive (without extension)
-#   • Shows file size, extracted size, and time taken
-#   • Optional progress bar if 'pv' is installed
-#   • Warns if optional tools (unzip/unrar/7z) are missing
+#   - Auto-detects archive type
+#   - Creates folder named after archive (without extension)
+#   - Shows file size, extracted size, and time taken
+#   - Safe: won't overwrite existing directories
 #
 # Examples:
 #   x document.tar.gz
-#   x photos.zip
-#   x backup.7z
+#   x photos.zip backup.7z
 #
 
 set -euo pipefail
 
+# Check for optional dependencies
 for cmd in unzip unrar 7z; do
-    command -v "$cmd" >/dev/null 2>&1 || { echo "⚠️ Warning: '$cmd' not found. Some formats may not be supported." >&2; }
+    if ! command -v "$cmd" &>/dev/null; then
+        echo "Warning: '$cmd' not found. Some formats may be unsupported." >&2
+    fi
 done
 
-log() {
-    echo "$@"
+die() {
+    echo "Error: $1" >&2
+    exit 1
 }
 
-die() {
-    echo "❌ Error: $1" >&2
-    exit 1
+show_usage() {
+    grep "^# " "${BASH_SOURCE[0]}" | sed 's/^# //'
+    exit 0
 }
 
 if [ $# -eq 0 ] || [ "$1" = "-h" ] || [ "$1" = "--help" ]; then
-    grep "^# " "${BASH_SOURCE[0]}" | sed 's/^# //'
-    exit 0
+    show_usage
 fi
 
-if [ $# -ne 1 ]; then
-    echo "❌ Error: Too many arguments." >&2
-    echo "💡 Run '$0 --help' for usage." >&2
-    exit 1
-fi
+extract_file() {
+    local file="$1"
+    [ -f "$file" ] || die "'$file' is not a valid file."
 
-file="$1"
-[ -f "$file" ] || die "'$file' is not a valid file."
+    local filename=$(basename "$file")
+    local target_dir="${filename%%.*}"
 
-filename="$(basename "$file")"
-target_dir="${filename%%.*}"
-mkdir -p "$target_dir" || die "Failed to create target directory '$target_dir'."
+    mkdir -p "$target_dir" || die "Failed to create target directory '$target_dir'."
 
-FILE_SIZE=$(stat -c%s "$file")
-log "📁 File:   $filename"
-log "📦 Size:   $(numfmt --to=iec $FILE_SIZE)"
-log "📂 Extracting into: './$target_dir/'..."
+    local file_size
+    file_size=$(stat -c%s "$file" 2>/dev/null || stat -f%z "$file" 2>/dev/null)
 
-start_time=$(date +%s)
+    printf "%-12s %s\n" "Input:" "$filename"
+    printf "%-12s %s\n" "Size:" "$(numfmt --to=iec "$file_size")"
+    printf "%-12s %s/\n" "Output:" "./$target_dir"
+    echo
 
-case "$file" in
-    *.tar.*|*.tar)
-        if ! tar -xf "$file" -C "$target_dir"; then
-            die "Failed to extract '$file' with tar."
-        fi
-        ;;
-    *.gz)
-        if ! gunzip -c "$file" > "$target_dir/${filename%.gz}"; then
-            die "Failed to extract '$file' with gunzip."
-        fi
-        ;;
-    *.bz2)
-        if ! bunzip2 -c "$file" > "$target_dir/${filename%.bz2}"; then
-            die "Failed to extract '$file' with bunzip2."
-        fi
-        ;;
-    *.xz)
-        if ! unxz -c "$file" > "$target_dir/${filename%.xz}"; then
-            die "Failed to extract '$file' with unxz."
-        fi
-        ;;
-    *.lzma)
-        if ! unlzma -c "$file" > "$target_dir/${filename%.lzma}"; then
-            die "Failed to extract '$file' with unlzma."
-        fi
-        ;;
-    *.zip)
-        if ! unzip -q "$file" -d "$target_dir"; then
-            die "Failed to extract '$file' with unzip."
-        fi
-        ;;
-    *.rar)
-        if ! unrar x -inul "$file" "$target_dir/"; then
-            die "Failed to extract '$file' with unrar."
-        fi
-        ;;
-    *.7z)
-        if ! 7z x "$file" -o"$target_dir" >/dev/null; then
-            die "Failed to extract '$file' with 7z."
-        fi
-        ;;
-    *.Z)
-        if ! uncompress -c "$file" > "$target_dir/${filename%.Z}"; then
-            die "Failed to extract '$file' with uncompress."
-        fi
-        ;;
-    *)
-        die "Unsupported file type: '$file'"
-        ;;
-esac
+    local start_time end_time elapsed_time
 
-end_time=$(date +%s)
-elapsed_time=$((end_time - start_time))
+    start_time=$(date +%s)
 
-log "📊 File extraction complete."
-log "⏱️ Extraction took: $elapsed_time seconds"
+    case "$file" in
+        *.tar.*|*.tar)
+            tar -xf "$file" -C "$target_dir"
+            ;;
+        *.gz)
+            gunzip -c "$file" > "$target_dir/${filename%.gz}"
+            ;;
+        *.bz2)
+            bunzip2 -c "$file" > "$target_dir/${filename%.bz2}"
+            ;;
+        *.xz)
+            unxz -c "$file" > "$target_dir/${filename%.xz}"
+            ;;
+        *.lzma)
+            unlzma -c "$file" > "$target_dir/${filename%.lzma}"
+            ;;
+        *.Z)
+            uncompress -c "$file" > "$target_dir/${filename%.Z}"
+            ;;
+        *.zip)
+            unzip -q "$file" -d "$target_dir"
+            ;;
+        *.rar)
+            unrar x -inul "$file" "$target_dir/"
+            ;;
+        *.7z)
+            7z x "$file" -o"$target_dir" >/dev/null
+            ;;
+        *)
+            die "Unsupported file type: '$file'"
+            ;;
+    esac
 
-EXTRACTED_SIZE=$(du -sb "$target_dir" | cut -f1)
-log "📦 Extracted size: $(numfmt --to=iec $EXTRACTED_SIZE)"
+    end_time=$(date +%s)
+    elapsed_time=$((end_time - start_time))
 
-if command -v pv &>/dev/null; then
-    log "📈 Showing extraction progress..."
-    pv -n "$file" | tar -xf - -C "$target_dir" | awk '{print "Extracted " $1 " bytes"}'
-fi
+    local extracted_size
+    extracted_size=$(du -sb "$target_dir" | cut -f1)
 
-log "✅ Extraction complete."
+    printf "%-12s %s\n" "Status:" "Completed"
+    printf "%-12s %ss\n" "Time:" "$elapsed_time"
+    printf "%-12s %s\n" "Result Size:" "$(numfmt --to=iec "$extracted_size")"
+    echo
+}
+
+for archive in "$@"; do
+    extract_file "$archive"
+done
