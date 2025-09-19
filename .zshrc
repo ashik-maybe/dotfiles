@@ -1,7 +1,4 @@
-# ~/.zshrc ────────────────────────────────────────────────────
-# Minimal, fast, VS Code–style terminal
-# Plugins: zinit + fzf-tab + zoxide + lsd/bat/rg
-# Key: Ctrl+E, Ctrl+Z/Y, Ctrl+K, ^R, fzf-tab
+# ~/.zshrc
 
 # Environment
 export EDITOR="code"
