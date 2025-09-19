@@ -15,7 +15,7 @@ vicmd_symbol = "[❮](green)[❮](yellow)[❮](red)"
 # --- Git Branch ---
 [git_branch]
 format = '[$symbol$branch(:$remote_branch)]($style) '
-symbol = ' '
+# symbol = ' '
 style = 'bold green'
 truncation_length = 20
 truncation_symbol = '…'
@@ -107,9 +107,9 @@ format = '[$duration]($style) '
 # --- Docker Context ---
 [docker_context]
 format = 'via [${symbol}$context]($style) '
-style = 'blue bold'
-# symbol = 'docker '
-symbol = ' '
+style = 'bold blue'
+symbol = 'docker '
+# symbol = ' '
 only_with_files = true
 detect_extensions = []
 detect_files = [
@@ -123,8 +123,8 @@ disabled = false
 
 # --- Package Version ---
 [package]
-# format = 'pkg [$version]($style) '
-format = ' [$version]($style) '
+format = 'pkg [$version]($style) '
+# format = ' [$version]($style) '
 style = 'bold yellow'
 version_format = 'v${raw}'
 display_private = true
@@ -134,8 +134,8 @@ disabled = false
 [python]
 format = 'via [${symbol}${version}(${virtualenv})]($style) '
 style = 'bold green'
-# symbol = 'python '
-symbol = ' '
+symbol = 'py '
+# symbol = ' '
 pyenv_version_name = false
 detect_extensions = ["py", "ipynb"]
 detect_files = [
@@ -153,8 +153,8 @@ detect_folders = [".venv", "venv", "env"]
 [nodejs]
 format = 'via [${symbol}${version}]($style) '
 style = 'bold green'
-# symbol = 'node '
-symbol = ' '
+symbol = 'nodejs '
+# symbol = ' '
 detect_extensions = ["js", "mjs", "cjs", "ts", "mts", "cts"]
 detect_files = ["package.json", ".node-version", ".nvmrc"]
 detect_folders = ["node_modules"]
@@ -163,8 +163,8 @@ detect_folders = ["node_modules"]
 [dart]
 format = 'via [${symbol}${version}]($style) '
 style = 'bold blue'
-# symbol = 'dart '
-symbol = ' '
+symbol = 'dart '
+# symbol = ' '
 detect_extensions = ["dart"]
 detect_files = ["pubspec.yaml", "pubspec.yml", "pubspec.lock"]
 detect_folders = [".dart_tool"]
@@ -173,8 +173,8 @@ detect_folders = [".dart_tool"]
 [java]
 format = 'via [${symbol}${version}]($style) '
 style = 'red dimmed'
-# symbol = 'java '
-symbol = ' '
+symbol = 'java '
+# symbol = ' '
 detect_extensions = ["java", "class", "gradle", "jar", "clj", "cljs", "cljc"]
 detect_files = [
     "pom.xml",
