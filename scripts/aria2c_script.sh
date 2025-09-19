@@ -25,7 +25,6 @@
 #   ar -f urls.txt -d ~/Downloads
 #   ar -f list.txt "My Collection"
 
-# === Config Section ===
 DOWNLOAD_DIR="${XDG_DOWNLOAD_DIR:-$HOME/Downloads}"
 CONCURRENT_DOWNLOADS=16
 SPLIT_SIZE=16
@@ -37,32 +36,27 @@ CUSTOM_DIR=""
 NEW_NAME=""
 FILE_INPUT=""
 
-# === Color Definitions ===
 RED='\033[0;31m'
 GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
 BLUE='\033[0;34m'
 NC='\033[0m'
 
-# === Logging Functions ===
 log() { echo -e "${BLUE}📥$NC $*"; }
 success() { echo -e "${GREEN}✅$NC $*"; }
 warn() { echo -e "${YELLOW}⚠️$NC $*"; }
 error() { echo -e "${RED}❌$NC $*"; }
 
-# === Help Function ===
 show_help() {
     grep "^# " "${BASH_SOURCE[0]}" | sed 's/^# //'
 }
 
-# === Number Padding Function ===
 pad_number() {
     local num=$1
     local fmt=$2
     printf "%0${#fmt}d" "$num"
 }
 
-# === URL Expansion Function ===
 expand_url() {
     local url="$1"
 
@@ -77,7 +71,6 @@ expand_url() {
 
         local prefix="${url%%\[*\]*}"
         local suffix="${url#*\]}"
-
         local pad_template="$start"
 
         for ((i=start; i<=end; i++)); do
@@ -89,7 +82,6 @@ expand_url() {
     fi
 }
 
-# === Argument Parser ===
 parse_args() {
     local URLS_INPUT=()
     local INPUT_FILE=""
@@ -144,41 +136,33 @@ parse_args() {
         esac
     done
 
-    # If no URLs provided, prompt interactively
     if [ ${#URLS_INPUT[@]} -eq 0 ] && [ -z "$FILE_INPUT" ]; then
         ! $QUIET && read -p "🔗 Enter URL (supports [N-M]) or type 'quit' to exit: " input
         [[ -z "$input" || "$input" == "quit" ]] && error "No URL provided!" && exit 1
         URLS_INPUT=("$input")
     fi
 
-    # === Extract NEW_NAME ===
     local last_idx=$((${#URLS_INPUT[@]} - 1))
     local last="${URLS_INPUT[$last_idx]}"
 
-    # If last arg is NOT a URL or bracket pattern → treat as custom name
     if [[ ! "$last" =~ ^https?:// ]] && [[ ! "$last" == *'['* ]] && [[ ! "$last" == *']'* ]]; then
         NEW_NAME="$last"
         unset 'URLS_INPUT[$last_idx]'
     fi
 
-    # Re-index array
     URLS_INPUT=("${URLS_INPUT[@]}")
 
-    # === Expand all URLs ===
     URLS=()
     for url in "${URLS_INPUT[@]}"; do
-        # Skip empty lines
         [[ -z "$url" ]] && continue
         mapfile -t expanded < <(expand_url "$url")
         URLS+=("${expanded[@]}")
     done
 
-    # === Set Final Download Directory ===
     DOWNLOAD_DIR="${CUSTOM_DIR:-$DOWNLOAD_DIR}"
     mkdir -p "$DOWNLOAD_DIR" || { error "Failed to create directory!"; exit 1; }
 }
 
-# === Download Function ===
 download_files() {
     local total=${#URLS[@]}
     log "Processing $total download(s)..."
@@ -209,15 +193,12 @@ download_files() {
         echo "🔗 $url"
     done
 
-    # === Cleanup Step: Handle existing files and partials ===
     if ! $RESUME; then
         local urls_to_remove=()
-
         for url in "${URLS[@]}"; do
             local basename_url=$(basename "$url" | cut -d'?' -f1 | cut -d'#' -f1)
             local filepath="$DOWNLOAD_DIR/$basename_url"
             local control_file="$filepath.aria2"
-
             local should_remove=false
 
             if [[ -f "$control_file" ]]; then
@@ -261,7 +242,6 @@ download_files() {
         exit 0
     fi
 
-    # === Final Download Execution ===
     if [ ${#URLS[@]} -eq 1 ] && [ -n "$NEW_NAME" ]; then
         local filename=$(basename "${URLS[0]}" | cut -d'?' -f1 | cut -d'#' -f1)
         local ext="${filename##*.}"
@@ -282,7 +262,6 @@ download_files() {
     fi
 }
 
-# === Main Function ===
 main() {
     local URLS_INPUT=()
     local URLS=()
@@ -291,5 +270,4 @@ main() {
     download_files
 }
 
-# === Script Entry ===
 main "$@"
