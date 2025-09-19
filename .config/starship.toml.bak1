@@ -1,0 +1,199 @@
+add_newline = false
+
+# Left prompt: directory on first line, character on second
+format = """ $directory$dart$java$nodejs$python
+ $character"""
+
+# Right prompt: git context above the input line
+right_format = """$docker_context$status$git_branch$git_status """
+
+[character]
+success_symbol = "[❯](red)[❯](yellow)[❯](green)"
+error_symbol = "[❯](red)[❯](yellow)[❯](green)"
+vicmd_symbol = "[❮](green)[❮](yellow)[❮](red)"
+
+# --- Git Branch ---
+[git_branch]
+format = '[$symbol$branch(:$remote_branch)]($style) '
+# symbol = ' '
+style = 'bold green'
+truncation_length = 20
+truncation_symbol = '…'
+# only show remote if different
+always_show_remote = false
+# don't clutter if on main/master
+# ignore_branches = ["main", "master"]
+
+# --- Git Commit ---
+[git_commit]
+format = '[$hash$tag]($style) '
+style = 'bold dimmed green'
+commit_hash_length = 7
+tag_symbol = ' tag:'
+tag_disabled = false
+# Only show commit when detached or not on branch
+only_detached = true
+# Consider up to 3 recent tags for display
+tag_max_candidates = 3
+
+# --- Git State (rebase, merge, etc.) ---
+[git_state]
+format = '[($state$progress)]($style) '
+style = 'bold yellow'
+rebase = 'REBASING'
+merge = 'MERGING'
+revert = 'REVERTING'
+cherry_pick = 'CHERRY-PICK'
+bisect = 'BISECT'
+am = 'AM'
+am_or_rebase = 'AM/REBASE'
+# Show progress like: (REBASING 3/10)
+progress = ' $progress_current/$progress_total'
+
+# --- Git Metrics (added/deleted lines) ---
+[git_metrics]
+disabled = false
+format = '[+$added]($added_style) [-$deleted]($deleted_style) '
+added_style = 'bold green'
+deleted_style = 'bold red'
+# Only show if there are actual changes
+only_nonzero_diffs = true
+# Ignore submodule changes
+ignore_submodules = true
+
+# --- Git Status (your existing text-based config) ---
+[git_status]
+format = '[$all_status$ahead_behind]($style) '
+style = 'bold yellow'
+
+ahead = 'ahead'
+behind = 'behind'
+staged = 'staged'
+deleted = 'deleted'
+renamed = 'renamed'
+stashed = 'stashed'
+untracked = 'untracked'
+modified = 'modified'
+conflicted = 'conflicted'
+diverged = 'diverged'
+up_to_date = ''
+
+# --- Directory ---
+[directory]
+truncation_length = 3
+truncation_symbol = '…/'
+truncate_to_repo = true
+style = 'blue'
+repo_root_style = 'bold blue'
+before_repo_root_style = 'dimmed blue'
+# read_only = ' '
+# read_only_style = 'red'
+# home_symbol = ' ~'
+use_os_path_sep = true
+
+# --- Line Break ---
+[line_break]
+disabled = false
+
+# --- Status (exit code) ---
+[status]
+disabled = false
+symbol = '✘ '
+
+# --- Command Duration (optional, if you want it) ---
+[cmd_duration]
+format = '[$duration]($style) '
+
+# --- Time ---
+[time]
+disabled = false
+# format = ' [$time]($style) '
+format = '[$time]($style) '
+time_format = '%T'
+style = 'dimmed white'
+utc_time_offset = 'local'
+use_12hr = false
+
+# --- Docker Context ---
+[docker_context]
+format = 'via [${symbol}$context]($style) '
+style = 'bold blue'
+symbol = 'docker '
+# symbol = ' '
+only_with_files = true
+detect_extensions = []
+detect_files = [
+    "docker-compose.yml",
+    "docker-compose.yaml",
+    "Dockerfile",
+    ".dockerignore"
+]
+detect_folders = [".docker"]
+disabled = false
+
+# --- Package Version ---
+[package]
+format = 'pkg [$version]($style) '
+# format = ' [$version]($style) '
+style = 'bold yellow'
+version_format = 'v${raw}'
+display_private = true
+disabled = false
+
+# --- Python ---
+[python]
+format = 'via [${symbol}${version}(${virtualenv})]($style) '
+style = 'bold green'
+symbol = 'py '
+# symbol = ' '
+pyenv_version_name = false
+detect_extensions = ["py", "ipynb"]
+detect_files = [
+    ".python-version",
+    "Pipfile",
+    "__init__.py",
+    "pyproject.toml",
+    "requirements.txt",
+    "setup.py",
+    "tox.ini"
+]
+detect_folders = [".venv", "venv", "env"]
+
+# --- Node.js ---
+[nodejs]
+format = 'via [${symbol}${version}]($style) '
+style = 'bold green'
+symbol = 'nodejs '
+# symbol = ' '
+detect_extensions = ["js", "mjs", "cjs", "ts", "mts", "cts"]
+detect_files = ["package.json", ".node-version", ".nvmrc"]
+detect_folders = ["node_modules"]
+
+# --- Dart (Flutter) ---
+[dart]
+format = 'via [${symbol}${version}]($style) '
+style = 'bold blue'
+symbol = 'dart '
+# symbol = ' '
+detect_extensions = ["dart"]
+detect_files = ["pubspec.yaml", "pubspec.yml", "pubspec.lock"]
+detect_folders = [".dart_tool"]
+
+# --- Java ---
+[java]
+format = 'via [${symbol}${version}]($style) '
+style = 'red dimmed'
+symbol = 'java '
+# symbol = ' '
+detect_extensions = ["java", "class", "gradle", "jar", "clj", "cljs", "cljc"]
+detect_files = [
+    "pom.xml",
+    "build.gradle.kts",
+    "build.sbt",
+    ".java-version",
+    "deps.edn",
+    "project.clj",
+    "build.boot",
+    ".sdkmanrc"
+]
+detect_folders = []
