@@ -1,7 +1,7 @@
 add_newline = false
 
 # Left prompt: directory on first line, character on second
-format = """ $directory$dart$java$nodejs$python$package
+format = """ $directory$dart$java$nodejs$python
  $character"""
 
 # Right prompt: git context above the input line
@@ -103,6 +103,16 @@ symbol = '✘ '
 # --- Command Duration (optional, if you want it) ---
 [cmd_duration]
 format = '[$duration]($style) '
+
+# --- Time ---
+[time]
+disabled = false
+# format = ' [$time]($style) '
+format = '[$time]($style) '
+time_format = '%T'
+style = 'dimmed white'
+utc_time_offset = 'local'
+use_12hr = false
 
 # --- Docker Context ---
 [docker_context]
