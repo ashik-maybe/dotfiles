@@ -1,7 +1,28 @@
 #!/bin/bash
+#
+# x - Smart Archive Extractor
+#
+# Usage:
+#   x <ARCHIVE_FILE>
+#
+# Supported Formats:
+#   .tar, .tar.gz, .tar.bz2, .tar.xz, .gz, .bz2, .xz, .lzma, .zip, .rar, .7z, .Z
+#
+# Features:
+#   • Auto-detects archive type
+#   • Creates folder named after archive (without extension)
+#   • Shows file size, extracted size, and time taken
+#   • Optional progress bar if 'pv' is installed
+#   • Warns if optional tools (unzip/unrar/7z) are missing
+#
+# Examples:
+#   x document.tar.gz
+#   x photos.zip
+#   x backup.7z
+#
+
 set -euo pipefail
 
-# Optional tools (only check these)
 for cmd in unzip unrar 7z; do
     command -v "$cmd" >/dev/null 2>&1 || { echo "⚠️ Warning: '$cmd' not found. Some formats may not be supported." >&2; }
 done
@@ -15,8 +36,14 @@ die() {
     exit 1
 }
 
+if [ $# -eq 0 ] || [ "$1" = "-h" ] || [ "$1" = "--help" ]; then
+    grep "^# " "${BASH_SOURCE[0]}" | sed 's/^# //'
+    exit 0
+fi
+
 if [ $# -ne 1 ]; then
-    echo "Usage: $0 <file>"
+    echo "❌ Error: Too many arguments." >&2
+    echo "💡 Run '$0 --help' for usage." >&2
     exit 1
 fi
 
@@ -27,13 +54,11 @@ filename="$(basename "$file")"
 target_dir="${filename%%.*}"
 mkdir -p "$target_dir" || die "Failed to create target directory '$target_dir'."
 
-# File size for progress info
 FILE_SIZE=$(stat -c%s "$file")
 log "📁 File:   $filename"
 log "📦 Size:   $(numfmt --to=iec $FILE_SIZE)"
 log "📂 Extracting into: './$target_dir/'..."
 
-# Start extraction process
 start_time=$(date +%s)
 
 case "$file" in
@@ -87,23 +112,18 @@ case "$file" in
         ;;
 esac
 
-# End extraction time
 end_time=$(date +%s)
 elapsed_time=$((end_time - start_time))
 
-# Show stats
 log "📊 File extraction complete."
 log "⏱️ Extraction took: $elapsed_time seconds"
 
-# Calculate and show extracted folder size
 EXTRACTED_SIZE=$(du -sb "$target_dir" | cut -f1)
 log "📦 Extracted size: $(numfmt --to=iec $EXTRACTED_SIZE)"
 
-# Show progress bar if pv is available
 if command -v pv &>/dev/null; then
     log "📈 Showing extraction progress..."
     pv -n "$file" | tar -xf - -C "$target_dir" | awk '{print "Extracted " $1 " bytes"}'
 fi
 
 log "✅ Extraction complete."
-
