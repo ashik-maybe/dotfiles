@@ -73,31 +73,41 @@ alias find='fdfind'
 please() { sudo $(fc -lLn -1); }
 alias upgrade='sudo dnf upgrade --refresh -y && flatpak update -y'
 
-# 🐙 GIT
-alias gs='git status'
-alias ga='git add'
-alias gc='git commit'
-alias gp='git push'
-alias gpl='git pull'
-alias gb='git branch'
-alias gco='git checkout'
-alias gl='git log --oneline -n 10'
+# 🐙 Git Essentials
+alias gs='git status'                   # Show status
+alias ga='git add'                      # Add files
+alias gc='git commit -m'                # Commit with message
+alias gp='git push'                     # Push changes
+alias gpl='git pull'                    # Pull changes
+alias gco='git checkout'                # Switch branches
+alias gl='git log --oneline -n 10'      # Recent commits
 
-# 🐍 PYTHON
-alias av="source venv/bin/activate"
-alias dv="deactivate"
-alias pyup="pip install --upgrade -r requirements.txt"
-alias pyfreeze="pip freeze > requirements.txt"
+# 🐍 Python Essentials
+# alias serve='python3 -m http.server 8080'   # Quick static server
+alias av="source venv/bin/activate"     # Activate virtualenv
+alias dv="deactivate"                   # Deactivate virtualenv
+alias pyup="pip install --upgrade -r requirements.txt"  # Upgrade deps
+alias pyfreeze="pip freeze > requirements.txt"          # Save deps
 
-# 🟢 NODE.JS / NPM
+# 🟢 Node.js / NPM Essentials
 alias vite='npm create vite@latest'
-alias ni='npm install'
-alias nr='npm run'
-alias nu='npm uninstall'
-alias nls='npm list --depth=0'
+# alias dev='npm run dev'                     # Start dev server
+# alias build='npm run build'                 # Build project
+alias ni='npm install'                  # Install packages
+alias nr='npm run'                      # Run scripts
+alias nu='npm uninstall'                # Uninstall packages
+alias nls='npm list --depth=0'          # List top-level deps
 
 # 🧪 DEV / MISC (future: docker, db, etc.)
+# 🐳 Docker Essentials
 alias lzd='lazydocker'
+alias dps='docker ps'                    # List running containers
+alias dimg='docker images'              # List images
+alias drun='docker run -it --rm'        # Run container interactively
+alias dexec='docker exec -it'           # Exec into running container
+alias dstop='docker stop'               # Stop container
+alias drm='docker rm'                   # Remove container
+alias drmi='docker rmi'                 # Remove image
 
 # Aliases: Custom scripts
 alias ar="$HOME/scripts/aria2c_script.sh"
