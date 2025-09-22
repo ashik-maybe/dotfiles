@@ -69,10 +69,34 @@ alias du='dust'
 alias df='duf'
 alias find='fdfind'
 
-# Aliases: Utils
-please() { sudo $(fc -lLn -1); }  # re-run last command with sudo
+# 🛠️ SYSTEM & UTILS
+please() { sudo $(fc -lLn -1); }
 alias upgrade='sudo dnf upgrade --refresh -y && flatpak update -y'
+
+# 🐙 GIT
+alias gs='git status'
+alias ga='git add'
+alias gc='git commit'
+alias gp='git push'
+alias gpl='git pull'
+alias gb='git branch'
+alias gco='git checkout'
+alias gl='git log --oneline -n 10'
+
+# 🐍 PYTHON
+alias av="source venv/bin/activate"
+alias dv="deactivate"
+alias pyup="pip install --upgrade -r requirements.txt"
+alias pyfreeze="pip freeze > requirements.txt"
+
+# 🟢 NODE.JS / NPM
 alias vite='npm create vite@latest'
+alias ni='npm install'
+alias nr='npm run'
+alias nu='npm uninstall'
+alias nls='npm list --depth=0'
+
+# 🧪 DEV / MISC (future: docker, db, etc.)
 alias lzd='lazydocker'
 
 # Aliases: Custom scripts
