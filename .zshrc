@@ -50,7 +50,7 @@ alias ....='cd ../../..'
 alias c='clear'
 alias q='exit'
 alias d='cd ~/Downloads'
-alias p='cd ~/WorkSpace/'
+alias p='cd ~/Documents/WorkSpace/'
 
 # Aliases: File ops
 alias mkdir='mkdir -pv'
