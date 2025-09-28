@@ -73,41 +73,16 @@ alias find='fdfind'
 please() { sudo $(fc -lLn -1); }
 alias upgrade='sudo dnf upgrade --refresh -y && flatpak update -y'
 
-# 🐙 Git Essentials
-alias gs='git status'                   # Show status
-alias ga='git add'                      # Add files
-alias gc='git commit -m'                # Commit with message
-alias gp='git push'                     # Push changes
-alias gpl='git pull'                    # Pull changes
-alias gco='git checkout'                # Switch branches
-alias gl='git log --oneline -n 10'      # Recent commits
-
 # 🐍 Python Essentials
-# alias serve='python3 -m http.server 8080'   # Quick static server
 alias av="source venv/bin/activate"     # Activate virtualenv
 alias dv="deactivate"                   # Deactivate virtualenv
-alias pyup="pip install --upgrade -r requirements.txt"  # Upgrade deps
-alias pyfreeze="pip freeze > requirements.txt"          # Save deps
 
 # 🟢 Node.js / NPM Essentials
 alias vite='npm create vite@latest'
-# alias dev='npm run dev'                     # Start dev server
-# alias build='npm run build'                 # Build project
-alias ni='npm install'                  # Install packages
-alias nr='npm run'                      # Run scripts
-alias nu='npm uninstall'                # Uninstall packages
-alias nls='npm list --depth=0'          # List top-level deps
 
-# 🧪 DEV / MISC (future: docker, db, etc.)
-# 🐳 Docker Essentials
+# 🐳 Containerization Essentials
+alias docker='podman'
 alias lzd='lazydocker'                  # https://github.com/jesseduffield/lazydocker
-alias dps='docker ps'                   # List running containers
-alias dimg='docker images'              # List images
-alias drun='docker run -it --rm'        # Run container interactively
-alias dexec='docker exec -it'           # Exec into running container
-alias dstop='docker stop'               # Stop container
-alias drm='docker rm'                   # Remove container
-alias drmi='docker rmi'                 # Remove image
 
 # Aliases: Custom scripts
 alias ar="$HOME/scripts/aria2c_script.sh"
