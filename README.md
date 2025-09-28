@@ -80,7 +80,7 @@ source  ~/.zshrc
 
 ---
 
-## 🗂️ Binary Files Installation
+## 🗄️ Binary Files Installation
 
 ```bash
 
