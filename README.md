@@ -94,13 +94,15 @@ mkdir  -p  ~/bin
 
 _A terminal workspace with batteries included._
 
+Download the **x86_64-unknown-linux-musl** binary from [here](https://github.com/zellij-org/zellij/releases/)
+
 ⚠ Move the `zellij` binary into `~/bin`
 
 ### Get [asdf](https://asdf-vm.com/)
 
 _Manage all your runtime versions with one tool!_
 
-Download the non-darwin binary from [here](https://github.com/asdf-vm/asdf/releases)
+Download the **linux-amd64** binary from [here](https://github.com/asdf-vm/asdf/releases/)
 
 ⚠ Move the `asdf` binary into `~/bin`
 
@@ -109,7 +111,7 @@ Download the non-darwin binary from [here](https://github.com/asdf-vm/asdf/relea
 _A simple terminal UI for git commands_
 
 Download the **linux_x86_64**
-binary from from [here](https://github.com/jesseduffield/lazygit/releases)
+binary from from [here](https://github.com/jesseduffield/lazygit/releases/)
 
 ⚠ Move the `lazygit` binary into `~/bin`
 
@@ -118,7 +120,7 @@ binary from from [here](https://github.com/jesseduffield/lazygit/releases)
 _A simple terminal UI for both docker and docker-compose, written in Go with the gocui library._
 
 Download the **linux_x86_64**
-binary from from [here](https://github.com/jesseduffield/lazydocker/releases)
+binary from from [here](https://github.com/jesseduffield/lazydocker/releases/)
 
 ⚠ Move the `lazydocker` binary into `~/bin`
 
