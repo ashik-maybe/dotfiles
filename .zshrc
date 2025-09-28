@@ -81,7 +81,7 @@ alias dv="deactivate"                   # Deactivate virtualenv
 alias vite='npm create vite@latest'
 
 # 🐋 Containerization
-alias docker='podman'
+alias lzd='lazydocker'
 
 # Aliases: Custom scripts
 alias ar="$HOME/scripts/aria2c_script.sh"
