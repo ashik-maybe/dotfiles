@@ -100,8 +100,8 @@ alias nls='npm list --depth=0'          # List top-level deps
 
 # 🧪 DEV / MISC (future: docker, db, etc.)
 # 🐳 Docker Essentials
-alias lzd='lazydocker'
-alias dps='docker ps'                    # List running containers
+alias lzd='lazydocker'                  # The lazier way to manage everything docker
+alias dps='docker ps'                   # List running containers
 alias dimg='docker images'              # List images
 alias drun='docker run -it --rm'        # Run container interactively
 alias dexec='docker exec -it'           # Exec into running container
