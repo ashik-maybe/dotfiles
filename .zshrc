@@ -73,12 +73,15 @@ alias find='fdfind'
 please() { sudo $(fc -lLn -1); }
 alias upgrade='sudo dnf upgrade --refresh -y && flatpak update -y'
 
-# 🐍 Python Essentials
+# 🐍 Python
 alias av="source venv/bin/activate"     # Activate virtualenv
 alias dv="deactivate"                   # Deactivate virtualenv
 
-# 🟢 Node.js / NPM Essentials
+# 🟢 Node.js / NPM
 alias vite='npm create vite@latest'
+
+# 🐋 Containerization
+alias docker='podman'
 
 # Aliases: Custom scripts
 alias ar="$HOME/scripts/aria2c_script.sh"
