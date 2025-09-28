@@ -80,10 +80,6 @@ alias dv="deactivate"                   # Deactivate virtualenv
 # 🟢 Node.js / NPM Essentials
 alias vite='npm create vite@latest'
 
-# 🐳 Containerization Essentials
-alias docker='podman'
-alias lzd='lazydocker'                  # https://github.com/jesseduffield/lazydocker
-
 # Aliases: Custom scripts
 alias ar="$HOME/scripts/aria2c_script.sh"
 alias yt="$HOME/scripts/yt-dlp_script.sh"
