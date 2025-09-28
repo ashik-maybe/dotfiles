@@ -106,7 +106,7 @@ Download the **linux-amd64** binary from [here](https://github.com/asdf-vm/asdf/
 
 ⚠ Move the `asdf` binary into `~/bin`
 
-#### Get [Lazygit](https://github.com/jesseduffield/lazygit)
+### Get [Lazygit](https://github.com/jesseduffield/lazygit)
 
 _A simple terminal UI for git commands_
 
@@ -115,7 +115,7 @@ binary from from [here](https://github.com/jesseduffield/lazygit/releases/)
 
 ⚠ Move the `lazygit` binary into `~/bin`
 
-#### Get [Lazydocker](https://github.com/jesseduffield/lazydocker)
+### Get [Lazydocker](https://github.com/jesseduffield/lazydocker)
 
 _A simple terminal UI for both docker and docker-compose, written in Go with the gocui library._
 
