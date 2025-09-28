@@ -4,28 +4,6 @@
 
 Here’s how to get up and running:
 
-### Get [Zellij](https://zellij.dev/)
-
-_A terminal workspace with batteries included._
-
-```bash
-
-mkdir  -p  ~/bin
-
-```
-
-⚠ Move the `zellij` binary into `~/bin`
-
-> Make sure `~/bin` is in your `PATH`.
-
-### Get [asdf](https://asdf-vm.com/)
-
-_Manage all your runtime versions with one tool!_
-
-Download the non-darwin binary from [here](https://github.com/asdf-vm/asdf/releases)
-
-⚠ Move the `asdf` binary into `~/bin`
-
 ### 1. Install [Alacritty](https://alacritty.org/index.html)
 
 _Alacritty is a modern terminal emulator that comes with sensible defaults, but allows for extensive configuration._
@@ -99,6 +77,50 @@ stow  .
 source  ~/.zshrc
 
 ```
+
+---
+
+## 🗂️ Binary Files Installation
+
+```bash
+
+mkdir  -p  ~/bin
+
+```
+
+> Make sure `~/bin` is in your `PATH`.
+
+### Get [Zellij](https://zellij.dev/)
+
+_A terminal workspace with batteries included._
+
+⚠ Move the `zellij` binary into `~/bin`
+
+### Get [asdf](https://asdf-vm.com/)
+
+_Manage all your runtime versions with one tool!_
+
+Download the non-darwin binary from [here](https://github.com/asdf-vm/asdf/releases)
+
+⚠ Move the `asdf` binary into `~/bin`
+
+#### Get [Lazygit](https://github.com/jesseduffield/lazygit)
+
+_A simple terminal UI for git commands_
+
+Download the **linux_x86_64**
+binary from from [here](https://github.com/jesseduffield/lazygit/releases)
+
+⚠ Move the `lazygit` binary into `~/bin`
+
+#### Get [Lazydocker](https://github.com/jesseduffield/lazydocker)
+
+_A simple terminal UI for both docker and docker-compose, written in Go with the gocui library._
+
+Download the **linux_x86_64**
+binary from from [here](https://github.com/jesseduffield/lazydocker/releases)
+
+⚠ Move the `lazydocker` binary into `~/bin`
 
 ---
 
