@@ -50,7 +50,7 @@ alias ....='cd ../../..'
 alias c='clear'
 alias q='exit'
 alias d='cd ~/Downloads'
-alias p='cd ~/Documents/WorkSpace/'
+alias p='cd ~/Documents/projects/'
 
 # Aliases: File ops
 alias mkdir='mkdir -pv'
@@ -82,6 +82,7 @@ alias vite='npm create vite@latest'
 
 # 🐋 Containerization
 alias lzd='lazydocker'
+alias docker='podman'
 
 # Aliases: Custom scripts
 alias ar="$HOME/scripts/aria2c.sh"
