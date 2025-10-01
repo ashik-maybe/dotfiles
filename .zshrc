@@ -89,7 +89,9 @@ alias ar="$HOME/scripts/aria2c.sh"
 alias yt="$HOME/scripts/yt-dlp.sh"
 alias k="$HOME/scripts/archive.sh"
 alias x="$HOME/scripts/unarchive.sh"
-alias warp="$HOME/scripts/toggle-warp.sh"
+alias warp="$HOME/scripts/toggle-warp.sh" # toggle cloudflare warp-cli
+alias time-stat="$HOME/scripts/time-stat.sh" # show time remaining for today, this week, this month, this year
+alias semester-stat="$HOME/scripts/semester-stat.sh" # show important information related to academic calendar
 
 # Keybindings: Emacs mode (VS Code style)
 bindkey -e
