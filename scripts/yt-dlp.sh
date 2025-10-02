@@ -169,10 +169,21 @@ parse_args() {
             ;;
     esac
 
+    # 🆕 Default: If no format given, fallback to 1080p video
     if [ -z "$FORMAT" ]; then
-        error "No format selected! Use -a, -v, or -b."
-        show_help
-        exit 1
+        warn "No format selected! Defaulting to 1080p video."
+        FORMAT="bestvideo[height<=1080][vcodec^=avc1]+bestaudio[acodec^=mp4a]/best[height<=1080][vcodec^=avc1]"
+        OUTPUT_DIR="$VIDEO_DOWNLOAD_DIR"
+        EXTRA_OPTS+=(
+            --embed-thumbnail --add-metadata
+            --embed-chapters
+            --write-subs --write-auto-subs --embed-subs
+            --sub-langs "${SUBS_LANG}.*"
+            --skip-unavailable-fragments
+            --ignore-errors
+            --compat-options no-keep-subs
+            --embed-info-json
+        )
     fi
 
     if $USE_MP4; then
@@ -246,3 +257,4 @@ main() {
 }
 
 main "$@"
+
