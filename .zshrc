@@ -80,6 +80,7 @@ alias dv="deactivate"                   # Deactivate virtualenv
 # 🟢 Node.js / NPM
 alias vite='npm create vite@latest'
 alias nextjs='npx create-next-app@latest'
+alias t3='pnpm create t3-app@latest'
 
 # 🐋 Containerization
 alias lzd='lazydocker'
