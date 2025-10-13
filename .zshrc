@@ -60,7 +60,7 @@ alias rm='rm -Iv'
 alias rmdir='rmdir -v'
 
 # Aliases: Modern replacements
-alias neofetch='fastfetch'
+alias fetch='fastfetch --logo none'
 alias top='btop'
 alias ls='lsd --color=auto --group-directories-first'
 alias cat='bat --paging=never'
