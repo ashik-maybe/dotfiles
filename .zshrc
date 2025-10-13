@@ -61,6 +61,7 @@ alias rmdir='rmdir -v'
 
 # Aliases: Modern replacements
 alias fetch='fastfetch --logo none'
+alias vim='nvim'
 alias top='btop'
 alias ls='lsd --color=auto --group-directories-first'
 alias cat='bat --paging=never'
