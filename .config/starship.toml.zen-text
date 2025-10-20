@@ -1,4 +1,9 @@
-# Starship Prompt - Zen Text Mode
+# =============================================================================
+# 🧘 STARSHIP PROMPT — Zen Text Mode
+# A serene, icon-free prompt for focused, distraction-free terminal work.
+# Designed for clarity over flair: short phrases, natural spacing, zero noise.
+# Ideal for: writers, minimalists, remote servers, and anyone who values calm.
+# =============================================================================
 
 add_newline = false
 

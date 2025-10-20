@@ -1,3 +1,11 @@
+# =============================================================================
+# 🛠️ STARSHIP PROMPT — Dev Context Mode
+# A rich, contextual prompt for active development: shows Git state, language
+# versions, Docker context, exit codes, and command duration—all in a clean,
+# two-line layout.
+# Ideal for: full-stack devs, polyglot projects, and containerized workflows.
+# =============================================================================
+
 add_newline = false
 
 # Left prompt: directory on first line, character on second
