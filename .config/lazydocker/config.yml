@@ -1,6 +1,8 @@
-# =============================================
-# 🧪 lazydocker config for Podman
-# =============================================
+# =============================================================================
+# 🐳 LAZYDOCKER CONFIG — Podman-Powered Container Control
+# No Docker daemon. No bloat. Just fast, rootless, intuitive container management.
+# Built for `podman` and `podman compose`—ready to scale from solo dev to pro.
+# =============================================================================
 
 gui:
   scrollHeight: 3

@@ -1,7 +1,8 @@
-# =============================================
-# 🧠 Lazygit Config — Optimized for Clarity, Speed & Safety
-# For Podman users, terminal purists, and future-you
-# =============================================
+# =============================================================================
+# 💥 LAZYGIT CONFIG — Git, But Smarter & Safer
+# A focused, beginner-friendly UI that grows with your Git mastery.
+# Optimized for clarity, safety, and speed—no surprises, just flow.
+# =============================================================================
 
 gui:
   # 🎨 UI & Navigation
