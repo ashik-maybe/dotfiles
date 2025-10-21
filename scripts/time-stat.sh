@@ -1,145 +1,64 @@
-#!/bin/sh
-#
-# time-left — A zen view of your time.
-#
+#!/usr/bin/env bash
 
-# --- Date components ---
-DAY_NAME=$(date '+%a')
-MONTH_NAME=$(date '+%b')
-DAY_NUM=$(date '+%-d')
-HOUR_12=$(date '+%-I')
-MINUTE=$(date '+%-M')
-MERIDIEM=$(date '+%p')
-YEAR=$(date '+%Y')
-MONTH_NUM=$(date '+%-m')
-DAY_OF_YEAR=$(date '+%-j')
-DAY_OF_MONTH=$(date '+%-d')
-HOUR_24=$(date '+%-H')
-MIN_24=$(date '+%-M')
+now=$(date +%s)
 
-# Print header + blank line
-printf '[%s, %s %s • %s:%s %s]\n\n' "$DAY_NAME" "$MONTH_NAME" "$DAY_NUM" "$HOUR_12" "$MINUTE" "$MERIDIEM"
+# Boundaries
+end_today=$(date -d 'tomorrow 00:00' +%s)
+end_week=$(date -d 'next friday 23:59:59' +%s)  # Week ends Friday night
+end_month=$(date -d "$(date +%Y-%m-01) +1 month -1 day 23:59:59" +%s)
+end_year=$(date -d "$(date +%Y)-12-31 23:59:59" +%s)
 
-# ===== TODAY =====
-SECS_SINCE_MID=$((HOUR_24 * 3600 + MIN_24 * 60))
-SECS_LEFT_TODAY=$((86400 - SECS_SINCE_MID))
-[ $SECS_LEFT_TODAY -lt 0 ] && SECS_LEFT_TODAY=0
+# Remaining time
+min_today=$(( (end_today - now) / 60 ))
+hr_today=$(( min_today / 60 ))
 
-HOURS_LEFT=$((SECS_LEFT_TODAY / 3600))
-MINUTES_LEFT=$(((SECS_LEFT_TODAY % 3600) / 60))
-
-if [ $HOURS_LEFT -ge 1 ]; then
-    if [ $MINUTES_LEFT -eq 0 ]; then
-        TODAY_VAL="${HOURS_LEFT}h"
-    else
-        TODAY_VAL="${HOURS_LEFT}h ${MINUTES_LEFT}m"
-    fi
+# Week
+sec_left_week=$(( end_week - now ))
+if (( sec_left_week <= 0 )); then
+  phrase_week="Weekend just started"
 else
-    TODAY_VAL="${MINUTES_LEFT}m"
+  days_left_week=$(( sec_left_week / 86400 ))
+  hrs_left_week=$(( (sec_left_week % 86400) / 3600 ))
+
+  if (( days_left_week == 0 && hrs_left_week <= 6 )); then
+    phrase_week="Final hours of the week"
+  elif (( days_left_week == 0 )); then
+    phrase_week="${hrs_left_week}h left this week"
+  else
+    phrase_week="${days_left_week}d"
+    [[ $hrs_left_week -gt 0 ]] && phrase_week+=" + ${hrs_left_week}h"
+    phrase_week+=" left this week"
+  fi
 fi
 
-PERCENT_TODAY=$((SECS_LEFT_TODAY * 100 / 86400))
-printf 'Today:    %-17s (%d%% left)\n' "${TODAY_VAL} remaining" "$PERCENT_TODAY"
-
-# ===== WEEK (ends Saturday, per NSU RA=Thu-Sat) =====
-WEEKDAY_NUM=$(date '+%-u')  # Mon=1, ..., Sun=7
-case $WEEKDAY_NUM in
-    6) DAYS_LEFT_WEEK=0 ;;   # Saturday
-    7) DAYS_LEFT_WEEK=6 ;;   # Sunday → next Sat in 6 days
-    *) DAYS_LEFT_WEEK=$((6 - WEEKDAY_NUM)) ;;
-esac
-PERCENT_WEEK=$((DAYS_LEFT_WEEK * 100 / 7))
-
-if [ $DAYS_LEFT_WEEK -eq 1 ]; then
-    WEEK_STR="1 day left"
+# Month
+day_month=$(( (end_month - now) / 86400 ))
+if (( day_month >= 7 )); then
+  weeks_month=$(( day_month / 7 ))
+  extra_days_month=$(( day_month % 7 ))
+  phrase_month="${weeks_month}w"
+  [[ $extra_days_month -gt 0 ]] && phrase_month+=" + ${extra_days_month}d"
+  phrase_month+=" left this month"
+elif (( day_month == 1 )); then
+  phrase_month="Final day of the month"
 else
-    WEEK_STR="${DAYS_LEFT_WEEK} days left"
+  phrase_month="${day_month}d left this month"
 fi
-printf 'Week:     %-17s (%d%% left)\n' "$WEEK_STR" "$PERCENT_WEEK"
 
-# ===== MONTH =====
-case $MONTH_NUM in
-    1|3|5|7|8|10|12) DIM=31 ;;
-    4|6|9|11) DIM=30 ;;
-    2)
-        if [ $((YEAR % 4)) -eq 0 ] && { [ $((YEAR % 100)) -ne 0 ] || [ $((YEAR % 400)) -eq 0 ]; }; then
-            DIM=29
-        else
-            DIM=28
-        fi
-        ;;
-    *) DIM=30 ;;
-esac
-
-DAYS_LEFT_MONTH=$((DIM - DAY_OF_MONTH))
-PERCENT_MONTH=$((DAYS_LEFT_MONTH * 100 / DIM))
-
-WEEKS=$((DAYS_LEFT_MONTH / 7))
-DAYS_REM=$((DAYS_LEFT_MONTH % 7))
-
-if [ $WEEKS -eq 0 ]; then
-    if [ $DAYS_REM -eq 1 ]; then
-        MONTH_STR="1 day"
-    else
-        MONTH_STR="${DAYS_REM} days"
-    fi
-elif [ $DAYS_REM -eq 0 ]; then
-    if [ $WEEKS -eq 1 ]; then
-        MONTH_STR="1 week"
-    else
-        MONTH_STR="${WEEKS} weeks"
-    fi
+# Year
+days_year=$(( (end_year - now) / 86400 ))
+months_year=$(( days_year / 30 ))
+extra_days_year=$(( days_year % 30 ))
+if (( months_year >= 1 )); then
+  phrase_year="${months_year}mo"
+  [[ $extra_days_year -gt 0 ]] && phrase_year+=" + ${extra_days_year}d"
+  phrase_year+=" till $(date -d "@$end_year" +%Y)"
 else
-    if [ $WEEKS -eq 1 ]; then
-        W_STR="1 week"
-    else
-        W_STR="${WEEKS} weeks"
-    fi
-    if [ $DAYS_REM -eq 1 ]; then
-        D_STR="1 day"
-    else
-        D_STR="${DAYS_REM} days"
-    fi
-    MONTH_STR="$W_STR $D_STR"
+  phrase_year="${days_year}d till $(date -d "@$end_year" +%Y)"
 fi
-printf 'Month:    %-17s (%d%% left)\n' "$MONTH_STR" "$PERCENT_MONTH"
 
-# ===== YEAR =====
-leap() {
-    y=$1
-    [ $((y % 4)) -eq 0 ] && { [ $((y % 100)) -ne 0 ] || [ $((y % 400)) -eq 0 ]; }
-}
-leap "$YEAR" && DAYS_IN_YEAR=366 || DAYS_IN_YEAR=365
-DAYS_LEFT_YEAR=$((DAYS_IN_YEAR - DAY_OF_YEAR))
-PERCENT_YEAR=$((DAYS_LEFT_YEAR * 100 / DAYS_IN_YEAR))
+# Today
+phrase_today="${hr_today}h left today"
 
-# Approximate year as months (30-day avg)
-MONTHS=$((DAYS_LEFT_YEAR / 30))
-DAYS_REM=$((DAYS_LEFT_YEAR % 30))
-
-if [ $MONTHS -eq 0 ]; then
-    if [ $DAYS_REM -eq 1 ]; then
-        YEAR_STR="1 day"
-    else
-        YEAR_STR="${DAYS_REM} days"
-    fi
-elif [ $DAYS_REM -eq 0 ]; then
-    if [ $MONTHS -eq 1 ]; then
-        YEAR_STR="1 month"
-    else
-        YEAR_STR="${MONTHS} months"
-    fi
-else
-    if [ $MONTHS -eq 1 ]; then
-        M_STR="1 month"
-    else
-        M_STR="${MONTHS} months"
-    fi
-    if [ $DAYS_REM -eq 1 ]; then
-        D_STR="1 day"
-    else
-        D_STR="${DAYS_REM} days"
-    fi
-    YEAR_STR="$M_STR $D_STR"
-fi
-printf 'Year:     %-17s (%d%% left)\n' "$YEAR_STR" "$PERCENT_YEAR"
+# Final output
+echo "$phrase_today • $phrase_week • $phrase_month • $phrase_year"
