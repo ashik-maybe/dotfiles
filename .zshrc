@@ -72,7 +72,6 @@ alias find='fdfind'
 
 # 🛠️ SYSTEM & UTILS
 please() { sudo $(fc -lLn -1); }
-alias upgrade='sudo dnf upgrade --refresh -y && flatpak update -y'
 
 # 🐍 Python
 alias av="source venv/bin/activate"     # Activate virtualenv
@@ -84,7 +83,6 @@ alias nextjs='npx create-next-app@latest'
 alias t3='pnpm create t3-app@latest'
 
 # 🐋 Containerization
-alias lzd='lazydocker'
 alias docker='podman'
 
 # Aliases: Custom scripts
@@ -92,10 +90,8 @@ alias ar="$HOME/scripts/aria2c.sh"
 alias yt="$HOME/scripts/yt-dlp.sh"
 alias k="$HOME/scripts/archive.sh"
 alias x="$HOME/scripts/unarchive.sh"
-alias warp="$HOME/scripts/toggle-warp.sh" 		# Toggle Cloudflare Warp CLI.
 
 alias time-stat="$HOME/scripts/time-stat.sh" 		# Display remaining time for today, this week, this month, and this year.
-alias semester-stat="$HOME/scripts/semester-stat.sh" 	# Retrieve key information related to the academic calendar.
 alias vid-len="$HOME/scripts/video_speed_calc.sh" 	# Calculate video length in relation to playback speed.
 
 # Keybindings: Emacs mode (VS Code style)
