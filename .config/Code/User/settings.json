@@ -2,6 +2,7 @@
   "telemetry.telemetryLevel": "error",
   "update.mode": "manual",
   "extensions.autoUpdate": false,
+  "chat.mcp.gallery.enabled": true,
 
   // 🎨 UI & THEME
 
