@@ -4,13 +4,13 @@
 
 Here’s how to get up and running:
 
-### 1. Install [Alacritty](https://alacritty.org/index.html)
+### 1. Install [kitty](https://sw.kovidgoyal.net/kitty/)
 
-_Alacritty is a modern terminal emulator that comes with sensible defaults, but allows for extensive configuration._
+_The fast, feature-rich, GPU based terminal emulator_
 
 ```bash
 
-sudo dnf install alacritty
+sudo dnf install kitty
 
 ```
 
