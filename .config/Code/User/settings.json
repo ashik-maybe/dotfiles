@@ -118,6 +118,16 @@
   "editor.suggest.showIcons": true,
   "editor.suggest.showKeywords": true,
 
+  // 🐳 DOCKER & DEV CONTAINERS
+
+  "dev.containers.dockerPath": "podman",
+  "dev.containers.dockerComposePath": "podman-compose",
+  "dev.containers.defaultExtensions": [
+    "esbenp.prettier-vscode",
+    "dbaeumer.vscode-eslint",
+    "ms-vscode.vscode-typescript-next"
+  ],
+
   // 🔥 TYPESCRIPT / JAVASCRIPT
 
   // Auto Imports & Paths
