@@ -130,7 +130,7 @@ binary from from [here](https://github.com/jesseduffield/lazydocker/releases/)
 
 - [JetBrains Mono](https://github.com/ryanoasis/nerd-fonts/releases/latest/download/JetBrainsMono.zip) for _VS Code_
 
-- [IBM Plex Mono](https://github.com/ryanoasis/nerd-fonts/releases/latest/download/IBMPlexMono.zip) for _Terminal_
+- [Hack](https://github.com/ryanoasis/nerd-fonts/releases/latest/download/Hack.zip) for _Terminal_
 
 ⚠ Store these fonts in **`~/.local/share/fonts`**
 
@@ -141,9 +141,9 @@ _Or just paste this in your terminal;_
 ```bash
 mkdir -p ~/.local/share/fonts && \
 cd /tmp && \
-curl -fLo IBMPlexMono.zip https://github.com/ryanoasis/nerd-fonts/releases/latest/download/IBMPlexMono.zip && \
+curl -fLo Hack.zip https://github.com/ryanoasis/nerd-fonts/releases/latest/download/Hack.zip && \
 curl -fLo JetBrainsMono.zip https://github.com/ryanoasis/nerd-fonts/releases/latest/download/JetBrainsMono.zip && \
-unzip IBMPlexMono.zip -d ~/.local/share/fonts && \
+unzip Hack.zip -d ~/.local/share/fonts && \
 unzip JetBrainsMono.zip -d ~/.local/share/fonts && \
 fc-cache -fv
 ```
