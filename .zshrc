@@ -91,6 +91,7 @@ alias yt="$HOME/scripts/yt-dlp.sh"
 alias k="$HOME/scripts/archive.sh"
 alias x="$HOME/scripts/unarchive.sh"
 
+alias warp="$HOME/scripts/toggle-warp.sh" 		# Toggle Cloudflare WARP connection on/off.
 alias time-stat="$HOME/scripts/time-stat.sh" 		# Display remaining time for today, this week, this month, and this year.
 alias vid-len="$HOME/scripts/video_speed_calc.sh" 	# Calculate video length in relation to playback speed.
 
