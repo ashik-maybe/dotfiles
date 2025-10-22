@@ -82,9 +82,6 @@ alias vite='npm create vite@latest'
 alias nextjs='npx create-next-app@latest'
 alias t3='pnpm create t3-app@latest'
 
-# 🐋 Containerization
-alias docker='podman'
-
 # Aliases: Custom scripts
 alias ar="$HOME/scripts/aria2c.sh"
 alias yt="$HOME/scripts/yt-dlp.sh"
