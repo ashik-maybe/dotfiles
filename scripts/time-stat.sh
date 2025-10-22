@@ -2,17 +2,23 @@
 
 now=$(date +%s)
 
+# Day of week (1=Mon, ..., 7=Sun)
+dow=$(date +%u)
+days_since_sunday=$(( dow % 7 ))  # Sunday = 0
+start_of_week=$(date -d "$days_since_sunday days ago" +%Y-%m-%d)
+end_week=$(date -d "$start_of_week +6 days 23:59:59" +%s)  # Saturday night
+
 # Boundaries
 end_today=$(date -d 'tomorrow 00:00' +%s)
-end_week=$(date -d 'next friday 23:59:59' +%s)  # Week ends Friday night
 end_month=$(date -d "$(date +%Y-%m-01) +1 month -1 day 23:59:59" +%s)
 end_year=$(date -d "$(date +%Y)-12-31 23:59:59" +%s)
 
-# Remaining time
+# Remaining time today
 min_today=$(( (end_today - now) / 60 ))
 hr_today=$(( min_today / 60 ))
+phrase_today="${hr_today}h left today"
 
-# Week
+# Remaining time this week
 sec_left_week=$(( end_week - now ))
 if (( sec_left_week <= 0 )); then
   phrase_week="Weekend just started"
@@ -31,7 +37,7 @@ else
   fi
 fi
 
-# Month
+# Remaining time this month
 day_month=$(( (end_month - now) / 86400 ))
 if (( day_month >= 7 )); then
   weeks_month=$(( day_month / 7 ))
@@ -45,20 +51,25 @@ else
   phrase_month="${day_month}d left this month"
 fi
 
-# Year
+# Remaining time this year
 days_year=$(( (end_year - now) / 86400 ))
 months_year=$(( days_year / 30 ))
 extra_days_year=$(( days_year % 30 ))
+target_year=$(date -d "@$end_year" +%Y)
+current_year=$(date +%Y)
+
 if (( months_year >= 1 )); then
   phrase_year="${months_year}mo"
   [[ $extra_days_year -gt 0 ]] && phrase_year+=" + ${extra_days_year}d"
-  phrase_year+=" till $(date -d "@$end_year" +%Y)"
 else
-  phrase_year="${days_year}d till $(date -d "@$end_year" +%Y)"
+  phrase_year="${days_year}d"
 fi
 
-# Today
-phrase_today="${hr_today}h left today"
+if (( target_year > current_year )); then
+  phrase_year+=" till $target_year"
+else
+  phrase_year+=" left this year"
+fi
 
 # Final output
 echo "$phrase_today • $phrase_week • $phrase_month • $phrase_year"
