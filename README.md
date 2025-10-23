@@ -1,5 +1,7 @@
 # 🗂️ Dotfiles
 
+![GNU](https://img.shields.io/badge/GNU-Stow-000000?logo=gnu&logoColor=white)
+
 ## 🚀 Quick Start
 
 Here’s how to get up and running:
