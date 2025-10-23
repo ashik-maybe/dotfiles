@@ -148,4 +148,5 @@ unzip JetBrainsMono.zip -d ~/.local/share/fonts && \
 fc-cache -fv
 ```
 
-- [Windows](https://github.com/ashik-maybe/fonts-from-windows-11-22h2)
+- [Windows](https://github.com/ashik-maybe/fonts-windows)
+- [বাংলা](https://github.com/ashik-maybe/fonts-bengali)
