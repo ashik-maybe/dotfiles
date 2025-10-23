@@ -1,18 +1,20 @@
 # 🗂️ Dotfiles
 
-![GNU](https://img.shields.io/badge/GNU-Stow-000000?logo=gnu&logoColor=white)
+[![GNU](https://img.shields.io/badge/GNU-Stow-000000?logo=gnu&logoColor=white)](#)
+[![Linux](https://img.shields.io/badge/Linux-FCC624?logo=linux&logoColor=black)](#)
+[![Fedora](https://img.shields.io/badge/Fedora-51A2DA?logo=fedora&logoColor=fff)](#)
 
 ## 🚀 Quick Start
 
 Here’s how to get up and running:
 
-### 1. Install [kitty](https://sw.kovidgoyal.net/kitty/)
+### 1. Install [foot](https://codeberg.org/dnkl/foot)
 
-_The fast, feature-rich, GPU based terminal emulator_
+_A fast, lightweight and minimalistic Wayland terminal emulator_
 
 ```bash
 
-sudo dnf install kitty
+sudo dnf install foot
 
 ```
 
