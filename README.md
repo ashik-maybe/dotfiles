@@ -10,8 +10,6 @@ Here’s how to get up and running:
 
 ### 1. Install [foot](https://codeberg.org/dnkl/foot)
 
-_A fast, lightweight and minimalistic Wayland terminal emulator_
-
 ```bash
 
 sudo dnf install foot
