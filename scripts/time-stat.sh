@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+# Check for -t flag
+newline_output=false
+[[ "$1" == "-t" ]] && newline_output=true
+
 now=$(date +%s)
 
 # Day of week (1=Mon, ..., 7=Sun)
@@ -72,4 +76,11 @@ else
 fi
 
 # Final output
-echo "$phrase_today • $phrase_week • $phrase_month • $phrase_year"
+if $newline_output; then
+  echo -e "\t$phrase_today"
+  echo -e "\t$phrase_week"
+  echo -e "\t$phrase_month"
+  echo -e "\t$phrase_year"
+else
+  echo -e "\t$phrase_today • $phrase_week • $phrase_month • $phrase_year"
+fi
