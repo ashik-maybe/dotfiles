@@ -120,6 +120,61 @@
   "editor.suggest.showIcons": true,
   "editor.suggest.showKeywords": true,
 
+  // 🐛 DEBUGGING
+
+  "debug.console.fontSize": 14,
+  "debug.inlineValues": "on",
+
+  // 📝 FILE HANDLING
+
+  "files.associations": {
+    "*.js": "javascriptreact"
+  },
+  "files.autoSave": "afterDelay",
+  "files.autoSaveDelay": 1000,
+
+  // 🧩 GIT / COLLABORATION
+
+  "git.autofetch": true,
+  "git.confirmSync": false,
+  "git.enableSmartCommit": true,
+  "gitlens.codeLens.enabled": true,
+  "gitlens.hovers.currentLine.over": "line",
+
+  // 🌐 FORMATTERS
+
+  "[html]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
+  "[css]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
+  "[javascript]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
+  "[javascriptreact]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
+  "[typescript]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
+  "[typescriptreact]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
+  "[markdown]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
+  "[json]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
+  "[jsonc]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
+
+  // 🧩 EMMET / HTML / CSS INTELLISENSE
+
+  "emmet.includeLanguages": {
+    "javascript": "javascriptreact",
+    "typescript": "typescriptreact"
+  },
+  "emmet.triggerExpansionOnTab": true,
+  "css.validate": true,
+  "html-css-class-completion.enableEmmetSupport": true,
+  "html-css-class-completion.includeGlobPattern": "**/*.css",
+
+  // 📦 NPM / NODE WORKFLOW
+
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact"
+  ],
+  "npm.enableRunFromFolder": true,
+  "npm.scriptExplorerAction": "run",
+
   // 🐳 DOCKER / DEV CONTAINERS
 
   "dev.containers.dockerPath": "podman",
@@ -159,61 +214,6 @@
   "typescript.enablePromptUseWorkspaceTsdk": true,
   "typescript.tsserver.experimental.enableProjectDiagnostics": true,
   "typescript.tsserver.maxTsServerMemory": 1024,
-
-  // 🌐 FORMATTERS
-
-  "[html]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
-  "[css]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
-  "[javascript]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
-  "[javascriptreact]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
-  "[typescript]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
-  "[typescriptreact]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
-  "[markdown]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
-  "[json]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
-  "[jsonc]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
-
-  // 🧩 EMMET / HTML / CSS INTELLISENSE
-
-  "emmet.includeLanguages": {
-    "javascript": "javascriptreact",
-    "typescript": "typescriptreact"
-  },
-  "emmet.triggerExpansionOnTab": true,
-  "css.validate": true,
-  "html-css-class-completion.enableEmmetSupport": true,
-  "html-css-class-completion.includeGlobPattern": "**/*.css",
-
-  // 📝 FILE HANDLING
-
-  "files.associations": {
-    "*.js": "javascriptreact"
-  },
-  "files.autoSave": "afterDelay",
-  "files.autoSaveDelay": 1000,
-
-  // 🧩 GIT / COLLABORATION
-
-  "git.autofetch": true,
-  "git.confirmSync": false,
-  "git.enableSmartCommit": true,
-  "gitlens.codeLens.enabled": true,
-  "gitlens.hovers.currentLine.over": "line",
-
-  // 📦 NPM / NODE WORKFLOW
-
-  "eslint.validate": [
-    "javascript",
-    "javascriptreact",
-    "typescript",
-    "typescriptreact"
-  ],
-  "npm.enableRunFromFolder": true,
-  "npm.scriptExplorerAction": "run",
-
-  // 🐛 DEBUGGING
-
-  "debug.console.fontSize": 14,
-  "debug.inlineValues": "on",
 
   // 🐍 PYTHON
 
