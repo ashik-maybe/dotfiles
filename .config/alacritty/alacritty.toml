@@ -1,0 +1,107 @@
+# ~/.config/alacritty/alacritty.toml
+
+[general]
+live_config_reload = true
+import = ["~/.config/alacritty/themes/catppuccin-macchiato.toml"]
+
+[env]
+TERM = "xterm-256color"
+
+[window]
+dimensions = { columns = 120, lines = 35 }
+padding = { x = 10, y = 10 }
+dynamic_padding = true
+decorations = "Full"
+opacity = 0.95
+blur = false
+startup_mode = "Windowed"
+title = "Alacritty"
+dynamic_title = true
+class = { instance = "Alacritty", general = "Alacritty" }
+resize_increments = true
+
+[scrolling]
+history = 10000
+multiplier = 3
+
+[font]
+normal = { family = "Hack Nerd Font", style = "Regular" }
+bold = { style = "Bold" }
+italic = { style = "Italic" }
+bold_italic = { style = "Bold Italic" }
+size = 12.0
+offset = { x = 0, y = 0 }
+glyph_offset = { x = 0, y = 0 }
+builtin_box_drawing = true
+
+[bell]
+animation = "EaseOutExpo"
+duration = 0
+color = "#ff5555"
+command = "None"
+
+[selection]
+semantic_escape_chars = "│`|:\"' ()[]{}<>\t"
+save_to_clipboard = true
+
+[cursor]
+style = { shape = "Block", blinking = "Off" }
+vi_mode_style = { shape = "Beam", blinking = "On" }
+blink_interval = 750
+blink_timeout = 0
+unfocused_hollow = true
+thickness = 0.15
+
+[terminal]
+shell = { program = "/bin/zsh", args = ["-l"] }
+osc52 = "CopyPaste"
+
+[mouse]
+hide_when_typing = true
+bindings = [
+  { mouse = "Right", mods = "Control", action = "Paste" },
+  { mouse = "Middle", action = "PasteSelection" },
+]
+
+[hints]
+alphabet = "jfkdls;ahgurieowpq"
+[[hints.enabled]]
+regex = "(ipfs:|ipns:|magnet:|mailto:|gemini://|gopher://|https://|http://|news:|file:|git://|ssh:|ftp://)[^\\u0000-\\u001F\\u007F-\\u009F<>\"\\s{-}\\^⟨⟩`\\\\]+"
+hyperlinks = true
+post_processing = true
+persist = false
+mouse = { mods = "Control", enabled = true }
+binding = { key = "O", mods = "Control|Shift" }
+command = "xdg-open"
+
+[keyboard]
+bindings = [
+  { key = "Equals", mods = "Control", action = "IncreaseFontSize" },
+  { key = "Minus", mods = "Control", action = "DecreaseFontSize" },
+  { key = "NumpadAdd", mods = "Control", action = "IncreaseFontSize" },
+  { key = "NumpadSubtract", mods = "Control", action = "DecreaseFontSize" },
+  { key = "Key0", mods = "Control", action = "ResetFontSize" },
+
+  { key = "N", mods = "Control|Shift", action = "CreateNewWindow" },
+  { key = "T", mods = "Control|Shift", action = "SpawnNewInstance" },
+  { key = "W", mods = "Control|Shift", action = "Quit" },
+
+  { key = "C", mods = "Control|Shift", action = "Copy" },
+  { key = "V", mods = "Control|Shift", action = "Paste" },
+
+  { key = "PageUp", mods = "Shift", action = "ScrollPageUp" },
+  { key = "PageDown", mods = "Shift", action = "ScrollPageDown" },
+
+  { key = "Space", mods = "Control", action = "ToggleViMode" },
+
+  { key = "F", mods = "Control|Shift", action = "SearchForward" },
+  { key = "B", mods = "Control|Shift", action = "SearchBackward" },
+]
+
+[debug]
+log_level = "Warn"
+persistent_logging = false
+render_timer = false
+print_events = false
+highlight_damage = false
+prefer_egl = false
