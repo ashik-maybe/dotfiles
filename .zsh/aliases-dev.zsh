@@ -54,22 +54,24 @@ alias ghprs='gh pr status'                  # Shows the status of your pull requ
 alias ghissue='gh issue create'             # Creates a new GitHub issue
 alias ghview='gh issue view --web'          # Opens a GitHub issue in your browser
 
-# 🐳 Podman Aliases (Container Dev)
-alias pod='podman'                          # Runs Podman (Docker alternative)
-alias podps='podman ps -a'                  # Lists all containers (running and stopped)
-alias podimg='podman images'                # Lists all downloaded container images
-alias podrun='podman run -it --rm'          # Runs a container and deletes it when done
-alias podexec='podman exec -it'             # Opens a shell inside a running container
-alias podrm='podman rm'                     # Deletes a container
-alias podrmi='podman rmi'                   # Deletes an image
-alias podbuild='podman build -t'            # Builds a container image with a tag
-alias podpull='podman pull'                 # Downloads an image from a registry
-alias podlogs='podman logs'                 # Shows logs from a container
-alias podstop='podman stop'                 # Stops a running container
-alias podstart='podman start'               # Starts a stopped container
-alias podsh='podman exec -it $(podman ps -q | head -n1) sh'     # Opens a shell in the first running container
-alias podbash='podman exec -it $(podman ps -q | head -n1) bash' # Opens bash in the first running container
-alias podprune='podman system prune -a -f'  # Deletes all unused containers, images, and networks
+# 🐳 Docker Aliases (Container Dev)
+
+alias d='docker'                            # Run Docker CLI
+alias dps='docker ps -a'                    # List all containers (running + stopped)
+alias dimg='docker images'                  # List all downloaded container images
+alias drun='docker run -it --rm'            # Run a container interactively and auto-remove when done
+alias dexec='docker exec -it'               # Attach to a running container (manual container ID required)
+alias drm='docker rm'                       # Remove a container by ID or name
+alias drmi='docker rmi'                     # Remove an image by ID or name
+alias dbuild='docker build -t'              # Build an image from Dockerfile with a tag
+alias dpull='docker pull'                   # Pull an image from a registry
+alias dlogs='docker logs'                   # Show logs from a container
+alias dstop='docker stop'                   # Stop a running container
+alias dstart='docker start'                 # Start a stopped container
+alias dsh='docker exec -it $(docker ps -q | head -n1) sh'       # Open `sh` in the first running container
+alias dbash='docker exec -it $(docker ps -q | head -n1) bash'   # Open `bash` in the first running container
+alias dprune='docker system prune -a -f'    # Remove all unused containers, images, networks (forcefully)
+
 
 # 🧪 Misc Dev Tools
 alias ports='ss -tuln'                      # Lists open ports and listening services
