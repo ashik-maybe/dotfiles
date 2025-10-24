@@ -179,6 +179,15 @@
 
   "dev.containers.dockerPath": "docker",
   "dev.containers.dockerComposePath": "docker-compose",
+  "dev.containers.defaultExtensions": [
+    "esbenp.prettier-vscode",
+    "dbaeumer.vscode-eslint",
+    "ms-vscode.vscode-typescript-next",
+    "ms-python.python",
+    "ms-python.black-formatter",
+    "charliermarsh.ruff",
+    "ms-toolsai.jupyter"
+  ],
   "dev.containers.rebuildWhenFilesChange": [
     ".devcontainer/devcontainer.json",
     ".devcontainer/Dockerfile"
@@ -186,6 +195,7 @@
   "dev.containers.defaultUserEnvProbe": "loginShell",
   "dev.containers.showBuildLogs": "always",
   "remote.autoAttach": "on",
+  "remote.containers.openOnStartup": "always",
 
   // 🔥 JAVASCRIPT / TYPESCRIPT
 
