@@ -177,13 +177,15 @@
 
   // 🐳 DOCKER / DEV CONTAINERS
 
-  "dev.containers.dockerPath": "podman",
-  "dev.containers.dockerComposePath": "podman-compose",
-  "dev.containers.defaultExtensions": [
-    "esbenp.prettier-vscode",
-    "dbaeumer.vscode-eslint",
-    "ms-vscode.vscode-typescript-next"
+  "dev.containers.dockerPath": "docker",
+  "dev.containers.dockerComposePath": "docker-compose",
+  "dev.containers.rebuildWhenFilesChange": [
+    ".devcontainer/devcontainer.json",
+    ".devcontainer/Dockerfile"
   ],
+  "dev.containers.defaultUserEnvProbe": "loginShell",
+  "dev.containers.showBuildLogs": "always",
+  "remote.autoAttach": "on",
 
   // 🔥 JAVASCRIPT / TYPESCRIPT
 
