@@ -4,7 +4,7 @@
   "extensions.autoUpdate": false,
   "chat.mcp.gallery.enabled": true,
 
-  // 🎨 UI & THEME
+  // 🎨 UI / THEME / DISPLAY
 
   "workbench.colorTheme": "GitHub Light",
   "workbench.preferredDarkColorTheme": "GitHub Dark",
@@ -15,12 +15,13 @@
   "window.autoDetectColorScheme": true,
   "window.zoomLevel": 0,
   "breadcrumbs.enabled": true,
+
   "editor.minimap.enabled": false,
   "editor.minimap.autohide": "mouseover",
   "editor.minimap.maxColumn": 80,
   "editor.minimap.renderCharacters": false,
 
-  // 📂 FILE EXPLORER & SEARCH
+  // 📂 FILE EXPLORER / SEARCH
 
   "explorer.compactFolders": false,
   "explorer.confirmDelete": false,
@@ -74,17 +75,12 @@
   "terminal.integrated.scrollback": 10000,
   "terminal.integrated.smoothScrolling": true,
 
-  // 🧠 EDITING & FORMATTING
+  // 🧠 EDITING / FORMATTING / CODE ACTIONS
 
   "editor.autoIndent": "full",
   "editor.formatOnPaste": true,
   "editor.formatOnSave": true,
   "editor.formatOnType": true,
-  "editor.codeActionsOnSave": {
-    "source.fixAll": "always",
-    "source.fixAll.eslint": "always",
-    "source.organizeImports": "always"
-  },
   "editor.autoClosingBrackets": "always",
   "editor.autoClosingQuotes": "always",
   "editor.autoSurround": "quotes",
@@ -92,14 +88,20 @@
   "files.trimTrailingWhitespace": true,
   "files.eol": "\n",
 
-  // ⚡ NAVIGATION TWEAKS
+  "editor.codeActionsOnSave": {
+    "source.fixAll": "always",
+    "source.fixAll.eslint": "always",
+    "source.organizeImports": "always"
+  },
+
+  // ⚡ NAVIGATION
 
   "editor.gotoLocation.multipleDefinitions": "gotoAndPeek",
   "editor.gotoLocation.multipleTypeDefinitions": "gotoAndPeek",
   "editor.gotoLocation.multipleImplementations": "gotoAndPeek",
   "editor.gotoLocation.multipleReferences": "gotoAndPeek",
 
-  // 📌 INTELLISENSE & SUGGESTIONS
+  // 🧩 INTELLISENSE / SUGGESTIONS
 
   "editor.inlineSuggest.enabled": true,
   "editor.quickSuggestions": {
@@ -118,7 +120,7 @@
   "editor.suggest.showIcons": true,
   "editor.suggest.showKeywords": true,
 
-  // 🐳 DOCKER & DEV CONTAINERS
+  // 🐳 DOCKER / DEV CONTAINERS
 
   "dev.containers.dockerPath": "podman",
   "dev.containers.dockerComposePath": "podman-compose",
@@ -128,9 +130,8 @@
     "ms-vscode.vscode-typescript-next"
   ],
 
-  // 🔥 TYPESCRIPT / JAVASCRIPT
+  // 🔥 JAVASCRIPT / TYPESCRIPT
 
-  // Auto Imports & Paths
   "editor.linkedEditing": true,
   "typescript.updateImportsOnFileMove.enabled": "always",
   "javascript.updateImportsOnFileMove.enabled": "always",
@@ -139,19 +140,14 @@
   "javascript.preferences.quoteStyle": "single",
   "typescript.preferences.quoteStyle": "single",
 
-  // IntelliSense Boosters
   "javascript.suggest.autoImports": true,
   "typescript.suggest.autoImports": true,
   "javascript.suggest.completeFunctionCalls": true,
   "typescript.suggest.completeFunctionCalls": true,
   "typescript.suggest.includeCompletionsForImportStatements": true,
-  "typescript.suggest.includeCompletionsWithInsertText": true,
   "typescript.suggest.includeAutomaticOptionalChainCompletions": true,
-  "typescript.suggest.includeCompletionsWithClassMemberSnippets": true,
-  "typescript.suggest.includeCompletionsWithObjectLiteralMethodSnippets": true,
   "typescript.suggest.jsdoc.generateReturns": true,
 
-  // Inlay Hints
   "typescript.inlayHints.enumMemberValues.enabled": true,
   "typescript.inlayHints.functionLikeReturnTypes.enabled": true,
   "typescript.inlayHints.parameterNames.enabled": "all",
@@ -159,14 +155,12 @@
   "typescript.inlayHints.propertyDeclarationTypes.enabled": true,
   "typescript.inlayHints.variableTypes.enabled": true,
 
-  // Language Server
   "typescript.tsdk": "node_modules/typescript/lib",
   "typescript.enablePromptUseWorkspaceTsdk": true,
   "typescript.tsserver.experimental.enableProjectDiagnostics": true,
   "typescript.tsserver.maxTsServerMemory": 1024,
-  "typescript.experimental.completions.enableServerSideFuzzyMatch": true,
 
-  // 🌐 FORMATTERS (PRETTIER)
+  // 🌐 FORMATTERS
 
   "[html]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
   "[css]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
@@ -178,16 +172,13 @@
   "[json]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
   "[jsonc]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
 
-  // 🧩 EMMET
+  // 🧩 EMMET / HTML / CSS INTELLISENSE
 
   "emmet.includeLanguages": {
     "javascript": "javascriptreact",
     "typescript": "typescriptreact"
   },
   "emmet.triggerExpansionOnTab": true,
-
-  // 🎯 CSS / HTML CLASS COMPLETION
-
   "css.validate": true,
   "html-css-class-completion.enableEmmetSupport": true,
   "html-css-class-completion.includeGlobPattern": "**/*.css",
@@ -200,7 +191,7 @@
   "files.autoSave": "afterDelay",
   "files.autoSaveDelay": 1000,
 
-  // 🧩 GIT & COLLABORATION
+  // 🧩 GIT / COLLABORATION
 
   "git.autofetch": true,
   "git.confirmSync": false,
@@ -208,7 +199,7 @@
   "gitlens.codeLens.enabled": true,
   "gitlens.hovers.currentLine.over": "line",
 
-  // 📦 NPM & NODE WORKFLOW
+  // 📦 NPM / NODE WORKFLOW
 
   "eslint.validate": [
     "javascript",
@@ -222,5 +213,46 @@
   // 🐛 DEBUGGING
 
   "debug.console.fontSize": 14,
-  "debug.inlineValues": "on"
+  "debug.inlineValues": "on",
+
+  // 🐍 PYTHON
+
+  "python.defaultInterpreterPath": "python",
+  "python.terminal.activateEnvironment": true,
+  "python.analysis.autoImportCompletions": true,
+  "python.analysis.diagnosticMode": "workspace",
+  "python.analysis.typeCheckingMode": "basic",
+  "python.analysis.inlayHints.variableTypes": true,
+  "python.analysis.inlayHints.functionReturnTypes": true,
+  "python.analysis.inlayHints.callArgumentNames": "all",
+  "python.analysis.autoSearchPaths": true,
+  "python.analysis.useLibraryCodeForTypes": true,
+
+  "[python]": {
+    "editor.defaultFormatter": "ms-python.black-formatter",
+    "editor.formatOnSave": true
+  },
+
+  "ruff.enable": true,
+  "ruff.lint.enable": true,
+  "ruff.organizeImports": true,
+  "ruff.fixAll": true,
+
+  "python.testing.pytestEnabled": true,
+  "python.testing.unittestEnabled": false,
+  "python.testing.pytestArgs": ["tests"],
+  "python.testing.autoTestDiscoverOnSaveEnabled": true,
+
+  "python.venvFolders": ["envs", ".venv", "venv"],
+  "python.venvPath": "${workspaceFolder}/.venv",
+  "python.envFile": "${workspaceFolder}/.env",
+
+  "debug.toolBarLocation": "docked",
+  "debug.openDebug": "neverOpen",
+
+  "jupyter.askForKernelRestart": false,
+  "jupyter.sendSelectionToInteractiveWindow": true,
+  "jupyter.notebookFileRoot": "${workspaceFolder}",
+  "jupyter.interactiveWindowMode": "multiple",
+  "jupyter.themeMatplotlibPlots": true
 }
