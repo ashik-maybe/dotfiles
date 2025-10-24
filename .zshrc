@@ -57,10 +57,10 @@ zstyle ':fzf-tab:complete:*'     fzf-preview 'file $realpath 2>/dev/null || echo
 zstyle ':fzf-tab:*' fzf-bindings '?:toggle-preview'
 
 # 🧠 Motivation
-echo -e "\nFront-load your pain.\nDelay comfort. Earn ease.\n"
+echo -e "\n\t  Front-load your pain.\n\tDelay comfort. Earn ease.\n"
 # ⏳ Show time left in day/week/month/year
 if command -v time-stat &>/dev/null; then
-  time-stat
+  time-stat -t
 else
   echo "⏳ time-stat not found. Did you forget to alias it?"
 fi
