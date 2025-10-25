@@ -7,7 +7,7 @@ alias ...='cd ../..'                     # Go up two directories
 alias ....='cd ../../..'                 # Go up three directories
 alias c='clear'                          # Clear terminal screen
 alias q='exit'                           # Quit the shell
-alias d='cd ~/Downloads'                # Jump to Downloads folder
+alias dl='cd ~/Downloads'                # Jump to Downloads folder
 alias p='cd ~/Documents/projects/'      # Jump to projects folder
 
 # 📂 File Operations
