@@ -6,9 +6,9 @@
 
   // 🎨 UI / THEME / DISPLAY
 
-  "workbench.colorTheme": "GitHub Light",
-  "workbench.preferredDarkColorTheme": "GitHub Dark",
-  "workbench.iconTheme": "material-icon-theme",
+  "workbench.colorTheme": "Catppuccin Frappé",
+  "workbench.preferredDarkColorTheme": "Catppuccin Macchiato",
+  "workbench.iconTheme": "catppuccin-macchiato",
   "workbench.startupEditor": "welcomePage",
   "workbench.secondarySideBar.defaultVisibility": "hidden",
   "workbench.sideBar.location": "right",
