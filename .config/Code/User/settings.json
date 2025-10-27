@@ -15,6 +15,7 @@
   "window.autoDetectColorScheme": true,
   "window.zoomLevel": 0,
   "breadcrumbs.enabled": true,
+  "editor.renderWhitespace": "boundary",
 
   "editor.minimap.enabled": false,
   "editor.minimap.autohide": "mouseover",
@@ -46,8 +47,9 @@
   // ✍️ EDITOR ERGONOMICS
 
   "diffEditor.ignoreTrimWhitespace": true,
-  "editor.cursorBlinking": "expand",
-  "editor.cursorSmoothCaretAnimation": "on",
+  "editor.cursorStyle": "block",
+  "editor.cursorBlinking": "blink",
+  "editor.cursorSmoothCaretAnimation": "off",
   "editor.fontFamily": "JetBrainsMonoNerdFont, monospace",
   "editor.fontLigatures": true,
   "editor.fontSize": 16,
@@ -60,12 +62,12 @@
   "editor.rulers": [80, 100, 120],
   "editor.scrollBeyondLastLine": false,
   "editor.selectionHighlight": true,
-  "editor.smoothScrolling": true,
-  "editor.stickyScroll.enabled": true,
-  "editor.stickyTabStops": true,
   "editor.wordWrap": "on",
   "editor.mouseWheelZoom": true,
   "editor.multiCursorModifier": "ctrlCmd",
+  "editor.smoothScrolling": false,
+  "editor.stickyScroll.enabled": false,
+  "editor.stickyTabStops": false,
 
   // 🚀 TERMINAL
 
@@ -110,6 +112,7 @@
     "strings": true
   },
   "editor.suggestSelection": "first",
+  "editor.acceptSuggestionOnEnter": "off", // Prevent accidental suggestion acceptance
   "editor.suggest.showSnippets": true,
   "editor.snippetSuggestions": "inline",
   "editor.tabCompletion": "on",
@@ -226,8 +229,9 @@
 
   "typescript.tsdk": "node_modules/typescript/lib",
   "typescript.enablePromptUseWorkspaceTsdk": true,
-  "typescript.tsserver.experimental.enableProjectDiagnostics": true,
+  "typescript.tsserver.experimental.enableProjectDiagnostics": false, // Reduce background load
   "typescript.tsserver.maxTsServerMemory": 1024,
+  "typescript.tsserver.log": "off", // Disable verbose logging
 
   // 🐍 PYTHON
 
