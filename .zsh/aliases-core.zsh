@@ -7,8 +7,8 @@ alias ...='cd ../..'                     # Go up two directories
 alias ....='cd ../../..'                 # Go up three directories
 alias c='clear'                          # Clear terminal screen
 alias q='exit'                           # Quit the shell
-alias dl='cd ~/Downloads'                # Jump to Downloads folder
-alias p='cd ~/Documents/projects/'      # Jump to projects folder
+alias cdd='cd ~/Downloads'                # Jump to Downloads folder
+alias cdp='cd ~/Documents/projects/'      # Jump to projects folder
 
 # 📂 File Operations
 alias mkdir='mkdir -pv'                 # Make directory with verbose output and parent dirs
