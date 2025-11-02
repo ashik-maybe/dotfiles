@@ -56,6 +56,7 @@ zstyle ':fzf-tab:complete:cat:*' fzf-preview 'head -n 50 $realpath | bat -l txt 
 zstyle ':fzf-tab:complete:*'     fzf-preview 'file $realpath 2>/dev/null || echo "no preview"'
 zstyle ':fzf-tab:*' fzf-bindings '?:toggle-preview'
 
+: '
 # 🧠 Motivation
 echo -e "\n\t  Front-load your pain.\n\tDelay comfort. Earn ease.\n"
 # ⏳ Show time left in day/week/month/year
@@ -64,3 +65,4 @@ if command -v time-stat &>/dev/null; then
 else
   echo "⏳ time-stat not found. Did you forget to alias it?"
 fi
+'
