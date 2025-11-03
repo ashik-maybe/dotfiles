@@ -73,7 +73,7 @@
   // 🚀 TERMINAL
 
   "terminal.integrated.cursorBlinking": true,
-  "terminal.integrated.fontFamily": "BlexMonoNerdFont, monospace",
+  "terminal.integrated.fontFamily": "HackMonoNerdFont, monospace",
   "terminal.integrated.fontSize": 14,
   "terminal.integrated.scrollback": 10000,
   "terminal.integrated.smoothScrolling": true,
