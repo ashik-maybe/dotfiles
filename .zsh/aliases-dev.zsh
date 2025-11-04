@@ -72,8 +72,27 @@ alias dsh='docker exec -it $(docker ps -q | head -n1) sh'       # Open `sh` in t
 alias dbash='docker exec -it $(docker ps -q | head -n1) bash'   # Open `bash` in the first running container
 alias dprune='docker system prune -a -f'    # Remove all unused containers, images, networks (forcefully)
 
+# 🐳 Podman Aliases (Container Dev – Docker-compatible CLI)
+
+alias p='podman'                            # Run Podman CLI
+alias pps='podman ps -a'                    # List all containers (running + stopped)
+alias pimg='podman images'                  # List all downloaded container images
+alias prun='podman run -it --rm'            # Run a container interactively and auto-remove when done
+alias pexec='podman exec -it'               # Attach to a running container (manual container ID/name required)
+alias prm='podman rm'                       # Remove a container by ID or name
+alias prmi='podman rmi'                     # Remove an image by ID or name
+alias pbuild='podman build -t'              # Build an image from Containerfile/Dockerfile with a tag
+alias ppull='podman pull'                   # Pull an image from a registry
+alias plogs='podman logs'                   # Show logs from a container
+alias pstop='podman stop'                   # Stop a running container
+alias pstart='podman start'                 # Start a stopped container
+alias psh='podman exec -it $(podman ps -q | head -n1) sh'       # Open `sh` in the first running container
+alias pbash='podman exec -it $(podman ps -q | head -n1) bash'   # Open `bash` in the first running container
+alias pprune='podman system prune -a -f'    # Remove all unused containers, images, networks, volumes (forcefully)
+alias pc='podman-compose'                   # Run Podman Compose (Docker Compose-compatible tool)
 
 # 🧪 Misc Dev Tools
+
 alias ports='ss -tuln'                      # Lists open ports and listening services
 alias ipinfo='curl ipinfo.io'               # Shows your public IP address and location info
 alias serve='python3 -m http.server 8000'   # Starts a simple web server on port 8000 (great for testing)
