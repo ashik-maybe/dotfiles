@@ -50,10 +50,14 @@
     "file_icons": true,
     "folder_icons": true,
     "auto_reveal_entries": true,
-    "hide_hidden": true,
     "scrollbar": {
       "show": "auto"
-    }
+    },
+    "indent_guides": {
+      "show": "always"
+    },
+    "hide_root": false,
+    "hide_hidden": false
   },
 
   // ✍️ EDITOR FEEL
