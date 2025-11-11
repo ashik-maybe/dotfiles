@@ -9,6 +9,7 @@ alias dv="deactivate"                   # Deactivates the current Python virtual
 alias vite='npm create vite@latest'         # Starts a new Vite project (frontend tool for fast dev)
 alias nextjs='npx create-next-app@latest'   # Starts a new Next.js project (React-based web framework)
 alias t3='pnpm create t3-app@latest'        # Starts a new T3 Stack project (TypeScript + tRPC + Tailwind)
+alias expo='npx create-expo-app@latest'     # Starts a new Expo project (full-stack React Native framework)
 
 # 🧠 Git Aliases
 alias g='git'
