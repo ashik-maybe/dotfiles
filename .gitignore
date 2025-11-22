@@ -1,0 +1,71 @@
+# .gitignore - tells Git which files/directories to exclude from version control
+
+# OS
+.DS_Store
+Thumbs.db
+ehthumbs.db
+*.swp
+*~
+
+# Temp files
+*.tmp
+*.bak
+*.log
+*.cache
+*.lock
+tmp/
+temp/
+logs/
+
+# Large files (prevents accidental commits)
+*.zip
+*.tar.gz
+*.tar.xz
+*.iso
+*.dmg
+*.exe
+*.msi
+*.deb
+*.rpm
+*.apk
+
+# Media
+*.mp4
+*.avi
+*.mov
+*.mkv
+*.mp3
+*.wav
+*.flac
+*.png
+*.jpg
+*.jpeg
+*.svg
+*.gif
+*.bmp
+*.tiff
+
+# IDE
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+*.code-workspace
+
+# Package managers
+node_modules/
+vendor/
+*.gem
+*.jar
+
+# Build artifacts
+*.o
+*.obj
+*.exe
+*.dll
+*.so
+*.dylib
+
+# Git itself
+.git/
+!.gitignore
