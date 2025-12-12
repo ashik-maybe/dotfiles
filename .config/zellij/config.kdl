@@ -1,0 +1,11 @@
+theme "catppuccin-macchiato"
+
+default_layout "default"
+default_shell "fish"
+mouse_mode true
+
+ui {
+    pane_frames {
+        rounded_corners true
+    }
+}
