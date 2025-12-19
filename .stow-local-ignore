@@ -1,0 +1,5 @@
+# .stow-local-ignore - tells Stow which files/directories to exclude from symlinking
+
+README.md
+.git
+.gitignore

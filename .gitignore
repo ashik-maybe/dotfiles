@@ -1,0 +1,15 @@
+# .gitignore - tells Git which files/directories to exclude from version control
+
+# Git itself
+.git/
+!.gitignore
+
+# Fish saves variables set with `set -U` here
+.config/fish/fish_variables
+
+# Ignore everything inside .config/Code/ for Visual Studio Code
+.config/Code/**
+
+# Re-include ONLY the settings.json file for Visual Studio Code
+!.config/Code/User/settings.json
+!.config/Code/User/mcp.json
