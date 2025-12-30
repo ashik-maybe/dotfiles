@@ -109,6 +109,15 @@ Download the [Linux AppImage (64-bit)](https://helium.computer/) and move the `h
 
 <small> ⚠ Get the icon for the `.desktop` from [here](https://github.com/imputnet/helium/blob/main/resources/branding/product_logo.svg), put that `.svg` in `~/.local/share/icons/` and the `.desktop` should be made at `~/.local/share/applications/` </small>-->
 
+### [Jujutsu](https://www.jj-vcs.dev/latest/)
+
+_A version control system_
+
+Download the **x86_64-unknown-linux-musl**
+binary from from [here](https://github.com/jj-vcs/jj/releases/latest)
+
+<small> ⚠ Move the `jj` binary into `~/bin` </small>
+
 ### [Lazygit](https://github.com/jesseduffield/lazygit)
 
 _A simple terminal UI for git commands_
