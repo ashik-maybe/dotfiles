@@ -59,6 +59,10 @@ alias myip="hostname -I"                                            # local IP a
 # NODE.JS STARTERS
 # ----------------
 
-alias vite="npm create vite@latest"
-alias nextjs="npx create-next-app@latest"
-alias expo="npx create-expo-app@latest"
+# alias vite="npm create vite@latest"
+# alias nextjs="npx create-next-app@latest"
+# alias expo="npx create-expo-app@latest"
+
+alias vite="bun create vite"
+alias nextjs="bun create next-app@latest"
+alias expo="bun create expo-app"
