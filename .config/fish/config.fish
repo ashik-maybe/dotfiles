@@ -6,10 +6,16 @@ set -gx EDITOR zed
 set -gx VISUAL zed
 
 # 📂 Add personal bin directories to PATH (local tools, etc.)
-set -gx PATH $HOME/.local/bin $HOME/bin $PATH
+fish_add_path -g -p $HOME/.local/bin
+fish_add_path -g -p $HOME/bin
 
 # Android SDK
-set -gx ANDROID_HOME ~/Android/Sdk; set -gx PATH $ANDROID_HOME/tools $ANDROID_HOME/platform-tools $PATH
+set -gx ANDROID_HOME ~/Android/Sdk
+fish_add_path -g -p $ANDROID_HOME/tools
+fish_add_path -g -p $ANDROID_HOME/platform-tools
+
+# Flutter SDK
+fish_add_path -g -p ~/develop/flutter/bin
 
 # Bun
 set --export BUN_INSTALL "$HOME/.bun"
