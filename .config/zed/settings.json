@@ -9,10 +9,12 @@
   "ui_font_family": ".ZedSans",
   "ui_font_size": 15,
   "ui_font_weight": 400,
+
   "buffer_font_family": "JetBrainsMono Nerd Font",
-  "buffer_font_size": 15,
+  "buffer_font_size": 16,
   "buffer_font_weight": 400,
   "buffer_line_height": "comfortable",
+
   "title_bar": {
     "show_branch_icon": true,
     "show_branch_name": true,
@@ -20,32 +22,38 @@
     "show_user_picture": false,
     "show_menus": false,
   },
+
   "toolbar": {
     "breadcrumbs": true,
     "quick_actions": true,
     "code_actions": false,
   },
+
   "status_bar": {
     "active_language_button": true,
     "cursor_position_button": true,
     "line_endings_button": false,
   },
+
   "minimap": {
     "show": "never",
   },
+
   "scrollbar": {
     "show": "auto",
     "git_diff": true,
-    "diagnostics": "all",
+    "diagnostics": "error",
     "selected_text": true,
   },
+
   "tab_bar": {
     "show": true,
     "show_tab_bar_buttons": true,
   },
+
   "project_panel": {
     "button": true,
-    "dock": "left",
+    "dock": "right",
     "default_width": 260,
     "file_icons": true,
     "folder_icons": true,
@@ -62,52 +70,54 @@
 
   // ✍️ EDITOR FEEL
 
-  "current_line_highlight": "all",
+  "current_line_highlight": "line",
   "cursor_blink": true,
   "cursor_shape": "bar",
   "relative_line_numbers": "disabled",
+
   "preferred_line_length": 100,
-  //"soft_wrap": "preferred_line_length",
   "show_wrap_guides": true,
   "wrap_guides": [80, 100, 120],
+
   "show_whitespaces": "selection",
+
   "indent_guides": {
     "enabled": true,
     "coloring": "indent_aware",
     "active_line_width": 2,
   },
+
   "gutter": {
     "line_numbers": true,
     "folds": true,
     "breakpoints": true,
   },
-  "show_completions_on_input": true,
-  "show_completion_documentation": true,
+
   "selection_highlight": true,
   "hide_mouse": "on_typing_and_movement",
-  "scroll_beyond_last_line": "one_page",
+  "scroll_beyond_last_line": "off",
   "horizontal_scroll_margin": 5,
   "vertical_scroll_margin": 3,
-  "whitespace_map": {
-    "space": "•",
-    "tab": "⟶",
-  },
-  "unnecessary_code_fade": 0.3,
 
-  // 🧠 CODE INTELLIGENCE / LSP
+  "unnecessary_code_fade": 0.2,
+
+  // 🧠 CODE INTELLIGENCE / LSP (RESTRAINED)
 
   "global_lsp_settings": {
     "button": true,
   },
+
   "inlay_hints": {
     "enabled": true,
     "edit_debounce_ms": 500,
     "scroll_debounce_ms": 50,
     "show_background": false,
     "show_parameter_hints": true,
-    "show_type_hints": true,
+    "show_type_hints": false,
   },
+
   "lsp_document_colors": "inlay",
+
   "diagnostics": {
     "button": true,
   },
@@ -116,19 +126,20 @@
   // ⚙️ FILES & BEHAVIOR
 
   "max_tabs": 15,
+
   "file_finder": {
     "file_icons": true,
     "git_status": true,
   },
+
   "scroll_sensitivity": 1.2,
   "fast_scroll_sensitivity": 4.8,
-  "redact_private_values": false,
+
   "auto_signature_help": false,
-  "use_system_prompts": true,
-  "use_system_path_prompts": true,
+
   "edit_predictions": {
     "enabled_in_text_threads": false,
-    "mode": "eager",
+    "mode": "subtle",
   },
 
   // 🐙 GIT / COLLABORATION
@@ -139,12 +150,14 @@
       "enabled": false,
     },
   },
+
   "git_panel": {
     "button": true,
-    "dock": "left",
+    "dock": "right",
     "default_width": 320,
     "status_style": "icon",
   },
+
   "collaboration_panel": {
     "button": false,
     "dock": "left",
@@ -169,6 +182,7 @@
   // 🧠 QUALITY OF LIFE
 
   "snippet_sort_order": "inline",
+
   "active_pane_modifiers": {
     "border_size": 1.0,
     "inactive_opacity": 0.85,
