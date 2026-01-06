@@ -1,0 +1,8 @@
+# .gitignore - tells Git which files/directories to exclude from version control
+
+# Git itself
+.git/
+!.gitignore
+
+# Fish saves variables set with `set -U` here
+.config/fish/fish_variables
