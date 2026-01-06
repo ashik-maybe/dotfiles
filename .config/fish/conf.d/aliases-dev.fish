@@ -1,8 +1,3 @@
-# --- 📦 PACKAGES (Bun) ---
-alias install="bun install"
-alias add="bun add"
-alias remove="bun remove"
-
 # --- 🧹 CODE CLEANUP (Biome) ---
 # setup: Run this once when starting a new project
 alias setup-biome="bun add -D -E @biomejs/biome && bunx biome init"
