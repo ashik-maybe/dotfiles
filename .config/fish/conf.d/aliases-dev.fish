@@ -5,8 +5,8 @@ alias setup-biome="bun add -D -E @biomejs/biome && bunx biome init"
 alias fix="bunx biome check --write ."
 
 # --- 🚀 RUN PROJECT ---
-# 'start' automatically detects the project type (Mobile vs Web)
-function dev
+# 'dev-start' automatically detects the project type (Mobile vs Web)
+function dev-start
     if test -d .expo
         bunx expo start $argv
     else
@@ -20,8 +20,8 @@ alias reset="rm -rf .expo .next out dist build && bun pm cache clean"
 alias stop-all="killall node bun"
 
 # --- 🏗️ NEW PROJECTS ---
-alias new-web="bun create next-app@latest"
-alias new-mobile="bun create expo"
+alias new-next="bun create next-app@latest"
+alias new-expo="bun create expo"
 alias new-vite="bun create vite"
 
 # --- 🐍 PYTHON (UV) ---
