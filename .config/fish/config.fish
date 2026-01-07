@@ -9,17 +9,17 @@ set -gx VISUAL zed
 fish_add_path -g -p $HOME/.local/bin
 fish_add_path -g -p $HOME/bin
 
+# Bun
+set --export BUN_INSTALL "$HOME/.bun"
+set --export PATH $BUN_INSTALL/bin $PATH
+
 # Android SDK
 set -gx ANDROID_HOME ~/Android/Sdk
 fish_add_path -g -p $ANDROID_HOME/tools
 fish_add_path -g -p $ANDROID_HOME/platform-tools
 
 # Flutter SDK
-fish_add_path -g -p ~/develop/flutter/bin
-
-# Bun
-set --export BUN_INSTALL "$HOME/.bun"
-set --export PATH $BUN_INSTALL/bin $PATH
+# fish_add_path -g -p ~/develop/flutter/bin
 
 # mise-en-place
 # ~/.local/bin/mise activate fish | source
