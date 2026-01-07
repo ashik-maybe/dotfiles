@@ -6,7 +6,7 @@ alias fix="bunx biome check --write ."
 
 # --- 🚀 RUN PROJECT ---
 # 'start' automatically detects the project type (Mobile vs Web)
-function start
+function dev
     if test -d .expo
         bunx expo start $argv
     else
