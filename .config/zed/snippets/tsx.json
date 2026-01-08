@@ -1,0 +1,335 @@
+{
+  // =====================================================
+  // REACT CORE (ES7+ COMPATIBLE)
+  // =====================================================
+
+  "React Function Export Component": {
+    "prefix": "rfce",
+    "body": [
+      "function ${1:ComponentName}() {",
+      "  return (",
+      "    <div>",
+      "      ${1}",
+      "    </div>",
+      "  );",
+      "}",
+      "",
+      "export default ${1};",
+      "",
+      "$0"
+    ]
+  },
+
+  "React Arrow Function Export Component": {
+    "prefix": "rafce",
+    "body": [
+      "const ${1:ComponentName} = () => {",
+      "  return (",
+      "    <div>",
+      "      ${1}",
+      "    </div>",
+      "  );",
+      "};",
+      "",
+      "export default ${1};",
+      "",
+      "$0"
+    ]
+  },
+
+  "useState": {
+    "prefix": "useState",
+    "body": [
+      "const [${1:state}, set${1/(.*)/${1:/capitalize}/}] = useState(${2:initial});",
+      "$0"
+    ]
+  },
+
+  "useEffect": {
+    "prefix": "useEffect",
+    "body": [
+      "useEffect(() => {",
+      "  ${1}",
+      "}, [${2}]);",
+      "$0"
+    ]
+  },
+
+  "useCallback": {
+    "prefix": "useCallback",
+    "body": [
+      "const ${1:fn} = useCallback((${2}) => {",
+      "  ${3}",
+      "}, [${4}]);",
+      "$0"
+    ]
+  },
+
+  "useMemo": {
+    "prefix": "useMemo",
+    "body": [
+      "const ${1:value} = useMemo(() => {",
+      "  return ${2};",
+      "}, [${3}]);",
+      "$0"
+    ]
+  },
+
+  "console.log": {
+    "prefix": "clg",
+    "body": ["console.log(${1});", "$0"]
+  },
+
+  "try catch": {
+    "prefix": "tryc",
+    "body": [
+      "try {",
+      "  ${1}",
+      "} catch (error) {",
+      "  console.error(error);",
+      "}",
+      "$0"
+    ]
+  },
+
+  "async function": {
+    "prefix": "afn",
+    "body": [
+      "const ${1:name} = async (${2}) => {",
+      "  try {",
+      "    ${3}",
+      "  } catch (error) {",
+      "    console.error(error);",
+      "  }",
+      "};",
+      "$0"
+    ]
+  },
+
+  // =====================================================
+  // REACT NATIVE / EXPO BASICS
+  // =====================================================
+
+  "React Native Function Export Screen": {
+    "prefix": "rnfes",
+    "body": [
+      "import { View, Text, StyleSheet } from 'react-native';",
+      "",
+      "export default function ${1:ScreenName}() {",
+      "  return (",
+      "    <View style={styles.container}>",
+      "      <Text>${1}</Text>",
+      "    </View>",
+      "  );",
+      "}",
+      "",
+      "const styles = StyleSheet.create({",
+      "  container: {",
+      "    flex: 1,",
+      "    alignItems: 'center',",
+      "    justifyContent: 'center',",
+      "  },",
+      "});",
+      "",
+      "$0"
+    ]
+  },
+
+  "Expo Simple Screen": {
+    "prefix": "exscreen",
+    "body": [
+      "import { View, Text } from 'react-native';",
+      "",
+      "export default function ${1:ScreenName}() {",
+      "  return (",
+      "    <View>",
+      "      <Text>${1}</Text>",
+      "    </View>",
+      "  );",
+      "}",
+      "",
+      "$0"
+    ]
+  },
+
+  "FlatList": {
+    "prefix": "flatlist",
+    "body": [
+      "<FlatList",
+      "  data={${1:data}}",
+      "  keyExtractor={(item) => item.${2:id}.toString()}",
+      "  renderItem={({ item }) => (",
+      "    ${3:<Text>{item.title}</Text>}",
+      "  )}",
+      "/>",
+      "$0"
+    ]
+  },
+
+  "Pressable": {
+    "prefix": "pressable",
+    "body": [
+      "<Pressable onPress={${1:onPress}}>",
+      "  <Text>${2:Button}</Text>",
+      "</Pressable>",
+      "$0"
+    ]
+  },
+
+  // =====================================================
+  // EXPO ROUTER (THIS IS THE IMPORTANT PART)
+  // =====================================================
+
+  "Expo Router Root Layout (Stack)": {
+    "prefix": "exstacklayout",
+    "body": [
+      "import { Stack } from 'expo-router';",
+      "",
+      "export default function RootLayout() {",
+      "  return (",
+      "    <Stack>",
+      "      <Stack.Screen name=\"index\" options={{ title: \"Home\" }} />",
+      "    </Stack>",
+      "  );",
+      "}",
+      "",
+      "$0"
+    ]
+  },
+
+  "Expo Router Tabs Layout": {
+    "prefix": "extablayout",
+    "body": [
+      "import { Tabs } from 'expo-router';",
+      "",
+      "export default function TabLayout() {",
+      "  return (",
+      "    <Tabs>",
+      "      <Tabs.Screen name=\"index\" options={{ title: \"Home\" }} />",
+      "      <Tabs.Screen name=\"settings\" options={{ title: \"Settings\" }} />",
+      "    </Tabs>",
+      "  );",
+      "}",
+      "",
+      "$0"
+    ]
+  },
+
+  "Expo Router Stack Layout": {
+    "prefix": "exstack",
+    "body": [
+      "import { Stack } from 'expo-router';",
+      "",
+      "export default function Layout() {",
+      "  return (",
+      "    <Stack>",
+      "      <Stack.Screen name=\"index\" options={{ title: \"Home\" }} />",
+      "    </Stack>",
+      "  );",
+      "}",
+      "",
+      "$0"
+    ]
+  },
+
+  "Expo Router Screen with useLocalSearchParams": {
+    "prefix": "exparams",
+    "body": [
+      "import { View, Text } from 'react-native';",
+      "import { useLocalSearchParams } from 'expo-router';",
+      "",
+      "export default function ${1:Screen}() {",
+      "  const params = useLocalSearchParams();",
+      "",
+      "  return (",
+      "    <View>",
+      "      <Text>${1}</Text>",
+      "      <Text>{JSON.stringify(params)}</Text>",
+      "    </View>",
+      "  );",
+      "}",
+      "",
+      "$0"
+    ]
+  },
+
+  "Expo Router useRouter": {
+    "prefix": "userouter",
+    "body": [
+      "const router = useRouter();",
+      "$0"
+    ]
+  },
+
+  "Expo Router Link": {
+    "prefix": "exlink",
+    "body": [
+      "<Link href=\"/${1:route}\">",
+      "  <Text>${2:Go}</Text>",
+      "</Link>",
+      "$0"
+    ]
+  },
+
+  "Expo Router Redirect": {
+    "prefix": "exredirect",
+    "body": [
+      "import { Redirect } from 'expo-router';",
+      "",
+      "return <Redirect href=\"/${1}\" />;",
+      "",
+      "$0"
+    ]
+  },
+
+  // =====================================================
+  // NEXT.JS (APP ROUTER)
+  // =====================================================
+
+  "Next.js Page": {
+    "prefix": "npage",
+    "body": [
+      "export default function ${1:Page}() {",
+      "  return (",
+      "    <main>",
+      "      <h1>${1}</h1>",
+      "    </main>",
+      "  );",
+      "}",
+      "",
+      "$0"
+    ]
+  },
+
+  "Next.js Layout": {
+    "prefix": "nlayout",
+    "body": [
+      "export default function ${1:Layout}({ children }: { children: React.ReactNode }) {",
+      "  return (",
+      "    <div>",
+      "      {children}",
+      "    </div>",
+      "  );",
+      "}",
+      "",
+      "$0"
+    ]
+  },
+
+  "Next.js Client Component": {
+    "prefix": "nclient",
+    "body": [
+      "\"use client\";",
+      "",
+      "export default function ${1:Component}() {",
+      "  return (",
+      "    <div>",
+      "      ${1}",
+      "    </div>",
+      "  );",
+      "}",
+      "",
+      "$0"
+    ]
+  }
+}
