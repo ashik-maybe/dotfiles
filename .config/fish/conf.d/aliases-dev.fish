@@ -4,15 +4,6 @@ alias setup-biome="bun add -D -E @biomejs/biome && bunx biome init"
 # fix: Run this to clean up messy code and fix errors
 alias fix="bunx biome check --write ."
 
-# --- 🚀 RUN PROJECT ---
-# 'dev-start' automatically detects the project type (Mobile vs Web)
-function dev-start
-    if test -d .expo
-        bunx expo start $argv
-    else
-        bun run dev $argv
-    end
-end
 # --- 🛠️ MAINTENANCE ---
 # reset: Use this if the app is glitching or the laptop feels slow
 alias reset="rm -rf .expo .next out dist build && bun pm cache clean"
