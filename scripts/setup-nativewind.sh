@@ -7,6 +7,7 @@
 # and ensures compatibility with both TypeScript and JavaScript projects.
 #
 # Requirements:
+#   - {bun create expo-app}
 #   - Must be run from the root of an Expo project (with package.json)
 #   - Requires Bun (https://bun.sh) to be installed and available in PATH
 #
@@ -49,7 +50,7 @@ echo "==> Writing tailwind.config.js..."
 cat > tailwind.config.js <<'EOF'
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./App.{js,jsx,ts,tsx}", "./components/**/*.{js,jsx,ts,tsx}"],
+  content: ["./app/**/*.{js,jsx,ts,tsx}", "./components/**/*.{js,jsx,ts,tsx}"],
   presets: [require("nativewind/preset")],
   theme: {
     extend: {},
@@ -115,19 +116,20 @@ else
   echo "⚠️ app.json not found, skipping bundler config"
 fi
 
-# ---- ensure App imports global.css ----
-if [ -f "App.tsx" ]; then
-  if ! grep -q 'global.css' App.tsx; then
-    echo "==> Patching App.tsx to import global.css..."
-    sed -i '1i import "./global.css";\n' App.tsx
+# ---- ensure app/_layout.tsx imports global.css ----
+if [ -f "app/_layout.tsx" ]; then
+  if ! grep -q 'global.css' app/_layout.tsx; then
+    echo "==> Patching app/_layout.tsx to import global.css..."
+    # Insert at line 1
+    sed -i '1i import "../global.css";' app/_layout.tsx
   fi
-elif [ -f "App.js" ]; then
-  if ! grep -q 'global.css' App.js; then
-    echo "==> Patching App.js to import global.css..."
-    sed -i '1i import "./global.css";\n' App.js
+elif [ -f "app/_layout.js" ]; then
+  if ! grep -q 'global.css' app/_layout.js; then
+    echo "==> Patching app/_layout.js to import global.css..."
+    sed -i '1i import "../global.css";' app/_layout.js
   fi
 else
-  echo "⚠️ App.tsx / App.js not found, skipping import patch"
+  echo "⚠️ app/_layout not found. Ensure you are in an Expo Router project."
 fi
 
 # ---- typescript types (optional) ----
