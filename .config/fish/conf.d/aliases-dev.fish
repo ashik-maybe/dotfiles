@@ -12,7 +12,7 @@ alias stop-all="killall node bun"
 
 # --- 🏗️ NEW PROJECTS ---
 alias new-next="bun create next-app@latest"
-alias new-expo="bun create expo"
+alias new-expo="bun create expo-app"
 alias new-vite="bun create vite"
 
 # --- 🐍 PYTHON (UV) ---
