@@ -23,3 +23,7 @@ alias py-run="uv run"
 # --- 🏗️ GIT & SYSTEM ---
 # shrink-git: Compacts project size to save disk space
 alias shrink-git="git repack -a -d -f --depth=250 --window=250"
+
+# --- Scripts ---
+# setup Nativewind in Expo project
+alias setup-nativewind="$HOME/scripts/setup-nativewind.sh"
