@@ -48,4 +48,9 @@ if status is-interactive
     if type -q fzf
         set -gx FZF_DEFAULT_OPTS --height=40% --layout=reverse --border --preview-window=right:50%
     end
+
+    # 🚀 Zellij Auto-start
+    if type -q zellij; and not set -q ZELLIJ
+        exec zellij attach -c
+    end
 end
