@@ -1,7 +1,7 @@
 // Visuals
 theme "catppuccin-macchiato"
 pane_frames false         // Disables borders around panes
-default_layout "compact"  // slim, single-line status bar
+// default_layout "compact"  // slim, single-line status bar
 
 // UI
 ui {
