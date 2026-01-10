@@ -1,8 +1,11 @@
-# --- 🧹 CODE CLEANUP (Biome) ---
-# setup: Run this once when starting a new project
+# --- 🧹 TOOLS ---
+# setup Biomejs in a web project
 alias setup-biome="bun add -D -E @biomejs/biome && bunx biome init"
-# fix: Run this to clean up messy code and fix errors
-alias fix="bunx biome check --write ."
+# setup Nativewind in Expo project
+alias setup-nativewind="$HOME/scripts/setup-nativewind.sh"
+# setup React Native Paper in Expo project
+alias setup-react-native-paper="$HOME/scripts/setup-react-native-paper.sh"
+
 
 # --- 🛠️ MAINTENANCE ---
 # reset: Use this if the app is glitching or the laptop feels slow
@@ -23,7 +26,3 @@ alias py-run="uv run"
 # --- 🏗️ GIT & SYSTEM ---
 # shrink-git: Compacts project size to save disk space
 alias shrink-git="git repack -a -d -f --depth=250 --window=250"
-
-# --- Scripts ---
-# setup Nativewind in Expo project
-alias setup-nativewind="$HOME/scripts/setup-nativewind.sh"
