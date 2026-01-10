@@ -80,7 +80,7 @@
   },
   "project_panel": {
     "button": true,
-    "dock": "right",
+    "dock": "left",
     "default_width": 260,
     "file_icons": true,
     "folder_icons": true,
