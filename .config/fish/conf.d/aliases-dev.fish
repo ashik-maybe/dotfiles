@@ -5,6 +5,8 @@ alias setup-biome="bun add -D -E @biomejs/biome && bunx biome init"
 alias setup-nativewind="$HOME/scripts/setup-nativewind.sh"
 # setup React Native Paper in Expo project
 alias setup-react-native-paper="$HOME/scripts/setup-react-native-paper.sh"
+# setup React Native Unistyles in Expo project
+# alias setup-react-native-unistyles="$HOME/scripts/setup-react-native-unistyles.sh"
 
 
 # --- 🛠️ MAINTENANCE ---
