@@ -1,14 +1,20 @@
-show_startup_tips false
-show_release_notes false
-
+// Visuals
 theme "catppuccin-macchiato"
+pane_frames false         // Disables borders around panes
+default_layout "compact"  // slim, single-line status bar
 
-default_layout "default"
-default_shell "fish"
-mouse_mode true
-
+// UI
 ui {
     pane_frames {
-        rounded_corners true
+        rounded_corners false
+        hide_session_name false
     }
 }
+
+// Interaction & Behavior
+mouse_mode true
+on_force_close "quit"     // Kills the Zellij session when the terminal closes
+
+// Quiet Startup
+show_startup_tips false
+show_release_notes false
