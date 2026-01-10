@@ -30,8 +30,9 @@ set -g fish_history 20000
 # ⚙️ Auto cd (type "Downloads" → cd into it)
 set -g fish_autocd_enabled 1
 
-# 🎨 Silence welcome message
+# 🎨 fish shell features
 set -U fish_greeting
+set -g fish_features no-command-not-found
 
 if status is-interactive
     # ✨ Optimized Starship
