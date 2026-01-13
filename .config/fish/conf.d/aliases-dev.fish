@@ -1,5 +1,5 @@
 # --- 🧹 TOOLS ---
-alias add-biome="bun add -D -E @biomejs/biome && bunx biome init" # Setup Biome linter/formatter
+alias add-biome="bun add -D -E @biomejs/biome && bunx --bun biome init" # Setup Biome linter/formatter
 alias add-tamagui="$HOME/scripts/setup-tamagui.sh"               # Setup Tamagui in Expo
 alias add-react-native-paper="$HOME/scripts/setup-react-native-paper.sh" # Setup RN Paper in Expo
 alias add-nativewind="$HOME/scripts/setup-nativewind.sh"         # Setup Nativewind Tailwind in Expo
