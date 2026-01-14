@@ -1,5 +1,11 @@
-# .stow-local-ignore - tells Stow which files/directories to exclude from symlinking
-
+# .stow-local-ignore
 README.md
 .git
 .gitignore
+.gitattributes
+
+# Prevent Stow from touching these if they exist in your dotfiles
+.config/Code/User/History
+.config/Code/User/globalStorage
+.config/Code/User/workspaceStorage
+.config/Code/User/snippets
