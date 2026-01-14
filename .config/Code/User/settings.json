@@ -1,0 +1,171 @@
+{
+  // 🎨 UI / LAYOUT
+  "window.autoDetectColorScheme": true,
+  "workbench.preferredDarkColorTheme": "Catppuccin Macchiato",
+  "workbench.preferredLightColorTheme": "Catppuccin Latte",
+  "workbench.iconTheme": "catppuccin-macchiato",
+  "workbench.startupEditor": "welcomePage",
+  "workbench.secondarySideBar.defaultVisibility": "hidden",
+  "workbench.sideBar.location": "right",
+  "workbench.activityBar.location": "top",
+  "breadcrumbs.enabled": true,
+
+  // ✍️ EDITOR CORE
+  "editor.fontFamily": "IntoneMonoNerdFont, monospace",
+  "editor.fontLigatures": true,
+  "editor.fontSize": 16,
+  "editor.lineHeight": 24,
+  "editor.cursorStyle": "line",
+  "editor.cursorBlinking": "blink",
+  "editor.renderWhitespace": "selection",
+  "editor.wordWrap": "on",
+  "editor.scrollBeyondLastLine": false,
+  "editor.mouseWheelZoom": true,
+  "editor.multiCursorModifier": "ctrlCmd",
+
+  // 🧠 READABILITY / STRUCTURE
+  "editor.guides.bracketPairs": "active",
+  "editor.guides.highlightActiveBracketPair": true,
+  "editor.guides.indentation": true,
+  "editor.bracketPairColorization.enabled": true,
+  "editor.occurrencesHighlight": "multiFile",
+  "editor.rulers": [80, 120],
+  "editor.minimap.enabled": false,
+  "editor.stickyScroll.enabled": false,
+
+  // 🧩 INTELLISENSE (NON-AI)
+  "editor.quickSuggestions": {
+    "comments": true,
+    "strings": true,
+    "other": true
+  },
+  "editor.suggestSelection": "first",
+  "editor.suggest.showWords": true,
+  "editor.suggest.showMethods": true,
+  "editor.hover.delay": 500,
+
+  // Nativewind - custom className props
+  "tailwindCSS.classAttributes": ["class", "className", "headerClassName"],
+
+  // 🤖 AI / COPILOT
+  "editor.inlineSuggest.enabled": true,
+  "editor.suggest.preview": true,
+  "editor.suggest.shareSuggestSelections": true,
+
+  "editor.acceptSuggestionOnEnter": "off",
+  "editor.acceptSuggestionOnCommitCharacter": false,
+  "editor.tabCompletion": "on",
+  "editor.wordBasedSuggestions": "off",
+
+  "github.copilot.enable": {
+    "*": true,
+    "plaintext": false,
+    "markdown": false,
+    "scminput": false
+  },
+  "github.copilot.nextEditSuggestions.enabled": true,
+
+  // ⚡ FORMATTING & SAVE ACTIONS
+  "editor.autoIndent": "full",
+  "editor.formatOnSave": true,
+  "editor.formatOnPaste": true,
+  "editor.formatOnType": true,
+  "editor.autoClosingBrackets": "always",
+  "editor.autoClosingQuotes": "always",
+  "editor.autoSurround": "quotes",
+
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "always",
+    "source.organizeImports.eslint": "always"
+  },
+
+  // 💾 FILE HYGIENE
+  "files.insertFinalNewline": true,
+  "files.trimTrailingWhitespace": true,
+  "files.eol": "\n",
+  "files.autoSave": "afterDelay",
+  "files.autoSaveDelay": 1000,
+
+  // 📂 FILE EXPLORER
+  "explorer.compactFolders": false,
+  "explorer.confirmDelete": false,
+  "explorer.confirmDragAndDrop": false,
+
+  "files.exclude": {
+    "**/.DS_Store": true,
+    "**/.git": true,
+    "**/build": true,
+    "**/dist": true,
+    "**/node_modules": true,
+    "**/.next": true
+  },
+
+  // 🔍 SEARCH
+  "search.smartCase": true,
+
+  // 🚀 TERMINAL
+  "terminal.integrated.fontFamily": "IntoneMonoNerdFont, monospace",
+  "terminal.integrated.fontSize": 14,
+  "terminal.integrated.cursorBlinking": true,
+  "terminal.integrated.scrollback": 10000,
+
+  // 🧩 GIT
+  "git.autofetch": true,
+  "gitlens.codeLens.enabled": true,
+  "gitlens.hovers.currentLine.over": "line",
+
+  // 🔥 JAVASCRIPT / TYPESCRIPT
+  "editor.linkedEditing": true,
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "typescript.preferences.importModuleSpecifier": "relative",
+  "javascript.preferences.importModuleSpecifier": "relative",
+  "typescript.preferences.quoteStyle": "single",
+  "javascript.preferences.quoteStyle": "single",
+
+  "javascript.suggest.autoImports": true,
+  "typescript.suggest.autoImports": true,
+
+  "typescript.inlayHints.parameterNames.enabled": "literals",
+  "typescript.inlayHints.enumMemberValues.enabled": true,
+
+  "typescript.tsserver.maxTsServerMemory": 1024,
+  "typescript.tsserver.log": "off",
+
+  // 🌐 FORMATTERS
+
+  // Prettier
+  // "editor.defaultFormatter": "esbenp.prettier-vscode",
+  // "[javascript][javascriptreact][typescript][typescriptreact][json][jsonc][html][css][markdown]": {
+  //   "editor.defaultFormatter": "esbenp.prettier-vscode"
+  // },
+
+  // Biome
+  "editor.defaultFormatter": "biomejs.biome",
+  "[javascript][javascriptreact][typescript][typescriptreact][json][jsonc][html][css][markdown]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+
+  // 🔒 PRIVACY / UPDATES
+  "telemetry.telemetryLevel": "error",
+  "update.mode": "manual",
+  "extensions.autoUpdate": true,
+  "extensions.ignoreRecommendations": true,
+  "redhat.telemetry.enabled": false,
+
+  // 🐍 PYTHON
+  "[python]": {
+    "editor.defaultFormatter": "charliermarsh.ruff",
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+      "source.fixAll.ruff": "explicit",
+      "source.organizeImports.ruff": "explicit"
+    }
+  },
+  "python.analysis.typeCheckingMode": "basic",
+  "python.analysis.autoImportCompletions": true,
+  "python.testing.pytestEnabled": true,
+  "python.testing.unittestEnabled": false,
+  "totalTypeScript.hideAllTips": false,
+  "totalTypeScript.hideBasicTips": false
+}
