@@ -6,3 +6,16 @@
 
 # Fish saves variables set with `set -U` here
 .config/fish/fish_variables
+
+# Ignore everything inside Code/
+.config/Code/*
+
+# Allow the path leading to the files
+!.config/Code/User/
+
+# Ignore everything inside User/
+.config/Code/User/*
+
+# Whitelist the specific files
+!.config/Code/User/settings.json
+!.config/Code/User/keybindings.json
