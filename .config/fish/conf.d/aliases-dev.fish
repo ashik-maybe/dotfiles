@@ -1,33 +1,30 @@
-# --- 🧹 TOOLS ---
-alias add-biome="bun add -D -E @biomejs/biome && bunx --bun biome init" # Setup Biome linter/formatter
-alias add-tamagui="$HOME/scripts/setup-tamagui.sh"               # Setup Tamagui in Expo
-alias add-react-native-paper="$HOME/scripts/setup-react-native-paper.sh" # Setup RN Paper in Expo
-alias add-nativewind="$HOME/scripts/setup-nativewind.sh"         # Setup Nativewind Tailwind in Expo
-alias add-unistyles="$HOME/scripts/setup-unistyles.sh"           # Setup RN Unistyles in Expo
+# --- 📦 SETUP & TOOLS (pkg-) ---
+alias pkg-biome="bun add -D -E @biomejs/biome && bunx --bun biome init"
+alias pkg-tamagui="$HOME/scripts/setup-tamagui.sh"
+alias pkg-paper="$HOME/scripts/setup-react-native-paper.sh"
+alias pkg-wind="$HOME/scripts/setup-nativewind.sh"
+alias pkg-uni="$HOME/scripts/setup-unistyles.sh"
 
-# --- 🛠️ MAINTENANCE ---
-alias dev="[ -f app.json ] && bun expo start || bun dev" # Runs expo if app.json exists, else bun dev
+# --- 🛠️ MAINTENANCE (dev- / sys-) ---
+alias dev-stop="killall node bun"
+alias dev-clean="rm -rf .expo .next out dist build && bun pm cache clean"
+alias dev-rebuild="rm -rf node_modules bun.lockb && bun install"
+alias sys-clean-node="find . -name 'node_modules' -type d -prune -exec rm -rf '{}' +"
+alias sys-clean-cache="npm cache clean --force && rm -rf ~/.bun/install/cache"
 
-alias stop-all="killall node bun"                                     # Kill all background processes
-alias reset="rm -rf .expo .next out dist build && bun pm cache clean" # Clear build artifacts
-alias nuke="rm -rf node_modules bun.lockb && bun install"             # Hard reset local project
-alias nuke-all="find . -name 'node_modules' -type d -prune -exec rm -rf '{}' +" # Delete all node_modules recursively
+# --- 🏗️ SCAFFOLDING (new-) ---
+alias new-next="bun create next-app@latest"
+alias new-expo="bun create expo-app"
+alias new-vite="bun create vite"
 
-alias clean-npm="npm cache clean --force"                             # Clear npm global cache
-alias clean-bun="rm -rf ~/.bun/install/cache"                         # Clear Bun global cache
+# --- 🐍 PYTHON (py-) ---
+alias py-init="uv init && uv venv"
+alias py-add="uv add"
+alias py-run="uv run"
 
-# --- 🏗️ NEW PROJECTS ---
-alias new-next="bun create next-app@latest" # New Next.js project
-alias new-expo="bun create expo-app"        # New Expo project
-alias new-vite="bun create vite"             # New Vite project
-
-# --- 🐍 PYTHON (UV) ---
-alias py-new="uv init && uv venv" # Init Python project and venv
-alias py-add="uv add"             # Add Python package
-alias py-run="uv run"             # Run Python script/module
-
-# --- 🏗️ GIT & SYSTEM ---
-alias gcm="git commit -m"        # Git commit with message
-alias gca="git commit --amend --no-edit" # Amend last commit
-alias gp="git push"              # Push to remote
-alias shrink-git="git repack -a -d -f --depth=250 --window=250" # Compress git history
+# --- 🏗️ VERSION CONTROL (g-) ---
+alias g-cm="git commit -m"
+alias g-ca="git commit --amend --no-edit"
+alias g-ps="git push"
+alias g-pl="git pull --rebase"
+alias g-compress="git repack -a -d -f --depth=250 --window=250"
