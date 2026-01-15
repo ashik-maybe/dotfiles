@@ -9,6 +9,9 @@ set -gx VISUAL zed
 fish_add_path -g -p $HOME/.local/bin
 fish_add_path -g -p $HOME/bin
 
+# opencode
+fish_add_path -g -p $HOME/.opencode/bin
+
 # Bun
 set --export BUN_INSTALL "$HOME/.bun"
 set --export PATH $BUN_INSTALL/bin $PATH
