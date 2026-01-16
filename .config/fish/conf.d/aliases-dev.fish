@@ -1,5 +1,14 @@
 # --- 📦 SETUP & TOOLS (pkg-) ---
-alias pkg-biome="bun add -D -E @biomejs/biome && bunx --bun biome init"
+pkg-biome() {
+    if [ -f "package.json" ]; then
+        echo "Project detected. Installing Biome..."
+        bun add -D -E @biomejs/biome && bunx --bun biome init
+    else
+        echo "Error: No package.json found. Please run this in your project root."
+        return 1
+    fi
+}
+
 alias pkg-tamagui="$HOME/scripts/setup-tamagui.sh"
 alias pkg-paper="$HOME/scripts/setup-react-native-paper.sh"
 alias pkg-wind="$HOME/scripts/setup-nativewind.sh"
