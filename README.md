@@ -87,20 +87,29 @@ _Bun is a fast, incrementally adoptable all-in-one JavaScript, TypeScript & JSX 
 curl -fsSL https://bun.sh/install | bash
 ```
 
-### [mise-en-place](https://mise.jdx.dev/)
-
-_The front-end to your dev env_
-
-```bash
-curl https://mise.run | sh
-```
-
 ### [uv](https://docs.astral.sh/uv/)
 
 _An extremely fast Python package and project manager, written in Rust._
 
 ```bash
 curl -LsSf https://astral.sh/uv/install.sh | sh
+```
+
+### [rustup](https://rustup.rs/)
+
+_An installer for the systems programming language Rust_
+
+```bash
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+```
+
+
+### [mise-en-place](https://mise.jdx.dev/)
+
+_The front-end to your dev env_
+
+```bash
+curl https://mise.run | sh
 ```
 
 <!--### [Helium Browser](https://helium.computer/)
