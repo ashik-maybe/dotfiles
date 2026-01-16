@@ -20,6 +20,9 @@ set --export PATH $BUN_INSTALL/bin $PATH
 # Rust / Cargo (https://rustup.rs/)
 fish_add_path -g -p $HOME/.cargo/bin
 
+# mise-en-place (https://mise.jdx.dev/)
+# ~/.local/bin/mise activate fish | source
+
 # Android SDK
 set -gx ANDROID_HOME ~/Android/Sdk
 fish_add_path -g -p $ANDROID_HOME/tools
@@ -27,9 +30,6 @@ fish_add_path -g -p $ANDROID_HOME/platform-tools
 
 # Flutter SDK
 # fish_add_path -g -p ~/develop/flutter/bin
-
-# mise-en-place (https://mise.jdx.dev/)
-# ~/.local/bin/mise activate fish | source
 
 # 📜 History
 set -g fish_history 20000
