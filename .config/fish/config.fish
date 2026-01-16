@@ -6,15 +6,19 @@ set -gx EDITOR zed
 set -gx VISUAL zed
 
 # 📂 Add personal bin directories to PATH (local tools, etc.)
+# uv (https://docs.astral.sh/uv/)
 fish_add_path -g -p $HOME/.local/bin
 fish_add_path -g -p $HOME/bin
 
-# opencode
+# OpenCode (https://opencode.ai/)
 fish_add_path -g -p $HOME/.opencode/bin
 
-# Bun
+# Bun (https://bun.com/)
 set --export BUN_INSTALL "$HOME/.bun"
 set --export PATH $BUN_INSTALL/bin $PATH
+
+# Rust / Cargo (https://rustup.rs/)
+fish_add_path -g -p $HOME/.cargo/bin
 
 # Android SDK
 set -gx ANDROID_HOME ~/Android/Sdk
@@ -24,7 +28,7 @@ fish_add_path -g -p $ANDROID_HOME/platform-tools
 # Flutter SDK
 # fish_add_path -g -p ~/develop/flutter/bin
 
-# mise-en-place
+# mise-en-place (https://mise.jdx.dev/)
 # ~/.local/bin/mise activate fish | source
 
 # 📜 History
