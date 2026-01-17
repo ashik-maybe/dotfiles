@@ -13,23 +13,17 @@ fish_add_path -g -p $HOME/bin
 # OpenCode (https://opencode.ai/)
 fish_add_path -g -p $HOME/.opencode/bin
 
+# mise-en-place (https://mise.jdx.dev/)
+# ~/.local/bin/mise activate fish | source
+
 # Bun (https://bun.com/)
 set --export BUN_INSTALL "$HOME/.bun"
 set --export PATH $BUN_INSTALL/bin $PATH
-
-# Rust / Cargo (https://rustup.rs/)
-fish_add_path -g -p $HOME/.cargo/bin
-
-# mise-en-place (https://mise.jdx.dev/)
-# ~/.local/bin/mise activate fish | source
 
 # Android SDK
 set -gx ANDROID_HOME ~/Android/Sdk
 fish_add_path -g -p $ANDROID_HOME/tools
 fish_add_path -g -p $ANDROID_HOME/platform-tools
-
-# Flutter SDK
-# fish_add_path -g -p ~/develop/flutter/bin
 
 # 📜 History
 set -g fish_history 20000
