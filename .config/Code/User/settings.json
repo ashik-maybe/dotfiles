@@ -1,9 +1,9 @@
 {
 	// 🎨 UI / LAYOUT
 	"window.autoDetectColorScheme": true,
-	// "workbench.preferredDarkColorTheme": "Catppuccin Macchiato",
-	// "workbench.preferredLightColorTheme": "Catppuccin Latte",
-	// "workbench.iconTheme": "catppuccin-macchiato",
+	"workbench.preferredDarkColorTheme": "Everforest Dark",
+	"workbench.preferredLightColorTheme": "Everforest Light",
+	"workbench.iconTheme": "material-icon-theme",
 	"workbench.startupEditor": "welcomePage",
 	"workbench.secondarySideBar.defaultVisibility": "hidden",
 	"workbench.sideBar.location": "right",

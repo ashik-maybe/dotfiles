@@ -1,5 +1,10 @@
 {
   // 🎨 UI
+  "theme": {
+    "mode": "system",
+    "light": "Everforest Light Medium (material)",
+    "dark": "Everforest Dark Medium (material)",
+  },
   "ui_font_family": ".ZedSans",
   "ui_font_size": 15,
   "ui_font_weight": 400,

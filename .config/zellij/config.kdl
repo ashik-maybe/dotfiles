@@ -1,5 +1,5 @@
 // Visuals
-// theme "catppuccin-macchiato"
+theme "everforest-dark"
 pane_frames false         // Disables borders around panes
 // default_layout "compact"  // slim, single-line status bar
 
