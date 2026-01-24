@@ -1,15 +1,5 @@
 {
-  // 🎨 THEME & UI
-  "theme": {
-    "mode": "system",
-    "light": "Catppuccin Latte",
-    "dark": "Catppuccin Macchiato",
-  },
-  "icon_theme": {
-    "mode": "system",
-    "light": "Catppuccin Latte",
-    "dark": "Catppuccin Macchiato",
-  },
+  // 🎨 UI
   "ui_font_family": ".ZedSans",
   "ui_font_size": 15,
   "ui_font_weight": 400,
