@@ -1,50 +1,55 @@
-"$schema" = 'https://starship.rs/config-schema.json'
-
 format = """
-$username\
-$hostname\
 $directory\
 $git_branch\
-$git_state\
 $git_status\
-$cmd_duration\
-$line_break\
 $python\
+$fill\
+$cmd_duration\
+$status $line_break\
 $character"""
 
 [directory]
-style = "#7FBBB3" # Everforest Blue
-
-[character]
-success_symbol = "[❯](#D699B6)" # Everforest Purple
-error_symbol = "[❯](#E67E80)"   # Everforest Red
-vimcmd_symbol = "[❮](#A7C080)"   # Everforest Green
+style = "bold cyan"
+truncation_length = 3
+truncate_to_repo = true
 
 [git_branch]
-format = "[$branch]($style)"
-style = "#859289" # Everforest Grey1
+symbol = ""
+style = "bold red"
 
 [git_status]
-format = "[[(*$conflicted$untracked$modified$staged$renamed$deleted)](218) ($ahead_behind$stashed)]($style)"
-style = "#83C092" # Everforest Aqua
-conflicted = "​"
-untracked = "​"
-modified = "​"
-staged = "​"
-renamed = "​"
-deleted = "​"
-stashed = "≡"
-
-[git_state]
-format = '\([$state( $progress_current/$progress_total)]($style)\) '
-style = "#859289" # Everforest Grey1
-
-[cmd_duration]
-format = "[$duration]($style) "
-style = "#DBBC7F" # Everforest Yellow
+style = "red"
+format = '([$all_status$ahead_behind]($style) )'
 
 [python]
-format = "[$virtualenv]($style) "
-style = "#A7C080" # Everforest Green
-detect_extensions = []
-detect_files = []
+format = "[($virtualenv)]($style) "
+style = "yellow"
+
+[docker_context]
+symbol = "dkr "
+style = "bold blue"
+format = "[$symbol$context]($style) "
+detect_files = ["Dockerfile", "docker-compose.yml"]
+
+[podman]
+symbol = "pod "
+style = "bold magenta"
+format = "[$symbol$name]($style) "
+detect_files = ["Containerfile", "podman-compose.yml"]
+
+[status]
+disabled = false
+format = '[$symbol]($style) '
+symbol = "!"
+style = "bold red"
+
+[character]
+success_symbol = "[>](green) "
+error_symbol = "[>](red) "
+
+[fill]
+symbol = " "
+
+[cmd_duration]
+style = "dimmed white"
+format = "[$duration]($style)"
