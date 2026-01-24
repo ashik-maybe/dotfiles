@@ -27,7 +27,7 @@ alias grep='rg'                          # Use ripgrep for fast searching
 alias du='dust'                          # Disk usage with better visuals
 alias df='duf'                           # Disk free space with better UI
 alias find='fd'                          # fd: user-friendly find alternative
-alias zj='zellij'                        # zellij: user-friendly terminal multiplexer
+alias zj='zellij --layout compact'       # zellij: user-friendly terminal multiplexer
 
 # 🛠️ System & Utilities
 
