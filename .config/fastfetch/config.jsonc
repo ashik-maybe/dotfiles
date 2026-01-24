@@ -8,15 +8,18 @@
     "height": 4,
     "width": 10,
     "padding": {
-      "top": 0,
+      "top": 1,
       "left": 2,
-      "right": 6,
+      "right": 2,
     },
     "color": {
       "1": "white",
     },
   },
   "modules": [
+    {
+      "type": "break",
+    },
     {
       "type": "os",
       "key": " OS",
