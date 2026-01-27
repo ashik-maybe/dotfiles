@@ -2,8 +2,8 @@
   // 🎨 UI
   "theme": {
     "mode": "system",
-    "light": "Everforest Light Medium (material)",
-    "dark": "Everforest Dark Medium (material)",
+    "light": "Catppuccin Latte",
+    "dark": "Catppuccin Mocha",
   },
   "ui_font_family": ".ZedSans",
   "ui_font_size": 15,
