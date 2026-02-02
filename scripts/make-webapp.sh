@@ -76,6 +76,7 @@ read -rp "Enter the full URL (e.g., https://calendar.google.com): " url
 
 # Suggest name from domain
 domain="${url#https://}"; domain="${domain#http://}"; domain="${domain%%/*}"
+wm_class="$domain" # Used for StartupWMClass
 parts=()
 IFS='.' read -ra segs <<< "$domain"
 for seg in "${segs[@]}"; do
@@ -177,6 +178,7 @@ Terminal=false
 Type=Application
 Categories=Network;WebBrowser;
 StartupNotify=true
+StartupWMClass=$wm_class
 Icon=${icon_path:-$default_icon}
 EOF
 
