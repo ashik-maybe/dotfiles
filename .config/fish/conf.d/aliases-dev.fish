@@ -1,18 +1,3 @@
-# --- 📦 SETUP & TOOLS (pkg-) ---
-function pkg-biome
-    if test -f package.json
-        echo "Project detected. Installing Biome..."
-        bun add -D -E @biomejs/biome && bunx --bun biome init
-    else
-        echo "Error: No package.json found. Please run this in your project root."
-        return 1
-    end
-end
-
-alias pkg-tamagui="$HOME/scripts/setup-tamagui.sh"
-alias pkg-wind="$HOME/scripts/setup-nativewind.sh"
-alias pkg-uni="$HOME/scripts/setup-unistyles.sh"
-
 # --- 🛠️ MAINTENANCE (dev- / sys-) ---
 alias dev-stop="killall node bun"
 alias dev-clean="rm -rf .expo .next out dist build && bun pm cache clean"
@@ -21,9 +6,10 @@ alias sys-clean-node="find . -name 'node_modules' -type d -prune -exec rm -rf '{
 alias sys-clean-cache="npm cache clean --force && rm -rf ~/.bun/install/cache"
 
 # --- 🏗️ SCAFFOLDING (new-) ---
-alias new-next="bun create next-app@latest"
-alias new-expo="bun create expo-app"
 alias new-vite="bun create vite"
+alias new-next="bun create next-app@latest"
+alias new-svelte="bunx sv create"
+alias new-expo="bun create expo-app"
 
 # --- 🐍 PYTHON (py-) ---
 alias py-init="uv init && uv venv"
