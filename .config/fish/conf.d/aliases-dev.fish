@@ -38,7 +38,10 @@ alias gpush='git push -u origin $(git rev-parse --abbrev-ref HEAD)' # [Push] Cur
 alias gs='git status -s'                      # [S] Short status view
 alias ga='git add'                            # [A] Add files
 alias gaa='git add -A'                        # [A] Add All files
-function gc() { git commit -m "$1"; }        # [C] Fast commit: gc "feat: msg"
+# [C] Fast commit: gc "feat: msg"
+function gc
+    git commit -m "$argv"
+end
 alias gca='git commit --amend --no-edit'      # [C] Amend: add staged changes to last commit
 alias g-undo='git reset --soft HEAD~1'        # [Undo] Last commit, keep code changes
 
