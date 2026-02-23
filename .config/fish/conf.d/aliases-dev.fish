@@ -10,8 +10,9 @@ alias sys-clean-cache="rm -rf ~/.npm/_cacache ~/.bun/install/cache" # Clean JS c
 # --- 🏗️ Scaffolding ---
 alias new-vite="bun create vite"
 alias new-next="bun create next-app@latest"
-alias new-nuxt="bunx nuxi init"
 alias new-expo="bun create expo-app"
+
+alias next-lens-pages="bun x next-lens@latest page:list" # List pages directly from the CLI
 
 # --- 🐍 Python (uv) ---
 alias py-init="uv init && uv venv"            # Initialize project + venv
