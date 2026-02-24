@@ -31,6 +31,8 @@ alias zj='zellij --layout compact'       # zellij: user-friendly terminal multip
 
 # 🛠️ System & Utilities
 
+alias upgrade-everything="sudo dnf upgrade --refresh -y && flatpak upgrade -y && uv self update && bun upgrade && opencode upgrade && copilot update"
+
 # Run last command with sudo (like "please do it")
 function please
     if test (count $history) -gt 0
