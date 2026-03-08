@@ -1,72 +1,105 @@
 {
-	// 🎨 UI / LAYOUT
+	// =========================================================
+	// 🎨 UI / WORKBENCH
+	// =========================================================
 	"window.autoDetectColorScheme": true,
 	"workbench.preferredLightColorTheme": "Catppuccin Latte",
 	"workbench.preferredDarkColorTheme": "Catppuccin Mocha",
 	"workbench.iconTheme": "catppuccin-latte",
+
 	"workbench.startupEditor": "welcomePage",
-	"workbench.secondarySideBar.defaultVisibility": "hidden",
 	"workbench.sideBar.location": "right",
 	"workbench.activityBar.location": "top",
+	"workbench.secondarySideBar.defaultVisibility": "hidden",
+
 	"breadcrumbs.enabled": true,
 
-	// ✍️ EDITOR CORE
+	// =========================================================
+	// ✍️ EDITOR — FONT / CURSOR
+	// =========================================================
 	"editor.fontFamily": "IntoneMonoNerdFont, monospace",
-	"editor.fontLigatures": true,
 	"editor.fontSize": 16,
 	"editor.lineHeight": 24,
+	"editor.fontLigatures": true,
+
 	"editor.cursorStyle": "line",
 	"editor.cursorBlinking": "blink",
-	"editor.renderWhitespace": "selection",
+
+	// =========================================================
+	// ✍️ EDITOR — BEHAVIOR
+	// =========================================================
 	"editor.wordWrap": "on",
 	"editor.scrollBeyondLastLine": false,
 	"editor.mouseWheelZoom": true,
 	"editor.multiCursorModifier": "ctrlCmd",
+	"editor.renderWhitespace": "selection",
 
-	// 🧠 READABILITY / STRUCTURE
+	"editor.autoIndent": "full",
+	"editor.autoClosingBrackets": "always",
+	"editor.autoClosingQuotes": "always",
+	"editor.autoSurround": "quotes",
+
+	"editor.linkedEditing": true,
+
+	// =========================================================
+	// 🧠 EDITOR — STRUCTURE / READABILITY
+	// =========================================================
+	"editor.guides.indentation": true,
 	"editor.guides.bracketPairs": "active",
 	"editor.guides.highlightActiveBracketPair": true,
-	"editor.guides.indentation": true,
+
 	"editor.bracketPairColorization.enabled": true,
 	"editor.occurrencesHighlight": "multiFile",
+
 	"editor.rulers": [80, 120],
+
 	"editor.minimap.enabled": false,
 	"editor.stickyScroll.enabled": false,
 
-	"json.schemaDownload.trustedDomains": {
-		"https://schemastore.azurewebsites.net/": true,
-		"https://raw.githubusercontent.com/": true,
-		"https://www.schemastore.org/": true,
-		"https://json.schemastore.org/": true,
-		"https://json-schema.org/": true,
-		"https://biomejs.dev": true
+	// =========================================================
+	// ⚡ EDITOR — SAVE / FORMAT
+	// =========================================================
+	"editor.formatOnSave": true,
+	"editor.formatOnPaste": true,
+	"editor.formatOnType": true,
+
+	"editor.codeActionsOnSave": {
+		// "source.fixAll.eslint": "always",
+		// "source.organizeImports.eslint": "always"
+
+		"source.fixAll.biome": "explicit",
+		"source.organizeImports.biome": "explicit"
 	},
 
-	// 🧩 INTELLISENSE (NON-AI)
+	// =========================================================
+	// 💡 INTELLISENSE
+	// =========================================================
 	"editor.quickSuggestions": {
 		"comments": true,
 		"strings": true,
 		"other": true
 	},
+
 	"editor.suggestSelection": "first",
+	"editor.suggest.preview": true,
 	"editor.suggest.showWords": true,
 	"editor.suggest.showMethods": true,
-	"editor.hover.delay": 500,
-
-	// Nativewind - custom className props
-	"tailwindCSS.classAttributes": ["class", "className", "headerClassName"],
-
-	// 🤖 AI / COPILOT
-	"chat.mcp.gallery.enabled": true,
-
-	"editor.inlineSuggest.enabled": true,
-	"editor.suggest.preview": true,
 	"editor.suggest.shareSuggestSelections": true,
 
 	"editor.acceptSuggestionOnEnter": "off",
 	"editor.acceptSuggestionOnCommitCharacter": false,
+
 	"editor.tabCompletion": "on",
 	"editor.wordBasedSuggestions": "off",
+
+	"editor.hover.delay": 500,
+
+	// =========================================================
+	// 🤖 AI / COPILOT
+	// =========================================================
+	"chat.mcp.gallery.enabled": true,
+
+	"editor.inlineSuggest.enabled": true,
 
 	"github.copilot.enable": {
 		"*": true,
@@ -76,31 +109,15 @@
 	},
 	"github.copilot.nextEditSuggestions.enabled": true,
 
-	// ⚡ FORMATTING & SAVE ACTIONS
-	"editor.autoIndent": "full",
-	"editor.formatOnSave": true,
-	"editor.formatOnPaste": true,
-	"editor.formatOnType": true,
-	"editor.autoClosingBrackets": "always",
-	"editor.autoClosingQuotes": "always",
-	"editor.autoSurround": "quotes",
-
-	"editor.codeActionsOnSave": {
-		"source.fixAll.eslint": "always",
-		"source.organizeImports.eslint": "always"
-	},
-
-	// 💾 FILE HYGIENE
+	// =========================================================
+	// 📂 FILES
+	// =========================================================
 	"files.insertFinalNewline": true,
 	"files.trimTrailingWhitespace": true,
 	"files.eol": "\n",
+
 	"files.autoSave": "afterDelay",
 	"files.autoSaveDelay": 1000,
-
-	// 📂 FILE EXPLORER
-	"explorer.compactFolders": false,
-	"explorer.confirmDelete": false,
-	"explorer.confirmDragAndDrop": false,
 
 	"files.exclude": {
 		"**/.DS_Store": true,
@@ -111,31 +128,74 @@
 		"**/.next": true
 	},
 
+	// Reduce filesystem watcher overhead
+	"files.watcherExclude": {
+		"**/.git/objects/**": true,
+		"**/.git/subtree-cache/**": true,
+		// Node ecosystem
+		"**/node_modules/*/**": true,
+		// Next.js
+		"**/.next/**": true,
+		// Expo / React Native
+		"**/.expo/**": true,
+		"**/.expo-shared/**": true,
+		// Build / test outputs
+		"**/dist/**": true,
+		"**/build/**": true,
+		"**/coverage/**": true,
+		// Package manager caches
+		"**/.npm/**": true,
+		"**/.pnpm-store/**": true,
+		"**/.yarn/**": true,
+		"**/.yarn/cache/**": true,
+		"**/.yarn/unplugged/**": true,
+		"**/.bun/**": true,
+		"**/.cache/**": true,
+		"**/.turbo/**": true
+	},
+
+	// =========================================================
+	// 📂 EXPLORER
+	// =========================================================
+	"explorer.compactFolders": false,
+	"explorer.confirmDelete": false,
+	"explorer.confirmDragAndDrop": false,
+
+	// =========================================================
 	// 🔍 SEARCH
+	// =========================================================
 	"search.smartCase": true,
 
-	// 🚀 TERMINAL
+	// =========================================================
+	// 🧩 GIT
+	// =========================================================
+	"git.autofetch": true,
+
+	"gitlens.codeLens.enabled": true,
+	"gitlens.hovers.currentLine.over": "line",
+
+	// =========================================================
+	// 🖥 TERMINAL
+	// =========================================================
 	"terminal.integrated.fontFamily": "IntoneMonoNerdFont, monospace",
 	"terminal.integrated.fontSize": 14,
 	"terminal.integrated.cursorBlinking": true,
 	"terminal.integrated.scrollback": 10000,
 
-	// 🧩 GIT
-	"git.autofetch": true,
-	"gitlens.codeLens.enabled": true,
-	"gitlens.hovers.currentLine.over": "line",
-
+	// =========================================================
 	// 🔥 JAVASCRIPT / TYPESCRIPT
-	"editor.linkedEditing": true,
+	// =========================================================
 	"typescript.updateImportsOnFileMove.enabled": "always",
 	"javascript.updateImportsOnFileMove.enabled": "always",
+
 	"typescript.preferences.importModuleSpecifier": "relative",
 	"javascript.preferences.importModuleSpecifier": "relative",
+
 	"typescript.preferences.quoteStyle": "single",
 	"javascript.preferences.quoteStyle": "single",
 
-	"javascript.suggest.autoImports": true,
 	"typescript.suggest.autoImports": true,
+	"javascript.suggest.autoImports": true,
 
 	"typescript.inlayHints.parameterNames.enabled": "literals",
 	"typescript.inlayHints.enumMemberValues.enabled": true,
@@ -146,33 +206,30 @@
 	"totalTypeScript.hideAllTips": false,
 	"totalTypeScript.hideBasicTips": false,
 
+	// =========================================================
 	// 🌐 FORMATTERS
+	// =========================================================
 
-	// Prettier
+	// ---------- PRETTIER ----------
 	// "editor.defaultFormatter": "esbenp.prettier-vscode",
 	// "[javascript][javascriptreact][typescript][typescriptreact][json][jsonc][html][css][markdown]": {
-	//   "editor.defaultFormatter": "esbenp.prettier-vscode",
+	// 	"editor.defaultFormatter": "esbenp.prettier-vscode"
 	// },
 
-	// Svelte
+	// ---------- SVELTE ----------
 	// "[svelte]": {
-	//   "editor.defaultFormatter": "svelte.svelte-vscode",
+	// 	"editor.defaultFormatter": "svelte.svelte-vscode"
 	// },
 
-	// Biome
+	// ---------- BIOME ----------
 	"editor.defaultFormatter": "biomejs.biome",
 	"[javascript][javascriptreact][typescript][typescriptreact][json][jsonc][html][css][markdown]": {
 		"editor.defaultFormatter": "biomejs.biome"
 	},
 
-	// 🔒 PRIVACY / UPDATES
-	"telemetry.telemetryLevel": "error",
-	"update.mode": "manual",
-	"extensions.autoUpdate": true,
-	"extensions.ignoreRecommendations": true,
-	"redhat.telemetry.enabled": false,
-
+	// =========================================================
 	// 🐍 PYTHON
+	// =========================================================
 	"[python]": {
 		"editor.defaultFormatter": "charliermarsh.ruff",
 		"editor.formatOnSave": true,
@@ -181,8 +238,37 @@
 			"source.organizeImports.ruff": "explicit"
 		}
 	},
+
 	"python.analysis.typeCheckingMode": "basic",
 	"python.analysis.autoImportCompletions": true,
+
 	"python.testing.pytestEnabled": true,
-	"python.testing.unittestEnabled": true
+	"python.testing.unittestEnabled": true,
+
+	// =========================================================
+	// 🔒 PRIVACY / UPDATES
+	// =========================================================
+	"telemetry.telemetryLevel": "error",
+	"redhat.telemetry.enabled": false,
+
+	"update.mode": "manual",
+	"extensions.autoUpdate": true,
+	"extensions.ignoreRecommendations": true,
+
+	// =========================================================
+	// 🌐 SCHEMA TRUST
+	// =========================================================
+	"json.schemaDownload.trustedDomains": {
+		"https://schemastore.azurewebsites.net/": true,
+		"https://raw.githubusercontent.com/": true,
+		"https://www.schemastore.org/": true,
+		"https://json.schemastore.org/": true,
+		"https://json-schema.org/": true,
+		"https://biomejs.dev": true
+	},
+
+	// =========================================================
+	// 🧩 EXTENSIONS
+	// =========================================================
+	"tailwindCSS.classAttributes": ["class", "className", "headerClassName"]
 }
