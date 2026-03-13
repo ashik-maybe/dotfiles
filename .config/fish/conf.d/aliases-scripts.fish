@@ -1,6 +1,7 @@
 # Personal tools and helpers from ~/scripts
 
 # 📜 Custom Scripts
+alias powersave="$HOME/scripts/powersave.sh"      # Autotunes powertop
 alias ar="$HOME/scripts/aria2c.sh"      # Aria2 download helper
 alias yt="$HOME/scripts/yt-dlp.sh"      # YouTube downloader wrapper
 alias k="$HOME/scripts/archive.sh"      # Archive files with custom logic
