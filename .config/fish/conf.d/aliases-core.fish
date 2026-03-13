@@ -18,12 +18,9 @@ alias rmdir='rmdir -v'                  # Remove empty directory with verbose ou
 
 # ⚙️ Modern CLI Replacements
 alias fetch='fastfetch -c examples/21.jsonc'     # Minimal system info
-alias vim='nvim'                         # Use Neovim instead of Vim
-alias top='btop'                         # Use btop instead of top
 alias z='zoxide'                         # Smarter directory jumping
 alias ls='lsd --color=auto --group-directories-first'  # Modern ls with colors and grouped dirs
 alias bat='bat --paging=never'          # Syntax-highlighted cat with no paging
-alias grep='rg'                          # Use ripgrep for fast searching
 alias du='dust'                          # Disk usage with better visuals
 alias df='duf'                           # Disk free space with better UI
 alias find='fd'                          # fd: user-friendly find alternative
