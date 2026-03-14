@@ -7,8 +7,6 @@ alias yt="$HOME/scripts/yt-dlp.sh"      # YouTube downloader wrapper
 alias k="$HOME/scripts/archive.sh"      # Archive files with custom logic
 alias x="$HOME/scripts/unarchive.sh"    # Extract archives with custom logic
 
-# alias webapp="$HOME/scripts/make-webapp.sh"    # Turn websites into apps
-
 # alias warp="$HOME/scripts/toggle-warp.sh"         # Toggle Cloudflare WARP VPN
 # alias patchvm='sudo $HOME/scripts/patch-vm-network.sh' # Restore VM internet access when Docker breaks libvirt's bridge
 
