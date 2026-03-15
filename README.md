@@ -151,7 +151,7 @@ binary from from [here](https://github.com/jesseduffield/lazydocker/releases/)
 
 **▪ Fonts**
 
-<!-- - [JetBrains Mono](https://github.com/ryanoasis/nerd-fonts/releases/latest/download/JetBrainsMono.zip) for _VS Code_ -->
+- [JetBrains Mono](https://github.com/ryanoasis/nerd-fonts/releases/latest/download/JetBrainsMono.zip)
 
 <!-- - [Hack](https://github.com/ryanoasis/nerd-fonts/releases/latest/download/Hack.zip) for _Terminal_ -->
 
