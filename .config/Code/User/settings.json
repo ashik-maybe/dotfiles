@@ -17,7 +17,7 @@
 	// =========================================================
 	// ✍️ EDITOR — FONT / CURSOR
 	// =========================================================
-	"editor.fontFamily": "IntoneMonoNerdFont, monospace",
+	"editor.fontFamily": "JetBrainsMonoNerdFont, monospace",
 	"editor.fontSize": 16,
 	"editor.lineHeight": 24,
 	"editor.fontLigatures": true,

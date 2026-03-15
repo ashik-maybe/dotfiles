@@ -2,7 +2,7 @@
 -- WEZTERM TERMINAL CONFIGURATION
 -- =============================================================================
 -- Theme: Catppuccin Mocha
--- Font: IntoneMono Nerd Font
+-- Font: JetBrains Mono Nerd Font
 -- Unified with: foot, kitty, alacritty, ghostty
 
 local wezterm = require 'wezterm'
@@ -21,7 +21,7 @@ config.color_scheme = 'Catppuccin Mocha'
 -- FONTS
 -- =============================================================================
 
-config.font = wezterm.font('IntoneMono Nerd Font')
+config.font = wezterm.font('JetBrains Mono Nerd Font')
 config.font_size = 12
 
 

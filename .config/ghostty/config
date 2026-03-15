@@ -2,7 +2,7 @@
 # GHOSTTY TERMINAL CONFIGURATION
 # =============================================================================
 # Theme: Catppuccin Mocha (embedded)
-# Font: IntoneMono Nerd Font
+# Font: JetBrains Mono Nerd Font
 # Unified with: foot, kitty, alacritty
 
 # =============================================================================
@@ -45,7 +45,7 @@ cursor-text = "#1e1e2e"
 # FONTS
 # =============================================================================
 
-font-family = "IntoneMono Nerd Font"
+font-family = "JetBrains Mono Nerd Font"
 font-size = 12
 
 
