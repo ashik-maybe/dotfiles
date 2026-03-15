@@ -12,4 +12,3 @@ alias x="$HOME/scripts/unarchive.sh"    # Extract archives with custom logic
 
 alias time-stat="$HOME/scripts/time-stat.sh"      # Show time left in day/week/month/year
 alias vid-len="$HOME/scripts/video_speed_calc.sh" # Calculate video length by playback speed
-alias book-len="$HOME/scripts/document_length_calc.sh" # Calculate book completion time by pace
