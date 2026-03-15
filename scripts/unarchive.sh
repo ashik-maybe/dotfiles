@@ -1,113 +1,111 @@
 #!/bin/bash
 #
-# x - Smart Archive Extractor
-#
-# Usage:
-#   x <ARCHIVE_FILE>...
-#
-# Supported Formats:
-#   .tar, .tar.gz, .tar.bz2, .tar.xz, .gz, .bz2, .xz, .lzma, .zip, .rar, .7z, .Z
-#
-# Features:
-#   - Auto-detects archive type
-#   - Creates folder named after archive (without extension)
-#   - Shows file size, extracted size, and time taken
-#   - Safe: won't overwrite existing directories
-#
-# Examples:
-#   x document.tar.gz
-#   x photos.zip backup.7z
+# x - Extract archives
 #
 
 set -euo pipefail
 
-# Check for optional dependencies
-for cmd in unzip unrar 7z; do
-    if ! command -v "$cmd" &>/dev/null; then
-        echo "Warning: '$cmd' not found. Some formats may be unsupported." >&2
-    fi
-done
+readonly CYAN='\033[0;36m'
+readonly GREEN='\033[0;32m'
+readonly YELLOW='\033[1;33m'
+readonly RED='\033[0;31m'
+readonly DIM='\033[2m'
+readonly NC='\033[0m'
 
-die() {
-    echo "Error: $1" >&2
-    exit 1
+log() {
+  printf '%b%-%10s %s%b\n' "${CYAN}" "$1" "$2" "${NC}"
 }
 
-show_usage() {
-    grep "^# " "${BASH_SOURCE[0]}" | sed 's/^# //'
-    exit 0
+result() {
+  printf '%b%-%10s %s%b\n' "${GREEN}" "$1" "$2" "${NC}"
 }
 
-if [ $# -eq 0 ] || [ "$1" = "-h" ] || [ "$1" = "--help" ]; then
-    show_usage
+error() {
+  printf '%bError: %s%b\n' "${RED}" "$1" "${NC}" >&2
+  exit 1
+}
+
+show_help() {
+  grep "^#" "${BASH_SOURCE[0]}" | sed 's/^# //;s/^#//'
+  exit 0
+}
+
+if [[ $# -eq 0 ]] || [[ "$1" == "-h" ]] || [[ "$1" == "--help" ]]; then
+  show_help
 fi
 
+for cmd in unzip unrar 7z; do
+  if ! command -v "$cmd" &>/dev/null; then
+    printf '%bWarning: %s not found%b\n' "${YELLOW}" "$cmd" "${NC}" >&2
+  fi
+done
+
 extract_file() {
-    local file="$1"
-    [ -f "$file" ] || die "'$file' is not a valid file."
+  local file="$1"
+  local filename=""
+  local target_dir=""
+  local file_size=""
+  local start_time end_time elapsed_time
+  local extracted_size=""
 
-    local filename=$(basename "$file")
-    local target_dir="${filename%%.*}"
+  [[ -f "$file" ]] || error "'$file' is not a valid file."
 
-    mkdir -p "$target_dir" || die "Failed to create target directory '$target_dir'."
+  filename=$(basename "$file")
+  target_dir="${filename%%.*}"
 
-    local file_size
-    file_size=$(stat -c%s "$file" 2>/dev/null || stat -f%z "$file" 2>/dev/null)
+  mkdir -p "$target_dir" || error "Failed to create target directory '$target_dir'."
 
-    printf "%-12s %s\n" "Input:" "$filename"
-    printf "%-12s %s\n" "Size:" "$(numfmt --to=iec "$file_size")"
-    printf "%-12s %s/\n" "Output:" "./$target_dir"
-    echo
+  file_size=$(stat -c%s "$file" 2>/dev/null || stat -f%z "$file" 2>/dev/null)
 
-    local start_time end_time elapsed_time
+  log "Input:" "$filename"
+  log "Size:" "$(numfmt --to=iec "$file_size")"
+  log "Output:" "./$target_dir/"
 
-    start_time=$(date +%s)
+  start_time=$(date +%s)
 
-    case "$file" in
-        *.tar.*|*.tar)
-            tar -xf "$file" -C "$target_dir"
-            ;;
-        *.gz)
-            gunzip -c "$file" > "$target_dir/${filename%.gz}"
-            ;;
-        *.bz2)
-            bunzip2 -c "$file" > "$target_dir/${filename%.bz2}"
-            ;;
-        *.xz)
-            unxz -c "$file" > "$target_dir/${filename%.xz}"
-            ;;
-        *.lzma)
-            unlzma -c "$file" > "$target_dir/${filename%.lzma}"
-            ;;
-        *.Z)
-            uncompress -c "$file" > "$target_dir/${filename%.Z}"
-            ;;
-        *.zip)
-            unzip -q "$file" -d "$target_dir"
-            ;;
-        *.rar)
-            unrar x -inul "$file" "$target_dir/"
-            ;;
-        *.7z)
-            7z x "$file" -o"$target_dir" >/dev/null
-            ;;
-        *)
-            die "Unsupported file type: '$file'"
-            ;;
-    esac
+  case "$file" in
+    *.tar.*|*.tar)
+      tar -xf "$file" -C "$target_dir"
+      ;;
+    *.gz)
+      gunzip -c "$file" > "$target_dir/${filename%.gz}"
+      ;;
+    *.bz2)
+      bunzip2 -c "$file" > "$target_dir/${filename%.bz2}"
+      ;;
+    *.xz)
+      unxz -c "$file" > "$target_dir/${filename%.xz}"
+      ;;
+    *.lzma)
+      unlzma -c "$file" > "$target_dir/${filename%.lzma}"
+      ;;
+    *.Z)
+      uncompress -c "$file" > "$target_dir/${filename%.Z}"
+      ;;
+    *.zip)
+      unzip -q "$file" -d "$target_dir"
+      ;;
+    *.rar)
+      unrar x -inul "$file" "$target_dir/"
+      ;;
+    *.7z)
+      7z x "$file" -o"$target_dir" >/dev/null
+      ;;
+    *)
+      error "Unsupported file type: '$file'"
+      ;;
+  esac
 
-    end_time=$(date +%s)
-    elapsed_time=$((end_time - start_time))
+  end_time=$(date +%s)
+  elapsed_time=$((end_time - start_time))
+  extracted_size=$(du -sb "$target_dir" | cut -f1)
 
-    local extracted_size
-    extracted_size=$(du -sb "$target_dir" | cut -f1)
-
-    printf "%-12s %s\n" "Status:" "Completed"
-    printf "%-12s %ss\n" "Time:" "$elapsed_time"
-    printf "%-12s %s\n" "Result Size:" "$(numfmt --to=iec "$extracted_size")"
-    echo
+  result "Result:" "$(numfmt --to=iec "$extracted_size") extracted"
+  result "Time:" "${elapsed_time}s"
+  result "Done:" "Completed"
+  echo
 }
 
 for archive in "$@"; do
-    extract_file "$archive"
+  extract_file "$archive"
 done

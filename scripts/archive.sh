@@ -1,36 +1,43 @@
 #!/usr/bin/env bash
 #
-# k - Ultra Compression Tool (zstd or zip)
-#
-# Usage:
-#   k [OPTIONS] <FOLDER>...
-#
-# Options:
-#   -o FILE     Set output filename (default: <foldername>.tar.zst or .zip)
-#   -f          Force overwrite if output exists
-#   -z          Use ZIP instead of zstd (faster, less compression)
-#
-# Features:
-#   - Uses zstd ultra -22 for maximum compression by default
-#   - Optional ZIP mode for compatibility
-#   - Shows size savings and compression ratio
-#   - Safe: won't overwrite unless -f is used
-#
-# Examples:
-#   k MyProject/
-#   k -z -o backup.zip Documents/
-#   k -f -o final.tar.zst GameAssets/
+# k - Archive/compress tool (zstd or zip)
 #
 
 set -euo pipefail
+
+readonly CYAN='\033[0;36m'
+readonly GREEN='\033[0;32m'
+readonly DIM='\033[2m'
+readonly NC='\033[0m'
 
 OUTFILE=""
 FORCE=0
 USE_ZIP=0
 
+log() {
+  printf '%b%-%10s %s%b\n' "${CYAN}" "$1" "$2" "${NC}"
+}
+
+result() {
+  printf '%b%-%10s %s%b\n' "${GREEN}" "$1" "$2" "${NC}"
+}
+
+warn() {
+  printf '%b%-%10s %s%b\n' "${YELLOW}" "$1" "$2" "${NC}"
+}
+
+error() {
+  printf '%bError: %s%b\n' "${RED}" "$1" "${NC}" >&2
+  exit 1
+}
+
+show_help() {
+  grep "^#" "${BASH_SOURCE[0]}" | sed 's/^# //;s/^#//'
+  exit 0
+}
+
 if [[ "${1:-}" == "--help" ]] || [[ "${1:-}" == "-h" ]]; then
-    grep "^# " "${BASH_SOURCE[0]}" | sed 's/^# //'
-    exit 0
+  show_help
 fi
 
 while getopts ":o:fz" opt; do
@@ -38,80 +45,63 @@ while getopts ":o:fz" opt; do
     o) OUTFILE="$OPTARG" ;;
     f) FORCE=1 ;;
     z) USE_ZIP=1 ;;
-    *)
-      echo "Error: Invalid option -$OPTARG" >&2
-      echo "Run '$0 --help' for usage." >&2
-      exit 1
-      ;;
+    *) error "Invalid option: -$OPTARG" ;;
   esac
 done
 shift $((OPTIND - 1))
 
-if [ $# -eq 0 ]; then
-    echo "Error: No folder specified." >&2
-    exit 1
+if [[ $# -eq 0 ]]; then
+  error "No folder specified."
 fi
 
 compress_folder() {
-    local FOLDER="$1"
-    [ ! -d "$FOLDER" ] && echo "Error: '$FOLDER' is not a directory." >&2 && return 1
+  local folder="$1"
+  local name=""
+  local archive=""
+  local start_time end_time elapsed_time
+  local archive_size folder_size saved ratio
 
-    local NAME ARCHIVE
+  [[ ! -d "$folder" ]] && error "'$folder' is not a directory."
 
-    NAME="$(basename "$FOLDER")"
+  name="$(basename "$folder")"
 
-    if [ "$USE_ZIP" -eq 1 ]; then
-        ARCHIVE="${OUTFILE:-$NAME.zip}"
-        [ -f "$ARCHIVE" ] && [ "$FORCE" -ne 1 ] && echo "Error: '$ARCHIVE' exists. Use -f to overwrite." >&2 && return 1
-        printf "%-12s %s\n" "Input:" "$FOLDER"
-        printf "%-12s %s\n" "Method:" "zip -r -9"
-        local start_time end_time elapsed_time
-        start_time=$(date +%s)
-        zip -r -9 -q "$ARCHIVE" "$FOLDER"
-        end_time=$(date +%s)
-        elapsed_time=$((end_time - start_time))
-    else
-        ARCHIVE="${OUTFILE:-$NAME.tar.zst}"
-        [ -f "$ARCHIVE" ] && [ "$FORCE" -ne 1 ] && echo "Error: '$ARCHIVE' exists. Use -f to overwrite." >&2 && return 1
-        printf "%-12s %s\n" "Input:" "$FOLDER"
-        printf "%-12s %s\n" "Method:" "zstd --ultra -22"
-        local start_time end_time elapsed_time
-        start_time=$(date +%s)
-        tar -cf - "$FOLDER" | zstd --ultra -22 -T0 -c > "$ARCHIVE"
-        end_time=$(date +%s)
-        elapsed_time=$((end_time - start_time))
-    fi
+  log "Input:" "$folder"
 
-    local ARCHIVE_SIZE FOLDER_SIZE SAVED RATIO
+  if [[ "$USE_ZIP" -eq 1 ]]; then
+    archive="${OUTFILE:-$name.zip}"
+    [[ -f "$archive" ]] && [[ "$FORCE" -ne 1 ]] && error "'$archive' exists. Use -f to overwrite."
+    log "Method:" "zip -r -9"
+    start_time=$(date +%s)
+    zip -r -9 -q "$archive" "$folder"
+    end_time=$(date +%s)
+  else
+    archive="${OUTFILE:-$name.tar.zst}"
+    [[ -f "$archive" ]] && [[ "$FORCE" -ne 1 ]] && error "'$archive' exists. Use -f to overwrite."
+    log "Method:" "zstd -22"
+    start_time=$(date +%s)
+    tar -cf - "$folder" | zstd --ultra -22 -T0 -c > "$archive"
+    end_time=$(date +%s)
+  fi
 
-    # Cross-platform stat
-    if stat -c%s . &>/dev/null 2>&1; then
-        ARCHIVE_SIZE=$(stat -c%s "$ARCHIVE" 2>/dev/null || echo "0")
-    else
-        ARCHIVE_SIZE=$(stat -f%z "$ARCHIVE" 2>/dev/null || echo "0")
-    fi
+  elapsed_time=$((end_time - start_time))
+  archive_size=$(stat -c%s "$archive" 2>/dev/null || stat -f%z "$archive" 2>/dev/null || echo "0")
+  folder_size=$(du -sb "$folder" 2>/dev/null | cut -f1 || echo "0")
 
-    FOLDER_SIZE=$(du -sb "$FOLDER" 2>/dev/null | cut -f1 || echo "0")
+  if [[ "$folder_size" -gt 0 ]] && [[ "$archive_size" -gt 0 ]]; then
+    saved=$((folder_size - archive_size))
+    ratio=$(awk "BEGIN {printf \"%.0f\", $archive_size * 100 / $folder_size}")
+    log "Original:" "$(numfmt --to=iec "$folder_size")"
+    result "Result:" "$(numfmt --to=iec "$archive_size") (${ratio}% saved)"
+  else
+    log "Original:" "$(numfmt --to=iec "$folder_size")"
+    result "Result:" "$(numfmt --to=iec "$archive_size")"
+  fi
 
-    echo
-    if [ "$FOLDER_SIZE" -gt 0 ] && [ "$ARCHIVE_SIZE" -gt 0 ]; then
-        SAVED=$((FOLDER_SIZE - ARCHIVE_SIZE))
-        RATIO=$(awk "BEGIN {printf \"%.2f\", $ARCHIVE_SIZE * 100 / $FOLDER_SIZE}")
-        printf "%-12s %s\n" "Original:" "$(numfmt --to=iec "$FOLDER_SIZE")"
-        printf "%-12s %s\n" "Result:" "$(numfmt --to=iec "$ARCHIVE_SIZE")"
-        printf "%-12s %s%% (~%s saved)\n" "Ratio:" "$RATIO" "$(numfmt --to=iec "$SAVED")"
-    else
-        printf "%-12s %s\n" "Original:" "$(numfmt --to=iec "$FOLDER_SIZE")"
-        printf "%-12s %s\n" "Result:" "$(numfmt --to=iec "$ARCHIVE_SIZE")"
-        printf "%-12s %s\n" "Ratio:" "N/A"
-    fi
-
-    printf "%-12s %ss\n" "Time:" "$elapsed_time"
-    printf "%-12s %s\n" "Status:" "Completed"
-    printf "%-12s %s\n" "Output:" "$ARCHIVE"
-    echo
+  result "Time:" "${elapsed_time}s"
+  result "Saved:" "$archive"
+  echo
 }
 
 for folder in "$@"; do
-    compress_folder "$folder"
+  compress_folder "$folder"
 done
