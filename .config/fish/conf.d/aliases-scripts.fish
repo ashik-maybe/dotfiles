@@ -10,5 +10,4 @@ alias x="$HOME/scripts/unarchive.sh"    # Extract archives with custom logic
 # alias warp="$HOME/scripts/toggle-warp.sh"         # Toggle Cloudflare WARP VPN
 # alias patchvm='sudo $HOME/scripts/patch-vm-network.sh' # Restore VM internet access when Docker breaks libvirt's bridge
 
-alias time-stat="$HOME/scripts/time-stat.sh"      # Show time left in day/week/month/year
 alias vidlen="$HOME/scripts/video_speed_calc.sh" # Calculate video length by playback speed
