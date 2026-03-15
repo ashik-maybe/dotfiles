@@ -9,8 +9,8 @@
   },
   "icon_theme": {
     "mode": "system",
-    "light": "Catppuccin Latte",
-    "dark": "Catppuccin Mocha",
+    "light": "Material Icon Theme",
+    "dark": "Material Icon Theme",
   },
   "ui_font_family": ".ZedSans",
   "ui_font_size": 15,
