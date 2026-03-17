@@ -21,7 +21,6 @@ NEW_NAME=""
 FORMAT=""
 OUTPUT_DIR=""
 EXTRA_OPTS=()
-USE_MP4=false
 
 log() {
   printf '%b\n' "${CYAN}Downloading:${NC} $*"
@@ -55,7 +54,7 @@ sanitize() {
 video_opts() {
   echo --embed-thumbnail --add-metadata --embed-chapters \
     --write-subs --write-auto-subs --embed-subs \
-    --sub-langs "en.*" --skip-unavailable-fragments \
+    --sub-langs "en.*" --sub-format srt --skip-unavailable-fragments \
     --ignore-errors --embed-info-json
 }
 
@@ -81,10 +80,6 @@ parse_args() {
         OUTPUT_DIR="$VIDEO_DIR"
         EXTRA_OPTS+=($(video_opts))
         shift 2
-        ;;
-      --mp4)
-        USE_MP4=true
-        shift
         ;;
       --resume)
         RESUME=true
@@ -128,11 +123,7 @@ parse_args() {
     EXTRA_OPTS+=($(video_opts))
   fi
 
-  if "$USE_MP4"; then
-    EXTRA_OPTS+=(--merge-output-format mp4)
-  else
-    EXTRA_OPTS+=(--merge-output-format mkv)
-  fi
+  EXTRA_OPTS+=(--merge-output-format mkv)
 
   mkdir -p "$VIDEO_DIR" "$AUDIO_DIR" || error "Failed to create directories!"
 }
@@ -187,6 +178,13 @@ download_single() {
       mv "$last_file" "$new_path"
       success "[${index}/${total}] Renamed to $(basename "$new_path")"
     fi
+  fi
+
+  local target_file="${new_path:-$(find "$OUTPUT_DIR" -type f -not -name ".*" -newermt "2 minutes ago" -name "*.mkv" 2>/dev/null | head -n1)}"
+  if [[ -n "$target_file" ]]; then
+    local base_pattern
+    base_pattern="$(basename "$target_file" .mkv)"
+    find "$OUTPUT_DIR" -type f \( -name "${base_pattern}.*.srt" -o -name "${base_pattern}.*.vtt" \) -delete 2>/dev/null
   fi
 }
 
