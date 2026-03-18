@@ -21,9 +21,6 @@ alias fetch='fastfetch -c examples/21.jsonc'     # Minimal system info
 alias z='zoxide'                         # Smarter directory jumping
 alias ls='lsd --color=auto --group-directories-first'  # Modern ls with colors and grouped dirs
 alias bat='bat --paging=never'          # Syntax-highlighted cat with no paging
-alias du='dust'                          # Disk usage with better visuals
-alias df='duf'                           # Disk free space with better UI
-alias find='fd'                          # fd: user-friendly find alternative
 alias zj='zellij --layout compact'       # zellij: user-friendly terminal multiplexer
 
 # 🛠️ System & Utilities
