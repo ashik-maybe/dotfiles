@@ -27,12 +27,30 @@ alias zj='zellij --layout compact'       # zellij: user-friendly terminal multip
 
 # Upgrades all the packages
 function upgrade-everything
+    # System and Flatpak updates
     sudo dnf upgrade --refresh -y
     flatpak upgrade -y
-    uv self update
-    bun upgrade
-    opencode upgrade
-    copilot update
+    # Check and update uv
+    if command -q uv
+        uv self update
+    end
+    # Check and update bun
+    if command -q bun
+        bun upgrade
+    end
+    # Check and update opencode
+    if command -q opencode
+        opencode upgrade
+    end
+    # Check and update copilot
+    if command -q copilot
+        copilot update
+    end
+    # Combined check: check if bun exists, if gemini-cli is installed and update gemini-cli
+    if command -q bun; and bun pm ls -g | string match -q "*@google/gemini-cli*"
+        bun pm -g trust @google/gemini-cli
+        bun add -g @google/gemini-cli@latest
+    end
 end
 
 # Run last command with sudo (like "please do it")
