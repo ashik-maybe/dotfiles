@@ -17,12 +17,12 @@
 	// =========================================================
 	// ✍️ EDITOR — FONT / CURSOR
 	// =========================================================
-	"editor.fontFamily": "JetBrainsMonoNerdFont, monospace",
+	"editor.fontFamily": "JetBrains Mono Nerd Font, monospace",
 	"editor.fontSize": 16,
 	"editor.lineHeight": 24,
 	"editor.fontLigatures": true,
 
-	"editor.cursorStyle": "line",
+	"editor.cursorStyle": "bar",
 	"editor.cursorBlinking": "blink",
 
 	// =========================================================
@@ -48,8 +48,8 @@
 	"editor.guides.bracketPairs": "active",
 	"editor.guides.highlightActiveBracketPair": true,
 
-	"editor.bracketPairColorization.enabled": true,
-	"editor.occurrencesHighlight": "multiFile",
+	"editor.bracketPairColorization.enabled": false,
+	"editor.occurrencesHighlight": "singleFile",
 
 	"editor.rulers": [80, 120],
 
@@ -60,13 +60,10 @@
 	// ⚡ EDITOR — SAVE / FORMAT
 	// =========================================================
 	"editor.formatOnSave": true,
-	"editor.formatOnPaste": true,
-	"editor.formatOnType": true,
+	"editor.formatOnPaste": false,
+	"editor.formatOnType": false,
 
 	"editor.codeActionsOnSave": {
-		// "source.fixAll.eslint": "always",
-		// "source.organizeImports.eslint": "always"
-
 		"source.fixAll.biome": "explicit",
 		"source.organizeImports.biome": "explicit"
 	},
@@ -77,7 +74,7 @@
 	"editor.quickSuggestions": {
 		"comments": true,
 		"strings": true,
-		"other": true
+		"other": false
 	},
 
 	"editor.suggestSelection": "first",
@@ -95,19 +92,17 @@
 	"editor.hover.delay": 500,
 
 	// =========================================================
-	// 🤖 AI / COPILOT
+	// 🤖 AI
 	// =========================================================
-	"chat.mcp.gallery.enabled": true,
-
-	"editor.inlineSuggest.enabled": true,
-
+	"chat.mcp.gallery.enabled": false,
+	"editor.inlineSuggest.enabled": false,
 	"github.copilot.enable": {
-		"*": true,
+		"*": false,
 		"plaintext": false,
 		"markdown": false,
 		"scminput": false
 	},
-	"github.copilot.nextEditSuggestions.enabled": true,
+	"github.copilot.nextEditSuggestions.enabled": false,
 
 	// =========================================================
 	// 📂 FILES
@@ -116,7 +111,7 @@
 	"files.trimTrailingWhitespace": true,
 	"files.eol": "\n",
 
-	"files.autoSave": "afterDelay",
+	"files.autoSave": "onFocusChange",
 	"files.autoSaveDelay": 1000,
 
 	"files.exclude": {
@@ -128,22 +123,16 @@
 		"**/.next": true
 	},
 
-	// Reduce filesystem watcher overhead
 	"files.watcherExclude": {
 		"**/.git/objects/**": true,
 		"**/.git/subtree-cache/**": true,
-		// Node ecosystem
 		"**/node_modules/*/**": true,
-		// Next.js
 		"**/.next/**": true,
-		// Expo / React Native
 		"**/.expo/**": true,
 		"**/.expo-shared/**": true,
-		// Build / test outputs
 		"**/dist/**": true,
 		"**/build/**": true,
 		"**/coverage/**": true,
-		// Package manager caches
 		"**/.npm/**": true,
 		"**/.pnpm-store/**": true,
 		"**/.yarn/**": true,
@@ -165,22 +154,33 @@
 	// 🔍 SEARCH
 	// =========================================================
 	"search.smartCase": true,
+	"search.exclude": {
+		"**/node_modules": true,
+		"**/bower_components": true,
+		"**/.code-search": true,
+		"**/dist": true,
+		"**/build": true,
+		"**/.next": true,
+		"**/coverage": true
+	},
 
 	// =========================================================
 	// 🧩 GIT
 	// =========================================================
-	"git.autofetch": true,
+	"git.autofetch": false,
+	"git.autorefresh": false,
 
-	"gitlens.codeLens.enabled": true,
+	"gitlens.codeLens.enabled": false,
 	"gitlens.hovers.currentLine.over": "line",
 
 	// =========================================================
-	// 🖥 TERMINAL
+	// 💻 TERMINAL
 	// =========================================================
-	"terminal.integrated.fontFamily": "IntoneMonoNerdFont, monospace",
+	"terminal.integrated.fontFamily": "JetBrains Mono Nerd Font, monospace",
 	"terminal.integrated.fontSize": 14,
 	"terminal.integrated.cursorBlinking": true,
 	"terminal.integrated.scrollback": 10000,
+	"terminal.integrated.rendererType": "dom",
 
 	// =========================================================
 	// 🔥 JAVASCRIPT / TYPESCRIPT
@@ -197,35 +197,12 @@
 	"typescript.suggest.autoImports": true,
 	"javascript.suggest.autoImports": true,
 
-	"typescript.inlayHints.parameterNames.enabled": "literals",
-	"typescript.inlayHints.enumMemberValues.enabled": true,
+	"typescript.inlayHints.parameterNames.enabled": "none",
+	"typescript.inlayHints.enumMemberValues.enabled": false,
 
 	"typescript.tsserver.maxTsServerMemory": 1024,
 	"typescript.tsserver.log": "off",
-
-	"totalTypeScript.hideAllTips": false,
-	"totalTypeScript.hideBasicTips": false,
-
-	// =========================================================
-	// 🌐 FORMATTERS
-	// =========================================================
-
-	// ---------- PRETTIER ----------
-	// "editor.defaultFormatter": "esbenp.prettier-vscode",
-	// "[javascript][javascriptreact][typescript][typescriptreact][json][jsonc][html][css][markdown]": {
-	// 	"editor.defaultFormatter": "esbenp.prettier-vscode"
-	// },
-
-	// ---------- SVELTE ----------
-	// "[svelte]": {
-	// 	"editor.defaultFormatter": "svelte.svelte-vscode"
-	// },
-
-	// ---------- BIOME ----------
-	"editor.defaultFormatter": "biomejs.biome",
-	"[javascript][javascriptreact][typescript][typescriptreact][json][jsonc][html][css][markdown]": {
-		"editor.defaultFormatter": "biomejs.biome"
-	},
+	"typescript.disableAutomaticTypeAcquisition": true,
 
 	// =========================================================
 	// 🐍 PYTHON
@@ -246,9 +223,15 @@
 	"python.testing.unittestEnabled": true,
 
 	// =========================================================
-	// 🔒 PRIVACY / UPDATES
+	// ⚡ PERFORMANCE
 	// =========================================================
-	"telemetry.telemetryLevel": "error",
+	"files.maxMemoryForLargeFilesMB": 2048,
+	"window.restoreWindows": "all",
+
+	// =========================================================
+	// 🔒 PRIVACY
+	// =========================================================
+	"telemetry.telemetryLevel": "off",
 	"redhat.telemetry.enabled": false,
 
 	"update.mode": "manual",
