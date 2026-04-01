@@ -28,29 +28,37 @@ alias zj='zellij --layout compact'       # zellij: user-friendly terminal multip
 # Upgrades all the packages
 function upgrade-everything
     # System and Flatpak updates
+    echo -e "\n📦 Updating System and Flatpaks..."
     sudo dnf upgrade --refresh -y
     flatpak upgrade -y
-    # Check and update uv
+
     if command -q uv
+        echo -e "\n🐍 Upgrading uv and all Python tools..."
         uv self update
+        uv tool upgrade --all
     end
-    # Check and update bun
     if command -q bun
+        echo -e "\n⚡ Upgrading Bun and global packages..."
         bun upgrade
+        # Reinstall global packages at @latest
+        for pkg in (bun pm ls -g | string match -rg '@?[\w\-/]+(?=@)')
+            bun add -g "$pkg@latest"
+        end
     end
-    # Check and update opencode
     if command -q opencode
+        echo -e "\n🔓 Upgrading OpenCode..."
         opencode upgrade
     end
-    # Check and update copilot
     if command -q copilot
+        echo -e "\n🤖 Upgrading Copilot CLI..."
         copilot update
     end
-    # Combined check: check if bun exists, if gemini-cli is installed and update gemini-cli
     if command -q bun; and bun pm ls -g | string match -q "*@google/gemini-cli*"
+        echo -e "\n💎 Refreshing Gemini CLI..."
         bun pm -g trust @google/gemini-cli
         bun add -g @google/gemini-cli@latest
     end
+    echo -e "\n✨ All systems are weightless.\n"
 end
 
 # Run last command with sudo (like "please do it")

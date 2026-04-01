@@ -1,0 +1,70 @@
+# =========================================================
+# 🎨 THEME & UI
+# =========================================================
+theme = "catppuccin_mocha"
+
+[editor]
+line-number = "relative"
+cursorline = true
+mouse = true
+color-modes = true       # Shows a colored box for the current mode (Normal/Insert/etc)
+true-color = true        # Required for proper Catppuccin rendering
+bufferline = "multiple"  # Shows open tabs at the top
+scrolloff = 5
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"
+
+[editor.file-pickers]
+hidden = false           # Show dotfiles in the picker
+
+# =========================================================
+# ✍️ EDITOR BEHAVIOR
+# =========================================================
+[editor.indent-guides]
+render = true
+character = "┊"
+
+[editor.statusline]
+left = ["mode", "spacer", "spinner", "file-name", "file-modification-indicator"]
+center = ["diagnostics"]
+right = ["selections", "primary-selection-length", "position", "position-percentage", "spacer", "file-encoding", "file-line-ending", "file-type"]
+mode.normal = "NORMAL"
+mode.insert = "INSERT"
+mode.select = "SELECT"
+
+[editor.lsp]
+display-messages = true
+display-inlay-hints = true # Great for TypeScript/Python types
+
+[editor.soft-wrap]
+enable = true
+
+# =========================================================
+# ⌨️ KEYMAPS (Custom Shortcuts)
+# =========================================================
+[keys.normal]
+# Quick save/quit like a pro
+"C-s" = ":w"
+"C-q" = ":q"
+
+# Move lines up/down (Alt + j/k)
+"A-j" = ["extend_to_line_bounds", "delete_selection", "paste_after"]
+"A-k" = ["extend_to_line_bounds", "delete_selection", "move_line_up", "paste_before"]
+
+# Buffer navigation (Tab / Shift-Tab)
+"tab" = ":buffer-next"
+"S-tab" = ":buffer-previous"
+
+# Select all
+"C-a" = ["select_all"]
+
+# =========================================================
+# 📂 SEARCH & FIND
+# =========================================================
+[keys.normal.space]
+f = "file_picker"
+g = "global_search"
+b = "buffer_picker"

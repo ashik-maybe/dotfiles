@@ -1,0 +1,40 @@
+{
+  "$schema": "https://raw.githubusercontent.com/google-gemini/gemini-cli/main/schemas/settings.schema.json",
+  "general": {
+    "defaultApprovalMode": "plan",
+    "checkpointing": {
+      "enabled": false
+    },
+    "plan": {
+      "enabled": true,
+      "modelRouting": true
+    },
+    "enableAutoUpdate": false,
+    "enableAutoUpdateNotification": true
+  },
+  "model": {
+    "maxSessionTurns": 50,
+    "compressionThreshold": 0.4,
+    "disableLoopDetection": false,
+    "summarizeToolOutput": {
+      "run_shell_command": {
+        "tokenBudget": 1000
+      }
+    }
+  },
+  "ui": {
+    "compactToolOutput": true,
+    "hideBanner": true,
+    "showMemoryUsage": true,
+    "loadingPhrases": "off",
+    "footer": {
+      "hideContextPercentage": false
+    },
+    "showLineNumbers": true
+  },
+  "security": {
+    "auth": {
+      "selectedType": "oauth-personal"
+    }
+  }
+}

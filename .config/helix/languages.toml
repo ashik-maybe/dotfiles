@@ -1,0 +1,91 @@
+# =========================================================
+# 🚀 INSTALLATION:
+# bun add -g @biomejs/biome @vtsls/language-server typescript
+# uv tool install pyright ruff
+# =========================================================
+
+# 🦀 BIOME (Rust-based Formatter/Linter)
+[language-server.biome]
+command = "biome"
+args = ["lsp-proxy"]
+
+# 🐍 RUFF (Rust-based Python Server)
+[language-server.ruff]
+command = "ruff"
+args = ["server"]
+config = { settings = { fixAll = true, organizeImports = true } }
+
+# ⚡ VTSLS (Optimized TypeScript LSP)
+[language-server.vtsls]
+command = "vtsls"
+args = ["--stdio"]
+config = {
+  typescript = { tsserver = { maxTsServerMemory = 2048 } },
+  vtsls = { autoUseWorkspaceTsdk = true }
+}
+
+# 🔍 PYRIGHT (Python Type Checking)
+[language-server.pyright]
+command = "pyright-langserver"
+args = ["--stdio"]
+
+# =========================================================
+# 🌐 LANGUAGE CONFIGURATIONS
+# =========================================================
+
+[[language]]
+name = "typescript"
+scope = "source.ts"
+injection-regex = "ts"
+file-types = ["ts", "tsx"]
+# Biome for speed, VTSLS for types. No slow fallbacks.
+language-servers = [
+  { name = "biome" },
+  { name = "vtsls", except-features = ["format"] }
+]
+auto-format = true
+
+[[language]]
+name = "tsx"
+scope = "source.tsx"
+injection-regex = "tsx"
+file-types = ["tsx"]
+language-servers = [
+  { name = "biome" },
+  { name = "vtsls", except-features = ["format"] }
+]
+auto-format = true
+
+[[language]]
+name = "javascript"
+scope = "source.js"
+injection-regex = "js"
+file-types = ["js", "mjs", "cjs"]
+language-servers = [
+  { name = "biome" },
+  { name = "vtsls", except-features = ["format"] }
+]
+auto-format = true
+
+[[language]]
+name = "python"
+scope = "source.python"
+injection-regex = "python"
+file-types = ["py"]
+# Pyright for intelligence, Ruff for instant formatting
+language-servers = [ { name = "pyright" }, { name = "ruff" } ]
+auto-format = true
+indent = { tab-width = 4, unit = "    " }
+
+[[language]]
+name = "json"
+scope = "source.json"
+injection-regex = "json"
+file-types = ["json", "jsonc"]
+language-servers = [ { name = "biome" } ]
+auto-format = true
+
+[[language]]
+name = "toml"
+name = "toml"
+auto-format = true
