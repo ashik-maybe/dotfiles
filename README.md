@@ -25,7 +25,7 @@ sudo dnf install fish
 Install CLI tools:
 
 ```bash
-sudo dnf install bat btop dust duf fastfetch fd-find fzf lsd ripgrep zoxide stow
+sudo dnf install bat btop dust duf fastfetch fd-find fzf lsd ripgrep zoxide pigz pixz p7zip p7zip-plugins unrar stow
 ```
 
 ### 3. Set Fish as Your Default Shell
@@ -102,7 +102,6 @@ _An installer for the systems programming language Rust_
 ```bash
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 ```
-
 
 ### [mise-en-place](https://mise.jdx.dev/)
 

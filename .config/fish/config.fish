@@ -25,6 +25,9 @@ set -gx ANDROID_HOME ~/Android/Sdk
 fish_add_path -g -p $ANDROID_HOME/tools
 fish_add_path -g -p $ANDROID_HOME/platform-tools
 
+# Flutter SDK
+fish_add_path ~/develop/flutter/bin
+
 # 📜 History
 set -g fish_history 20000
 

@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# x - Extract archives
+# x - Extract archives (Optimized for Multi-threading)
 #
 
 set -euo pipefail
@@ -9,15 +9,14 @@ readonly CYAN='\033[0;36m'
 readonly GREEN='\033[0;32m'
 readonly YELLOW='\033[1;33m'
 readonly RED='\033[0;31m'
-readonly DIM='\033[2m'
 readonly NC='\033[0m'
 
 log() {
-  printf '%b%-%10s %s%b\n' "${CYAN}" "$1" "$2" "${NC}"
+  printf '%b%-10s %s%b\n' "${CYAN}" "$1" "$2" "${NC}"
 }
 
 result() {
-  printf '%b%-%10s %s%b\n' "${GREEN}" "$1" "$2" "${NC}"
+  printf '%b%-10s %s%b\n' "${GREEN}" "$1" "$2" "${NC}"
 }
 
 error() {
@@ -34,9 +33,10 @@ if [[ $# -eq 0 ]] || [[ "$1" == "-h" ]] || [[ "$1" == "--help" ]]; then
   show_help
 fi
 
-for cmd in unzip unrar 7z; do
+# Check for multi-threaded tools
+for cmd in pigz pixz unzip unrar 7z; do
   if ! command -v "$cmd" &>/dev/null; then
-    printf '%bWarning: %s not found%b\n' "${YELLOW}" "$cmd" "${NC}" >&2
+    printf '%bWarning: %s not found (Recommended for speed)%b\n' "${YELLOW}" "$cmd" "${NC}" >&2
   fi
 done
 
@@ -54,7 +54,6 @@ extract_file() {
   target_dir="${filename%%.*}"
 
   mkdir -p "$target_dir" || error "Failed to create target directory '$target_dir'."
-
   file_size=$(stat -c%s "$file" 2>/dev/null || stat -f%z "$file" 2>/dev/null)
 
   log "Input:" "$filename"
@@ -64,23 +63,28 @@ extract_file() {
   start_time=$(date +%s)
 
   case "$file" in
-    *.tar.*|*.tar)
+    *.tar.gz|*.tgz)
+      if command -v pigz &>/dev/null; then
+        tar -I pigz -xf "$file" -C "$target_dir"
+      else
+        tar -xzf "$file" -C "$target_dir"
+      fi
+      ;;
+    *.tar.xz|*.txz)
+      if command -v pixz &>/dev/null; then
+        tar -I pixz -xf "$file" -C "$target_dir"
+      else
+        tar -xJf "$file" -C "$target_dir"
+      fi
+      ;;
+    *.tar)
       tar -xf "$file" -C "$target_dir"
       ;;
     *.gz)
-      gunzip -c "$file" > "$target_dir/${filename%.gz}"
-      ;;
-    *.bz2)
-      bunzip2 -c "$file" > "$target_dir/${filename%.bz2}"
+      command -v pigz &>/dev/null && pigz -dc "$file" > "$target_dir/${filename%.gz}" || gunzip -c "$file" > "$target_dir/${filename%.gz}"
       ;;
     *.xz)
-      unxz -c "$file" > "$target_dir/${filename%.xz}"
-      ;;
-    *.lzma)
-      unlzma -c "$file" > "$target_dir/${filename%.lzma}"
-      ;;
-    *.Z)
-      uncompress -c "$file" > "$target_dir/${filename%.Z}"
+      command -v pixz &>/dev/null && pixz -dc "$file" > "$target_dir/${filename%.xz}" || unxz -c "$file" > "$target_dir/${filename%.xz}"
       ;;
     *.zip)
       unzip -q "$file" -d "$target_dir"
