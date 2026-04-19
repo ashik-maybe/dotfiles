@@ -1,205 +1,126 @@
 "$schema" = 'https://starship.rs/config-schema.json'
 
-[aws]
-symbol = " "
+# --- LAYOUT ---
+format = """
+$container$username$hostname$directory$git_branch$git_status$python$nodejs$bun$docker_context$jobs$cmd_duration$status$memory_usage
+$character"""
 
-[buf]
-symbol = " "
+right_format = """$time"""
+
+[character]
+success_symbol = "[❯](bold green)"
+error_symbol = "[❯](bold red)"
+
+[directory]
+style = "bold cyan"
+truncation_length = 3
+truncate_to_repo = true
+# fish_style_pwd_dir_length = 1
+
+# --- VIRTUALIZATION & REMOTE ---
+[container]
+symbol = "⬢ "
+format = "[$symbol ($name)]($style) "
+style = "bold magenta"
+
+[username]
+style_user = "white bold"
+style_root = "black bold"
+format = "[$user]($style) "
+disabled = false
+show_always = false
+
+[hostname]
+ssh_only = true
+format = "on [$hostname]($style) "
+style = "bold dim white"
+
+# --- GIT ---
+[git_branch]
+symbol = " "
+style = "bold purple"
+
+[git_status]
+format = "([$all_status$ahead_behind]($style) )"
+conflicted = "="
+ahead = "⇡"
+behind = "⇣"
+diverged = "⇕"
+untracked = "?"
+stashed = "$"
+modified = "!"
+staged = "+"
+renamed = "»"
+deleted = "✘"
+
+# --- LANGUAGES ---
+[python]
+symbol = " "
+# Detect uv-specific files
+detect_files = ["uv.lock", "pyproject.toml"]
+# Added detection for the local virtualenv folder
+detect_folders = [".venv"]
+# format: includes version and the virtualenv name if active
+format = "via [${symbol}${pyenv_prefix}(${version} )(\\($virtualenv\\) )]($style)"
+style = "yellow"
+# Optional: Hide the default system python if no venv is active
+# pyenv_version_name = true
 
 [bun]
 symbol = " "
-
-[c]
-symbol = " "
-
-[cpp]
-symbol = " "
-
-[cmake]
-symbol = " "
-
-[conda]
-symbol = " "
-
-[crystal]
-symbol = " "
-
-[dart]
-symbol = " "
-
-[deno]
-symbol = " "
-
-[directory]
-read_only = " 󰌾"
-
-[docker_context]
-symbol = " "
-
-[elixir]
-symbol = " "
-
-[elm]
-symbol = " "
-
-[fennel]
-symbol = " "
-
-[fortran]
-symbol = " "
-
-[fossil_branch]
-symbol = " "
-
-[gcloud]
-symbol = " "
-
-[git_branch]
-symbol = " "
-
-[git_commit]
-tag_symbol = '  '
-
-[golang]
-symbol = " "
-
-[gradle]
-symbol = " "
-
-[guix_shell]
-symbol = " "
-
-[haskell]
-symbol = " "
-
-[haxe]
-symbol = " "
-
-[hg_branch]
-symbol = " "
-
-[hostname]
-ssh_symbol = " "
-
-[java]
-symbol = " "
-
-[julia]
-symbol = " "
-
-[kotlin]
-symbol = " "
-
-[lua]
-symbol = " "
-
-[memory_usage]
-symbol = "󰍛 "
-
-[meson]
-symbol = "󰔷 "
-
-[nim]
-symbol = "󰆥 "
-
-[nix_shell]
-symbol = " "
+detect_files = ["bun.lock", "bun.lockb"]
+format = "[$symbol($version )]($style)"
+style = "bold hex:fbf0df"
 
 [nodejs]
 symbol = " "
+detect_files = ["package-lock.json"] # Triggers on NPM lock
+format = "[$symbol($version )]($style)"
+style = "green"
 
-[ocaml]
-symbol = " "
+# --- TOOLS ---
+[docker_context]
+symbol = " "
+format = "[$symbol]($style) "
+style = "blue"
 
-[os.symbols]
-Alpaquita = " "
-Alpine = " "
-AlmaLinux = " "
-Amazon = " "
-Android = " "
-AOSC = " "
-Arch = " "
-Artix = " "
-CachyOS = " "
-CentOS = " "
-Debian = " "
-DragonFly = " "
-Elementary = " "
-Emscripten = " "
-EndeavourOS = " "
-Fedora = " "
-FreeBSD = " "
-Garuda = "󰛓 "
-Gentoo = " "
-HardenedBSD = "󰞌 "
-Illumos = "󰈸 "
-Ios = "󰀷 "
-Kali = " "
-Linux = " "
-Mabox = " "
-Macos = " "
-Manjaro = " "
-Mariner = " "
-MidnightBSD = " "
-Mint = " "
-NetBSD = " "
-NixOS = " "
-Nobara = " "
-OpenBSD = "󰈺 "
-openSUSE = " "
-OracleLinux = "󰌷 "
-Pop = " "
-Raspbian = " "
-Redhat = " "
-RedHatEnterprise = " "
-RockyLinux = " "
-Redox = "󰀘 "
-Solus = "󰠳 "
-SUSE = " "
-Ubuntu = " "
-Unknown = " "
-Void = " "
-Windows = "󰍲 "
-Zorin = " "
+# --- PERFORMANCE & STATUS ---
+[cmd_duration]
+min_time = 2000
+format = "took [󱎫 $duration]($style) "
+style = "dimmed yellow"
 
-[package]
-symbol = "󰏗 "
-
-[perl]
-symbol = " "
-
-[php]
-symbol = " "
-
-[pijul_channel]
-symbol = " "
-
-[pixi]
-symbol = "󰏗 "
-
-[python]
-symbol = " "
-
-[rlang]
-symbol = "󰟔 "
-
-[ruby]
-symbol = " "
-
-[rust]
-symbol = "󱘗 "
-
-[scala]
-symbol = " "
+[jobs]
+symbol = "󱗼 "
+number_threshold = 1
+format = "[$symbol$number]($style) "
+style = "bold orange"
 
 [status]
-symbol = " "
+disabled = false
+symbol = "✘"
+format = '[$symbol $common_meaning$exit_code]($style) '
+map_symbol = true
+pipestatus = true
+style = "bold red"
 
-[swift]
-symbol = " "
+# --- HARDWARE ---
+[memory_usage]
+disabled = false
+threshold = 80
+symbol = "󰍛 "
+style = "bold dimmed red"
+format = "mem [$symbol$percentage]($style) "
 
-[xmake]
-symbol = " "
+[battery]
+full_symbol = "󰁹 "
+charging_symbol = "󰂄 "
+discharging_symbol = "󰂃 "
+display = [{ threshold = 15, style = "bold red" }]
 
-[zig]
-symbol = " "
+# --- TIME ---
+[time]
+disabled = false
+time_format = "%I:%M"
+format = "[$time]($style)"
+style = "dimmed white"
