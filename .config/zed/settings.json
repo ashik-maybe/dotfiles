@@ -15,6 +15,14 @@
   "ui_font_family": ".ZedSans",
   "ui_font_size": 15,
   "ui_font_weight": 400,
+    "outline_panel": {
+    "dock": "left"
+  },
+  "agent": {
+    "dock": "right",
+    "favorite_models": [],
+    "model_parameters": []
+  },
 
   // ═══════════════════════════════════════════════════════════
   // ✍️ EDITOR — FONTS, CURSOR, VISUALS

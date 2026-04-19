@@ -6,7 +6,6 @@
 	"workbench.preferredLightColorTheme": "Catppuccin Latte",
 	"workbench.preferredDarkColorTheme": "Catppuccin Mocha",
 	"workbench.iconTheme": "material-icon-theme",
-
 	"workbench.startupEditor": "welcomePage",
 	"workbench.sideBar.location": "right",
 	"workbench.activityBar.location": "top",
@@ -22,7 +21,7 @@
 	"editor.lineHeight": 24,
 	"editor.fontLigatures": true,
 
-	"editor.cursorStyle": "bar",
+	"editor.cursorStyle": "line",
 	"editor.cursorBlinking": "blink",
 
 	// =========================================================
@@ -253,5 +252,9 @@
 	// =========================================================
 	// 🧩 EXTENSIONS
 	// =========================================================
-	"tailwindCSS.classAttributes": ["class", "className", "headerClassName"]
+	"tailwindCSS.classAttributes": [
+		"class",
+		"className",
+		"headerClassName"
+	],
 }
