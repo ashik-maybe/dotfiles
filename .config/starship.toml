@@ -1,126 +1,50 @@
 "$schema" = 'https://starship.rs/config-schema.json'
 
-# --- LAYOUT ---
 format = """
-$container$username$hostname$directory$git_branch$git_status$python$nodejs$bun$docker_context$jobs$cmd_duration$status$memory_usage
+$username\
+$hostname\
+$directory\
+$git_branch\
+$git_state\
+$git_status\
+$cmd_duration\
+$line_break\
+$python\
 $character"""
 
-right_format = """$time"""
-
-[character]
-success_symbol = "[❯](bold green)"
-error_symbol = "[❯](bold red)"
-
 [directory]
-style = "bold cyan"
-truncation_length = 3
-truncate_to_repo = true
-# fish_style_pwd_dir_length = 1
-
-# --- VIRTUALIZATION & REMOTE ---
-[container]
-symbol = "⬢ "
-format = "[$symbol ($name)]($style) "
-style = "bold magenta"
-
-[username]
-style_user = "white bold"
-style_root = "black bold"
-format = "[$user]($style) "
-disabled = false
-show_always = false
-
-[hostname]
-ssh_only = true
-format = "on [$hostname]($style) "
-style = "bold dim white"
-
-# --- GIT ---
-[git_branch]
-symbol = " "
-style = "bold purple"
-
-[git_status]
-format = "([$all_status$ahead_behind]($style) )"
-conflicted = "="
-ahead = "⇡"
-behind = "⇣"
-diverged = "⇕"
-untracked = "?"
-stashed = "$"
-modified = "!"
-staged = "+"
-renamed = "»"
-deleted = "✘"
-
-# --- LANGUAGES ---
-[python]
-symbol = " "
-# Detect uv-specific files
-detect_files = ["uv.lock", "pyproject.toml"]
-# Added detection for the local virtualenv folder
-detect_folders = [".venv"]
-# format: includes version and the virtualenv name if active
-format = "via [${symbol}${pyenv_prefix}(${version} )(\\($virtualenv\\) )]($style)"
-style = "yellow"
-# Optional: Hide the default system python if no venv is active
-# pyenv_version_name = true
-
-[bun]
-symbol = " "
-detect_files = ["bun.lock", "bun.lockb"]
-format = "[$symbol($version )]($style)"
-style = "bold hex:fbf0df"
-
-[nodejs]
-symbol = " "
-detect_files = ["package-lock.json"] # Triggers on NPM lock
-format = "[$symbol($version )]($style)"
-style = "green"
-
-# --- TOOLS ---
-[docker_context]
-symbol = " "
-format = "[$symbol]($style) "
 style = "blue"
 
-# --- PERFORMANCE & STATUS ---
+[character]
+success_symbol = "[❯](purple)"
+error_symbol = "[❯](red)"
+vimcmd_symbol = "[❮](green)"
+
+[git_branch]
+format = "[$branch]($style)"
+style = "bright-black"
+
+[git_status]
+format = "[[(*$conflicted$untracked$modified$staged$renamed$deleted)](218) ($ahead_behind$stashed)]($style)"
+style = "cyan"
+conflicted = "​"
+untracked = "​"
+modified = "​"
+staged = "​"
+renamed = "​"
+deleted = "​"
+stashed = "≡"
+
+[git_state]
+format = '\([$state( $progress_current/$progress_total)]($style)\) '
+style = "bright-black"
+
 [cmd_duration]
-min_time = 2000
-format = "took [󱎫 $duration]($style) "
-style = "dimmed yellow"
+format = "[$duration]($style) "
+style = "yellow"
 
-[jobs]
-symbol = "󱗼 "
-number_threshold = 1
-format = "[$symbol$number]($style) "
-style = "bold orange"
-
-[status]
-disabled = false
-symbol = "✘"
-format = '[$symbol $common_meaning$exit_code]($style) '
-map_symbol = true
-pipestatus = true
-style = "bold red"
-
-# --- HARDWARE ---
-[memory_usage]
-disabled = false
-threshold = 80
-symbol = "󰍛 "
-style = "bold dimmed red"
-format = "mem [$symbol$percentage]($style) "
-
-[battery]
-full_symbol = "󰁹 "
-charging_symbol = "󰂄 "
-discharging_symbol = "󰂃 "
-display = [{ threshold = 15, style = "bold red" }]
-
-# --- TIME ---
-[time]
-disabled = false
-time_format = "%I:%M"
-format = "[$time]($style)"
-style = "dimmed white"
+[python]
+format = "[$virtualenv]($style) "
+style = "bright-black"
+detect_extensions = []
+detect_files = []
