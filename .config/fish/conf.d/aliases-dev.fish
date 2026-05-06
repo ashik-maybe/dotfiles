@@ -31,3 +31,4 @@ alias create-vite 'bun create vite@latest'          # Create Vite project
 alias create-next 'bun create next-app@latest' # Create Next.js project
 alias create-expo 'bun create expo-app@latest'      # Create Expo project
 alias create-fastapi 'uv init --app'       # Modern FastAPI scaffold with uv
+alias autoskills 'bunx autoskills'  # Auto-detect your tech stack and install the best AI agent skills for your project.
