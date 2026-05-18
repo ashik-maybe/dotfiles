@@ -1,80 +1,54 @@
 # ~/.config/starship.toml
-#
-# Credits & Attributions:
-# - Inspired by Sorin Ionescu's classic Prezto prompt theme
-#   https://github.com/mattmc3/zephyr/blob/main/plugins/prompt/themes/prezto.toml
+# Zephyr prompt
 
-# --- Global Engine Configuration ---
 add_newline = false
-scan_timeout = 10         # Core file-system timeout threshold in milliseconds
-command_timeout = 500     # Maximum execution time limit for background processes
+scan_timeout = 10
+command_timeout = 200
 
-# --- Prompt Layouts ---
-# Left prompt: Anchored cleanly to the left screen margin
 format = """$python$directory$character"""
-
-# Right prompt: Offloads system statuses cleanly to the right edge
 right_format = """$status$cmd_duration$git_branch$git_status"""
 
-# --- Left Prompt Modules ---
 [character]
-success_symbol = "[❯](red)[❯](yellow)[❯](green) "
-error_symbol = "[❯](bold red)[❯](bold red)[❯](bold orange) "
-vicmd_symbol = "[❮](green)[❮](yellow)[❮](red) "
-
-[directory]
-style = "bold blue"
-truncation_length = 3     # Limits visible parent depth to prevent running out of screen space
-truncation_symbol = "…/"
-read_only = " 󰌾"         # FIX: Removed the invalid 'scan_timeout' line from here
+success_symbol = "[❯](magenta)[❯](cyan)"
+error_symbol = "[❯](yellow)[❯](red)"
+vicmd_symbol = "[❮](magenta)[❮](cyan)"
 
 [python]
-symbol = "󱔎 "
-format = "[$symbol$virtualenv](white) "
-pyenv_version_name = false
+format = '[(\($virtualenv\) )]($style)'
+style = 'white'
 
-# --- Right Prompt Modules ---
+[directory]
+style = "blue"
+truncation_length = 1
+truncation_symbol = ""
+fish_style_pwd_dir_length = 1
+read_only = " 🔒"
+
 [git_branch]
-symbol = " "
-format = '[$symbol$branch]($style) '   # Explicit space separates the branch string from Git metadata
-style = 'bold green'
+format = ' [$branch]($style)'
+style = 'green'
 
 [git_status]
-format = '([$all_status$ahead_behind]($style))'
-style = 'bold text'
-ahead = '⇡'
-behind = '⇣'
-# Clean trailing spaces isolate multiple concurrent file states clearly
-staged = '[+ ](green)'
-deleted = '[- ](red)'
-renamed = '[→ ](purple)'
-stashed = '[* ](cyan)'
-untracked = '[? ](bright-black)'
-modified = '[! ](blue)'
-conflicted = '[= ](yellow)'
-diverged = '⇕'
-up_to_date = '[✓](bold green)'
-
-[status]
-disabled = false
-symbol = '✘ '
-style = 'bold red'
-format = '[$symbol$status]($style) '   # Space keeps exit errors from crowding adjacent modules
+format = '([$all_status$ahead_behind]($style) )'
+style = "cyan"
+stashed = "≡"
+ahead = "⇡${count}"
+behind = "⇣${count}"
+modified = "•"
+untracked = "•"
+staged = "•"
+ignore_submodules = true
 
 [cmd_duration]
-min_time = 2000
-style = "bold yellow"
-format = 'took [$duration]($style) '
+format = ' [$duration]($style)'
+style = "yellow"
+min_time = 1000
+show_milliseconds = false
 
 [line_break]
 disabled = true
 
-# --- Explicit Subsystem Disables ---
-[package]
-disabled = true
-[nodejs]
-disabled = true
-[rust]
-disabled = true
-[golang]
-disabled = true
+[status]
+disabled = false
+symbol = ' ✘'
+style = "red"
