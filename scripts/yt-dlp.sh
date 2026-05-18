@@ -55,7 +55,7 @@ video_opts() {
   echo --embed-thumbnail --add-metadata --embed-chapters \
     --write-subs --write-auto-subs --embed-subs \
     --sub-langs "en.*" --sub-format srt --skip-unavailable-fragments \
-    --ignore-errors --embed-info-json
+    --ignore-errors --embed-info-json --compat-options no-keep-subs
 }
 
 parse_args() {
