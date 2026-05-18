@@ -1,50 +1,80 @@
-"$schema" = 'https://starship.rs/config-schema.json'
+# ~/.config/starship.toml
+#
+# Credits & Attributions:
+# - Inspired by Sorin Ionescu's classic Prezto prompt theme
+#   https://github.com/mattmc3/zephyr/blob/main/plugins/prompt/themes/prezto.toml
 
-format = """
-$username\
-$hostname\
-$directory\
-$git_branch\
-$git_state\
-$git_status\
-$cmd_duration\
-$line_break\
-$python\
-$character"""
+# --- Global Engine Configuration ---
+add_newline = false
+scan_timeout = 10         # Core file-system timeout threshold in milliseconds
+command_timeout = 500     # Maximum execution time limit for background processes
+
+# --- Prompt Layouts ---
+# Left prompt: Anchored cleanly to the left screen margin
+format = """$python$directory$character"""
+
+# Right prompt: Offloads system statuses cleanly to the right edge
+right_format = """$status$cmd_duration$git_branch$git_status"""
+
+# --- Left Prompt Modules ---
+[character]
+success_symbol = "[❯](red)[❯](yellow)[❯](green) "
+error_symbol = "[❯](bold red)[❯](bold red)[❯](bold orange) "
+vicmd_symbol = "[❮](green)[❮](yellow)[❮](red) "
 
 [directory]
-style = "blue"
-
-[character]
-success_symbol = "[❯](purple)"
-error_symbol = "[❯](red)"
-vimcmd_symbol = "[❮](green)"
-
-[git_branch]
-format = "[$branch]($style)"
-style = "bright-black"
-
-[git_status]
-format = "[[(*$conflicted$untracked$modified$staged$renamed$deleted)](218) ($ahead_behind$stashed)]($style)"
-style = "cyan"
-conflicted = "​"
-untracked = "​"
-modified = "​"
-staged = "​"
-renamed = "​"
-deleted = "​"
-stashed = "≡"
-
-[git_state]
-format = '\([$state( $progress_current/$progress_total)]($style)\) '
-style = "bright-black"
-
-[cmd_duration]
-format = "[$duration]($style) "
-style = "yellow"
+style = "bold blue"
+truncation_length = 3     # Limits visible parent depth to prevent running out of screen space
+truncation_symbol = "…/"
+read_only = " 󰌾"         # FIX: Removed the invalid 'scan_timeout' line from here
 
 [python]
-format = "[$virtualenv]($style) "
-style = "bright-black"
-detect_extensions = []
-detect_files = []
+symbol = "󱔎 "
+format = "[$symbol$virtualenv](white) "
+pyenv_version_name = false
+
+# --- Right Prompt Modules ---
+[git_branch]
+symbol = " "
+format = '[$symbol$branch]($style) '   # Explicit space separates the branch string from Git metadata
+style = 'bold green'
+
+[git_status]
+format = '([$all_status$ahead_behind]($style))'
+style = 'bold text'
+ahead = '⇡'
+behind = '⇣'
+# Clean trailing spaces isolate multiple concurrent file states clearly
+staged = '[+ ](green)'
+deleted = '[- ](red)'
+renamed = '[→ ](purple)'
+stashed = '[* ](cyan)'
+untracked = '[? ](bright-black)'
+modified = '[! ](blue)'
+conflicted = '[= ](yellow)'
+diverged = '⇕'
+up_to_date = '[✓](bold green)'
+
+[status]
+disabled = false
+symbol = '✘ '
+style = 'bold red'
+format = '[$symbol$status]($style) '   # Space keeps exit errors from crowding adjacent modules
+
+[cmd_duration]
+min_time = 2000
+style = "bold yellow"
+format = 'took [$duration]($style) '
+
+[line_break]
+disabled = true
+
+# --- Explicit Subsystem Disables ---
+[package]
+disabled = true
+[nodejs]
+disabled = true
+[rust]
+disabled = true
+[golang]
+disabled = true
