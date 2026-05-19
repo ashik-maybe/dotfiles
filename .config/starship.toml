@@ -1,54 +1,79 @@
 # ~/.config/starship.toml
-# Zephyr prompt
+"$schema" = 'https://starship.rs/config-schema.json'
 
-add_newline = false
-scan_timeout = 10
-command_timeout = 200
+# Core Performance Tuning
+add_newline = true
+scan_timeout = 2                 # Absolute minimum timeout to prevent prompt lag
+command_timeout = 100            # Drop stalled subshells instantly
 
-format = """$python$directory$character"""
-right_format = """$status$cmd_duration$git_branch$git_status"""
+# Layout & Hierarchy
+# Line 1: Workspace context, environment runtimes, and execution telemetry
+# Line 2: Shell interaction character
+format = """$directory$git_branch$git_status$python$nodejs$bun$fill$cmd_duration
+$character"""
+right_format = ""
 
+# Prompt Symbols (Vi Mode Support)
 [character]
-success_symbol = "[❯](magenta)[❯](cyan)"
-error_symbol = "[❯](yellow)[❯](red)"
-vicmd_symbol = "[❮](magenta)[❮](cyan)"
+success_symbol = "[❯](bold magenta)[❯](bold cyan)"
+error_symbol = "[❯](bold yellow)[❯](bold red)"
+vicmd_symbol = "[❮](bold magenta)[❮](bold cyan)"
 
-[python]
-format = '[(\($virtualenv\) )]($style)'
-style = 'white'
-
+# File System & Navigation
 [directory]
-style = "blue"
-truncation_length = 1
+style = "bold cyan"
+truncation_length = 3
 truncation_symbol = ""
-fish_style_pwd_dir_length = 1
+fish_style_pwd_dir_length = 0
 read_only = " 🔒"
 
+# Telemetry Alignment
+[fill]
+symbol = " "
+
+# Version Control
 [git_branch]
-format = ' [$branch]($style)'
-style = 'green'
+symbol = " "
+style = "bold green"
+format = "on [$symbol$branch]($style) "
 
 [git_status]
-format = '([$all_status$ahead_behind]($style) )'
-style = "cyan"
+style = "bold yellow"
+format = "([\\[$all_status$ahead_behind\\]]($style) )"
+ahead = "⇡"
+behind = "⇣"
+diverged = "⇕"
+conflicted = "═"
 stashed = "≡"
-ahead = "⇡${count}"
-behind = "⇣${count}"
 modified = "•"
-untracked = "•"
-staged = "•"
-ignore_submodules = true
+staged = "+"
+renamed = "»"
+deleted = "-"
+untracked = "…"
 
+# Language Runtimes
+[python]
+symbol = " "
+style = "bold blue"
+format = "via [$symbol($version )(\\($virtualenv\\))]($style) "
+detect_extensions = ["py"]
+detect_files = [".python-version", "uv.lock", "pyproject.toml", "requirements.txt", "Pipfile", "poetry.lock"]
+
+[nodejs]
+symbol = " "
+style = "bold green"
+format = "via [$symbol($version)]($style) "
+detect_extensions = ["js", "ts", "jsx", "tsx"]
+detect_files = ["package.json", "package-lock.json", "yarn.lock", "pnpm-lock.yaml"]
+
+[bun]
+symbol = " "
+style = "bold xterm_209"
+format = "via [$symbol($version)]($style) "
+detect_files = ["bun.lock", "bun.lockb", "bunfig.toml"]
+
+# Command Telemetry
 [cmd_duration]
-format = ' [$duration]($style)'
-style = "yellow"
 min_time = 1000
-show_milliseconds = false
-
-[line_break]
-disabled = true
-
-[status]
-disabled = false
-symbol = ' ✘'
-style = "red"
+style = "bold yellow"
+format = "took [$duration]($style)"
