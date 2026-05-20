@@ -1,79 +1,85 @@
-# ~/.config/starship.toml
-"$schema" = 'https://starship.rs/config-schema.json'
+# ==============================================================================
+# Aura Minimal Starship Prompt
+# ==============================================================================
 
-# Core Performance Tuning
 add_newline = true
-scan_timeout = 30
-command_timeout = 500
+command_timeout = 200
 
-# Layout & Hierarchy
-# Line 1: Workspace context, environment runtimes, and execution telemetry
-# Line 2: Shell interaction character
-format = """$directory$git_branch$git_status$python$nodejs$bun$fill$cmd_duration
+# Primary Layout
+format = """
+$directory\
+$git_branch\
+$git_status\
+$line_break\
 $character"""
-right_format = ""
 
-# Prompt Symbols (Vi Mode Support)
+# Right Layout
+right_format = """$cmd_duration$time"""
+
 [character]
-success_symbol = "[❯](bold magenta)[❯](bold cyan)"
-error_symbol = "[❯](bold yellow)[❯](bold red)"
-vicmd_symbol = "[❮](bold magenta)[❮](bold cyan)"
+success_symbol = "[❯](bold #925fe9)"
+error_symbol = "[✗](bold #e05f65)"
 
-# File System & Navigation
 [directory]
-style = "bold cyan"
 truncation_length = 3
-truncation_symbol = ""
-fish_style_pwd_dir_length = 0
-read_only = " 🔒"
+truncation_symbol = "…/"
+repo_root_style = "bold #925fe9"
+format = "[$path]($style)[$read_only]($read_only_style) "
+repo_root_format = "[$repo_root]($repo_root_style)[$path]($style)[$read_only]($read_only_style) "
 
-# Telemetry Alignment
-[fill]
-symbol = " "
-
-# Version Control
 [git_branch]
-symbol = " "
-style = "bold green"
-format = "on [$symbol$branch]($style) "
+format = "on [$branch]($style) "
+style = "italic #925fe9"
 
 [git_status]
-style = "bold yellow"
-format = "([\\[$all_status$ahead_behind\\]]($style) )"
-ahead = "⇡"
-behind = "⇣"
-diverged = "⇕"
-conflicted = "═"
-stashed = "≡"
-modified = "•"
-staged = "+"
-renamed = "»"
-deleted = "-"
-untracked = "…"
+# Clean Spacing UX: We let the engine inject a single space strictly BETWEEN active statuses
+format     = '([$all_status]($style) )'
+style      = "#925fe9"
+ahead      = "⇡${count}"
+behind     = "box_down:${count}"
+diverged   = "⇕⇡${ahead_count}⇣${behind_count}"
+up_to_date = ""
+conflicted = ""
+untracked  = "?"
+modified   = ""
+staged     = "[+](dim #925fe9)"
+stashed    = "[⚑](dim #925fe9)"
+renamed    = "[→](dim #925fe9)"
+deleted    = "[×](dim #925fe9)"
 
-# Language Runtimes
-[python]
-symbol = " "
-style = "bold blue"
-format = "via [$symbol($version )(\\($virtualenv\\))]($style) "
-detect_extensions = ["py"]
-detect_files = [".python-version", "uv.lock", "pyproject.toml", "requirements.txt", "Pipfile", "poetry.lock"]
-
-[nodejs]
-symbol = " "
-style = "bold green"
-format = "via [$symbol($version)]($style) "
-detect_extensions = ["js", "ts", "jsx", "tsx"]
-detect_files = ["package.json", "package-lock.json", "yarn.lock", "pnpm-lock.yaml"]
-
-[bun]
-symbol = " "
-style = "bold xterm_209"
-format = "via [$symbol($version)]($style) "
-detect_files = ["bun.lock", "bun.lockb", "bunfig.toml"]
-
-# Command Telemetry
 [cmd_duration]
-min_time = 1000
-style = "bold yellow"
-format = "took [$duration]($style)"
+min_time = 2_000
+format = "[took $duration]($style) "
+style = "dim text"
+
+[time]
+disabled = false
+format = "[@ $time]($style) "
+time_format = "%I:%M"
+style = "dim text"
+
+[package]
+disabled = true
+
+# ==============================================================================
+# PARKED MODULES (Uncomment and add to layouts to reactivate)
+# ==============================================================================
+# [nodejs]
+# format = "[󰎙 $version]($style) "
+# style = "dim text"
+# detect_files = ["package.json"]
+
+# [python]
+# format = "[󱔎 $version]($style) "
+# style = "dim text"
+
+# [rust]
+# format = "[🦀 $version]($style) "
+# style = "dim text"
+
+# [docker_context]
+# format = "via [󰡨 $context](dim text) "
+
+# [aws]
+# format = "on [󰸏 $profile]($style) "
+# style = "dim text"
