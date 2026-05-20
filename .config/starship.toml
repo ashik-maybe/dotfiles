@@ -3,8 +3,8 @@
 
 # Core Performance Tuning
 add_newline = true
-scan_timeout = 20                # Absolute minimum timeout to prevent prompt lag
-command_timeout = 100            # Drop stalled subshells instantly
+scan_timeout = 30
+command_timeout = 500
 
 # Layout & Hierarchy
 # Line 1: Workspace context, environment runtimes, and execution telemetry
