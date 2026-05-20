@@ -1,85 +1,80 @@
-# ==============================================================================
-# Aura Minimal Starship Prompt
-# ==============================================================================
+"$schema" = 'https://starship.rs/config-schema.json'
 
+# --- CORE CONFIG ---
 add_newline = true
-command_timeout = 200
+scan_timeout = 10
+command_timeout = 500
 
-# Primary Layout
 format = """
-$directory\
-$git_branch\
-$git_status\
-$line_break\
+$os$directory$git_branch$git_status$git_state$fill$python$nodejs$bun$cmd_duration
 $character"""
 
-# Right Layout
-right_format = """$cmd_duration$time"""
-
+# --- SYSTEM & SHELL ---
 [character]
-success_symbol = "[❯](bold #925fe9)"
-error_symbol = "[✗](bold #e05f65)"
+success_symbol = "[❯](cyan)[❯](green)"
+error_symbol = "[❯](red)[❯](yellow)"
+vicmd_symbol = "[❮](magenta)[❮](purple)"
 
 [directory]
+style = "bold cyan"
 truncation_length = 3
 truncation_symbol = "…/"
-repo_root_style = "bold #925fe9"
-format = "[$path]($style)[$read_only]($read_only_style) "
-repo_root_format = "[$repo_root]($repo_root_style)[$path]($style)[$read_only]($read_only_style) "
+read_only = " 󰌾"
 
-[git_branch]
-format = "on [$branch]($style) "
-style = "italic #925fe9"
+[directory.substitutions]
+"~/Downloads" = "󰉍 "
+"~/Documents/projects" = "󰴉 "
 
-[git_status]
-# Clean Spacing UX: We let the engine inject a single space strictly BETWEEN active statuses
-format     = '([$all_status]($style) )'
-style      = "#925fe9"
-ahead      = "⇡${count}"
-behind     = "box_down:${count}"
-diverged   = "⇕⇡${ahead_count}⇣${behind_count}"
-up_to_date = ""
-conflicted = ""
-untracked  = "?"
-modified   = ""
-staged     = "[+](dim #925fe9)"
-stashed    = "[⚑](dim #925fe9)"
-renamed    = "[→](dim #925fe9)"
-deleted    = "[×](dim #925fe9)"
+[fill]
+symbol = " "
+style = "bold gray"
 
 [cmd_duration]
-min_time = 2_000
-format = "[took $duration]($style) "
-style = "dim text"
+min_time = 2000
+format = "[󱎫 $duration](bold yellow)"
 
-[time]
-disabled = false
-format = "[@ $time]($style) "
-time_format = "%I:%M"
-style = "dim text"
+# --- GIT ---
+[git_branch]
+symbol = "󰊢 "
+style = "bold magenta"
+format = "[$symbol$branch]($style) "
 
-[package]
-disabled = true
+[git_status]
+style = "bold red"
+format = '''([\[$all_status$ahead_behind\]]($style) )'''
 
-# ==============================================================================
-# PARKED MODULES (Uncomment and add to layouts to reactivate)
-# ==============================================================================
-# [nodejs]
-# format = "[󰎙 $version]($style) "
-# style = "dim text"
-# detect_files = ["package.json"]
+[git_state]
+style = "bold yellow"
+format = '''([$state( $progress_current/$progress_total)]($style) )'''
 
-# [python]
-# format = "[󱔎 $version]($style) "
-# style = "dim text"
+# --- LANGUAGES ---
+[python]
+symbol = "󱔎 "
+style = "bold blue"
+format = '''[$symbol($version )(\($virtualenv\) )]($style)'''
 
-# [rust]
-# format = "[🦀 $version]($style) "
-# style = "dim text"
+[nodejs]
+symbol = "󰎙 "
+style = "bold green"
+format = "[$symbol($version )]($style)"
 
-# [docker_context]
-# format = "via [󰡨 $context](dim text) "
+[bun]
+symbol = "󰛦 "
+style = "bold white"
+format = "[$symbol($version )]($style)"
 
-# [aws]
-# format = "on [󰸏 $profile]($style) "
-# style = "dim text"
+# --- CLOUD & VIRTUALIZATION ---
+[aws]
+symbol = "󰅟 "
+style = "bold yellow"
+format = "[$symbol($profile )]($style)"
+
+[docker_context]
+symbol = "󰡨 "
+style = "bold blue"
+format = "[$symbol$context]($style) "
+
+[kubernetes]
+symbol = "󱃾 "
+style = "bold cyan"
+format = '''[$symbol$context( \($namespace\))]($style) '''
