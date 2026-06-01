@@ -17,6 +17,10 @@ alias glog 'git log --oneline' # View history
 alias gmain 'git checkout main; or git checkout master' # Jump to main
 alias g- 'git checkout -'    # Go back to previous branch
 
+alias gfix 'git commit --amend --no-edit'       # Amends last commit without changing the message
+alias gpa 'git push origin --all'               # Pushes all local branches to remote origin
+alias gpla 'git fetch --all'                    # Safely pulls down the main branch
+
 # ------------------------------
 # Helpers
 # ------------------------------
