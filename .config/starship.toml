@@ -1,148 +1,126 @@
-# =============================================================================
-# STARSHIP PROMPT CONFIGURATION
-# Theme: Rosé Pine Moon (Modern Variant)
-# =============================================================================
+# ==============================================================================
+# Pure Prompt Adaptation
+# ==============================================================================
 
-"$schema" = 'https://starship.rs/config-schema.json'
+# Core Engine Timing & Geometry
+add_newline = true
+scan_timeout = 30
+command_timeout = 500
 
-# --- Core Prompt Layout ------------------------------------------------------
 format = """
 $username\
+$hostname\
 $directory\
 $git_branch\
 $git_status\
-$fill\
-$bun\
+$git_state\
+$git_metrics\
+$package\
 $nodejs\
-$conda\
+$bun\
 $python\
-$docker_context\
-$kubernetes\
+$fill\
 $aws\
-$cmd_duration\
-$status\
-$time\n  \
-[󱞪](fg:iris) \
-"""
+$kubernetes\
+$docker_context\
+$cmd_duration
+$character"""
 
-# --- Color Palette (Rosé Pine Moon) ------------------------------------------
-palette = "rose-pine-moon"
+continuation_prompt = '[❯❯ ](bold gray)'
 
-[palettes.rose-pine-moon]
-overlay = '#393552'
-love    = '#eb6f92'
-gold    = '#f6c177'
-rose    = '#ea9a97'
-pine    = '#3e8fb0'
-foam    = '#9ccfd8'
-iris    = '#c4a7e7'
-
-# --- Core Identity & Navigation ----------------------------------------------
-[username]
-disabled     = false
-show_always  = true
-format       = "[](fg:overlay)[ 󰧱 $user ]($style)[](fg:overlay) "
-style_root   = "bg:overlay fg:iris"
-style_user   = "bg:overlay fg:iris"
-
-[directory]
-format             = "[](fg:overlay)[ $path ]($style)[](fg:overlay) "
-style              = "bg:overlay fg:pine"
-truncation_length  = 3
-truncation_symbol  = "…/"
-
-[directory.substitutions]
-Documents = "󰈙"
-Downloads = " "
-Music     = " "
-Pictures  = " "
-
-# --- Dynamic Interface Spacing ----------------------------------------------
 [fill]
-style  = "fg:overlay"
-symbol = " "
+symbol = ' '
 
-# --- Version Control Systems --------------------------------------------------
+# Primary Prompt Symbols (Line 2)
+[character]
+success_symbol = '[❯](bold magenta)'
+error_symbol   = '[❯](bold red)'
+vicmd_symbol   = '[❮](bold green)'
+
+# System & Context Identity
+[directory]
+style                  = "bold blue"
+read_only              = " 󰌾"
+truncation_length      = 0
+before_repo_root_style = "dimmed blue"
+repo_root_style        = "bold blue"
+
+[username]
+style_user  = "dimmed white"
+style_root  = "bold red"
+format      = "[$user]($style) "
+show_always = false
+disabled    = false
+
+[hostname]
+ssh_only = true
+format   = "@[$hostname](dimmed white) "
+disabled = false
+
+# Version Control Systems
 [git_branch]
-format = "[](fg:overlay)[ $symbol $branch ]($style)[](fg:overlay) "
-style  = "bg:overlay fg:foam"
-symbol = ""
+symbol = " "
+style  = "bold white"
+format = "on [$symbol$branch]($style) "
 
 [git_status]
-disabled      = false
-style         = "bg:overlay fg:love"
-format        = '[](fg:overlay)([$all_status$ahead_behind]($style))[](fg:overlay) '
-up_to_date    = '[ ✓ ](bg:overlay fg:iris)'
-untracked     = '[?\($count\)](bg:overlay fg:gold)'
-stashed       = '[\$](bg:overlay fg:iris)'
-modified      = '[!\($count\)](bg:overlay fg:gold)'
-renamed       = '[»\($count\)](bg:overlay fg:iris)'
-deleted       = '[✘\($count\)](style)'
-staged        = '[++\($count\)](bg:overlay fg:gold)'
-ahead         = '[⇡\(${count}\)](bg:overlay fg:foam)'
-behind        = '[⇣\(${count}\)](bg:rose)'
-diverged      = '⇕[\[](bg:overlay fg:iris)[⇡\(${ahead_count}\)](bg:overlay fg:foam)[⇣\(${behind_count}\)](bg:overlay fg:rose)[\]](bg:overlay fg:iris)'
+conflicted = '='
+ahead      = '⇡'
+behind     = '⇣'
+diverged   = '⇕'
+untracked  = '?'
+stashed    = '≡'
+modified   = '*'
+staged     = '+'
+renamed    = '»'
+deleted    = '✘'
+style      = "bold gold"
+format     = "([$all_status$ahead_behind]($style) )"
 
-# --- Language & Local Runtimes ----------------------------------------------
+[git_state]
+style = "bold red"
+format = "([$state( $progress_current/$progress_total)]($style)) "
+
+# Application Runtimes (Context-Aware)
 [nodejs]
-disabled = false
-format   = " [](fg:overlay)[ $symbol$version ]($style)[](fg:overlay)"
-style    = "bg:overlay fg:pine"
-symbol   = "󰎙 "
+symbol = " "
+style  = "bold green"
+format = "via [$symbol($version )]($style)"
 
 [bun]
-disabled = false
-format   = " [](fg:overlay)[ $symbol$version ]($style)[](fg:overlay)"
-style    = "bg:overlay fg:pine"
-symbol   = " "
+symbol       = " "
+style        = "bold xterm_214"
+format       = "via [$symbol($version )]($style)"
+detect_files = ["bun.lockb", "bun.lock", "bunfig.toml"]
 
 [python]
-disabled = false
-format   = " [](fg:overlay)[ $symbol$version ]($style)[](fg:overlay)"
-style    = "bg:overlay fg:pine"
-symbol   = ' '
+symbol       = " "
+style        = "bold yellow"
+format       = "via [$symbol($version )(($virtualenv) )]($style)"
+detect_files = ["pyproject.toml", "uv.lock", ".python-version"]
 
-[conda]
-disabled = false
-format   = " [](fg:overlay)[ $symbol$environment ]($style)[](fg:overlay)"
-style    = "bg:overlay fg:pine"
-symbol   = '🅒 '
-
-# --- Infrastructure & Containerization ---------------------------------------
-[docker_context]
-disabled = false
-format   = " [](fg:overlay)[ $symbol$context ]($style)[](fg:overlay)"
-style    = "bg:overlay fg:foam"
-symbol   = "󰡨 "
+# Cloud & DevOps Infrastructure (Right-Aligned)
+[aws]
+symbol        = " "
+style         = "bold xterm_208"
+format        = "using [$symbol$profile(($region))]($style) "
+force_display = false
 
 [kubernetes]
+symbol   = "󱃾 "
+style    = "bold cyan"
+format   = "at [$symbol$context(($namespace))]($style) "
 disabled = false
-format   = " [](fg:overlay)[ $symbol$context ]($style)[](fg:overlay)"
-style    = "bg:overlay fg:pine"
-symbol   = "☸ "
 
-[aws]
-disabled = false
-format   = " [](fg:overlay)[ $symbol$profile ]($style)[](fg:overlay)"
-style    = "bg:overlay fg:gold"
-symbol   = "󰸏 "
+[docker_context]
+symbol       = " "
+style        = "bold blue"
+format       = "on [$symbol($context )]($style)"
+detect_files = ["Dockerfile", "docker-compose.yml", "docker-compose.yaml"]
 
-# --- Shell Diagnostics & Metrics --------------------------------------------
+# Performance Benchmarking
 [cmd_duration]
-disabled = false
-min_time = 2000
-format   = " [](fg:overlay)[ 󱎫 $duration ]($style)[](fg:overlay)"
-style    = "bg:overlay fg:gold"
-
-[status]
-disabled   = false
-pipestatus = true
-format     = " [](fg:overlay)[ 󰱒 $status ]($style)[](fg:overlay)"
-style      = "bg:overlay fg:love"
-
-[time]
-disabled    = false
-use_12hr    = true
-time_format = "%I:%M%P"
-format      = " [](fg:overlay)[ $time 󰴈 ]($style)[](fg:overlay)"
-style       = "bg:overlay fg:rose"
+min_time          = 5_000
+style             = "bold yellow"
+format            = "took [$duration]($style)"
+show_milliseconds = false
