@@ -1,6 +1,5 @@
 # Theme
-include catppuccin-mocha
-# include catppuccin-latte
+include rose-pine-moon
 
 # Force document pages to render using the theme colors by default
 set recolor                  "true"

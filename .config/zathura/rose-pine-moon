@@ -1,0 +1,37 @@
+set default-fg                "rgba(224,222,244,1)"   # text: soft white
+set default-bg                "rgba(35,33,54,1)"      # base: slate navy
+
+set completion-bg             "rgba(42,40,62,1)"      # surface
+set completion-fg             "rgba(224,222,244,1)"   # text
+set completion-highlight-bg   "rgba(196,167,231,1)"   # iris
+set completion-highlight-fg   "rgba(35,33,54,1)"      # base
+set completion-group-bg       "rgba(57,53,82,1)"      # overlay
+set completion-group-fg       "rgba(224,222,244,1)"   # text
+
+set statusbar-fg              "rgba(144,141,169,1)"   # muted
+set statusbar-bg              "rgba(42,40,62,1)"      # surface
+set inputbar-fg               "rgba(224,222,244,1)"   # text
+set inputbar-bg               "rgba(35,33,54,1)"      # base
+
+set notification-bg           "rgba(42,40,62,1)"      # surface
+set notification-fg           "rgba(224,222,244,1)"   # text
+set notification-error-bg     "rgba(42,40,62,1)"
+set notification-error-fg     "rgba(235,111,146,1)"   # love (red)
+set notification-warning-bg   "rgba(42,40,62,1)"
+set notification-warning-fg   "rgba(241,174,109,1)"   # gold (yellow)
+
+set recolor                   "true"
+set recolor-lightcolor        "rgba(35,33,54,1)"      # base
+set recolor-darkcolor         "rgba(224,222,244,1)"   # text
+
+set index-fg                  "rgba(224,222,244,1)"   # text
+set index-bg                  "rgba(35,33,54,1)"      # base
+set index-active-fg           "rgba(224,222,244,1)"   # text
+set index-active-bg           "rgba(42,40,62,1)"      # surface
+
+set render-loading-bg         "rgba(35,33,54,1)"      # base
+set render-loading-fg         "rgba(224,222,244,1)"   # text
+
+set highlight-color           "rgba(68,65,96,0.5)"    # highlight low
+set highlight-fg              "rgba(224,222,244,1)"   # text
+set highlight-active-color    "rgba(196,167,231,0.4)" # iris (semi-transparent)

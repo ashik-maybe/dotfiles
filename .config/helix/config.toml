@@ -1,7 +1,7 @@
 # =========================================================
 # 🎨 THEME & UI
 # =========================================================
-theme = "catppuccin_mocha"
+theme = "rose_pine_moon"
 
 [editor]
 line-number = "relative"

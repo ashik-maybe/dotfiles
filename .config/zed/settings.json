@@ -4,8 +4,8 @@
   // ═══════════════════════════════════════════════════════════
   "theme": {
     "mode": "system",
-    "light": "Catppuccin Latte",
-    "dark": "Catppuccin Mocha",
+    "light": "Rosé Pine Dawn",
+    "dark": "Rosé Pine Moon",
   },
   "icon_theme": {
     "mode": "system",
@@ -15,13 +15,13 @@
   "ui_font_family": ".ZedSans",
   "ui_font_size": 15,
   "ui_font_weight": 400,
-    "outline_panel": {
-    "dock": "left"
+  "outline_panel": {
+    "dock": "left",
   },
   "agent": {
     "dock": "right",
     "favorite_models": [],
-    "model_parameters": []
+    "model_parameters": [],
   },
 
   // ═══════════════════════════════════════════════════════════

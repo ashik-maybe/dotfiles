@@ -1,7 +1,7 @@
 # =============================================================================
 # ALACRITTY TERMINAL CONFIGURATION
 # =============================================================================
-# Theme: Catppuccin Mocha (with Latte as alternate)
+# Theme: Rosé Pine
 # Font: JetBrains Mono Nerd Font
 # Unified with: foot, kitty, ghostty
 
@@ -10,8 +10,7 @@
 # =============================================================================
 
 general.import = [
-  "~/.config/alacritty/themes/catppuccin-latte.toml",
-  # "~/.config/alacritty/themes/catppuccin-mocha.toml"
+  "~/.config/alacritty/themes/rose-pine-moon.toml",
 ]
 
 

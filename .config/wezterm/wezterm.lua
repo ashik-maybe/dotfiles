@@ -1,7 +1,7 @@
 -- =============================================================================
 -- WEZTERM TERMINAL CONFIGURATION
 -- =============================================================================
--- Theme: Catppuccin Mocha
+-- Theme: Rosé Pine
 -- Font: JetBrains Mono Nerd Font
 -- Unified with: foot, kitty, alacritty, ghostty
 
@@ -14,7 +14,7 @@ local config = {}
 -- THEME
 -- =============================================================================
 
-config.color_scheme = 'Catppuccin Mocha'
+config.color_scheme = 'rose-pine-moon'
 
 
 -- =============================================================================

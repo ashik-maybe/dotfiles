@@ -1,80 +1,148 @@
+# =============================================================================
+# STARSHIP PROMPT CONFIGURATION
+# Theme: Rosé Pine Moon (Modern Variant)
+# =============================================================================
+
 "$schema" = 'https://starship.rs/config-schema.json'
 
-# --- CORE CONFIG ---
-add_newline = true
-scan_timeout = 10
-command_timeout = 500
-
+# --- Core Prompt Layout ------------------------------------------------------
 format = """
-$os$directory$git_branch$git_status$git_state$fill$python$nodejs$bun$cmd_duration
-$character"""
+$username\
+$directory\
+$git_branch\
+$git_status\
+$fill\
+$bun\
+$nodejs\
+$conda\
+$python\
+$docker_context\
+$kubernetes\
+$aws\
+$cmd_duration\
+$status\
+$time\n  \
+[󱞪](fg:iris) \
+"""
 
-# --- SYSTEM & SHELL ---
-[character]
-success_symbol = "[❯](cyan)[❯](green)"
-error_symbol = "[❯](red)[❯](yellow)"
-vicmd_symbol = "[❮](magenta)[❮](purple)"
+# --- Color Palette (Rosé Pine Moon) ------------------------------------------
+palette = "rose-pine-moon"
+
+[palettes.rose-pine-moon]
+overlay = '#393552'
+love    = '#eb6f92'
+gold    = '#f6c177'
+rose    = '#ea9a97'
+pine    = '#3e8fb0'
+foam    = '#9ccfd8'
+iris    = '#c4a7e7'
+
+# --- Core Identity & Navigation ----------------------------------------------
+[username]
+disabled     = false
+show_always  = true
+format       = "[](fg:overlay)[ 󰧱 $user ]($style)[](fg:overlay) "
+style_root   = "bg:overlay fg:iris"
+style_user   = "bg:overlay fg:iris"
 
 [directory]
-style = "bold cyan"
-truncation_length = 3
-truncation_symbol = "…/"
-read_only = " 󰌾"
+format             = "[](fg:overlay)[ $path ]($style)[](fg:overlay) "
+style              = "bg:overlay fg:pine"
+truncation_length  = 3
+truncation_symbol  = "…/"
 
 [directory.substitutions]
-"~/Downloads" = "󰉍 "
-"~/Documents/projects" = "󰴉 "
+Documents = "󰈙"
+Downloads = " "
+Music     = " "
+Pictures  = " "
 
+# --- Dynamic Interface Spacing ----------------------------------------------
 [fill]
+style  = "fg:overlay"
 symbol = " "
-style = "bold gray"
 
-[cmd_duration]
-min_time = 2000
-format = "[󱎫 $duration](bold yellow)"
-
-# --- GIT ---
+# --- Version Control Systems --------------------------------------------------
 [git_branch]
-symbol = "󰊢 "
-style = "bold magenta"
-format = "[$symbol$branch]($style) "
+format = "[](fg:overlay)[ $symbol $branch ]($style)[](fg:overlay) "
+style  = "bg:overlay fg:foam"
+symbol = ""
 
 [git_status]
-style = "bold red"
-format = '''([\[$all_status$ahead_behind\]]($style) )'''
+disabled      = false
+style         = "bg:overlay fg:love"
+format        = '[](fg:overlay)([$all_status$ahead_behind]($style))[](fg:overlay) '
+up_to_date    = '[ ✓ ](bg:overlay fg:iris)'
+untracked     = '[?\($count\)](bg:overlay fg:gold)'
+stashed       = '[\$](bg:overlay fg:iris)'
+modified      = '[!\($count\)](bg:overlay fg:gold)'
+renamed       = '[»\($count\)](bg:overlay fg:iris)'
+deleted       = '[✘\($count\)](style)'
+staged        = '[++\($count\)](bg:overlay fg:gold)'
+ahead         = '[⇡\(${count}\)](bg:overlay fg:foam)'
+behind        = '[⇣\(${count}\)](bg:rose)'
+diverged      = '⇕[\[](bg:overlay fg:iris)[⇡\(${ahead_count}\)](bg:overlay fg:foam)[⇣\(${behind_count}\)](bg:overlay fg:rose)[\]](bg:overlay fg:iris)'
 
-[git_state]
-style = "bold yellow"
-format = '''([$state( $progress_current/$progress_total)]($style) )'''
-
-# --- LANGUAGES ---
-[python]
-symbol = "󱔎 "
-style = "bold blue"
-format = '''[$symbol($version )(\($virtualenv\) )]($style)'''
-
+# --- Language & Local Runtimes ----------------------------------------------
 [nodejs]
-symbol = "󰎙 "
-style = "bold green"
-format = "[$symbol($version )]($style)"
+disabled = false
+format   = " [](fg:overlay)[ $symbol$version ]($style)[](fg:overlay)"
+style    = "bg:overlay fg:pine"
+symbol   = "󰎙 "
 
 [bun]
-symbol = "󰛦 "
-style = "bold white"
-format = "[$symbol($version )]($style)"
+disabled = false
+format   = " [](fg:overlay)[ $symbol$version ]($style)[](fg:overlay)"
+style    = "bg:overlay fg:pine"
+symbol   = " "
 
-# --- CLOUD & VIRTUALIZATION ---
-[aws]
-symbol = "󰅟 "
-style = "bold yellow"
-format = "[$symbol($profile )]($style)"
+[python]
+disabled = false
+format   = " [](fg:overlay)[ $symbol$version ]($style)[](fg:overlay)"
+style    = "bg:overlay fg:pine"
+symbol   = ' '
 
+[conda]
+disabled = false
+format   = " [](fg:overlay)[ $symbol$environment ]($style)[](fg:overlay)"
+style    = "bg:overlay fg:pine"
+symbol   = '🅒 '
+
+# --- Infrastructure & Containerization ---------------------------------------
 [docker_context]
-symbol = "󰡨 "
-style = "bold blue"
-format = "[$symbol$context]($style) "
+disabled = false
+format   = " [](fg:overlay)[ $symbol$context ]($style)[](fg:overlay)"
+style    = "bg:overlay fg:foam"
+symbol   = "󰡨 "
 
 [kubernetes]
-symbol = "󱃾 "
-style = "bold cyan"
-format = '''[$symbol$context( \($namespace\))]($style) '''
+disabled = false
+format   = " [](fg:overlay)[ $symbol$context ]($style)[](fg:overlay)"
+style    = "bg:overlay fg:pine"
+symbol   = "☸ "
+
+[aws]
+disabled = false
+format   = " [](fg:overlay)[ $symbol$profile ]($style)[](fg:overlay)"
+style    = "bg:overlay fg:gold"
+symbol   = "󰸏 "
+
+# --- Shell Diagnostics & Metrics --------------------------------------------
+[cmd_duration]
+disabled = false
+min_time = 2000
+format   = " [](fg:overlay)[ 󱎫 $duration ]($style)[](fg:overlay)"
+style    = "bg:overlay fg:gold"
+
+[status]
+disabled   = false
+pipestatus = true
+format     = " [](fg:overlay)[ 󰱒 $status ]($style)[](fg:overlay)"
+style      = "bg:overlay fg:love"
+
+[time]
+disabled    = false
+use_12hr    = true
+time_format = "%I:%M%P"
+format      = " [](fg:overlay)[ $time 󰴈 ]($style)[](fg:overlay)"
+style       = "bg:overlay fg:rose"
