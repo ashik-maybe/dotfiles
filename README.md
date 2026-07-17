@@ -8,13 +8,7 @@
 
 Here’s how to get up and running:
 
-### 1. Install [foot](https://codeberg.org/dnkl/foot)
-
-```bash
-sudo dnf install foot
-```
-
-### 2. Install Fish and Dependencies
+### 1. Install Fish and Dependencies
 
 Install Fish shell:
 
@@ -30,13 +24,13 @@ sudo dnf install pigz pxz p7zip p7zip-plugins unrar
 sudo dnf install stow
 ```
 
-### 3. Set Fish as Your Default Shell
+### 2. Set Fish as Your Default Shell
 
 ```bash
 chsh -s $(which fish)
 ```
 
-### 4. Install [Starship](https://starship.rs/) Prompt
+### 3. Install [Starship](https://starship.rs/) Prompt
 
 ```bash
 curl  -sS  https://starship.rs/install.sh  |  sh
@@ -65,13 +59,13 @@ mkdir -p ~/bin
 
 > Make sure `~/bin` is in your `PATH`.
 
-### [Zellij](https://zellij.dev/)
+<small> ⚠ Keep the binaries into `~/bin` </small>
+
+<!--### [Zellij](https://zellij.dev/)
 
 _A terminal workspace with batteries included._
 
 Download the **x86_64-unknown-linux-musl** binary from [here](https://github.com/zellij-org/zellij/releases/)
-
-<small> ⚠ Move the `zellij` binary into `~/bin` </small>
 
 ### [Zed](https://zed.dev/)
 
@@ -113,13 +107,13 @@ _The front-end to your dev env_
 curl https://mise.run | sh
 ```
 
-<!--### [Helium Browser](https://helium.computer/)
+### [Helium Browser](https://helium.computer/)
 
 _Internet without interruptions_
 
 Download the [Linux AppImage (64-bit)](https://helium.computer/) and move the `helium.AppImage` into `~/bin/appimages` and make it executable with `chmod +x ~/bin/appimages/helium.AppImage`
 
-<small> ⚠ Get the icon for the `.desktop` from [here](https://github.com/imputnet/helium/blob/main/resources/branding/product_logo.svg), put that `.svg` in `~/.local/share/icons/` and the `.desktop` should be made at `~/.local/share/applications/` </small>-->
+<small> ⚠ Get the icon for the `.desktop` from [here](https://github.com/imputnet/helium/blob/main/resources/branding/product_logo.svg), put that `.svg` in `~/.local/share/icons/` and the `.desktop` should be made at `~/.local/share/applications/` </small>
 
 ### [Jujutsu](https://www.jj-vcs.dev/latest/)
 
@@ -146,7 +140,7 @@ _A simple terminal UI for both docker and docker-compose, written in Go with the
 Download the **linux_x86_64**
 binary from from [here](https://github.com/jesseduffield/lazydocker/releases/)
 
-<small> ⚠ Move the `lazydocker` binary into `~/bin` </small>
+<small> ⚠ Move the `lazydocker` binary into `~/bin` </small>-->
 
 ---
 
