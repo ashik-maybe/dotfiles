@@ -33,8 +33,7 @@ if [[ $# -eq 0 ]] || [[ "$1" == "-h" ]] || [[ "$1" == "--help" ]]; then
   show_help
 fi
 
-# Check for multi-threaded tools
-for cmd in pigz pixz unzip unrar 7z; do
+for cmd in pigz pxz unzip unrar 7z; do
   if ! command -v "$cmd" &>/dev/null; then
     printf '%bWarning: %s not found (Recommended for speed)%b\n' "${YELLOW}" "$cmd" "${NC}" >&2
   fi
@@ -71,10 +70,11 @@ extract_file() {
       fi
       ;;
     *.tar.xz|*.txz)
-      if command -v pixz &>/dev/null; then
-        tar -I pixz -xf "$file" -C "$target_dir"
+      if command -v pxz &>/dev/null; then
+        tar -I pxz -xf "$file" -C "$target_dir"
       else
-        tar -xJf "$file" -C "$target_dir"
+        # Fallback to standard xz using all CPU threads (-T0)
+        tar -I "xz -T0" -xf "$file" -C "$target_dir"
       fi
       ;;
     *.tar)
@@ -84,7 +84,8 @@ extract_file() {
       command -v pigz &>/dev/null && pigz -dc "$file" > "$target_dir/${filename%.gz}" || gunzip -c "$file" > "$target_dir/${filename%.gz}"
       ;;
     *.xz)
-      command -v pixz &>/dev/null && pixz -dc "$file" > "$target_dir/${filename%.xz}" || unxz -c "$file" > "$target_dir/${filename%.xz}"
+      # Standard xz supports multi-threading (-T0) natively for extraction streams
+      xz -T0 -dc "$file" > "$target_dir/${filename%.xz}"
       ;;
     *.zip)
       unzip -q "$file" -d "$target_dir"
