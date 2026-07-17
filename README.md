@@ -154,7 +154,7 @@ binary from from [here](https://github.com/jesseduffield/lazydocker/releases/)
 
 <!-- - [Hack](https://github.com/ryanoasis/nerd-fonts/releases/latest/download/Hack.zip) for _Terminal_ -->
 
-- [Intel One Mono](https://github.com/ryanoasis/nerd-fonts/releases/latest/download/IntelOneMono.zip)
+<!--- [Intel One Mono](https://github.com/ryanoasis/nerd-fonts/releases/latest/download/IntelOneMono.zip)-->
 
 ⚠ Store these fonts in **`~/.local/share/fonts`**
 
@@ -163,10 +163,10 @@ binary from from [here](https://github.com/jesseduffield/lazydocker/releases/)
 _Or just paste this in your terminal;_
 
 ```bash
-mkdir -p ~/.local/share/fonts && \
+mkdir -p ~/.local/share/fonts/ && \
 cd /tmp && \
-curl -fLo IntelOneMono.zip https://github.com/ryanoasis/nerd-fonts/releases/latest/download/IntelOneMono.zip && \
-unzip IntelOneMono.zip -d ~/.local/share/fonts && \
+curl -fLo JetBrainsMono.zip https://github.com/ryanoasis/nerd-fonts/releases/latest/download/JetBrainsMono.zip && \
+unzip JetBrainsMono.zip -d ~/.local/share/fonts && \
 fc-cache -fv
 ```
 
