@@ -15,8 +15,6 @@ alias rm='rm -Iv'                       # Remove with interactive prompt and ver
 alias rmdir='rmdir -v'                  # Remove empty directory with verbose output
 
 # ⚙️ Modern CLI Replacements
-alias fetch='fastfetch -c examples/21.jsonc' # Minimal system info
-alias sys='fastfetch'                        # Alternative system info trigger
 alias z='zoxide'                             # Smarter directory jumping
 alias zi='z -i'                              # Interactive directory jumping
 alias ls='lsd --color=auto --group-directories-first' # Modern ls
