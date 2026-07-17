@@ -25,7 +25,7 @@ sudo dnf install fish
 Install CLI tools:
 
 ```bash
-sudo dnf install bat btop dust duf fastfetch fd-find fzf lsd ripgrep zoxide pigz pixz p7zip p7zip-plugins unrar stow
+sudo dnf install bat btop fastfetch pigz pixz p7zip p7zip-plugins unrar stow
 ```
 
 ### 3. Set Fish as Your Default Shell
