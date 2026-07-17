@@ -165,10 +165,10 @@ binary from from [here](https://github.com/jesseduffield/lazydocker/releases/)
 _Or just paste this in your terminal;_
 
 ```bash
-mkdir -p ~/.local/share/fonts/ && \
+mkdir -p ~/.local/share/fonts/JetBrainsMono && \
 cd /tmp && \
 curl -fLo JetBrainsMono.zip https://github.com/ryanoasis/nerd-fonts/releases/latest/download/JetBrainsMono.zip && \
-unzip JetBrainsMono.zip -d ~/.local/share/fonts && \
+unzip JetBrainsMono.zip -d ~/.local/share/fonts/JetBrainsMono && \
 fc-cache -fv
 ```
 
