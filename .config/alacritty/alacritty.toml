@@ -9,7 +9,7 @@
 # GENERAL
 # =============================================================================
 
-general.import = [
+import = [
   "~/.config/alacritty/themes/rose-pine-moon.toml",
 ]
 
