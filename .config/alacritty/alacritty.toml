@@ -1,16 +1,15 @@
 # =============================================================================
 # ALACRITTY TERMINAL CONFIGURATION
 # =============================================================================
-# Theme: Rosé Pine
 # Font: JetBrains Mono Nerd Font
-# Unified with: foot, kitty, ghostty
+# Unified with: foot, kitty
 
 # =============================================================================
 # GENERAL
 # =============================================================================
 
 import = [
-  "~/.config/alacritty/themes/rose-pine-moon.toml",
+  "~/.config/alacritty/themes/everforest-medium.toml",
 ]
 
 
