@@ -57,48 +57,9 @@ stow  .
 mkdir -p ~/bin
 ```
 
-> Make sure `~/bin` is in your `PATH`.
+> ⚠ Keep the binaries into `~/bin` and make sure `~/bin` is in your `PATH`.
 
-<small> ⚠ Keep the binaries into `~/bin` </small>
-
-<!--### [Zellij](https://zellij.dev/)
-
-_A terminal workspace with batteries included._
-
-Download the **x86_64-unknown-linux-musl** binary from [here](https://github.com/zellij-org/zellij/releases/)
-
-### [Zed](https://zed.dev/)
-
-_Zed is a minimal code editor crafted for speed and collaboration with humans and AI._
-
-```bash
-curl -f https://zed.dev/install.sh | sh
-```
-
-### [bun](https://bun.sh/)
-
-_Bun is a fast, incrementally adoptable all-in-one JavaScript, TypeScript & JSX toolkit._
-
-```bash
-curl -fsSL https://bun.sh/install | bash
-```
-
-### [uv](https://docs.astral.sh/uv/)
-
-_An extremely fast Python package and project manager, written in Rust._
-
-```bash
-curl -LsSf https://astral.sh/uv/install.sh | sh
-```
-
-### [rustup](https://rustup.rs/)
-
-_An installer for the systems programming language Rust_
-
-```bash
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-```
-
+<!--
 ### [mise-en-place](https://mise.jdx.dev/)
 
 _The front-end to your dev env_
@@ -106,51 +67,18 @@ _The front-end to your dev env_
 ```bash
 curl https://mise.run | sh
 ```
-
-### [Helium Browser](https://helium.computer/)
-
-_Internet without interruptions_
-
-Download the [Linux AppImage (64-bit)](https://helium.computer/) and move the `helium.AppImage` into `~/bin/appimages` and make it executable with `chmod +x ~/bin/appimages/helium.AppImage`
-
-<small> ⚠ Get the icon for the `.desktop` from [here](https://github.com/imputnet/helium/blob/main/resources/branding/product_logo.svg), put that `.svg` in `~/.local/share/icons/` and the `.desktop` should be made at `~/.local/share/applications/` </small>
-
-### [Jujutsu](https://www.jj-vcs.dev/latest/)
-
-_A version control system_
-
-Download the **x86_64-unknown-linux-musl**
-binary from from [here](https://github.com/jj-vcs/jj/releases/latest)
-
-<small> ⚠ Move the `jj` binary into `~/bin` </small>
-
-### [Lazygit](https://github.com/jesseduffield/lazygit)
-
-_A simple terminal UI for git commands_
-
-Download the **linux_x86_64**
-binary from from [here](https://github.com/jesseduffield/lazygit/releases/)
-
-<small> ⚠ Move the `lazygit` binary into `~/bin` </small>
-
-### [Lazydocker](https://github.com/jesseduffield/lazydocker)
-
-_A simple terminal UI for both docker and docker-compose, written in Go with the gocui library._
-
-Download the **linux_x86_64**
-binary from from [here](https://github.com/jesseduffield/lazydocker/releases/)
-
-<small> ⚠ Move the `lazydocker` binary into `~/bin` </small>-->
+-->
 
 ---
 
 **▪ Fonts**
-
+<!--
 - [JetBrains Mono](https://github.com/ryanoasis/nerd-fonts/releases/latest/download/JetBrainsMono.zip)
 
-<!-- - [Hack](https://github.com/ryanoasis/nerd-fonts/releases/latest/download/Hack.zip) for _Terminal_ -->
+- [Hack](https://github.com/ryanoasis/nerd-fonts/releases/latest/download/Hack.zip) for _Terminal_
+-->
 
-<!--- [Intel One Mono](https://github.com/ryanoasis/nerd-fonts/releases/latest/download/IntelOneMono.zip)-->
+- [Intel One Mono](https://github.com/ryanoasis/nerd-fonts/releases/latest/download/IntelOneMono.zip)
 
 ⚠ Store these fonts in **`~/.local/share/fonts`**
 
@@ -159,10 +87,10 @@ binary from from [here](https://github.com/jesseduffield/lazydocker/releases/)
 _Or just paste this in your terminal;_
 
 ```bash
-mkdir -p ~/.local/share/fonts/JetBrainsMono && \
+mkdir -p ~/.local/share/fonts/IntelOneMonoNerdFont && \
 cd /tmp && \
-curl -fLo JetBrainsMono.zip https://github.com/ryanoasis/nerd-fonts/releases/latest/download/JetBrainsMono.zip && \
-unzip JetBrainsMono.zip -d ~/.local/share/fonts/JetBrainsMono && \
+curl -fLo IntelOneMono.zip https://github.com/ryanoasis/nerd-fonts/releases/latest/download/IntelOneMono.zip && \
+unzip IntelOneMono.zip -d ~/.local/share/fonts/IntelOneMonoNerdFont && \
 fc-cache -fv
 ```
 
