@@ -4,13 +4,13 @@
   // ═══════════════════════════════════════════════════════════
   "theme": {
     "mode": "system",
-    "light": "Rosé Pine Dawn",
-    "dark": "Rosé Pine Moon",
+    "light": "Everforest Medium Light",
+    "dark": "Everforest Medium Dark",
   },
   "icon_theme": {
     "mode": "system",
-    "light": "Material Icon Theme",
-    "dark": "Material Icon Theme",
+    "light": "Zed",
+    "dark": "Zed",
   },
   "ui_font_family": ".ZedSans",
   "ui_font_size": 15,
@@ -27,9 +27,8 @@
   // ═══════════════════════════════════════════════════════════
   // ✍️ EDITOR — FONTS, CURSOR, VISUALS
   // ═══════════════════════════════════════════════════════════
-  "buffer_font_family": "JetBrains Mono Nerd Font",
+  "buffer_font_family": "Zed Mono",
   "buffer_font_size": 16,
-  "buffer_font_fallbacks": ["Noto Color Emoji"],
   "buffer_font_features": {
     "calt": true,
     "liga": true,
@@ -71,7 +70,7 @@
   "scroll_beyond_last_line": "off",
   "horizontal_scroll_margin": 5,
   "vertical_scroll_margin": 3,
-  "hide_mouse": "on_typing_and_movement",
+  "hide_mouse": "on_typing_and_action",
   "scroll_sensitivity": 1.2,
   "fast_scroll_sensitivity": 4.8,
   "minimap": {
@@ -116,7 +115,7 @@
     "show_diagnostics": "errors",
   },
   "title_bar": {
-    "show_branch_icon": true,
+    "show_branch_status_icon": true,
     "show_branch_name": true,
     "show_project_items": true,
     "show_user_picture": false,
@@ -184,7 +183,7 @@
   "terminal": {
     "button": true,
     "dock": "bottom",
-    "font_family": "JetBrains Mono Nerd Font",
+    "font_family": "Zed Mono",
     "font_size": 14,
     "line_height": "comfortable",
     "cursor_shape": "block",
