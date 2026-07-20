@@ -17,7 +17,7 @@ import = [
 
 [window]
 startup_mode = "Maximized"
-decorations = "None"
+decorations = "Full"
 padding = { x = 1, y = 1 }
 opacity = 1
 

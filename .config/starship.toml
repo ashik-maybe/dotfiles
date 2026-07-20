@@ -1,59 +1,20 @@
-# Everforest Pure Prompt
-
 "$schema" = 'https://starship.rs/config-schema.json'
 
-format = """
-$username\
-$hostname\
-$directory\
-$git_branch\
-$git_state\
-$git_status\
-$cmd_duration\
-$line_break\
-$python\
-$character"""
+[azure]
+symbol = "☁️ "
 
-[directory]
-# Maps to Everforest Blue
-style = "blue"
+[battery]
+full_symbol = "• "
+charging_symbol = "⇡ "
+discharging_symbol = "⇣ "
+unknown_symbol = "❓ "
+empty_symbol = "❗ "
 
-[character]
-# Maps to Everforest Green, Red, and Yellow/Orange
-success_symbol = "[❯](green)"
-error_symbol = "[❯](red)"
-vimcmd_symbol = "[❮](yellow)"
+[erlang]
+symbol = "ⓔ "
 
-[git_branch]
-format = "[$branch]($style)"
-# Maps to the theme's bright-black (usually the muted comment/gray color)
-style = "bright-black"
+[nodejs]
+symbol = "[⬢](bold green) "
 
-[git_status]
-# 'white' maps to the primary foreground text color (dark gray on light themes, light gray on dark themes)
-format = "[[(*$conflicted$untracked$modified$staged$renamed$deleted)](white) ($ahead_behind$stashed)]($style)"
-# Maps to Everforest Cyan/Aqua
-style = "cyan"
-conflicted = "​"
-untracked = "​"
-modified = "​"
-staged = "​"
-renamed = "​"
-deleted = "​"
-stashed = "≡"
-
-[git_state]
-format = '\([$state( $progress_current/$progress_total)]($style)\) '
-style = "bright-black"
-
-[cmd_duration]
-format = "[$duration]($style) "
-# Maps to Everforest Yellow
-style = "yellow"
-
-[python]
-format = "[$virtualenv]($style) "
-# Maps to Everforest Magenta/Purple or Yellow depending on preference
-style = "magenta"
-detect_extensions = []
-detect_files = []
+[pulumi]
+symbol = "🧊 "
