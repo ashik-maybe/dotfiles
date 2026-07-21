@@ -1,21 +1,11 @@
 # .gitignore - tells Git which files/directories to exclude from version control
 
-# Git itself
-.git/
-!.gitignore
+# OS junk
+.DS_Store
+Thumbs.db
 
-# Fish saves variables set with `set -U` here
+# Machine-specific Fish universal variables
 .config/fish/fish_variables
 
-# Ignore everything inside Code/
-.config/Code/*
-
-# Allow the path leading to the files
-!.config/Code/User/
-
-# Ignore everything inside User/
-.config/Code/User/*
-
-# Whitelist the specific files
-!.config/Code/User/settings.json
-!.config/Code/User/keybindings.json
+# Local overrides (optional, but good practice for machine-specific tweaks)
+*.local

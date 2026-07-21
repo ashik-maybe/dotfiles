@@ -1,11 +1,13 @@
 # .stow-local-ignore
-README.md
-.git
-.gitignore
-.gitattributes
 
-# Prevent Stow from touching these if they exist in your dotfiles
-.config/Code/User/History
-.config/Code/User/globalStorage
-.config/Code/User/workspaceStorage
-.config/Code/User/snippets
+# Ignore Git internals and repository configuration
+^\.git/
+^\.gitignore$
+^\.gitattributes$
+
+# Ignore local Stow ignore rule file itself
+^\.stow-local-ignore$
+
+# Ignore repository documentation
+^README\.md$
+^LICENSE$

@@ -1,2 +1,16 @@
-# Auto detect text files and perform LF normalization
-* text=auto
+# Auto-detect text files and normalize line endings to LF
+* text=auto eol=lf
+
+# Force specific dotfile configs to stay LF (crucial for cross-platform Unix setups)
+*.fish text eol=lf
+*.conf text eol=lf
+*.toml text eol=lf
+*.kdl  text eol=lf
+*.json text eol=lf
+*.ini  text eol=lf
+
+# Mark binary files explicitly to protect against accidental corruption
+*.png binary
+*.jpg binary
+*.ico binary
+*.pdf binary
