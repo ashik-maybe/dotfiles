@@ -1,46 +1,43 @@
+# ~/.config/fish/conf.d/podman.fish
+
 # ============================================================================
-# podman.fish - Container Helper (Industry Standard)
+# 1. DAILY WORKFLOW (Abbreviations)
 # ============================================================================
+abbr -a psa 'podman ps -a'                                # List all containers
+abbr -a ps 'podman ps'                                    # List running containers
+abbr -a plog 'podman logs -f --tail 100'                  # Tail container logs
+abbr -a pex 'podman exec -it'                             # Shell into container
+abbr -a pstop 'podman stop'                               # Stop container(s)
+abbr -a pstart 'podman start'                             # Start container(s)
+abbr -a prm 'podman rm'                                   # Remove container(s)
+abbr -a prestart 'podman restart'                         # Restart container(s)
+abbr -a prun 'podman run -d -P --name'                    # Run new container (specify name)
 
-# ------------------------------
-# Daily (90% of work)
-# ------------------------------
-alias psa 'podman ps -a'                              # List all containers
-alias ps 'podman ps'                                  # List running containers
-alias plog 'podman logs -f --tail 100'                # Tail container logs
-alias pex 'podman exec -it'                           # Shell into container
-alias pstop 'podman stop'                             # Stop container(s)
-alias pstart 'podman start'                          # Start container(s)
-alias prm 'podman rm'                                  # Remove container(s)
-alias prestart 'podman restart'                      # Restart container(s)
-alias prun 'podman run -d -P --name'                  # Run new container (specify name)
+# ============================================================================
+# 2. HELPERS (Abbreviations)
+# ============================================================================
+abbr -a pdip 'podman inspect --format "{{.NetworkSettings.IPAddress}}"' # Container IP
+abbr -a pports 'podman ps --format "table {{.Names}}\t{{.Ports}}"'        # Port mappings
+abbr -a ptop 'podman stats --no-stream'                   # CPU/Mem stats
+abbr -a pclean 'podman system prune -af'                  # Nuke unused data/images
+abbr -a pinspect 'podman inspect'                         # Inspect container details
+abbr -a pimages 'podman images'                           # List local images
+abbr -a prmi 'podman rmi'                                 # Remove image(s)
 
-# ------------------------------
-# Helpers
-# ------------------------------
-alias pdip 'podman inspect --format "{{.NetworkSettings.IPAddress}}"'  # Container IP
-alias pports 'podman ps --format "table {{.Names}}\t{{.Ports}}"'         # Port mappings
-alias ptop 'podman stats --no-stream'                                      # CPU/Mem stats
-alias pclean 'podman system prune -af'                                    # Nuke everything
-alias pinspect 'podman inspect'                                             # Inspect container
-alias pimages 'podman images'                                              # List images
-alias prmi 'podman rmi'                                                     # Remove image
+# ============================================================================
+# 3. COMPOSE WORKFLOW (Abbreviations)
+# ============================================================================
+abbr -a pcu 'podman-compose up -d'                        # Start stack in background
+abbr -a pcd 'podman-compose down'                         # Stop and remove stack
+abbr -a pcl 'podman-compose logs -f --tail 100'           # Tail stack logs
+abbr -a pcbuild 'podman-compose build'                    # Build compose images
+abbr -a pcps 'podman-compose ps'                          # List compose services
+abbr -a pcrestart 'podman-compose restart'                # Restart stack
 
-# ------------------------------
-# Compose (Industry Standard)
-# ------------------------------
-alias pcu 'podman-compose up -d'                     # Start stack
-alias pcd 'podman-compose down'                       # Stop stack
-alias pcl 'podman-compose logs -f --tail 100'         # Stack logs
-alias pcbuild 'podman-compose build'                  # Build images
-alias pcps 'podman-compose ps'                        # List compose services
-alias pcrestart 'podman-compose restart'             # Restart stack
-
-# ------------------------------
-# Smart Functions
-# ------------------------------
-function psh
-    # Run command in running container
+# ============================================================================
+# 4. SMART FUNCTIONS
+# ============================================================================
+function psh --description "Run command in running container"
     if test (count $argv) -lt 2
         echo "Usage: psh <container> <command>"
         echo "Example: psh myapp npm test"
@@ -49,25 +46,18 @@ function psh
     podman exec $argv[1] $argv[2..]
 end
 
-function pshell
-    # Interactive shell in NEW container
-    # Usage: pshell <image> [container-name]
+function pshell --description "Interactive shell in new container"
     if test (count $argv) -lt 1
         echo "Usage: pshell <image> [container-name]"
         echo "Example: pshell node my-node-app"
-        echo "         pshell nginx"
         return 1
     end
     set -l name $argv[2]
-    if test -z "$name"
-        set name (date +%s)
-    end
+    test -z "$name"; and set name (date +%s)
     podman run -it --name $name $argv[1] sh
 end
 
-function pcopy
-    # Copy file from container to local
-    # Usage: pcopy <container>:/path/file ./local-path
+function pcopy --description "Copy file from container to local path"
     if test (count $argv) -lt 2
         echo "Usage: pcopy <container>:/path/to/file ./local-path"
         echo "Example: pcopy myapp:/app/package.json ./package.json"
@@ -76,76 +66,64 @@ function pcopy
     podman cp $argv[1] $argv[2]
 end
 
-function pvols
-    # List all volumes
+function pvols --description "List all volumes"
     podman volume ls
 end
 
-function pacc
-    # Attach to running container (for detached -it)
+function pacc --description "Attach to a running container"
     if test (count $argv) -lt 1
         echo "Usage: pacc <container>"
-        echo "Example: pacc myapp"
         return 1
     end
     podman attach $argv[1]
 end
 
-# ------------------------------
-# Wizards (Guided - Learn by doing)
-# ------------------------------
-function pwiz-run
-    # Interactive container run wizard
+# ============================================================================
+# 5. WIZARDS
+# ============================================================================
+function pwiz-run --description "Interactive container run wizard"
     echo "=== Podman Run Wizard ==="
     echo ""
-    
-    set -l image (read -p "Image (e.g., nginx, postgres, node): ")
-    test -z "$image" && set image "nginx"
-    
-    set -l name (read -p "Container name (optional): ")
-    
-    set -l ports (read -p "Ports (e.g., 8080:80, or Enter for auto): ")
-    
-    set -l volume (read -p "Volume mount (e.g., ./data:/data, or Enter for none): ")
-    
+
+    read -P "Image (e.g., nginx, postgres, node) [nginx]: " -l image
+    test -z "$image"; and set image "nginx"
+
+    read -P "Container name (optional): " -l name
+    read -P "Ports (e.g., 8080:80, or Enter for auto): " -l ports
+    read -P "Volume mount (e.g., ./data:/data, or Enter for none): " -l volume
+
     set -l cmd "podman run -d"
-    
-    test -n "$name" && set cmd "$cmd --name $name"
-    test -n "$ports" && set cmd "$cmd -p $ports" || set cmd "$cmd -P"
-    test -n "$volume" && set cmd "$cmd -v $volume"
-    
+    test -n "$name"; and set cmd "$cmd --name $name"
+    test -n "$ports"; and set cmd "$cmd -p $ports"; or set cmd "$cmd -P"
+    test -n "$volume"; and set cmd "$cmd -v $volume"
     set cmd "$cmd $image"
-    
-    echo ""
-    echo "Running: $cmd"
+
+    echo -e "\nRunning: $cmd\n"
     eval $cmd
-    
-    echo ""
-    echo "Done! Use 'psa' to list, 'plog' to view logs, 'pex $name /bin/sh' to shell in"
+
+    echo -e "\nDone! Use 'psa' to list, 'plog' to view logs, 'pex $name /bin/sh' to shell in"
 end
 
-function pwiz-postgres
-    # Quick postgres with persistent volume
+function pwiz-postgres --description "Quick Postgres container setup with volume"
     echo "=== Postgres Wizard ==="
     echo ""
-    
-    set -l name (read -p "Container name [postgres-dev]: ")
-    test -z "$name" && set name "postgres-dev"
-    
-    set -l dbname (read -p "Database name [mydb]: ")
-    test -z "$dbname" && set dbname "mydb"
-    
-    set -l user (read -p "Database user [admin]: ")
-    test -z "$user" && set user "admin"
-    
-    set -l password (read -p "Password [secret]: ")
-    test -z "$password" && set password "secret"
-    
-    set -l port (read -p "Host port [5432]: ")
-    test -z "$port" && set port "5432"
-    
-    echo ""
-    echo "Starting postgres container..."
+
+    read -P "Container name [postgres-dev]: " -l name
+    test -z "$name"; and set name "postgres-dev"
+
+    read -P "Database name [mydb]: " -l dbname
+    test -z "$dbname"; and set dbname "mydb"
+
+    read -P "Database user [admin]: " -l user
+    test -z "$user"; and set user "admin"
+
+    read -P "Password [secret]: " -l password
+    test -z "$password"; and set password "secret"
+
+    read -P "Host port [5432]: " -l port
+    test -z "$port"; and set port "5432"
+
+    echo -e "\nStarting postgres container..."
     podman run -d \
         --name $name \
         -e POSTGRES_DB=$dbname \
@@ -154,146 +132,182 @@ function pwiz-postgres
         -p $port:5432 \
         -v "$name-data:/var/lib/postgresql/data" \
         postgres:latest
-    
-    echo ""
-    echo "=== Connection Info ==="
-    echo "Host: localhost"
-    echo "Port: $port"
-    echo "Database: $dbname"
-    echo "User: $user"
-    echo "Password: $password"
-    echo ""
-    echo "Connection string:"
-    echo "postgresql://$user:$password@localhost:$port/$dbname"
-    echo ""
-    echo "Use 'plog $name' to view logs, 'pex $name psql -U $user -d $dbname' to connect"
+
+    echo "
+=== Connection Info ===
+Host: localhost
+Port: $port
+Database: $dbname
+User: $user
+Password: $password
+
+Connection string:
+postgresql://$user:$password@localhost:$port/$dbname
+
+Use 'plog $name' to view logs, 'pex $name psql -U $user -d $dbname' to connect"
 end
 
-function pwiz-redis
-    # Quick redis
+function pwiz-redis --description "Quick Redis container setup"
     echo "=== Redis Wizard ==="
     echo ""
-    
-    set -l name (read -p "Container name [redis-dev]: ")
-    test -z "$name" && set name "redis-dev"
-    
-    set -l port (read -p "Host port [6379]: ")
-    test -z "$port" && set port "6379"
-    
-    echo ""
-    echo "Starting redis container..."
+
+    read -P "Container name [redis-dev]: " -l name
+    test -z "$name"; and set name "redis-dev"
+
+    read -P "Host port [6379]: " -l port
+    test -z "$port"; and set port "6379"
+
+    echo -e "\nStarting redis container..."
     podman run -d \
         --name $name \
         -p $port:6379 \
         redis:latest
-    
-    echo ""
-    echo "=== Connection Info ==="
-    echo "Host: localhost"
-    echo "Port: $port"
-    echo ""
-    echo "Use 'plog $name' to view logs, 'pex $name redis-cli' to connect"
+
+    echo "
+=== Connection Info ===
+Host: localhost
+Port: $port
+
+Use 'plog $name' to view logs, 'pex $name redis-cli' to connect"
 end
 
-function pwiz-nginx
-    # Quick static file server
+function pwiz-nginx --description "Quick Nginx static file server"
     echo "=== Nginx Wizard ==="
     echo ""
-    
-    set -l name (read -p "Container name [nginx-static]: ")
-    test -z "$name" && set name "nginx-static"
-    
-    set -l port (read -p "Host port [8080]: ")
-    test -z "$port" && set port "8080"
-    
-    set -l path (read -p "Directory to serve (absolute path) [./]: ")
-    test -z "$path" && set path (pwd)
-    
-    echo ""
-    echo "Starting nginx container..."
+
+    read -P "Container name [nginx-static]: " -l name
+    test -z "$name"; and set name "nginx-static"
+
+    read -P "Host port [8080]: " -l port
+    test -z "$port"; and set port "8080"
+
+    read -P "Directory to serve (absolute path) [(pwd)]: " -l path
+    test -z "$path"; and set path (pwd)
+
+    echo -e "\nStarting nginx container..."
     podman run -d \
         --name $name \
         -p $port:80 \
         -v "$path:/usr/share/nginx/html:ro" \
         nginx:latest
-    
-    echo ""
-    echo "=== Info ==="
-    echo "URL: http://localhost:$port"
-    echo "Serving: $path"
-    echo ""
-    echo "Use 'plog $name' to view logs, 'pstop $name' to stop"
+
+    echo "
+=== Info ===
+URL: http://localhost:$port
+Serving: $path
+
+Use 'plog $name' to view logs, 'pstop $name' to stop"
 end
 
-function pwiz-node
-    # Node.js sandbox
+function pwiz-node --description "Node.js container sandbox"
     echo "=== Node.js Wizard ==="
     echo ""
-    
-    set -l name (read -p "Container name [node-dev]: ")
-    test -z "$name" && set name "node-dev"
-    
-    set -l workdir (read -p "Working directory (default: current): ")
-    test -z "$workdir" && set workdir (pwd)
-    
-    set -l port (read -p "Expose port (e.g., 3000:3000, Enter for none): ")
-    
-    echo ""
-    echo "Starting node container..."
-    
+
+    read -P "Container name [node-dev]: " -l name
+    test -z "$name"; and set name "node-dev"
+
+    read -P "Working directory (default: current): " -l workdir
+    test -z "$workdir"; and set workdir (pwd)
+
+    read -P "Expose port (e.g., 3000:3000, Enter for none): " -l port
+
+    echo -e "\nStarting node container..."
     if test -n "$port"
         podman run -it --name $name -p $port -v "$workdir:/app" -w /app node:latest sh
     else
         podman run -it --name $name -v "$workdir:/app" -w /app node:latest sh
     end
-    
-    echo ""
-    echo "Container stopped. Use 'pstart $name' to restart, 'pex $name npm run dev' to run your app"
+
+    echo -e "\nContainer stopped. Use 'pstart $name' to restart, 'pex $name npm run dev' to run your app"
 end
 
-function pwiz-compose
-    # Quick compose file generator
+function pwiz-compose --description "Quick compose file generator"
     echo "=== Compose Wizard ==="
     echo ""
-    
-    set -l name (read -p "Project name: ")
-    test -z "$name" && echo "Name required" && return 1
-    
+
+    read -P "Project name: " -l name
+    test -z "$name"; and echo "Name required" && return 1
+
     echo "Select services:"
     echo "1. Node.js + Postgres"
     echo "2. Node.js + Redis"
     echo "3. Node.js + Postgres + Redis"
     echo "4. Custom"
-    
-    set -l choice (read -p "Choice [1]: ")
-    test -z "$choice" && set choice 1
-    
+
+    read -P "Choice [1]: " -l choice
+    test -z "$choice"; and set choice 1
+
+    set -l services
     switch $choice
         case 1
-            set services "app:\n  image: node:latest\n  ports:\n    - '3000:3000'\n  depends_on:\n    - db\n\ndb:\n  image: postgres:latest\n  environment:\n    POSTGRES_DB: mydb\n    POSTGRES_USER: admin\n    POSTGRES_PASSWORD: secret\n  volumes:\n    - db-data:/var/lib/postgresql/data\n\nvolumes:\n  db-data:"
+            set services "app:
+    image: node:latest
+    ports:
+      - '3000:3000'
+    depends_on:
+      - db
+
+db:
+    image: postgres:latest
+    environment:
+      POSTGRES_DB: mydb
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: secret
+    volumes:
+      - db-data:/var/lib/postgresql/data
+
+volumes:
+  db-data:"
         case 2
-            set services "app:\n  image: node:latest\n  ports:\n    - '3000:3000'\n  depends_on:\n    - redis\n\nredis:\n  image: redis:latest"
+            set services "app:
+    image: node:latest
+    ports:
+      - '3000:3000'
+    depends_on:
+      - redis
+
+redis:
+    image: redis:latest"
         case 3
-            set services "app:\n  image: node:latest\n  ports:\n    - '3000:3000'\n  depends_on:\n    - db\n    - redis\n\ndb:\n  image: postgres:latest\n  environment:\n    POSTGRES_DB: mydb\n    POSTGRES_USER: admin\n    POSTGRES_PASSWORD: secret\n  volumes:\n    - db-data:/var/lib/postgresql/data\n\nredis:\n  image: redis:latest\n\nvolumes:\n  db-data:"
+            set services "app:
+    image: node:latest
+    ports:
+      - '3000:3000'
+    depends_on:
+      - db
+      - redis
+
+db:
+    image: postgres:latest
+    environment:
+      POSTGRES_DB: mydb
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: secret
+    volumes:
+      - db-data:/var/lib/postgresql/data
+
+redis:
+    image: redis:latest
+
+volumes:
+  db-data:"
         case "*"
             echo "Custom compose coming soon..."
             return 0
     end
-    
-    echo ""
+
     echo "name: $name
 services:
-$services" > docker-compose.yml
-    
-    echo "Created docker-compose.yml"
-    echo ""
+  $services" > docker-compose.yml
+
+    echo -e "\nCreated docker-compose.yml"
     echo "Run 'pcu' to start, 'pcd' to stop"
 end
 
-# ------------------------------
-# Help
-# ------------------------------
-function pwiz-help
+# ============================================================================
+# 6. HELP
+# ============================================================================
+function pwiz-help --description "List all Podman abbreviations & functions"
     echo "
 podman.fish - Container helpers for SWE
 
@@ -314,13 +328,15 @@ podman.fish - Container helpers for SWE
   ptop          CPU/Mem stats
   pclean        Prune everything
   pimages       List images
+  prmi          Remove image(s)
 
-=== COMPOSE (Industry Standard) ===
+=== COMPOSE ===
   pcu           Start stack (podman-compose up -d)
   pcd           Stop stack
   pcl           Stack logs
   pcbuild       Build images
   pcps          List compose services
+  pcrestart     Restart stack
 
 === SMART FUNCTIONS ===
   psh           Run command in container
@@ -329,32 +345,13 @@ podman.fish - Container helpers for SWE
   pvols         List volumes
   pacc          Attach to container
 
-=== WIZARDS (Guided) ===
-  pwiz-run          Interactive container run
-  pwiz-postgres     Quick postgres + volume
-  pwiz-redis        Quick redis
-  pwiz-nginx        Static file server
-  pwiz-node         Node.js sandbox
-  pwiz-compose      Generate compose file
-  pwiz-help         Show this help
-
-=== EXAMPLES ===
-  # Run postgres
-  pwiz-postgres
-  
-  # View logs
-  plog mycontainer
-  
-  # Shell into running container
-  pex mycontainer /bin/sh
-  
-  # Stop and remove all
-  pstop (podman ps -q) && prm (podman ps -aq)
-  
-  # Start compose project
-  pcu
-  
-  # Clean up everything
-  pclean
+=== WIZARDS ===
+  pwiz-run      Interactive container run
+  pwiz-postgres Quick postgres + volume
+  pwiz-redis    Quick redis
+  pwiz-nginx    Static file server
+  pwiz-node     Node.js sandbox
+  pwiz-compose  Generate compose file
+  pwiz-help     Show this help
 "
 end

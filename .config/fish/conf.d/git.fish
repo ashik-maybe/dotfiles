@@ -1,104 +1,114 @@
+# ~/.config/fish/conf.d/git.fish
+
 # ============================================================================
-# git.fish - Minimal Git Helper
+# 1. DAILY WORKFLOW (Abbreviations)
 # ============================================================================
+abbr -a gs 'git status -s'                                # Short status view
+abbr -a ga 'git add'                                      # Stage specific file
+abbr -a gaa 'git add -A'                                  # Stage all changes
+abbr -a gc 'git commit -m'                                # Commit with inline message
+abbr -a gpush 'git push -u origin (git rev-parse --abbrev-ref HEAD)' # Push current branch to remote
+abbr -a gpl 'git pull'                                    # Pull upstream changes
+abbr -a gco 'git switch'                                  # Switch branches
+abbr -a gcb 'git switch -c'                               # Create & switch to new branch
+abbr -a glog 'git log --oneline'                          # Compact commit log
+abbr -a gmain 'git switch main 2>/dev/null; or git switch master' # Jump to main/master branch
+abbr -a g- 'git switch -'                                 # Switch to previous branch
 
-# ------------------------------
-# Daily (90% of work)
-# ------------------------------
-alias gs 'git status -s'     # Check what's changed
-alias ga 'git add'           # Stage specific file
-alias gaa 'git add -A'       # Stage all changes
-alias gc 'git commit -m'     # Commit with message
-alias gpush 'git push -u origin (git rev-parse --abbrev-ref HEAD)' # Push to remote
-alias gpl 'git pull'         # Pull from remote
-alias gco 'git checkout'     # Switch branches
-alias gcb 'git checkout -b'   # Create new branch
-alias glog 'git log --oneline' # View history
-alias gmain 'git checkout main; or git checkout master' # Jump to main
-alias g- 'git checkout -'    # Go back to previous branch
+abbr -a gfix 'git commit --amend --no-edit'               # Amend staged changes into last commit
+abbr -a gpa 'git push origin --all'                       # Push all local branches to remote
+abbr -a gpla 'git fetch --all'                            # Fetch all remote branches
 
-alias gfix 'git commit --amend --no-edit'       # Amends last commit without changing the message
-alias gpa 'git push origin --all'               # Pushes all local branches to remote origin
-alias gpla 'git fetch --all'                    # Safely pulls down the main branch
+# ============================================================================
+# 2. HELPERS (Abbreviations)
+# ============================================================================
+abbr -a gb 'git branch'                                   # List local branches
+abbr -a gd 'git diff'                                     # View unstaged changes
+abbr -a gds 'git diff --staged'                           # View staged changes
+abbr -a gst 'git stash push -m'                           # Stash changes with message
+abbr -a gstp 'git stash pop'                              # Restore last stashed changes
+abbr -a gstl 'git stash list'                             # List all stashes
+abbr -a g-undo 'git reset --soft HEAD~1'                  # Undo last commit, keep changes staged
+abbr -a gclean 'git clean -fd'                            # Force remove untracked files/dirs
 
-# ------------------------------
-# Helpers
-# ------------------------------
-alias gb 'git branch'         # List branches
-alias gd 'git diff'          # See unstaged changes
-alias gds 'git diff --staged' # See staged changes
-alias gst 'git stash push -m' # Stash work temporarily
-alias gstp 'git stash pop'   # Restore stashed work
-alias gstl 'git stash list'  # List all stashes
-alias g-undo 'git reset --soft HEAD~1' # Undo last commit
-alias gfix 'git commit --amend --no-edit' # Quick fix to last commit
-alias gclean 'git clean -fd' # Remove untracked files
-
-# ------------------------------
-# Smart Functions
-# ------------------------------
-function gpf
-    # Safe force push (use only after rebase!)
+# ============================================================================
+# 3. SMART FUNCTIONS
+# ============================================================================
+function gpf --description "Safe force push with lease"
     git push --force-with-lease $argv
 end
 
-function grb
-    # Rebase current branch onto main
-    git rebase main; or git rebase master $argv
+function grb --description "Rebase current branch onto main/master"
+    git rebase main 2>/dev/null; or git rebase master $argv
 end
 
-function gbdone
-    # Done with branch? Checkout main, pull, delete current
-    git checkout main; or git checkout master
-    git pull
+function gbdone --description "Clean up completed feature branch"
     set -l current (git rev-parse --abbrev-ref HEAD)
-    test "$current" != "main" -a "$current" != "master" && git branch -d $current
+
+    if test "$current" = "main" -o "$current" = "master"
+        echo "⚠️  You are already on $current!"
+        return 1
+    end
+
+    git switch main 2>/dev/null; or git switch master
+    git pull
+    git branch -d $current                        # Delete former feature branch safely
 end
 
-function greset-hard
-    # Nuclear option - destroys ALL changes (requires confirmation)
-    echo "Type 'yes' to confirm: "
-    read -l confirm
-    test "$confirm" = "yes" && git reset --hard
+function greset-hard --description "Nuclear option: reset all tracked changes"
+    read -P "Type 'yes' to confirm hard reset: " -l confirm
+    if test "$confirm" = "yes"
+        git reset --hard                          # Destroy all uncommitted local changes
+        echo "💥 Hard reset executed."
+    else
+        echo "Cancelled."
+    end
 end
 
-function gwho
-    # Who wrote this line?
-    git blame -w -M $argv
+function gwho --description "Git blame ignoring whitespace and moves"
+    git blame -w -M $argv                         # Blame line authors, ignoring whitespace
 end
 
-# ------------------------------
-# Wizards
-# ------------------------------
-function gwiz-commit
-    # Guided commit - helps write proper commit messages
-    echo "Type: feat/fix/docs/style/refactor/test/chore"
-    read -l type -p "Type: "
-    test -z "$type" && set type "feat"
-    read -l desc -p "Description: "
-    echo ""
-    echo "$type: $desc"
-    read -l confirm -p "Commit? (y/n): "
-    test "$confirm" = "y" && git add -A && git commit -m "$type: $desc"
+# ============================================================================
+# 4. WIZARDS
+# ============================================================================
+function gwiz-commit --description "Guided conventional commit"
+    read -P "Type [feat/fix/docs/style/refactor/test/chore] (feat): " -l type
+    test -z "$type"; and set type "feat"
+
+    read -P "Description: " -l desc
+    test -z "$desc"; and echo "Cancelled: Description required." && return 1
+
+    echo -e "\nCommit message -> $type: $desc"
+    read -P "Commit all changes? (y/N): " -l confirm
+
+    if test "$confirm" = "y" -o "$confirm" = "Y"
+        git add -A && git commit -m "$type: $desc"
+    else
+        echo "Cancelled."
+    end
 end
 
-function gwiz-branch
-    # Guided branch - similar to gwiz commit style
-    echo "Type: feat/fix/hotfix/docs/refactor/test/chore"
-    read -l type -p "Type: "
-    test -z "$type" && set type "feature"
-    read -l name -p "Name: "
-    test -n "$name" && git checkout -b "$type/$name"
+function gwiz-branch --description "Guided branch creator"
+    read -P "Type [feat/fix/hotfix/docs/refactor/chore] (feat): " -l type
+    test -z "$type"; and set type "feat"
+
+    read -P "Branch name: " -l name
+    if test -n "$name"
+        git switch -c "$type/$name"
+    else
+        echo "Cancelled: Name required."
+    end
 end
 
-# ------------------------------
-# Help
-# ------------------------------
-function ghelp
+# ============================================================================
+# 5. HELP
+# ============================================================================
+function ghelp --description "List all Git abbreviations & functions"
     echo "
-Daily:   gs,ga,gaa,gc,gpush,gpl,gco,gcb,glog,gmain,g-
-Helpers: gb,gd,gds,gst,gstp,gstl,g-undo,gfix,gclean
-Smart:   gpf,grb,gbdone,greset-hard,gwho
-Wizards: gwiz-commit,gwiz-branch
+Daily:   gs, ga, gaa, gc, gpush, gpl, gco, gcb, glog, gmain, g-
+Helpers: gb, gd, gds, gst, gstp, gstl, g-undo, gfix, gclean, gpa, gpla
+Smart:   gpf, grb, gbdone, greset-hard, gwho
+Wizards: gwiz-commit, gwiz-branch
 "
 end
