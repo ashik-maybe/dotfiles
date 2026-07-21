@@ -17,9 +17,10 @@ set -gx VISUAL nano
 # 2. ~/sdk (The Development Storage)
 #    - Purpose: Stores intact software development kits, toolchains, and packages.
 #    - Rule: Extracted folders (like Go, Node, or Bun) live here in isolation.
+#    - Note: Managed languages (Node, Go, Python) are handled automatically via mise!
 #
 # ------------------------------------------------------------------------------
-# 🛠️ HOW TO ADD NEW DEV TOOLS IN THE FUTURE (NEVER TOUCH THIS FILE AGAIN)
+# 🛠️ HOW TO ADD NEW DEV TOOLS IN THE FUTURE
 # ------------------------------------------------------------------------------
 #
 # METHOD A: For standalone binaries (e.g., a single compiled tool)
@@ -28,28 +29,22 @@ set -gx VISUAL nano
 #    2. Make it executable:
 #       chmod +x ~/bin/downloaded_tool
 #
-# METHOD B: For full toolchains (e.g., Go, Node, Zig)
-#    1. Create a dedicated directory inside your SDK master folder:
-#       mkdir -p ~/sdk/go
-#    2. Extract the archive contents directly into that directory:
-#       tar -C ~/sdk/go --strip-components=1 -xzf go1.XX.X.linux-amd64.tar.gz
-#    3. Expose the compiler binary to the system by linking it into your execution hub:
-#       ln -sf ~/sdk/go/bin/go ~/bin/go
-#       ln -sf ~/sdk/go/bin/gofmt ~/bin/gofmt
+# METHOD B: For full toolchains (e.g., Go, Node, Zig via mise)
+#    mise use --global node@latest
+#    mise use --global go@latest
 #
-# METHOD C: Updating an existing SDK
-#    1. Wipe the old toolchain folder: rm -rf ~/sdk/go
-#    2. Drop the new version in its place: tar -C ~/sdk/go ...
-#    3. The symlink in ~/bin points to the exact same path, so it updates instantly!
+# METHOD C: Manual SDK fallback
+#    1. Extract into ~/sdk/<tool>
+#    2. Symlink binary: ln -sf ~/sdk/<tool>/bin/<binary> ~/bin/<binary>
 #
 # ==============================================================================
 # THE MASTER PATHS SETTING
 # ==============================================================================
 # -g sets global scope.
-# -m ensures they move to the very front of your system PATH to override defaults.
+# -m prepends to PATH to prioritize user binaries over system defaults.
 fish_add_path -g -m $HOME/.local/bin
-fish_add_path -g -m $HOME/sdk             # Master SDK Storage
-fish_add_path -g -m $HOME/bin             # Master Execution Hub
+fish_add_path -g -m $HOME/sdk
+fish_add_path -g -m $HOME/bin
 
 # ==============================================================================
 # SHELL OPTIONS & INTERACTIVE CONFIG
