@@ -3,6 +3,7 @@
 [![GNU](https://img.shields.io/badge/GNU-Stow-000000?logo=gnu&logoColor=white)](#)
 [![Linux](https://img.shields.io/badge/Linux-FCC624?logo=linux&logoColor=black)](#)
 [![Fedora](https://img.shields.io/badge/Fedora-51A2DA?logo=fedora&logoColor=fff)](#)
+[![Mint](https://img.shields.io/badge/Linux_Mint-87CF3E?logo=linuxmint&logoColor=fff)](#)
 
 ## 🚀 Quick Start
 
