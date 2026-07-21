@@ -1,13 +1,14 @@
 # .stow-local-ignore
 
-# Ignore Git internals and repository configuration
-^\.git/
-^\.gitignore$
-^\.gitattributes$
+# Git internals
+.git
+.gitignore
+.gitattributes
+.gitmodules
 
-# Ignore local Stow ignore rule file itself
-^\.stow-local-ignore$
+# Stow local ignore file
+.stow-local-ignore
 
-# Ignore repository documentation
-^README\.md$
-^LICENSE$
+# Repository documentation
+README.md
+LICENSE
