@@ -19,8 +19,7 @@ sudo dnf install fish
 Install CLI tools:
 
 ```bash
-sudo dnf install bat btop fastfetch
-sudo dnf install pigz pxz p7zip p7zip-plugins unrar
+sudo dnf install unzip unrar 7zip
 sudo dnf install stow
 ```
 
