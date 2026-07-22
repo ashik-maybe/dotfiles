@@ -55,10 +55,12 @@ set -U fish_greeting
 set -g fish_features no-command-not-found
 
 if status is-interactive
-    # Prompt initialization (Starship)
-    if type -q starship
-        starship init fish | source
-    end
+    # These automatically tweak the default Fish prompt's built-in Git behavior!
+    set -g __fish_git_prompt_show_informative_status 1
+    set -g __fish_git_prompt_showdirtystate 1
+    set -g __fish_git_prompt_showuntrackedfiles 1
+    set -g __fish_git_prompt_showcolorhints 1
+    set -g __fish_git_prompt_showupstream "informative"
 
     # Directory navigation (Zoxide)
     if type -q zoxide

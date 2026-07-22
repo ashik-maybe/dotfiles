@@ -30,12 +30,6 @@ sudo dnf install stow
 chsh -s $(which fish)
 ```
 
-### 3. Install [Starship](https://starship.rs/) Prompt
-
-```bash
-curl  -sS  https://starship.rs/install.sh  |  sh
-```
-
 > Running the above line again would upgrade Starship
 
 ---
