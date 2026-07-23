@@ -6,7 +6,7 @@
 # GENERAL
 # =============================================================================
 
-import = [
+general.import = [
   "~/.config/alacritty/themes/everforest-medium.toml",
 ]
 
@@ -27,10 +27,10 @@ opacity = 1
 # =============================================================================
 
 [font]
-normal = { family = "IntoneMono Nerd Font Mono", style = "Regular" }
-bold = { family = "IntoneMono Nerd Font Mono", style = "Bold" }
-italic = { family = "IntoneMono Nerd Font Mono", style = "Italic" }
-bold_italic = { family = "IntoneMono Nerd Font Mono", style = "Bold Italic" }
+normal = { family = "monospace", style = "Regular" }
+bold = { family = "monospace", style = "Bold" }
+italic = { family = "monospace", style = "Italic" }
+bold_italic = { family = "monospace", style = "Bold Italic" }
 size = 12
 
 
