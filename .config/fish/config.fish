@@ -1,74 +1,65 @@
 # ~/.config/fish/config.fish
+# Pure environment setup, paths, and maxed-out native prompt configuration.
 
 # ==============================================================================
 # ENVIRONMENT VARIABLES
 # ==============================================================================
 set -gx EDITOR nano
 set -gx VISUAL nano
+set -gx PAGER less
+# Colors (-R), Smart-case (-i), Line numbers (-N), Auto-exit if small (-F)
+set -gx LESS '-R -i -M -N -F -X --shift 5'
 
 # ==============================================================================
-# THE TWO MASTER DIRECTORIES (OPERATIONAL GUIDE)
+# PATH MANAGEMENT
 # ==============================================================================
-#
-# 1. ~/bin (The Execution Hub)
-#    - Purpose: Stores individual executable files or SYMLINKS to tools.
-#    - Rule: If you want to run a command globally in the terminal, it goes here.
-#
-# 2. ~/sdk (The Development Storage)
-#    - Purpose: Stores intact software development kits, toolchains, and packages.
-#    - Rule: Extracted folders (like Go, Node, or Bun) live here in isolation.
-#    - Note: Managed languages (Node, Go, Python) are handled automatically via mise!
-#
-# ------------------------------------------------------------------------------
-# 🛠️ HOW TO ADD NEW DEV TOOLS IN THE FUTURE
-# ------------------------------------------------------------------------------
-#
-# METHOD A: For standalone binaries (e.g., a single compiled tool)
-#    1. Move the file straight to your execution hub:
-#       mv downloaded_tool ~/bin/
-#    2. Make it executable:
-#       chmod +x ~/bin/downloaded_tool
-#
-# METHOD B: For full toolchains (e.g., Go, Node, Zig via mise)
-#    mise use --global node@latest
-#    mise use --global go@latest
-#
-# METHOD C: Manual SDK fallback
-#    1. Extract into ~/sdk/<tool>
-#    2. Symlink binary: ln -sf ~/sdk/<tool>/bin/<binary> ~/bin/<binary>
-#
-# ==============================================================================
-# THE MASTER PATHS SETTING
-# ==============================================================================
-# -g sets global scope.
-# -m prepends to PATH to prioritize user binaries over system defaults.
+# ~/bin: Execution hub (standalone binaries/symlinks)
+# ~/sdk: Development storage (intact SDKs/toolchains)
+# ~/.local/bin: User-installed binaries (pip, cargo, npm -g, etc.)
 fish_add_path -g -m $HOME/.local/bin
 fish_add_path -g -m $HOME/sdk
 fish_add_path -g -m $HOME/bin
 
 # ==============================================================================
-# SHELL OPTIONS & INTERACTIVE CONFIG
+# SHELL OPTIONS
 # ==============================================================================
 set -g fish_history 20000
 set -g fish_autocd_enabled 1
 set -U fish_greeting
 set -g fish_features no-command-not-found
 
+# ==============================================================================
+# INTERACTIVE SHELL CONFIG & MAXED-OUT NATIVE PROMPT
+# ==============================================================================
 if status is-interactive
-    # These automatically tweak the default Fish prompt's built-in Git behavior!
+
+    # --- 1. Enable All Native Git Prompt Features ---
     set -g __fish_git_prompt_show_informative_status 1
-    set -g __fish_git_prompt_showdirtystate 1
-    set -g __fish_git_prompt_showuntrackedfiles 1
-    set -g __fish_git_prompt_showcolorhints 1
-    set -g __fish_git_prompt_showupstream "informative"
+    set -g __fish_git_prompt_showdirtystate 1          # Modified/unstaged files
+    set -g __fish_git_prompt_showuntrackedfiles 1      # Untracked files
+    set -g __fish_git_prompt_showstashstate 1          # NEW: Stashed changes
+    set -g __fish_git_prompt_showupstream "informative"# Ahead/behind/diverged
+    set -g __fish_git_prompt_showcolorhints 1          # Color-code the states
 
-    # Directory navigation (Zoxide)
-    if type -q zoxide
-        zoxide init fish | source
-    end
+    # --- 2. Modern, Distinct Unicode Characters ---
+    set -g __fish_git_prompt_char_cleanstate "✔"      # Clean working tree (Green)
+    set -g __fish_git_prompt_char_dirtystate "✚"       # Modified/unstaged (Red)
+    set -g __fish_git_prompt_char_stagedstate "●"      # Staged/ready to commit (Green)
+    set -g __fish_git_prompt_char_untrackedfiles "…"   # Untracked files (Yellow)
+    set -g __fish_git_prompt_char_conflictedstate "≠"  # NEW: Merge conflicts (Red)
+    set -g __fish_git_prompt_char_stashstate "💾"      # NEW: Stashed changes (Cyan)
 
-    # Fuzzy finder configuration (FZF)
-    if type -q fzf
-        set -gx FZF_DEFAULT_OPTS --height=40% --layout=reverse --border --preview-window=right:50%
-    end
+    # Upstream tracking
+    set -g __fish_git_prompt_char_upstream_ahead "↑"   # Commits ahead of remote
+    set -g __fish_git_prompt_char_upstream_behind "↓"  # Commits behind remote
+    set -g __fish_git_prompt_char_upstream_diverged "↕"# Diverged from remote
+
+    set -g __fish_git_prompt_char_stateseparator " "
+
+    # --- 3. Optional: Custom Prompt Colors (Uncomment to tweak) ---
+    # set -g __fish_git_prompt_color_branch magenta
+    # set -g __fish_git_prompt_color_upstream blue
+    # set -g __fish_git_prompt_color_dirtystate red
+    # set -g __fish_git_prompt_color_untrackedfiles yellow
+
 end
