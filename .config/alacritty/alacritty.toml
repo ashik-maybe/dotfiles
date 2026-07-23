@@ -7,7 +7,7 @@
 # =============================================================================
 
 general.import = [
-  "~/.config/alacritty/themes/everforest-medium.toml",
+  "~/.config/alacritty/themes/everforest-dark_Medium.toml",
 ]
 
 
