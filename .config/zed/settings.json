@@ -9,8 +9,8 @@
   },
   "icon_theme": {
     "mode": "system",
-    "light": "Zed",
-    "dark": "Zed",
+    "light": "Zed (Default)",
+    "dark": "Zed (Default)",
   },
   "ui_font_family": ".ZedSans",
   "ui_font_size": 15,
@@ -27,7 +27,7 @@
   // ═══════════════════════════════════════════════════════════
   // ✍️ EDITOR — FONTS, CURSOR, VISUALS
   // ═══════════════════════════════════════════════════════════
-  "buffer_font_family": "Zed Mono",
+  "buffer_font_family": ".ZedMono",
   "buffer_font_size": 16,
   "buffer_font_features": {
     "calt": true,
@@ -183,14 +183,14 @@
   "terminal": {
     "button": true,
     "dock": "bottom",
-    "font_family": "Zed Mono",
+    "font_family": ".ZedMono",
     "font_size": 14,
     "line_height": "comfortable",
     "cursor_shape": "block",
     "blinking": "terminal_controlled",
     "copy_on_select": true,
     "keep_selection_on_copy": true,
-    "working_directory": "current_project_directory",
+    "working_directory": "first_project_directory",
     "detect_venv": {
       "on": {
         "directories": [".env", "env", ".venv", "venv", ".expo"],

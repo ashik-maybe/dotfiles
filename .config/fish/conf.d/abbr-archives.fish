@@ -29,5 +29,5 @@ abbr -a xxz  'xz -dk'           # Extract standalone .xz
 # ------------------------------------------------------------------------------
 # LIST CONTENTS (l + format)
 # ------------------------------------------------------------------------------
-abbr -a lt   'tar -tvf'         # List contents of ANY tar archive
+abbr -a ltar   'tar -tvf'         # List contents of ANY tar archive
 abbr -a lzip 'unzip -l'         # List contents of .zip archive
