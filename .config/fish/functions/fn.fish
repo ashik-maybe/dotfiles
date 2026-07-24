@@ -1,5 +1,3 @@
-# Usage: fn "name"
-# Find files/dirs by case-insensitive name.
-function fn
+function fn --description "Search for files by name pattern"
     command find . -iname $argv
 end

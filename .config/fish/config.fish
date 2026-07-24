@@ -3,8 +3,6 @@
 # Environment
 set -gx EDITOR nano
 set -gx VISUAL nano
-set -gx PAGER less
-set -gx LESS '-R -i -M -N -F -X --shift 5'
 
 # Path
 fish_add_path -g -m $HOME/.local/bin

@@ -36,13 +36,6 @@ fetch_remote_versions_cache = "1h"
 # Only warn about missing tools if you already have other versions installed
 status.missing_tools = "if_other_versions_installed"
 
-# --- TRUST ---
-trusted_config_paths = [
-    "~/projects",
-    "~/work",
-    "~/Documents"
-]
-
 # ==============================================================================
 # GLOBAL DEFAULT TOOLS
 # ==============================================================================

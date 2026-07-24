@@ -1,5 +1,3 @@
-# Usage: lt [dir]
-# Tree view, colored, dirs first, respects .gitignore.
-function lt
+function lt --description "Display directory tree structure recursively"
     command tree -C -F --dirsfirst --gitignore $argv
 end

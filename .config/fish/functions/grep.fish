@@ -1,6 +1,4 @@
-# Usage: grep "pattern" [dir/file]
-# Colored, case-insensitive, ignores binaries, git, node_modules, python venvs.
-function grep
+function grep --description "Search plain-text data sets for lines matching a regular expression"
     command grep --color=auto -inI \
         --exclude-dir=.git \
         --exclude-dir=node_modules \

@@ -1,5 +1,3 @@
-# Usage: ff "name"
-# Find FILES only by case-insensitive name.
-function ff
+function ff --description "Fuzzy find files in current directory subtree"
     command find . -type f -iname $argv
 end

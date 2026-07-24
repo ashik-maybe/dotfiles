@@ -1,7 +1,5 @@
 # Install on Fedora: sudo dnf install zoxide
-# Usage: zoxide [args]
-# Initializes zoxide ONLY on first use. Fails if zoxide is not installed.
-function zoxide
+function zoxide --description "Smarter cd command with frecency-based directory jumping"
     if not functions -q __zoxide_hook
         zoxide init fish | source
     end
