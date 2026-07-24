@@ -21,7 +21,5 @@ abbr -a mr 'mise run'                         # Run mise.toml tasks
 # ==============================================================================
 # PROJECT SCAFFOLDING
 # ==============================================================================
-abbr -a cv 'mise x -- bun create vite@latest'
-abbr -a cs 'mise x -- bunx --bun shadcn@latest init'
-abbr -a cb 'mise x -- bunx --bun @biomejs/biome init'
-abbr -a ask 'mise x -- bunx autoskills'
+abbr -a cv 'mise x -- pnpm create vite'
+abbr -a ask 'mise x -- npx autoskills'
