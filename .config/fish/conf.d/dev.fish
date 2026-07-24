@@ -9,7 +9,8 @@ abbr -a zj 'zellij --layout compact'          # Compact Zellij session
 
 # Navigation
 abbr -a cdd 'cd ~/Downloads'                  # Open Downloads
-abbr -a cdp 'cd ~/Documents/projects/'        # Jump to projects directory
+abbr -a cdp 'cd ~/projects'                   # Jump to projects directory
+abbr -a cdw 'cd ~/work'                       # Jump to work directory
 
 # Mise - Tool Management
 abbr -a m 'mise'                              # Core CLI

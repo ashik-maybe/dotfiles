@@ -6,8 +6,6 @@ Thumbs.db
 
 # Machine-specific Fish universal variables
 .config/fish/fish_variables
-
-# Auto-generated Fish completions (regenerated via fish_update_completions)
 .config/fish/completions/
 
 # Local overrides (optional, but good practice for machine-specific tweaks)

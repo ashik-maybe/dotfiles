@@ -1,0 +1,62 @@
+# ==============================================================================
+# MISE GLOBAL CONFIGURATION
+# Optimized for: Low-Resource Systems, Next.js/Expo, Python
+# ==============================================================================
+
+[settings]
+# --- RESOURCE CONSTRAINED MODE ---
+# Limit parallel jobs to 2. Prevents OOM crashes during simultaneous tool installations (e.g., installing node + python + pnpm at once).
+jobs = 2
+
+# Force precompiled binaries to avoid high CPU/RAM usage during source compilation.
+python.compile = false
+node.compile = false
+
+# --- MODERN TOOLCHAIN DEFAULTS ---
+auto_install = true        # Auto-install missing tools on command execution
+lockfile = true            # Enforce reproducible builds via mise.lock files
+minimum_release_age = "7d" # Supply-chain security: delay adoption of new releases by 7 days
+
+# --- PYTHON & UV INTEGRATION ---
+python.uv_venv_auto = true # Auto-manage .venv when pyproject.toml/uv.lock is present
+
+# --- JAVASCRIPT / TYPESCRIPT ---
+npm.package_manager = "pnpm" # pnpm is vastly more RAM/disk-efficient than npm/yarn for Next.js/Expo
+
+# --- RUST / NATIVE TOOLS ---
+cargo.binstall = true      # Always prefer precompiled binaries for cargo tools
+
+# --- UNIVERSAL PERFORMANCE OPTIMIZATIONS ---
+# Reduces filesystem `stat` calls during shell prompt evaluation
+hook_env.chpwd_only = true
+
+# Cache remote version lookups for 1 hour to speed up shell startup and `mise ls`
+fetch_remote_versions_cache = "1h"
+
+# Only warn about missing tools if you already have other versions installed
+status.missing_tools = "if_other_versions_installed"
+
+# --- TRUST ---
+trusted_config_paths = [
+    "~/projects",
+    "~/work",
+    "~/Documents"
+]
+
+# ==============================================================================
+# GLOBAL DEFAULT TOOLS
+# ==============================================================================
+
+[tools]
+node = "22"        # Current stable LTS, perfect for Next.js 16+ and Expo
+pnpm = "latest"    # Latest stable major version
+python = "3.12"    # Sweet spot for stability, typing, and tooling compatibility
+uv = "latest"      # The single binary replacing pip, pipx, poetry, and venv
+
+# ==============================================================================
+# GLOBAL ENVIRONMENT VARIABLES
+# ==============================================================================
+
+[env]
+UV_PYTHON = "3.12"
+DOTNET_CLI_TELEMETRY_OPTOUT = "1"
