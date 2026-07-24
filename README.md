@@ -63,14 +63,14 @@ curl https://mise.run | sh
 ```
 -->
 
+<!--
+
 ---
 
 **▪ Fonts**
-<!--
 - [JetBrains Mono](https://github.com/ryanoasis/nerd-fonts/releases/latest/download/JetBrainsMono.zip)
 
 - [Hack](https://github.com/ryanoasis/nerd-fonts/releases/latest/download/Hack.zip) for _Terminal_
--->
 
 - [Intel One Mono](https://github.com/ryanoasis/nerd-fonts/releases/latest/download/IntelOneMono.zip)
 
@@ -90,3 +90,4 @@ fc-cache -fv
 
 - [Windows Fonts](https://github.com/ashik-maybe/fonts-windows)
 - [Bangla Fonts](https://github.com/ashik-maybe/fonts-bengali)
+-->
