@@ -3,7 +3,7 @@
 # ==============================================================================
 
 # --- Theme ---
-theme = "everforest-dark_medium"
+theme = "everforest-medium-dark"
 
 # --- Core Editor Options ---
 [editor]
