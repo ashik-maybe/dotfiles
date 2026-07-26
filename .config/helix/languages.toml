@@ -1,0 +1,81 @@
+# ==============================================================================
+# Helix Language Server & Formatter Overrides
+# Industry Standard, Zero-Lag Configuration
+# ==============================================================================
+
+# ------------------------------------------------------------------------------
+# JavaScript, TypeScript, JSX, TSX, HTML, CSS, JSON, Markdown
+# Uses 'prettierd' for INSTANT formatting on save.
+# ------------------------------------------------------------------------------
+[[language]]
+name = "typescript"
+auto-format = true
+formatter = { command = "prettierd", args = [".typescript"] }
+
+[[language]]
+name = "tsx"
+auto-format = true
+formatter = { command = "prettierd", args = [".tsx"] }
+
+[[language]]
+name = "javascript"
+auto-format = true
+formatter = { command = "prettierd", args = [".javascript"] }
+
+[[language]]
+name = "jsx"
+auto-format = true
+formatter = { command = "prettierd", args = [".jsx"] }
+
+[[language]]
+name = "json"
+auto-format = true
+formatter = { command = "prettierd", args = [".json"] }
+
+[[language]]
+name = "html"
+auto-format = true
+formatter = { command = "prettierd", args = [".html"] }
+
+[[language]]
+name = "css"
+auto-format = true
+formatter = { command = "prettierd", args = [".css"] }
+
+# FIXED: Uses prettierd with the correct markdown parser
+[[language]]
+name = "markdown"
+auto-format = true
+formatter = { command = "prettierd", args = [".markdown"] }
+
+# ------------------------------------------------------------------------------
+# Python (Uses the blazing-fast 'ruff' via 'uvx')
+# ------------------------------------------------------------------------------
+[[language]]
+name = "python"
+auto-format = true
+formatter = { command = "uvx", args = ["ruff", "format", "-"] }
+
+# ------------------------------------------------------------------------------
+# Rust & Go (Relies on Helix defaults: rustfmt & gofmt)
+# ------------------------------------------------------------------------------
+[[language]]
+name = "rust"
+auto-format = true
+
+[[language]]
+name = "go"
+auto-format = true
+
+# ------------------------------------------------------------------------------
+# C / C++ (Uses clang-format)
+# ------------------------------------------------------------------------------
+[[language]]
+name = "cpp"
+auto-format = true
+formatter = { command = "clang-format" }
+
+[[language]]
+name = "c"
+auto-format = true
+formatter = { command = "clang-format" }

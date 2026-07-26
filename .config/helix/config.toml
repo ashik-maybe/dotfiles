@@ -1,0 +1,107 @@
+# ==============================================================================
+# Helix Editor Configuration (`config.toml`)
+# ==============================================================================
+
+# --- Theme ---
+theme = "everforest-dark_medium"
+
+# --- Core Editor Options ---
+[editor]
+true-color = true
+undercurl = true
+mouse = true
+line-number = "relative"
+cursorline = true
+bufferline = "multiple"
+color-modes = true
+scrolloff = 10
+popup-border = "all"
+rulers = [80, 120]
+
+# --- Editing & Formatting ---
+auto-format = true
+auto-completion = true
+preview-completion-insert = false
+completion-trigger-len = 2
+completion-timeout = 50
+idle-timeout = 250
+text-width = 80
+insert-final-newline = true
+trim-trailing-whitespace = true
+end-of-line-diagnostics = "hint"
+
+# --- Auto Save ---
+[editor.auto-save]
+focus-lost = true
+
+# --- Search ---
+[editor.search]
+smart-case = true
+wrap-around = true
+
+# --- Smart Tab ---
+[editor.smart-tab]
+enable = true
+supersede-menu = false
+
+# --- Cursor Shapes ---
+[editor.cursor-shape]
+normal = "block"
+insert = "bar"
+select = "underline"
+
+# --- Statusline ---
+[editor.statusline]
+left = ["mode", "spinner", "file-name", "file-modification-indicator"]
+center = ["version-control"]
+right = ["diagnostics", "selections", "position", "file-type"]
+separator = "│"
+
+[editor.statusline.mode]
+normal = "NORMAL"
+insert = "INSERT"
+select = "SELECT"
+
+# --- Gutters & Line Numbers ---
+[editor.gutters]
+layout = ["diff", "diagnostics", "spacer", "line-numbers", "spacer"]
+
+[editor.gutters.line-numbers]
+min-width = 3
+
+# --- Diagnostics ---
+[editor.inline-diagnostics]
+cursor-line = "warning"
+other-lines = "disable"
+
+# --- LSP Settings ---
+[editor.lsp]
+enable = true
+display-messages = true
+display-progress-messages = true
+auto-signature-help = true
+display-inlay-hints = true
+display-signature-help-docs = true
+snippets = true
+
+# --- Indent Guides ---
+[editor.indent-guides]
+render = true
+character = "▏"
+skip-levels = 1
+
+# --- Whitespace Display ---
+[editor.whitespace]
+render = "all"
+
+[editor.whitespace.characters]
+tab = "→"
+newline = "⏎"
+nbsp = "⍽"
+
+# --- Soft Wrap ---
+[editor.soft-wrap]
+enable = true
+max-wrap = 20
+max-indent-retain = 40
+wrap-indicator = "↪ "
