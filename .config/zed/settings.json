@@ -1,7 +1,7 @@
 {
-  // ═══════════════════════════════════════════════════════════
-  // 🎨 THEME & UI
-  // ═══════════════════════════════════════════════════════════
+  // ===========================================================================
+  // 🎨 THEME & USER INTERFACE
+  // ===========================================================================
   "theme": {
     "mode": "system",
     "light": "Everforest Medium Light",
@@ -18,37 +18,49 @@
   "outline_panel": {
     "dock": "left",
   },
-  "agent": {
-    "dock": "right",
-    "favorite_models": [],
-    "model_parameters": [],
+
+  // ===========================================================================
+  // 🧩 EXTENSIONS
+  // ===========================================================================
+  // Auto-install necessary language and tool extensions for portability
+  "auto_install_extensions": {
+    "csv": true,
+    "dockerfile": true,
+    "env": true,
+    "git-firefly": true,
+    "graphql": true,
+    "html": true,
+    "make": true,
+    "sql": true,
+    "toml": true,
+    "yaml": true,
   },
 
-  // ═══════════════════════════════════════════════════════════
-  // ✍️ EDITOR — FONTS, CURSOR, VISUALS
-  // ═══════════════════════════════════════════════════════════
+  // ===========================================================================
+  // ✍️ EDITOR (FONTS, CURSOR, VISUALS)
+  // ===========================================================================
   "buffer_font_family": ".ZedMono",
   "buffer_font_size": 16,
+  "buffer_font_weight": 400,
+  "buffer_line_height": "comfortable",
   "buffer_font_features": {
     "calt": true,
     "liga": true,
   },
-  "buffer_line_height": "comfortable",
-  "buffer_font_weight": 400,
   "cursor_shape": "bar",
   "cursor_blink": true,
   "current_line_highlight": "line",
   "selection_highlight": true,
-  "unnecessary_code_fade": 0.2,
   "rounded_selection": true,
+  "unnecessary_code_fade": 0.2,
 
-  // ═══════════════════════════════════════════════════════════
-  // 📏 WRAPPING, GUIDES, WHITESPACE
-  // ═══════════════════════════════════════════════════════════
+  // ===========================================================================
+  // 📏 INDENTATION, WRAPPING & GUIDES
+  // ===========================================================================
   "preferred_line_length": 100,
+  "soft_wrap": "editor_width",
   "show_wrap_guides": true,
   "wrap_guides": [80, 120],
-  "soft_wrap": "editor_width",
   "show_whitespaces": "selection",
   "indent_guides": {
     "enabled": true,
@@ -56,9 +68,9 @@
     "active_line_width": 2,
   },
 
-  // ═══════════════════════════════════════════════════════════
-  // 🧭 GUTTER, SCROLL, NAVIGATION
-  // ═══════════════════════════════════════════════════════════
+  // ===========================================================================
+  // 🧭 GUTTER, SCROLLING & NAVIGATION
+  // ===========================================================================
   "gutter": {
     "line_numbers": true,
     "folds": true,
@@ -70,9 +82,14 @@
   "scroll_beyond_last_line": "off",
   "horizontal_scroll_margin": 5,
   "vertical_scroll_margin": 3,
-  "hide_mouse": "on_typing_and_action",
   "scroll_sensitivity": 1.2,
   "fast_scroll_sensitivity": 4.8,
+  "hide_mouse": "on_typing_and_action",
+  "middle_click_paste": true,
+  "drag_and_drop_selection": {
+    "enabled": true,
+    "delay": 300,
+  },
   "minimap": {
     "show": "never",
   },
@@ -84,9 +101,9 @@
     "cursors": true,
   },
 
-  // ═══════════════════════════════════════════════════════════
-  // 💾 SAVE, FORMAT, EDIT BEHAVIOR
-  // ═══════════════════════════════════════════════════════════
+  // ===========================================================================
+  // 💾 SAVE & EDITING BEHAVIOR
+  // ===========================================================================
   "autosave": "on_focus_change",
   "format_on_save": "on",
   "ensure_final_newline_on_save": true,
@@ -98,10 +115,14 @@
   "linked_edits": true,
   "extend_comment_on_newline": true,
 
-  // ═══════════════════════════════════════════════════════════
-  // 🗂️ TABS, PANELS, LAYOUT
-  // ═══════════════════════════════════════════════════════════
+  // ===========================================================================
+  // 🗂️ TABS, PANELS & LAYOUT
+  // ===========================================================================
   "max_tabs": 15,
+  "active_pane_modifiers": {
+    "border_size": 1.0,
+    "inactive_opacity": 0.85,
+  },
   "tab_bar": {
     "show": true,
     "show_nav_history_buttons": true,
@@ -114,6 +135,12 @@
     "activate_on_close": "history",
     "show_diagnostics": "errors",
   },
+  "preview_tabs": {
+    "enabled": true,
+    "enable_preview_from_project_panel": true,
+    "enable_preview_from_file_finder": true,
+    "enable_preview_from_multibuffer": true,
+  },
   "title_bar": {
     "show_branch_status_icon": true,
     "show_branch_name": true,
@@ -124,8 +151,8 @@
   "toolbar": {
     "breadcrumbs": true,
     "quick_actions": true,
-    "code_actions": false,
-    "agent_review": true,
+    "code_actions": true,
+    "agent_review": false,
   },
   "status_bar": {
     "active_language_button": true,
@@ -143,14 +170,30 @@
     "auto_fold_dirs": true,
     "hide_root": false,
     "hide_hidden": false,
+    "entry_spacing": "comfortable",
+    "sort_mode": "directories_first",
+    "show_diagnostics": "all",
     "scrollbar": {
       "show": "auto",
     },
     "indent_guides": {
       "show": "always",
     },
-    "show_diagnostics": "all",
-    "sort_mode": "directories_first",
+  },
+
+  // ===========================================================================
+  // 🔀 GIT & VERSION CONTROL
+  // ===========================================================================
+  "git": {
+    "git_gutter": "tracked_files",
+    "gutter_style": "detailed",
+    "hunk_style": "staged_hollow",
+    "fold_placeholder": true,
+    "inline_blame": {
+      "enabled": true,
+      "show_commit_summary": true,
+      "delay_ms": 300,
+    },
   },
   "git_panel": {
     "button": true,
@@ -159,27 +202,10 @@
     "status_style": "icon",
     "sort_by_path": false,
   },
-  "collaboration_panel": {
-    "button": false,
-    "dock": "left",
-  },
 
-  // ═══════════════════════════════════════════════════════════
-  // 🔀 GIT
-  // ═══════════════════════════════════════════════════════════
-  "git": {
-    "git_gutter": "tracked_files",
-    "hunk_style": "staged_hollow",
-    "inline_blame": {
-      "enabled": true,
-      "show_commit_summary": true,
-      "delay_ms": 300,
-    },
-  },
-
-  // ═══════════════════════════════════════════════════════════
+  // ===========================================================================
   // 💻 TERMINAL
-  // ═══════════════════════════════════════════════════════════
+  // ===========================================================================
   "terminal": {
     "button": true,
     "dock": "bottom",
@@ -191,9 +217,10 @@
     "copy_on_select": true,
     "keep_selection_on_copy": true,
     "working_directory": "first_project_directory",
+    "minimum_contrast": 45,
     "detect_venv": {
       "on": {
-        "directories": [".env", "env", ".venv", "venv", ".expo"],
+        "directories": [".env", "env", ".venv", "venv"],
       },
     },
     "scrollbar": {
@@ -202,52 +229,63 @@
     "toolbar": {
       "breadcrumbs": false,
     },
-    "minimum_contrast": 45,
   },
   "load_direnv": "shell_hook",
-  "middle_click_paste": true,
 
-  // ═══════════════════════════════════════════════════════════
-  // 🔍 SEARCH, FIND, PREVIEW
-  // ═══════════════════════════════════════════════════════════
+  // ===========================================================================
+  // 🔍 SEARCH & FIND
+  // ===========================================================================
   "use_system_path_prompts": false,
-  "preview_tabs": {
-    "enabled": true,
-    "enable_preview_from_project_panel": true,
-    "enable_preview_from_file_finder": false,
-    "enable_preview_from_multibuffer": true,
-  },
+  "seed_search_query_from_cursor": "selection",
   "search": {
     "case_sensitive": false,
     "include_ignored": false,
     "regex": false,
     "whole_word": false,
   },
-  "seed_search_query_from_cursor": "selection",
 
-  // ═══════════════════════════════════════════════════════════
-  // 🤖 AI, LSP, INTELLISENSE — DISABLED
-  // ═══════════════════════════════════════════════════════════
+  // ===========================================================================
+  // 🧠 LANGUAGE SERVER PROTOCOL (LSP) & AUTOCOMPLETE
+  // ===========================================================================
+  // AI features disabled in favor of pure LSP capabilities
+  "disable_ai": true,
+  "show_edit_predictions": false,
   "edit_predictions": {
     "provider": "none",
   },
+
+  // Code Completion Settings
   "show_completions_on_input": true,
   "show_completion_documentation": true,
   "snippet_sort_order": "inline",
+  "completion": {
+    "lsp_fetch_timeout_ms": 3000,
+    "words": {
+      "mode": "fallback",
+    },
+  },
+
+  // Signatures & Documentation Hover
   "auto_signature_help": true,
-  "hover_popover_enabled": false,
-  "hover_popover_delay": 300,
+  "hover_popover_enabled": true,
+  "hover_popover_delay": 400,
+
+  // Inlay Hints (Inline Parameters and Types)
   "inlay_hints": {
-    "enabled": false,
+    "enabled": true,
     "edit_debounce_ms": 100,
     "scroll_debounce_ms": 50,
     "show_background": true,
-    "show_parameter_hints": false,
-    "show_type_hints": false,
-    "show_other_hints": false,
+    "show_parameter_hints": true,
+    "show_type_hints": true,
+    "show_other_hints": true,
   },
-  "lsp_document_colors": "inlay",
+
+  // Syntax Visuals & Tokens
   "semantic_tokens": "combined",
+  "lsp_document_colors": "inlay",
+
+  // Global LSP behavior
   "global_lsp_settings": {
     "button": true,
     "request_timeout": 120,
@@ -255,124 +293,62 @@
       "dismiss_timeout_ms": 5000,
     },
   },
+
+  // Inline Diagnostics & Warnings
   "diagnostics": {
     "include_warnings": true,
     "inline": {
-      "enabled": false,
+      "enabled": true,
     },
   },
   "diagnostics_max_severity": "warning",
 
-  // ═══════════════════════════════════════════════════════════
-  // 🐍⚛️ LANGUAGE-SPECIFIC
-  // ═══════════════════════════════════════════════════════════
-  "languages": {
-    "Python": {
-      "tab_size": 4,
-      "hard_tabs": false,
-      "preferred_line_length": 88,
-      "format_on_save": "on",
-      "enable_language_server": true,
-      "document_symbols": "on",
-      "indent_guides": {
-        "enabled": true,
-        "coloring": "indent_aware",
-      },
-    },
-    "TypeScript": {
-      "tab_size": 2,
-      "hard_tabs": false,
-      "format_on_save": "on",
-      "enable_language_server": true,
-      "document_symbols": "on",
-      "semantic_tokens": "combined",
-      "edit_predictions_disabled_in": ["comment"],
-    },
-    "JavaScript": {
-      "tab_size": 2,
-      "hard_tabs": false,
-      "format_on_save": "on",
-      "enable_language_server": true,
-      "document_symbols": "on",
-    },
-    "TSX": {
-      "tab_size": 2,
-      "hard_tabs": false,
-      "format_on_save": "on",
-      "enable_language_server": true,
-      "document_symbols": "on",
-      "edit_predictions_disabled_in": ["comment", "string"],
-    },
-    "JSON": {
-      "tab_size": 2,
-      "format_on_save": "on",
-    },
-    "JSONC": {
-      "tab_size": 2,
-    },
-  },
-
-  // ═══════════════════════════════════════════════════════════
-  // 🗄️ FILE SCAN, EXCLUSIONS
-  // ═══════════════════════════════════════════════════════════
+  // ===========================================================================
+  // 🗄️ FILE SCAN & EXCLUSIONS
+  // ===========================================================================
   "file_scan_exclusions": [
     "**/.git",
     "**/.svn",
     "**/.hg",
-    "**/.jj",
     "**/CVS",
     "**/.DS_Store",
     "**/Thumbs.db",
-    "**/.classpath",
-    "**/.settings",
     "**/node_modules/**",
-    "**/.next/**",
     "**/dist/**",
     "**/build/**",
-    "**/.expo/**",
-    "**/.expo-shared/**",
+    "**/out/**",
     "**/.venv/**",
+    "**/venv/**",
     "**/__pycache__/**",
     "**/.mypy_cache/**",
+    "**/.pytest_cache/**",
     "**/.bun/**",
     "**/.npm/**",
     "**/.pnpm-store/**",
     "**/.yarn/**",
-    "**/.yarn/cache/**",
-    "**/.yarn/unplugged/**",
     "**/.cache/**",
     "**/.turbo/**",
+    "**/target/**",
+    "**/.zig-cache/**",
+    "**/vendor/**",
   ],
   "file_types": {
     "Shell Script": [".env.*"],
-    "JSONC": ["**/.vscode/**/*.json"],
   },
 
-  // ═══════════════════════════════════════════════════════════
-  // ⚙️ PERFORMANCE
-  // ═══════════════════════════════════════════════════════════
-  "active_pane_modifiers": {
-    "border_size": 1.0,
-    "inactive_opacity": 0.85,
-  },
-
-  // ═══════════════════════════════════════════════════════════
-  // 🔒 TELEMETRY / PRIVACY
-  // ═══════════════════════════════════════════════════════════
+  // ===========================================================================
+  // ⚙️ SYSTEM, SESSION & PRIVACY
+  // ===========================================================================
   "telemetry": {
     "diagnostics": false,
     "metrics": false,
   },
   "auto_update": true,
   "confirm_quit": false,
+  "close_on_file_delete": false,
   "restore_on_startup": "last_workspace",
   "session": {
     "restore_unsaved_buffers": true,
     "trust_all_worktrees": false,
-  },
-  "close_on_file_delete": false,
-  "drag_and_drop_selection": {
-    "enabled": true,
-    "delay": 300,
   },
 }
