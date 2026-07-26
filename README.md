@@ -65,9 +65,12 @@ curl https://mise.run | sh
 
 ---
 
-**▪ Fonts**
+#### Fonts
 
--[Maple Mono](https://github.com/subframe7536/Maple-font)
+[JetBrains Mono](https://www.jetbrains.com/lp/mono/)
+<!--[Maple Mono](https://github.com/subframe7536/Maple-font)-->
+
+<!--
 
 ⚠ Store these fonts in **`~/.local/share/fonts`**
 
@@ -76,12 +79,12 @@ curl https://mise.run | sh
 _Or just paste this in your terminal;_
 
 ```bash
-mkdir -p ~/.local/share/fonts/MapleMono && \
+mkdir -p ~/.local/share/fonts/JetbrainsMonoNF && \
 cd /tmp && \
-curl -fLo MapleMono.zip https://github.com/subframe7536/maple-font/releases/download/v7.9/MapleMono-Variable.zip && \
-unzip MapleMono.zip -d ~/.local/share/fonts/MapleMono && \
+curl -fLo JetbrainsMonoNF.zip https://github.com/ryanoasis/nerd-fonts/releases/latest/download/JetBrainsMono.zip && \
+unzip JetbrainsMonoNF.zip -d ~/.local/share/fonts/JetbrainsMonoNF && \
 fc-cache -fv
 ```
+-->
 
-- [Windows Fonts](https://github.com/ashik-maybe/fonts-windows)
-- [Bangla Fonts](https://github.com/ashik-maybe/fonts-bengali)
+---
