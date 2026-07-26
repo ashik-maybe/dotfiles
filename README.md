@@ -67,24 +67,10 @@ curl https://mise.run | sh
 
 #### Fonts
 
-[JetBrains Mono](https://www.jetbrains.com/lp/mono/)
+> Store fonts in **`~/.local/share/fonts`** or **`~/.fonts`** and run `fc-cache -fv`
+
+<!--[Commit Mono](https://commitmono.com/)-->
+<!--[JetBrains Mono](https://www.jetbrains.com/lp/mono/)-->
 <!--[Maple Mono](https://github.com/subframe7536/Maple-font)-->
-
-<!--
-
-⚠ Store these fonts in **`~/.local/share/fonts`**
-
-> If the `fonts` directory is not in `share` then create it
-
-_Or just paste this in your terminal;_
-
-```bash
-mkdir -p ~/.local/share/fonts/JetbrainsMonoNF && \
-cd /tmp && \
-curl -fLo JetbrainsMonoNF.zip https://github.com/ryanoasis/nerd-fonts/releases/latest/download/JetBrainsMono.zip && \
-unzip JetbrainsMonoNF.zip -d ~/.local/share/fonts/JetbrainsMonoNF && \
-fc-cache -fv
-```
--->
 
 ---
