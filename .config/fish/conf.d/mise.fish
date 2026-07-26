@@ -1,11 +1,10 @@
 # ~/.config/fish/conf.d/mise.fish
 #
 # Fresh Install Instructions:
-# 1. Install mise:               curl https://mise.run | sh
-# 2. Reload shell:               exec fish
-# 3. Verify installation:        mise doctor
-# 4. Install tools (usage):      mise install
-# 5. Add shell completions:      mise completion fish > ~/.config/fish/completions/mise.fish
+# 1. Install mise:             curl https://mise.run | sh
+# 2. Verify installation:      mise doctor
+# 3. Install usage CLI:        mise use -g usage
+# 4. Add shell completions:    mise completion fish > ~/.config/fish/completions/mise.fish
 
 # 1. Interactive terminal activation (runs first so active tools take precedence in PATH)
 if status is-interactive
