@@ -63,16 +63,11 @@ curl https://mise.run | sh
 ```
 -->
 
-<!--
-
 ---
 
 **▪ Fonts**
-- [JetBrains Mono](https://github.com/ryanoasis/nerd-fonts/releases/latest/download/JetBrainsMono.zip)
 
-- [Hack](https://github.com/ryanoasis/nerd-fonts/releases/latest/download/Hack.zip) for _Terminal_
-
-- [Intel One Mono](https://github.com/ryanoasis/nerd-fonts/releases/latest/download/IntelOneMono.zip)
+-[Maple Mono](https://github.com/subframe7536/Maple-font)
 
 ⚠ Store these fonts in **`~/.local/share/fonts`**
 
@@ -81,13 +76,12 @@ curl https://mise.run | sh
 _Or just paste this in your terminal;_
 
 ```bash
-mkdir -p ~/.local/share/fonts/IntelOneMonoNerdFont && \
+mkdir -p ~/.local/share/fonts/MapleMono && \
 cd /tmp && \
-curl -fLo IntelOneMono.zip https://github.com/ryanoasis/nerd-fonts/releases/latest/download/IntelOneMono.zip && \
-unzip IntelOneMono.zip -d ~/.local/share/fonts/IntelOneMonoNerdFont && \
+curl -fLo MapleMono.zip https://github.com/subframe7536/maple-font/releases/download/v7.9/MapleMono-Variable.zip && \
+unzip MapleMono.zip -d ~/.local/share/fonts/MapleMono && \
 fc-cache -fv
 ```
 
 - [Windows Fonts](https://github.com/ashik-maybe/fonts-windows)
 - [Bangla Fonts](https://github.com/ashik-maybe/fonts-bengali)
--->
