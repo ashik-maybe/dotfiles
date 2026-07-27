@@ -1,107 +1,268 @@
-# ==============================================================================
+# ============================================================================
 # Helix Editor Configuration (`config.toml`)
-# ==============================================================================
+# ============================================================================
 
-# --- Theme ---
+# ----------------------------------------------------------------------------
+# Theme Settings
+# ----------------------------------------------------------------------------
+
+# Sets the global color scheme for the editor interface.
 theme = "everforest-medium-dark"
 
-# --- Core Editor Options ---
+
+# ----------------------------------------------------------------------------
+# Core Editor Options
+# ----------------------------------------------------------------------------
+
 [editor]
+# Enables 24-bit RGB color support for terminal environments.
 true-color = true
+
+# Enables wavy/curly underline support for diagnostics (if terminal permits).
 undercurl = true
+
+# Enables mouse interaction for cursor placement, scrolling, and resizing.
 mouse = true
+
+# Sets line numbers to relative mode for efficient multi-line motion calculations.
 line-number = "relative"
+
+# Highlights the active line where the cursor is currently positioned.
 cursorline = true
+
+# Manages open buffers, displaying a multi-tab bar when multiple files are open.
 bufferline = "multiple"
+
+# Dynamically updates the statusline color based on the current editor mode.
 color-modes = true
+
+# Maintains a minimum offset of lines above and below the cursor while scrolling.
 scrolloff = 10
+
+# Renders decorative border lines around contextual popups and auto-completes.
 popup-border = "all"
+
+# Displays visual ruler guides at the specified column widths.
 rulers = [80, 120]
 
-# --- Editing & Formatting ---
+# Automatically formats code using the active Language Server on save or write.
 auto-format = true
+
+# Automatically triggers completion suggestions while typing.
 auto-completion = true
+
+# Disables immediate insertion preview of the currently selected completion item.
 preview-completion-insert = false
+
+# Minimum number of typed characters required to trigger auto-completion.
 completion-trigger-len = 2
+
+# Delay (in milliseconds) before fetching autocomplete items.
 completion-timeout = 50
+
+# Inactivity delay (in milliseconds) before triggering idle events or diagnostics.
 idle-timeout = 250
+
+# Sets the target line width limit for text wrapping and formatting.
 text-width = 80
+
+# Ensures a trailing newline character is added at the end of files upon saving.
 insert-final-newline = true
+
+# Automatically strips unnecessary whitespace at the end of lines when saving.
 trim-trailing-whitespace = true
+
+# Displays inline diagnostic messages at the end of the text line.
 end-of-line-diagnostics = "hint"
 
-# --- Auto Save ---
+
+# ----------------------------------------------------------------------------
+# File Picker Configuration (IDE-like navigation for dotfiles/hidden dirs)
+# ----------------------------------------------------------------------------
+
+[editor.file-picker]
+# Allows hidden files and dotfiles (like .git, .config) to show up in pickers.
+hidden = false
+
+# Includes git-ignored files if needed (uncomment if you want to search build outputs)
+# git-ignore = false
+
+
+# ----------------------------------------------------------------------------
+# Auto-Save Configuration
+# ----------------------------------------------------------------------------
+
 [editor.auto-save]
+# Automatically saves modified buffers when the editor window loses focus.
 focus-lost = true
 
-# --- Search ---
+
+# ----------------------------------------------------------------------------
+# Search Preferences
+# ----------------------------------------------------------------------------
+
 [editor.search]
+# Uses case-insensitive search unless capital letters are explicitly provided.
 smart-case = true
+
+# Allows search queries to wrap around from the end of the document to the top.
 wrap-around = true
 
-# --- Smart Tab ---
+
+# ----------------------------------------------------------------------------
+# Smart Tab Behavior
+# ----------------------------------------------------------------------------
+
 [editor.smart-tab]
+# Enables context-aware tab behavior for code indentation.
 enable = true
+
+# Prevents smart-tabs from overriding completion menus.
 supersede-menu = false
 
-# --- Cursor Shapes ---
+
+# ----------------------------------------------------------------------------
+# Cursor Visual Shapes
+# ----------------------------------------------------------------------------
+
 [editor.cursor-shape]
+# Renders a solid vertical block cursor in Normal mode.
 normal = "block"
+
+# Renders a vertical line bar cursor in Insert mode.
 insert = "bar"
+
+# Renders an underline marker cursor in Selection/Visual mode.
 select = "underline"
 
-# --- Statusline ---
+
+# ----------------------------------------------------------------------------
+# Statusline Layout & Components
+# ----------------------------------------------------------------------------
+
 [editor.statusline]
+# Components aligned to the left section of the status bar.
 left = ["mode", "spinner", "file-name", "file-modification-indicator"]
+
+# Components aligned to the center section of the status bar.
 center = ["version-control"]
+
+# Components aligned to the right section of the status bar.
 right = ["diagnostics", "selections", "position", "file-type"]
+
+# Character used to visually separate statusline components.
 separator = "│"
 
 [editor.statusline.mode]
+# Display label for Normal mode.
 normal = "NORMAL"
+
+# Display label for Insert mode.
 insert = "INSERT"
+
+# Display label for Select/Visual mode.
 select = "SELECT"
 
-# --- Gutters & Line Numbers ---
+
+# ----------------------------------------------------------------------------
+# Gutters & Line Number Display
+# ----------------------------------------------------------------------------
+
 [editor.gutters]
+# Defines the layout sequence for elements rendered in the left gutter.
 layout = ["diff", "diagnostics", "spacer", "line-numbers", "spacer"]
 
 [editor.gutters.line-numbers]
+# Sets the minimum column width allocated for rendering line numbers.
 min-width = 3
 
-# --- Diagnostics ---
+
+# ----------------------------------------------------------------------------
+# Inline Diagnostics Display
+# ----------------------------------------------------------------------------
+
 [editor.inline-diagnostics]
+# Displays warning diagnostics inline specifically on the active cursor line.
 cursor-line = "warning"
+
+# Disables inline diagnostics on all inactive lines to reduce visual clutter.
 other-lines = "disable"
 
-# --- LSP Settings ---
+
+# ----------------------------------------------------------------------------
+# Language Server Protocol (LSP) Settings
+# ----------------------------------------------------------------------------
+
 [editor.lsp]
+# Enables integration with external language servers.
 enable = true
+
+# Displays LSP status updates and server logs in the editor.
 display-messages = true
+
+# Shows asynchronous background progress notifications from language servers.
 display-progress-messages = true
+
+# Automatically invokes function and method signature helper popups.
 auto-signature-help = true
+
+# Renders inline helper hints (such as parameter names or types) provided by LSP.
 display-inlay-hints = true
+
+# Displays documentation blocks inside signature help popups.
 display-signature-help-docs = true
+
+# Enables language server snippet completions.
 snippets = true
 
-# --- Indent Guides ---
+
+# ----------------------------------------------------------------------------
+# Indent Guides
+# ----------------------------------------------------------------------------
+
 [editor.indent-guides]
+# Renders vertical guide lines for code blocks and indentation levels.
 render = true
+
+# Character glyph used to draw the vertical indentation guide lines.
 character = "▏"
+
+# Skips rendering guide lines for specified levels of indentation hierarchy.
 skip-levels = 1
 
-# --- Whitespace Display ---
+
+# ----------------------------------------------------------------------------
+# Whitespace Visibility & Render Characters
+# ----------------------------------------------------------------------------
+
 [editor.whitespace]
+# Renders all invisible whitespace characters across the document.
 render = "all"
 
 [editor.whitespace.characters]
+# Symbol used to represent hard tab characters.
 tab = "→"
+
+# Symbol used to represent explicit newline breaks.
 newline = "⏎"
+
+# Symbol used to represent non-breaking space characters.
 nbsp = "⍽"
 
-# --- Soft Wrap ---
+
+# ----------------------------------------------------------------------------
+# Soft Line Wrapping Configuration
+# ----------------------------------------------------------------------------
+
 [editor.soft-wrap]
+# Enables soft-wrapping for long lines that exceed the editor viewport width.
 enable = true
+
+# Sets the maximum number of wrapped lines allowed per logical line.
 max-wrap = 20
+
+# Sets the maximum indentation retention limit for wrapped segments.
 max-indent-retain = 40
+
+# Visual indicator symbol displayed at the beginning of wrapped lines.
 wrap-indicator = "↪ "

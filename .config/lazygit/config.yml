@@ -1,0 +1,84 @@
+# ============================================================================
+# Lazygit Configuration (`config.yml`)
+# ============================================================================
+
+# ----------------------------------------------------------------------------
+# Graphical User Interface Settings
+# ----------------------------------------------------------------------------
+
+gui:
+  # Maintains a 3-line scroll margin context to prevent losing your place.
+  scrollOffMargin: 3
+
+  # Displays status arrows and numeric indicators for divergent remote branches.
+  showDivergenceFromBaseBranch: arrowAndNumber
+
+  # Enables Nerd Fonts v3 integration for file icon rendering.
+  nerdFontsVersion: "3"
+  showFileIcons: false
+
+  # Configures author name character limits for compact commit views.
+  commitAuthorShortLength: 2
+  commitAuthorLongLength: 17
+
+  # Displays a visual warning indicator when commit messages exceed standard limits.
+  commitLength:
+    show: true
+
+  # Defines a terminal-native, theme-agnostic interface palette.
+  theme:
+    activeBorderColor:
+      - green
+      - bold
+    inactiveBorderColor:
+      - default
+    optionsTextColor:
+      - cyan
+    # Highlights the currently selected line background with reverse contrast.
+    selectedLineBgColor:
+      - reverse
+    unstagedChangesColor:
+      - red
+    defaultFgColor:
+      - default
+
+# ----------------------------------------------------------------------------
+# Git Integration & Repository Behavior
+# ----------------------------------------------------------------------------
+
+git:
+  # Defines primary branch names recognized by git workflows.
+  mainBranches:
+    - main
+    - master
+    - develop
+
+  # Automatically stages files once merge conflicts are manually resolved.
+  autoStageResolvedConflicts: true
+
+  # Configures commit history graph rendering and sorting strategy.
+  log:
+    order: topo-order
+    showGraph: always
+
+  # Truncates copied commit hashes to a standard 8-character length.
+  truncateCopiedCommitHashesTo: 8
+
+# ----------------------------------------------------------------------------
+# Operating System & Editor Integration
+# ----------------------------------------------------------------------------
+
+os:
+  # Sets the default external text editor preset.
+  editPreset: "zed"
+
+  # Optional syntax-highlighting pager integration (uncomment if delta is installed):
+  # pagers:
+  #   - pager: delta --dark --paging=never
+
+# ----------------------------------------------------------------------------
+# Application Quality of Life
+# ----------------------------------------------------------------------------
+
+# Suppresses introductory tutorial popups on startup for immediate access.
+disableStartupPopups: true

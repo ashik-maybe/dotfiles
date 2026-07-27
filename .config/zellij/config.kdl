@@ -1,23 +1,65 @@
-// ==============================================================================
-// Visuals & Themes
-// ==============================================================================
+// ============================================================================
+// Zellij Configuration
+// ============================================================================
+
+// ----------------------------------------------------------------------------
+// Appearance & Themes
+// ----------------------------------------------------------------------------
+
+// Sets the global color palette for the application interface.
 theme "everforest-medium-dark"
-pane_frames false        // Disables borders around panes
 
-// ==============================================================================
-// Interaction & Behavior
-// ==============================================================================
+// Disables decorative borders around panes for a minimalist, borderless layout.
+pane_frames false
+
+// Enables a simplified UI mode to prevent rendering glitches across terminals.
+simplified_ui true
+
+
+// ----------------------------------------------------------------------------
+// Core Behavior & Environment
+// ----------------------------------------------------------------------------
+
+// Configures session handling when forced to close, ensuring background persistence.
+on_force_close "detach"
+
+
+// ----------------------------------------------------------------------------
+// Interaction & Clipboard Management
+// ----------------------------------------------------------------------------
+
+// Enables mouse interaction support within the terminal grid.
 mouse_mode true
-on_force_close "quit"   // Kills the session on terminal close
-copy_on_select true      // Copy highlighted text straight to clipboard
 
-// ==============================================================================
-// Lightweight Memory Management
-// ==============================================================================
-scroll_buffer_size 10000 // Safe default for low-spec systems
+// Automatically copies any highlighted text to the active clipboard buffer.
+copy_on_select true
 
-// ==============================================================================
-// Quiet Startup
-// ==============================================================================
+// Targets the host operating system's native clipboard rather than an internal buffer.
+copy_clipboard "system"
+
+// Display Server Clipboard Commands (Uncomment the appropriate line for your environment):
+// copy_command "wl-copy"                // Wayland
+// copy_command "xclip -selection clipboard" // X11 Display Server
+// copy_command "pbcopy"               // macOS Darwin Clipboard
+
+
+// ----------------------------------------------------------------------------
+// Performance & Resource Management
+// ----------------------------------------------------------------------------
+
+// Allocates the line history buffer limit per pane for debugging and scrollback.
+scroll_buffer_size 10000
+
+
+// ----------------------------------------------------------------------------
+// Startup & Focus Behavior
+// ----------------------------------------------------------------------------
+
+// Suppresses onboarding tips upon launching a new session.
 show_startup_tips false
+
+// Suppresses changelog and release notes displays on updates.
 show_release_notes false
+
+// Automatically shifts focus to the pane hovered over by the cursor pointer.
+focus_follows_mouse true
