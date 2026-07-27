@@ -27,10 +27,10 @@ opacity = 1
 # =============================================================================
 
 [font]
-normal = { family = "monospace", style = "Regular" }
-bold = { family = "monospace", style = "Bold" }
-italic = { family = "monospace", style = "Italic" }
-bold_italic = { family = "monospace", style = "Bold Italic" }
+normal = { family = "JetBrainsMono Nerd Font Mono", style = "Regular" }
+bold = { family = "JetBrainsMono Nerd Font Mono", style = "Bold" }
+italic = { family = "JetBrainsMono Nerd Font Mono", style = "Italic" }
+bold_italic = { family = "JetBrainsMono Nerd Font Mono", style = "Bold Italic" }
 size = 12
 
 

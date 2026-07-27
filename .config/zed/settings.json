@@ -39,7 +39,7 @@
   // ===========================================================================
   // ✍️ EDITOR (FONTS, CURSOR, VISUALS)
   // ===========================================================================
-  "buffer_font_family": ".ZedMono",
+  "buffer_font_family": "JetBrainsMono Nerd Font Mono",
   "buffer_font_size": 16,
   "buffer_font_weight": 400,
   "buffer_line_height": "comfortable",
@@ -209,7 +209,7 @@
   "terminal": {
     "button": true,
     "dock": "bottom",
-    "font_family": ".ZedMono",
+    "font_family": "JetBrainsMono Nerd Font Mono",
     "font_size": 14,
     "line_height": "comfortable",
     "cursor_shape": "block",
