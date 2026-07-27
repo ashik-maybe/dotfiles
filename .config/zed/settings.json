@@ -4,8 +4,8 @@
   // ===========================================================================
   "theme": {
     "mode": "system",
-    "light": "Gruvbox Material Light",
-    "dark": "Gruvbox Material Dark",
+    "light": "Everforest Medium Light",
+    "dark": "Everforest Medium Dark",
   },
   "icon_theme": {
     "mode": "system",
