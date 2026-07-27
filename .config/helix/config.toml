@@ -3,7 +3,7 @@
 # ==============================================================================
 
 # --- Theme ---
-theme = "everforest-medium-dark"
+theme = "gruvbox-material-dark"
 
 # --- Core Editor Options ---
 [editor]

@@ -1,0 +1,123 @@
+# Gruvbox Material Light Medium for Helix
+# Based on sainnhe/gruvbox-material (Medium Contrast, Material Palette)
+
+attribute = "purple"
+keyword = "red"
+"keyword.directive" = "purple"
+namespace = "yellow"
+punctuation = "grey1"
+"punctuation.delimiter" = "grey1"
+operator = "orange"
+special = "yellow"
+"variable.other.member" = "blue"
+variable = "fg"
+"variable.parameter" = "fg"
+"variable.builtin" = "purple"
+type = "yellow"
+"type.builtin" = "yellow"
+constructor = "green"
+function = "green"
+"function.macro" = "green"
+"function.builtin" = "green"
+tag = "orange"
+comment = { fg = "grey1", modifiers = ["italic"] }
+constant = "fg"
+"constant.builtin" = "purple"
+string = "green"
+"constant.numeric" = "purple"
+"constant.character.escape" = "green"
+label = "orange"
+
+# Markup
+"markup.heading" = "orange"
+"markup.bold" = { modifiers = ["bold"] }
+"markup.italic" = { modifiers = ["italic"] }
+"markup.strikethrough" = { modifiers = ["crossed_out"] }
+"markup.link.url" = { fg = "blue", modifiers = ["underlined"] }
+"markup.link.text" = "green"
+"markup.raw" = "green"
+
+# Diff (Strict Rule: colored text on corresponding bg_* background)
+"diff.plus" = { fg = "green", bg = "bg_green" }
+"diff.minus" = { fg = "red", bg = "bg_red" }
+"diff.delta" = { fg = "blue", bg = "bg_blue" }
+
+# UI
+"ui.background" = { bg = "bg0" }
+"ui.background.separator" = { fg = "grey1" }
+"ui.linenr" = { fg = "grey0" }
+"ui.linenr.selected" = { fg = "grey2" }
+"ui.statusline" = { fg = "bg0", bg = "green" }
+"ui.statusline.inactive" = { fg = "grey1", bg = "bg3" }
+"ui.popup" = { bg = "bg3" }
+"ui.window" = { fg = "bg4" }
+"ui.help" = { bg = "bg3", fg = "fg" }
+"ui.text" = { fg = "fg" }
+"ui.text.focus" = { fg = "fg1" }
+"ui.text.inactive" = "grey1"
+"ui.text.directory" = { fg = "green" }
+"ui.virtual" = { fg = "grey1" }
+"ui.virtual.ruler" = { bg = "bg1" }
+"ui.virtual.jump-label" = { fg = "orange", modifiers = ["bold"] }
+"ui.virtual.indent-guide" = { fg = "bg3" }
+
+# Selection & Cursor (Strict Rule: visual selection uses bg_visual, active uses green)
+"ui.selection" = { bg = "bg_visual" }
+"ui.selection.primary" = { bg = "bg_visual" }
+"ui.cursor.select" = { bg = "bg_visual" }
+"ui.cursor.insert" = { bg = "green" }
+"ui.cursor.primary.select" = { bg = "bg_visual" }
+"ui.cursor.primary.insert" = { bg = "green" }
+"ui.cursor.match" = { fg = "bg0", bg = "green" }
+"ui.cursor" = { modifiers = ["reversed"] }
+"ui.cursorline.primary" = { bg = "bg1" }
+"ui.highlight" = { bg = "bg1" }
+"ui.highlight.frameline" = { bg = "bg_red" }
+"ui.debug" = { fg = "red" }
+"ui.debug.breakpoint" = { fg = "red" }
+"ui.menu" = { fg = "fg", bg = "bg3" }
+"ui.menu.selected" = { fg = "bg0", bg = "green" }
+"ui.menu.scroll" = { fg = "grey1", bg = "bg4" }
+
+# Diagnostics (Strict Rule: colored underlines matching semantic role)
+"diagnostic.hint" = { underline = { color = "aqua", style = "curl" } }
+"diagnostic.info" = { underline = { color = "blue", style = "curl" } }
+"diagnostic.warning" = { underline = { color = "yellow", style = "curl" } }
+"diagnostic.error" = { underline = { color = "red", style = "curl" } }
+"diagnostic.unnecessary" = { modifiers = ["dim"] }
+"diagnostic.deprecated" = { modifiers = ["crossed_out"] }
+
+# Diagnostic Shortcuts
+warning = "yellow"
+error = "red"
+info = "blue"
+hint = "aqua"
+
+# Palette Definition
+[palette]
+bg_dim = "#f2e5bc"
+bg0 = "#fbf1c7"
+bg1 = "#f4e8be"
+bg2 = "#f2e5bc"
+bg3 = "#eee0b7"
+bg4 = "#e5d5ad"
+bg5 = "#ddccab"
+bg_visual = "#eee0b7"
+bg_red = "#f1d9b5"
+bg_yellow = "#fae7b3"
+bg_green = "#dee2b6"
+bg_blue = "#dadec0"
+bg_purple = "#efdec3"
+
+fg = "#654735"
+fg1 = "#4f3829"
+red = "#c14a4a"
+orange = "#c35e0a"
+yellow = "#b47109"
+green = "#6c782e"
+aqua = "#4c7a5d"
+blue = "#45707a"
+purple = "#945e80"
+grey0 = "#a89984"
+grey1 = "#928374"
+grey2 = "#7c6f64"
