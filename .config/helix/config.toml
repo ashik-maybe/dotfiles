@@ -266,3 +266,13 @@ max-indent-retain = 40
 
 # Visual indicator symbol displayed at the beginning of wrapped lines.
 wrap-indicator = "↪ "
+
+
+# ----------------------------------------------------------------------------
+# Keybindings & Custom Integrations
+# ----------------------------------------------------------------------------
+
+[keys.normal]
+# Binds Alt+g to launch Lazygit in a temporary scratch buffer, closing it and
+# refreshing the editor interface seamlessly upon exit (avoiding Zellij C-g conflicts).
+A-g = [":write-all", ":new", ":insert-output lazygit", ":buffer-close!", ":redraw", ":reload-all"]
