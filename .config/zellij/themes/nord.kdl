@@ -1,0 +1,241 @@
+// Nord Theme for Zellij
+
+themes {
+    nord {
+        text_unselected {
+            base "#d8dee9"
+            background "#2e3440"
+            emphasis_0 "#bf616a"
+            emphasis_1 "#a3be8c"
+            emphasis_2 "#ebcb8b"
+            emphasis_3 "#b48ead"
+        }
+        text_selected {
+            base "#eceff4"
+            background "#3b4252"
+            emphasis_0 "#bf616a"
+            emphasis_1 "#a3be8c"
+            emphasis_2 "#ebcb8b"
+            emphasis_3 "#b48ead"
+        }
+        ribbon_selected {
+            base "#2e3440"
+            background "#88c0d0"
+            emphasis_0 "#bf616a"
+            emphasis_1 "#a3be8c"
+            emphasis_2 "#ebcb8b"
+            emphasis_3 "#8fbcbb"
+        }
+        ribbon_unselected {
+            base "#4c566a"
+            background "#3b4252"
+            emphasis_0 "#bf616a"
+            emphasis_1 "#a3be8c"
+            emphasis_2 "#ebcb8b"
+            emphasis_3 "#8fbcbb"
+        }
+        table_title {
+            base "#88c0d0"
+            background 0 0 0
+            emphasis_0 "#bf616a"
+            emphasis_1 "#a3be8c"
+            emphasis_2 "#ebcb8b"
+            emphasis_3 "#b48ead"
+        }
+        table_cell_selected {
+            base "#eceff4"
+            background "#3b4252"
+            emphasis_0 "#bf616a"
+            emphasis_1 "#a3be8c"
+            emphasis_2 "#ebcb8b"
+            emphasis_3 "#b48ead"
+        }
+        table_cell_unselected {
+            base "#d8dee9"
+            background "#2e3440"
+            emphasis_0 "#bf616a"
+            emphasis_1 "#a3be8c"
+            emphasis_2 "#ebcb8b"
+            emphasis_3 "#b48ead"
+        }
+        list_selected {
+            base "#eceff4"
+            background "#3b4252"
+            emphasis_0 "#bf616a"
+            emphasis_1 "#a3be8c"
+            emphasis_2 "#ebcb8b"
+            emphasis_3 "#b48ead"
+        }
+        list_unselected {
+            base "#d8dee9"
+            background "#2e3440"
+            emphasis_0 "#bf616a"
+            emphasis_1 "#a3be8c"
+            emphasis_2 "#ebcb8b"
+            emphasis_3 "#b48ead"
+        }
+        frame_selected {
+            base "#88c0d0"
+            background 0 0 0
+            emphasis_0 "#bf616a"
+            emphasis_1 "#a3be8c"
+            emphasis_2 "#ebcb8b"
+            emphasis_3 0 0 0
+        }
+        frame_highlight {
+            base "#88c0d0"
+            background 0 0 0
+            emphasis_0 "#88c0d0"
+            emphasis_1 "#88c0d0"
+            emphasis_2 "#88c0d0"
+            emphasis_3 "#88c0d0"
+        }
+        exit_code_success {
+            base "#a3be8c"
+            background 0 0 0
+            emphasis_0 "#8fbcbb"
+            emphasis_1 "#2e3440"
+            emphasis_2 "#b48ead"
+            emphasis_3 "#a3be8c"
+        }
+        exit_code_error {
+            base "#bf616a"
+            background 0 0 0
+            emphasis_0 "#d08770"
+            emphasis_1 0 0 0
+            emphasis_2 0 0 0
+            emphasis_3 0 0 0
+        }
+        multiplayer_user_colors {
+            player_1 "#88c0d0"
+            player_2 "#a3be8c"
+            player_3 "#bf616a"
+            player_4 "#ebcb8b"
+            player_5 "#8fbcbb"
+            player_6 "#b48ead"
+            player_7 "#d08770"
+            player_8 "#81a1c1"
+            player_9 "#5e81ac"
+            player_10 "#d8dee9"
+        }
+    }
+
+    nord-light {
+        text_unselected {
+            base "#2e3440"
+            background "#eceff4"
+            emphasis_0 "#bf616a"
+            emphasis_1 "#a3be8c"
+            emphasis_2 "#d08770"
+            emphasis_3 "#b48ead"
+        }
+        text_selected {
+            base "#2e3440"
+            background "#d8dee9"
+            emphasis_0 "#bf616a"
+            emphasis_1 "#a3be8c"
+            emphasis_2 "#d08770"
+            emphasis_3 "#b48ead"
+        }
+        ribbon_selected {
+            base "#eceff4"
+            background "#81a1c1"
+            emphasis_0 "#bf616a"
+            emphasis_1 "#a3be8c"
+            emphasis_2 "#d08770"
+            emphasis_3 "#b48ead"
+        }
+        ribbon_unselected {
+            base "#4c566a"
+            background "#d8dee9"
+            emphasis_0 "#bf616a"
+            emphasis_1 "#a3be8c"
+            emphasis_2 "#d08770"
+            emphasis_3 "#b48ead"
+        }
+        table_title {
+            base "#5e81ac"
+            background 0 0 0
+            emphasis_0 "#bf616a"
+            emphasis_1 "#a3be8c"
+            emphasis_2 "#d08770"
+            emphasis_3 "#b48ead"
+        }
+        table_cell_selected {
+            base "#2e3440"
+            background "#d8dee9"
+            emphasis_0 "#bf616a"
+            emphasis_1 "#a3be8c"
+            emphasis_2 "#d08770"
+            emphasis_3 "#b48ead"
+        }
+        table_cell_unselected {
+            base "#2e3440"
+            background "#eceff4"
+            emphasis_0 "#bf616a"
+            emphasis_1 "#a3be8c"
+            emphasis_2 "#d08770"
+            emphasis_3 "#b48ead"
+        }
+        list_selected {
+            base "#2e3440"
+            background "#d8dee9"
+            emphasis_0 "#bf616a"
+            emphasis_1 "#a3be8c"
+            emphasis_2 "#d08770"
+            emphasis_3 "#b48ead"
+        }
+        list_unselected {
+            base "#2e3440"
+            background "#eceff4"
+            emphasis_0 "#bf616a"
+            emphasis_1 "#a3be8c"
+            emphasis_2 "#d08770"
+            emphasis_3 "#b48ead"
+        }
+        frame_selected {
+            base "#81a1c1"
+            background 0 0 0
+            emphasis_0 "#bf616a"
+            emphasis_1 "#a3be8c"
+            emphasis_2 "#d08770"
+            emphasis_3 0 0 0
+        }
+        frame_highlight {
+            base "#5e81ac"
+            background 0 0 0
+            emphasis_0 "#5e81ac"
+            emphasis_1 "#5e81ac"
+            emphasis_2 "#5e81ac"
+            emphasis_3 "#5e81ac"
+        }
+        exit_code_success {
+            base "#a3be8c"
+            background 0 0 0
+            emphasis_0 "#8fbcbb"
+            emphasis_1 "#eceff4"
+            emphasis_2 "#b48ead"
+            emphasis_3 "#a3be8c"
+        }
+        exit_code_error {
+            base "#bf616a"
+            background 0 0 0
+            emphasis_0 "#d08770"
+            emphasis_1 0 0 0
+            emphasis_2 0 0 0
+            emphasis_3 0 0 0
+        }
+        multiplayer_user_colors {
+            player_1 "#81a1c1"
+            player_2 "#a3be8c"
+            player_3 "#bf616a"
+            player_4 "#ebcb8b"
+            player_5 "#8fbcbb"
+            player_6 "#b48ead"
+            player_7 "#d08770"
+            player_8 "#5e81ac"
+            player_9 "#4c566a"
+            player_10 "#3b4252"
+        }
+    }
+}

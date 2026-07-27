@@ -1,0 +1,41 @@
+# ==========================================
+# Nord Light
+# ==========================================
+[colors-dark]
+# Core UI
+cursor=eceff4 2e3440
+foreground=2e3440
+background=eceff4
+
+# Standard 16-color ANSI palette
+regular0=3b4252
+regular1=bf616a
+regular2=a3be8c
+regular3=d08770
+regular4=5e81ac
+regular5=b48ead
+regular6=81a1c1
+regular7=4c566a
+
+bright0=4c566a
+bright1=bf616a
+bright2=a3be8c
+bright3=d08770
+bright4=5e81ac
+bright5=b48ead
+bright6=8fbcbb
+bright7=2e3440
+
+# Extended ANSI colors
+16=d08770
+17=8fbcbb
+
+# Semantic UI Elements
+selection-foreground=2e3440
+selection-background=d8dee9
+
+search-box-no-match=bf616a eceff4
+search-box-match=5e81ac eceff4
+
+jump-labels=eceff4 5e81ac
+urls=5e81ac

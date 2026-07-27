@@ -1,0 +1,120 @@
+# Nord Theme for Helix Editor
+
+attribute = "teal"
+keyword = "blue"
+"keyword.directive" = "purple"
+namespace = "teal"
+punctuation = "fg"
+"punctuation.delimiter" = "fg"
+operator = "blue"
+special = "orange"
+"variable.other.member" = "fg"
+variable = "fg"
+"variable.parameter" = { fg = "fg" }
+"variable.builtin" = "blue"
+type = "teal"
+"type.builtin" = "teal"
+constructor = "aqua"
+function = "aqua"
+"function.macro" = "orange"
+"function.builtin" = "aqua"
+tag = "blue"
+comment = "grey1"
+constant = "purple"
+"constant.builtin" = "blue"
+string = "green"
+"constant.numeric" = "purple"
+"constant.character.escape" = "orange"
+label = "teal"
+
+# Markup
+"markup.heading" = "aqua"
+"markup.bold" = { modifiers = ["bold"] }
+"markup.italic" = { modifiers = ["italic"] }
+"markup.strikethrough" = { modifiers = ["crossed_out"] }
+"markup.link.url" = { fg = "blue", modifiers = ["underlined"] }
+"markup.link.text" = "aqua"
+"markup.raw" = "green"
+
+# Diff
+"diff.plus" = { fg = "green", bg = "bg_green" }
+"diff.minus" = { fg = "red", bg = "bg_red" }
+"diff.delta" = { fg = "blue", bg = "bg_blue" }
+
+# UI
+"ui.background" = { bg = "bg0" }
+"ui.background.separator" = { fg = "grey0" }
+"ui.linenr" = { fg = "grey0" }
+"ui.linenr.selected" = { fg = "fg" }
+"ui.statusline" = { fg = "bg0", bg = "aqua" }
+"ui.statusline.inactive" = { fg = "grey1", bg = "bg1" }
+"ui.popup" = { bg = "bg2", fg = "fg" }
+"ui.window" = { fg = "bg3" }
+"ui.help" = { bg = "bg2", fg = "fg" }
+"ui.text" = { fg = "fg" }
+"ui.text.focus" = { fg = "fg" }
+"ui.text.inactive" = "grey1"
+"ui.text.directory" = { fg = "aqua" }
+"ui.virtual" = { fg = "grey1" }
+"ui.virtual.ruler" = { bg = "bg1" }
+"ui.virtual.jump-label" = { fg = "orange", modifiers = ["bold"] }
+"ui.virtual.indent-guide" = { fg = "bg3" }
+
+# Selection & Cursor
+"ui.selection" = { bg = "bg_visual" }
+"ui.selection.primary" = { bg = "bg_visual" }
+"ui.cursor.select" = { bg = "bg_visual" }
+"ui.cursor.insert" = { bg = "grey0" }
+"ui.cursor.primary.select" = { bg = "bg_visual" }
+"ui.cursor.primary.insert" = { bg = "grey0" }
+"ui.cursor.match" = { fg = "bg0", bg = "aqua" }
+"ui.cursor" = { modifiers = ["reversed"] }
+"ui.cursorline.primary" = { bg = "bg1" }
+"ui.highlight" = { bg = "bg1" }
+"ui.highlight.frameline" = { bg = "bg_red" }
+"ui.debug" = { fg = "red" }
+"ui.debug.breakpoint" = { fg = "red" }
+"ui.menu" = { fg = "fg", bg = "bg2" }
+"ui.menu.selected" = { fg = "bg0", bg = "aqua" }
+"ui.menu.scroll" = { fg = "grey1", bg = "bg3" }
+
+# Diagnostics
+"diagnostic.hint" = { underline = { color = "aqua", style = "curl" } }
+"diagnostic.info" = { underline = { color = "blue", style = "curl" } }
+"diagnostic.warning" = { underline = { color = "yellow", style = "curl" } }
+"diagnostic.error" = { underline = { color = "red", style = "curl" } }
+"diagnostic.unnecessary" = { modifiers = ["dim"] }
+"diagnostic.deprecated" = { modifiers = ["crossed_out"] }
+
+# Diagnostic Shortcuts
+warning = "yellow"
+error = "red"
+info = "blue"
+hint = "aqua"
+
+# Palette Definition
+[palette]
+bg_dim = "#2E3440"
+bg0 = "#2E3440"
+bg1 = "#3B4252"
+bg2 = "#434C5E"
+bg3 = "#4C566A"
+bg4 = "#4C566A"
+bg_visual = "#434C5E"
+bg_red = "#423035"
+bg_yellow = "#433E34"
+bg_green = "#363E38"
+bg_blue = "#343A45"
+
+fg = "#D8DEE9"
+red = "#BF616A"
+orange = "#D08770"
+yellow = "#EBCB8B"
+green = "#A3BE8C"
+aqua = "#88C0D0"
+blue = "#81A1C1"
+purple = "#B48EAD"
+teal = "#8FBCBB"
+grey0 = "#4C566A"
+grey1 = "#616E88"
+grey2 = "#434C5E"

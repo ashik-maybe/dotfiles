@@ -4,8 +4,8 @@
   // ===========================================================================
   "theme": {
     "mode": "system",
-    "light": "Rosé Pine Dawn",
-    "dark": "Rosé Pine Moon",
+    "light": "Gruvbox Material Light",
+    "dark": "Gruvbox Material Dark",
   },
   "icon_theme": {
     "mode": "system",
