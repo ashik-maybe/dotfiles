@@ -3,7 +3,7 @@
 # ==============================================================================
 
 # --- Theme ---
-theme = "gruvbox-material-dark"
+theme = "rose-pine-moon"
 
 # --- Core Editor Options ---
 [editor]

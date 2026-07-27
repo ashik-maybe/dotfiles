@@ -7,7 +7,7 @@
 # =============================================================================
 
 general.import = [
-  "~/.config/alacritty/themes/gruvbox-material-dark.toml",
+  "~/.config/alacritty/themes/rose-pine-moon.toml",
 ]
 
 
