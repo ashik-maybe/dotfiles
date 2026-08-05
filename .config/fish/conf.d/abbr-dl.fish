@@ -14,6 +14,12 @@ abbr -a ytd720 'yt-dlp -f "bestvideo[height<=720]+bestaudio/best[height<=720]" -
 # mp3 download
 abbr -a ytda 'yt-dlp -x --audio-format mp3 --audio-quality 0 --embed-metadata --embed-thumbnail --convert-thumbnails jpg -o "%(artist,uploader)s - %(title)s.%(ext)s" -P "~/Downloads/Music"'
 
+# 1080p streaming with en subs in mpv
+abbr -a mpv1080 'mpv --ytdl-format="bestvideo[height<=1080]+bestaudio/best[height<=1080]" --slang="en,en-US" --ytdl-raw-options="sub-langs=\"en.*\",write-subs=,write-auto-subs="'
+
+# 720p streaming with en subs in mpv
+abbr -a mpv720 'mpv --ytdl-format="bestvideo[height<=720]+bestaudio/best[height<=720]" --slang="en,en-US" --ytdl-raw-options="sub-langs=\"en.*\",write-subs=,write-auto-subs="'
+
 # ==============================================================================
 # ARIA2C: GENERAL DOWNLOADS
 # ==============================================================================
