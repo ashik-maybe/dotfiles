@@ -1,0 +1,418 @@
+# ==============================================================================
+# 🛠️ PART 1: CORE BEHAVIOR & FLAGS
+# ==============================================================================
+
+[flags]
+# Refresh interval (2s balances responsiveness with overhead)
+rate = "2s"
+
+# Default graph time window
+default_time_value = "5m"
+
+# Zoom step size (ms)
+time_delta = 15000
+
+# Display time axis
+hide_time = false
+
+# Graph data retention period
+retention = "10m"
+
+# Temperature display unit
+temperature_type = "c"
+
+# Battery status display
+battery = true
+
+# Disable mouse interaction (prevents accidental layout changes)
+disable_click = true
+
+# Keyboard shortcuts remain active
+disable_keys = false
+
+# Process management actions enabled
+read_only = false
+
+# Integrated GPU metrics excluded (not required)
+disable_gpu = true
+
+# Table navigation indicators
+show_table_scroll_position = true
+show_table_scroll_bar = true
+table_gap = "space"
+
+# Initial widget focus
+default_widget_type = "proc"
+default_widget_count = 1
+
+# Start in collapsed view
+expanded = false
+
+# Full dashboard layout
+basic = false
+
+# Network legend style
+use_old_network_legend = false
+
+
+[processes]
+# Process table columns (PID omitted for aggregate view)
+columns = [
+  "Name",
+  "CPU%",
+  "Mem%",
+  "R/s",
+  "W/s",
+  "State",
+]
+
+# Default sorting by memory usage
+default_sort = "Mem%"
+sort_order = "Descending"
+
+# Thread-level details disabled
+get_threads = false
+
+# Kernel threads hidden
+hide_k_threads = true
+
+# Flat list view (not tree)
+default_tree = false
+tree_collapse = false
+
+# Display executable names only (improves grouping)
+process_command = false
+
+# Advanced process termination available
+disable_advanced_kill = false
+
+# Memory values shown as absolute quantities
+default_memory_value = true
+
+# Aggregate processes by name (primary view mode)
+default_grouped = true
+
+# Search configuration
+regex = false
+case_sensitive = false
+whole_word = false
+
+# Show current CPU usage
+current_usage = true
+
+# CPU usage normalized across threads
+unnormalized_cpu = false
+
+
+[cpu]
+# Display all CPU threads
+default = "all"
+
+# Integer percentage display
+show_decimal = false
+
+
+# ==============================================================================
+# 💾 PART 2: DISK & I/O
+# ==============================================================================
+
+[disk]
+# Disk widget columns (used when widget is manually added)
+columns = [
+  "Disk",
+  "Mount",
+  "Used",
+  "Free",
+  "Total",
+  "Used%",
+]
+
+default_sort = "Used%"
+sort_order = "Descending"
+include_unmounted = false
+
+
+[disk.name_filter]
+# Exclude loopback and virtual block devices
+is_list_ignored = true
+list = [
+  '^/dev/loop\d+$',
+  '^/dev/zram\d+$',
+  '^/dev/ram\d+$',
+]
+regex = true
+case_sensitive = false
+whole_word = false
+
+
+[disk.mount_filter]
+# Exclude pseudo-filesystems and container storage
+is_list_ignored = true
+list = [
+  '^/proc$',
+  '^/sys$',
+  '^/dev$',
+  '^/run$',
+  '^/var/lib/containers/storage/',
+  '^/var/lib/docker/',
+]
+regex = true
+case_sensitive = false
+whole_word = false
+
+
+[disk_io_graph]
+# Disk I/O graph settings (for optional widget use)
+show_read = true
+show_write = true
+legend = "disk"
+use_log = false
+legend_position = "top-right"
+include_unmounted = false
+
+
+[disk_io_graph.name_filter]
+# Exclude virtual block devices from I/O graph
+is_list_ignored = true
+list = [
+  '^/dev/loop\d+$',
+  '^/dev/zram\d+$',
+  '^/dev/ram\d+$',
+]
+regex = true
+case_sensitive = false
+whole_word = false
+
+
+# ==============================================================================
+# 🌡️ PART 3: TEMPERATURE & SENSORS
+# ==============================================================================
+
+[temperature]
+default_sort = "Temperature"
+sort_order = "Descending"
+
+
+[temperature.sensor_filter]
+# CPU temperature sensors only (excludes ACPI, WiFi, storage, GPU)
+# Note: Adjust patterns if specific sensors are missing/extra on your system
+is_list_ignored = false
+list = [
+  'package id',
+  'physical id',
+  'x86_pkg_temp',
+  'pkg temp',
+  'cpu package',
+  'cpu temp',
+  '^cpu$',
+  'cpu',
+  'coretemp',
+  'k10temp',
+  'zenpower',
+  'cpu_thermal',
+]
+regex = true
+case_sensitive = false
+whole_word = false
+
+
+[temperature_graph]
+legend_position = "top-right"
+
+# Maximum temperature threshold (filters invalid readings)
+max_temp = 110.0
+
+
+[temperature_graph.sensor_filter]
+# CPU temperature sensors for graph display
+is_list_ignored = false
+list = [
+  'package id',
+  'physical id',
+  'x86_pkg_temp',
+  'pkg temp',
+  'cpu package',
+  'cpu temp',
+  '^cpu$',
+  'cpu',
+  'coretemp',
+  'k10temp',
+  'zenpower',
+  'cpu_thermal',
+]
+regex = true
+case_sensitive = false
+whole_word = false
+
+
+# ==============================================================================
+# 🌐 PART 4: MEMORY & NETWORK
+# ==============================================================================
+
+[memory_graph]
+legend_position = "top-right"
+
+# Display cache/buffer memory separately (Linux-specific)
+cache_memory = false
+
+
+[network_graph]
+# Packet statistics omitted (bytes only)
+show_packets = false
+
+
+[network_graph.interface_filter]
+# Exclude virtual network interfaces
+is_list_ignored = true
+list = [
+  '^lo$',
+  '^virbr\d+$',
+  '^veth.*$',
+  '^docker\d+$',
+  '^br-[0-9a-f]+$',
+  '^podman\d+$',
+  '^vnet\d+$',
+  '^cni.*$',
+]
+regex = true
+case_sensitive = false
+whole_word = false
+
+
+# ==============================================================================
+# 📐 PART 5: LAYOUT CONFIGURATION
+# ==============================================================================
+# Row 1: CPU (primary) + Temperature graph
+# Row 2: Memory (primary) + Network
+# Row 3: Process overview (primary)
+
+[[row]]
+ratio = 24
+  [[row.child]]
+  ratio = 4
+  type = "cpu"
+
+  [[row.child]]
+  ratio = 1
+  type = "temp_graph"
+
+
+[[row]]
+ratio = 32
+  [[row.child]]
+  ratio = 3
+  type = "mem"
+
+  [[row.child]]
+  ratio = 1
+  type = "net"
+
+
+[[row]]
+ratio = 44
+  [[row.child]]
+  type = "proc"
+  default = true
+
+
+# ==============================================================================
+# 🎨 PART 6: THEMING & VISUALS
+# ==============================================================================
+
+[styles]
+# Base theme (custom colors below will override this)
+theme = "default"
+
+
+# ------------------------------------------------------------------------------
+# 🌑 EVERFOREST MEDIUM DARK
+# ------------------------------------------------------------------------------
+
+[styles.widgets]
+bg_colour = "#343F44"
+border_colour = "#859289"
+selected_border_colour = "#7FBBB3"
+text = "#D3C6AA"
+selected_text = { colour = "#2D353B", bg_colour = "#7FBBB3", bold = true }
+disabled_text = "#7A8478"
+thread_text = "#A7C080"
+widget_title = { colour = "#7FBBB3", bg_colour = "#3D484D", bold = true }
+
+[styles.cpu]
+all_entry_colour = "#7FBBB3"
+avg_entry_colour = "#83C092"
+cpu_core_colours = ["#E67E80", "#DBBC7F", "#A7C080", "#7FBBB3", "#D699B6", "#83C092", "#E69875"]
+
+[styles.temp_graph]
+temp_graph_colour_styles = ["#E67E80", "#E69875", "#DBBC7F"]
+
+[styles.memory]
+ram_colour = "#A7C080"
+cache_colour = "#83C092"
+swap_colour = "#DBBC7F"
+arc_colour = "#D699B6"
+
+[styles.network]
+rx_colour = "#A7C080"
+tx_colour = "#7FBBB3"
+rx_total_colour = "#83C092"
+tx_total_colour = "#D699B6"
+
+[styles.battery]
+high_battery_colour = "#A7C080"
+medium_battery_colour = "#DBBC7F"
+low_battery_colour = "#E67E80"
+
+[styles.tables]
+headers = { colour = "#2D353B", bg_colour = "#7FBBB3", bold = true }
+
+[styles.graphs]
+graph_colour = "#859289"
+legend_text = { colour = "#D3C6AA", bg_colour = "#343F44" }
+
+
+# ------------------------------------------------------------------------------
+# ☀️ EVERFOREST MEDIUM LIGHT
+# ------------------------------------------------------------------------------
+
+# [styles.widgets]
+# bg_colour = "#F4F0D9"
+# border_colour = "#939F91"
+# selected_border_colour = "#3A94C5"
+# text = "#5C6A72"
+# selected_text = { colour = "#FDF6E3", bg_colour = "#3A94C5", bold = true }
+# disabled_text = "#A6B0A0"
+# thread_text = "#8DA101"
+# widget_title = { colour = "#3A94C5", bg_colour = "#EFEBD4", bold = true }
+
+# [styles.cpu]
+# all_entry_colour = "#3A94C5"
+# avg_entry_colour = "#35A77C"
+# cpu_core_colours = ["#F85552", "#DFA000", "#8DA101", "#3A94C5", "#DF69BA", "#35A77C", "#F57D26"]
+
+# [styles.temp_graph]
+# temp_graph_colour_styles = ["#F85552", "#F57D26", "#DFA000"]
+
+# [styles.memory]
+# ram_colour = "#8DA101"
+# cache_colour = "#35A77C"
+# swap_colour = "#DFA000"
+# arc_colour = "#DF69BA"
+
+# [styles.network]
+# rx_colour = "#8DA101"
+# tx_colour = "#3A94C5"
+# rx_total_colour = "#35A77C"
+# tx_total_colour = "#DF69BA"
+
+# [styles.battery]
+# high_battery_colour = "#8DA101"
+# medium_battery_colour = "#DFA000"
+# low_battery_colour = "#F85552"
+
+# [styles.tables]
+# headers = { colour = "#FDF6E3", bg_colour = "#3A94C5", bold = true }
+
+# [styles.graphs]
+# graph_colour = "#939F91"
+# legend_text = { colour = "#5C6A72", bg_colour = "#F4F0D9" }
