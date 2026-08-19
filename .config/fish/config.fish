@@ -27,58 +27,54 @@ if status is-interactive
     set -g __fish_git_prompt_showcolorhints 1
 
     # Adaptive Indicators
-    set -g __fish_git_prompt_char_cleanstate "ok"
-    set -g __fish_git_prompt_char_dirtystate "mod"
-    set -g __fish_git_prompt_char_stagedstate "stg"
-    set -g __fish_git_prompt_char_untrackedfiles "unt"
-    set -g __fish_git_prompt_char_conflictedstate "cfl"
-    set -g __fish_git_prompt_char_stashstate "sth"
-    set -g __fish_git_prompt_char_upstream_ahead "ahd"
-    set -g __fish_git_prompt_char_upstream_behind "bhd"
-    set -g __fish_git_prompt_char_upstream_diverged "div"
-    set -g __fish_git_prompt_char_stateseparator " "
+    set -g __fish_git_prompt_char_cleanstate ""           # nothing changed
+    set -g __fish_git_prompt_char_dirtystate "●"          # modified files (unstaged)
+    set -g __fish_git_prompt_char_stagedstate "+"         # ready to commit
+    set -g __fish_git_prompt_char_untrackedfiles "…"      # new files (not tracked yet)
+    set -g __fish_git_prompt_char_conflictedstate "×"     # merge conflict
+    set -g __fish_git_prompt_char_stashstate "*"          # saved safely aside
+    set -g __fish_git_prompt_char_upstream_ahead "↑"      # ahead of remote (need to push)
+    set -g __fish_git_prompt_char_upstream_behind "↓"     # behind remote (need to pull)
+    set -g __fish_git_prompt_char_diverged "⥄"            # local & remote histories split
+    set -g __fish_git_prompt_char_stateseparator " "      # spacing between indicators
 
     # Theme-Adaptive Colors
     set -g __fish_git_prompt_color_branch yellow --bold
     set -g __fish_git_prompt_color_cleanstate green
-    set -g __fish_git_prompt_color_dirtystate red
+    set -g __fish_git_prompt_color_dirtystate red --bold
     set -g __fish_git_prompt_color_stagedstate cyan
-    set -g __fish_git_prompt_color_untrackedfiles brblack
-    set -g __fish_git_prompt_color_stashstate brblack
-    set -g __fish_git_prompt_color_upstream brblack
+    set -g __fish_git_prompt_color_untrackedfiles cyan
+    set -g __fish_git_prompt_color_stashstate white --bold
+    set -g __fish_git_prompt_color_upstream cyan
 
     # High-Performance Adaptive Prompt
     function fish_prompt
-        set -l last_status $status
-
-        # Blank Line Separator
-        echo
-
-        # Dynamic Directory Color (Theme Inherited)
-        set_color $fish_color_cwd
-        echo -n (prompt_pwd)
-        set_color normal
-
-        # Git Context
-        echo -n (fish_git_prompt)
-
-        # Fast Native Duration Calculation (>2000ms)
-        if test -n "$CMD_DURATION" -a "$CMD_DURATION" -gt 2000
-            set -l secs (math --scale=1 "$CMD_DURATION / 1000")
-            set_color brblack
-            echo -n " "$secs"s"
+            set -l last_status $status
+            # 1. Directory Context
+            set_color $fish_color_cwd
+            echo -n (prompt_pwd)
+            set_color normal
+            # 2. Git Context
+            echo -n (fish_git_prompt)
+            # 3. Execution Duration (>2000ms)
+            if test -n "$CMD_DURATION" -a "$CMD_DURATION" -gt 2000
+                set -l secs (math --scale=1 "$CMD_DURATION / 1000")
+                set_color brblack
+                echo -n " ["$secs"s]"
+                set_color normal
+            end
+            # 4. Status & Privilege Aware Prompt Symbol
+            if test "$USER" = "root"
+                set_color red --bold
+                echo -n " # "
+            else if test $last_status -eq 0
+                set_color green --bold
+                echo -n " ❯ "
+            else
+                set_color red --bold
+                echo -n " ❯ "
+            end
             set_color normal
         end
-
-        # Prompt Symbol
-        echo
-        if test $last_status -eq 0
-            set_color green --bold
-        else
-            set_color red --bold
-        end
-        echo -n "❯ "
-        set_color normal
-    end
 
 end
