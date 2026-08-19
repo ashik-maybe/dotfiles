@@ -64,6 +64,7 @@ columns = [
   "R/s",
   "W/s",
   "State",
+  "time"
 ]
 
 # Default sorting by memory usage
