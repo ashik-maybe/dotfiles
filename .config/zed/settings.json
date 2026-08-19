@@ -4,8 +4,8 @@
   // ===========================================================================
   "theme": {
     "mode": "system",
-    "light": "Everforest Medium Light",
-    "dark": "Everforest Medium Dark",
+    "light": "Catppuccin Latte",
+    "dark": "Catppuccin Macchiato",
   },
   "icon_theme": {
     "mode": "system",

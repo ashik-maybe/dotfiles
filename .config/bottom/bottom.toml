@@ -323,96 +323,74 @@ ratio = 44
 # Base theme (custom colors below will override this)
 theme = "default"
 
-
-# ------------------------------------------------------------------------------
-# 🌑 EVERFOREST MEDIUM DARK
-# ------------------------------------------------------------------------------
-
-[styles.widgets]
-bg_colour = "#343F44"
-border_colour = "#859289"
-selected_border_colour = "#7FBBB3"
-text = "#D3C6AA"
-selected_text = { colour = "#2D353B", bg_colour = "#7FBBB3", bold = true }
-disabled_text = "#7A8478"
-thread_text = "#A7C080"
-widget_title = { colour = "#7FBBB3", bg_colour = "#3D484D", bold = true }
-
-[styles.cpu]
-all_entry_colour = "#7FBBB3"
-avg_entry_colour = "#83C092"
-cpu_core_colours = ["#E67E80", "#DBBC7F", "#A7C080", "#7FBBB3", "#D699B6", "#83C092", "#E69875"]
-
-[styles.temp_graph]
-temp_graph_colour_styles = ["#E67E80", "#E69875", "#DBBC7F"]
-
-[styles.memory]
-ram_colour = "#A7C080"
-cache_colour = "#83C092"
-swap_colour = "#DBBC7F"
-arc_colour = "#D699B6"
-
-[styles.network]
-rx_colour = "#A7C080"
-tx_colour = "#7FBBB3"
-rx_total_colour = "#83C092"
-tx_total_colour = "#D699B6"
-
-[styles.battery]
-high_battery_colour = "#A7C080"
-medium_battery_colour = "#DBBC7F"
-low_battery_colour = "#E67E80"
-
-[styles.tables]
-headers = { colour = "#2D353B", bg_colour = "#7FBBB3", bold = true }
-
-[styles.graphs]
-graph_colour = "#859289"
-legend_text = { colour = "#D3C6AA", bg_colour = "#343F44" }
-
-
-# ------------------------------------------------------------------------------
-# ☀️ EVERFOREST MEDIUM LIGHT
-# ------------------------------------------------------------------------------
-
-# [styles.widgets]
-# bg_colour = "#F4F0D9"
-# border_colour = "#939F91"
-# selected_border_colour = "#3A94C5"
-# text = "#5C6A72"
-# selected_text = { colour = "#FDF6E3", bg_colour = "#3A94C5", bold = true }
-# disabled_text = "#A6B0A0"
-# thread_text = "#8DA101"
-# widget_title = { colour = "#3A94C5", bg_colour = "#EFEBD4", bold = true }
+# ==============================================================================
+# Catppuccin 🌻 Latte
+# ==============================================================================
 
 # [styles.cpu]
-# all_entry_colour = "#3A94C5"
-# avg_entry_colour = "#35A77C"
-# cpu_core_colours = ["#F85552", "#DFA000", "#8DA101", "#3A94C5", "#DF69BA", "#35A77C", "#F57D26"]
-
-# [styles.temp_graph]
-# temp_graph_colour_styles = ["#F85552", "#F57D26", "#DFA000"]
-
+# all_entry_color = "#dc8a78"
+# avg_entry_color = "#e64553"
+# cpu_core_colors = ["#d20f39","#fe640b","#df8e1d","#40a02b","#209fb5","#8839ef"]
 # [styles.memory]
-# ram_colour = "#8DA101"
-# cache_colour = "#35A77C"
-# swap_colour = "#DFA000"
-# arc_colour = "#DF69BA"
-
+# ram_color = "#40a02b"
+# cache_color = "#d20f39"
+# swap_color = "#fe640b"
+# gpu_colors = ["#209fb5","#8839ef","#d20f39","#fe640b","#df8e1d","#40a02b"]
+# arc_color = "#04a5e5"
 # [styles.network]
-# rx_colour = "#8DA101"
-# tx_colour = "#3A94C5"
-# rx_total_colour = "#35A77C"
-# tx_total_colour = "#DF69BA"
-
+# rx_color = "#40a02b"
+# tx_color = "#d20f39"
+# rx_total_color = "#04a5e5"
+# tx_total_color = "#40a02b"
 # [styles.battery]
-# high_battery_colour = "#8DA101"
-# medium_battery_colour = "#DFA000"
-# low_battery_colour = "#F85552"
-
+# high_battery_color = "#40a02b"
+# medium_battery_color = "#df8e1d"
+# low_battery_color = "#d20f39"
 # [styles.tables]
-# headers = { colour = "#FDF6E3", bg_colour = "#3A94C5", bold = true }
-
+# headers = {color = "#dc8a78"}
 # [styles.graphs]
-# graph_colour = "#939F91"
-# legend_text = { colour = "#5C6A72", bg_colour = "#F4F0D9" }
+# graph_color = "#6c6f85"
+# legend_text = {color = "#6c6f85"}
+# [styles.widgets]
+# border_color = "#acb0be"
+# selected_border_color = "#ea76cb"
+# widget_title = {color = "#dd7878"}
+# text = {color = "#4c4f69"}
+# selected_text = {color = "#dce0e8", bg_color = "#8839ef"}
+# disabled_text = {color = "#eff1f5"}
+
+# ==============================================================================
+# Catppuccin 🌺 Macchiato
+# ==============================================================================
+
+[styles.cpu]
+all_entry_color = "#f4dbd6"
+avg_entry_color = "#ee99a0"
+cpu_core_colors = ["#ed8796","#f5a97f","#eed49f","#a6da95","#7dc4e4","#c6a0f6"]
+[styles.memory]
+ram_color = "#a6da95"
+cache_color = "#ed8796"
+swap_color = "#f5a97f"
+gpu_colors = ["#7dc4e4","#c6a0f6","#ed8796","#f5a97f","#eed49f","#a6da95"]
+arc_color = "#91d7e3"
+[styles.network]
+rx_color = "#a6da95"
+tx_color = "#ed8796"
+rx_total_color = "#91d7e3"
+tx_total_color = "#a6da95"
+[styles.battery]
+high_battery_color = "#a6da95"
+medium_battery_color = "#eed49f"
+low_battery_color = "#ed8796"
+[styles.tables]
+headers = {color = "#f4dbd6"}
+[styles.graphs]
+graph_color = "#a5adcb"
+legend_text = {color = "#a5adcb"}
+[styles.widgets]
+border_color = "#5b6078"
+selected_border_color = "#f5bde6"
+widget_title = {color = "#f0c6c6"}
+text = {color = "#cad3f5"}
+selected_text = {color = "#181926", bg_color = "#c6a0f6"}
+disabled_text = {color = "#24273a"}
