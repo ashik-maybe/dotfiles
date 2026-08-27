@@ -78,3 +78,10 @@ if status is-interactive
         end
 
 end
+
+# opencode
+fish_add_path /home/ash/.opencode/bin
+
+
+# Added by Antigravity CLI installer
+set -gx PATH "/home/ash/.local/bin" $PATH

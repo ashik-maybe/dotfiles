@@ -1,5 +1,17 @@
 # ==============================================================================
-# 🛠️ PART 1: CORE BEHAVIOR & FLAGS
+# 🎨 PART 1: THEMING & VISUALS
+# ==============================================================================
+
+[styles]
+# Base theme (custom colors below will override this)
+theme = "default"
+
+general.import = [
+  "~/.config/bottom/themes/everforest-medium-dark.toml",
+]
+
+# ==============================================================================
+# 🛠️ PART 2: CORE BEHAVIOR & FLAGS
 # ==============================================================================
 
 [flags]
@@ -114,7 +126,7 @@ show_decimal = false
 
 
 # ==============================================================================
-# 💾 PART 2: DISK & I/O
+# 💾 PART 3: DISK & I/O
 # ==============================================================================
 
 [disk]
@@ -186,7 +198,7 @@ whole_word = false
 
 
 # ==============================================================================
-# 🌡️ PART 3: TEMPERATURE & SENSORS
+# 🌡️ PART 4: TEMPERATURE & SENSORS
 # ==============================================================================
 
 [temperature]
@@ -247,7 +259,7 @@ whole_word = false
 
 
 # ==============================================================================
-# 🌐 PART 4: MEMORY & NETWORK
+# 🌐 PART 5: MEMORY & NETWORK
 # ==============================================================================
 
 [memory_graph]
@@ -281,7 +293,7 @@ whole_word = false
 
 
 # ==============================================================================
-# 📐 PART 5: LAYOUT CONFIGURATION
+# 📐 PART 6: LAYOUT CONFIGURATION
 # ==============================================================================
 # Row 1: CPU (primary) + Temperature graph
 # Row 2: Memory (primary) + Network
@@ -314,84 +326,3 @@ ratio = 44
   [[row.child]]
   type = "proc"
   default = true
-
-
-# ==============================================================================
-# 🎨 PART 6: THEMING & VISUALS
-# ==============================================================================
-
-[styles]
-# Base theme (custom colors below will override this)
-theme = "default"
-
-# ==============================================================================
-# Catppuccin 🌻 Latte
-# ==============================================================================
-
-# [styles.cpu]
-# all_entry_color = "#dc8a78"
-# avg_entry_color = "#e64553"
-# cpu_core_colors = ["#d20f39","#fe640b","#df8e1d","#40a02b","#209fb5","#8839ef"]
-# [styles.memory]
-# ram_color = "#40a02b"
-# cache_color = "#d20f39"
-# swap_color = "#fe640b"
-# gpu_colors = ["#209fb5","#8839ef","#d20f39","#fe640b","#df8e1d","#40a02b"]
-# arc_color = "#04a5e5"
-# [styles.network]
-# rx_color = "#40a02b"
-# tx_color = "#d20f39"
-# rx_total_color = "#04a5e5"
-# tx_total_color = "#40a02b"
-# [styles.battery]
-# high_battery_color = "#40a02b"
-# medium_battery_color = "#df8e1d"
-# low_battery_color = "#d20f39"
-# [styles.tables]
-# headers = {color = "#dc8a78"}
-# [styles.graphs]
-# graph_color = "#6c6f85"
-# legend_text = {color = "#6c6f85"}
-# [styles.widgets]
-# border_color = "#acb0be"
-# selected_border_color = "#ea76cb"
-# widget_title = {color = "#dd7878"}
-# text = {color = "#4c4f69"}
-# selected_text = {color = "#dce0e8", bg_color = "#8839ef"}
-# disabled_text = {color = "#eff1f5"}
-
-# ==============================================================================
-# Catppuccin 🌺 Macchiato
-# ==============================================================================
-
-[styles.cpu]
-all_entry_color = "#f4dbd6"
-avg_entry_color = "#ee99a0"
-cpu_core_colors = ["#ed8796","#f5a97f","#eed49f","#a6da95","#7dc4e4","#c6a0f6"]
-[styles.memory]
-ram_color = "#a6da95"
-cache_color = "#ed8796"
-swap_color = "#f5a97f"
-gpu_colors = ["#7dc4e4","#c6a0f6","#ed8796","#f5a97f","#eed49f","#a6da95"]
-arc_color = "#91d7e3"
-[styles.network]
-rx_color = "#a6da95"
-tx_color = "#ed8796"
-rx_total_color = "#91d7e3"
-tx_total_color = "#a6da95"
-[styles.battery]
-high_battery_color = "#a6da95"
-medium_battery_color = "#eed49f"
-low_battery_color = "#ed8796"
-[styles.tables]
-headers = {color = "#f4dbd6"}
-[styles.graphs]
-graph_color = "#a5adcb"
-legend_text = {color = "#a5adcb"}
-[styles.widgets]
-border_color = "#5b6078"
-selected_border_color = "#f5bde6"
-widget_title = {color = "#f0c6c6"}
-text = {color = "#cad3f5"}
-selected_text = {color = "#181926", bg_color = "#c6a0f6"}
-disabled_text = {color = "#24273a"}
