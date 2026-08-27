@@ -10,3 +10,13 @@ Thumbs.db
 
 # Local overrides (optional, but good practice for machine-specific tweaks)
 *.local
+
+# Ignore all runtime junk and dynamically created files in VSCodium
+.config/VSCodium/*
+
+# Re-include VSCodium subdirectories so Git can traverse down to settings.json
+!.config/VSCodium/User/
+
+# Whitelist ONLY VSCodium target config files
+!.config/VSCodium/product.json
+!.config/VSCodium/User/settings.json

@@ -1,0 +1,179 @@
+{
+  // ===========================================================================
+  // 🚀 PERFORMANCE, PRIVACY & SYSTEM
+  // ===========================================================================
+  "window.titleBarStyle": "custom",
+  "window.restoreWindows": "folders",
+  "workbench.list.smoothScrolling": false,
+  "search.followSymlinks": false,
+  "search.smartCase": true,
+  "telemetry.telemetryLevel": "off",
+  "update.mode": "manual",
+  // ===========================================================================
+  // 🎨 THEME & WORKBENCH UI
+  // ===========================================================================
+  "window.autoDetectColorScheme": true,
+  // https://marketplace.visualstudio.com/items?itemName=AndreiLucaci.everforest-pro
+  "workbench.preferredLightColorTheme": "Everforest Pro Light",
+  "workbench.preferredDarkColorTheme": "Everforest Pro Dark",
+  "editor.fontFamily": "'JetBrainsMono Nerd Font Mono', monospace",
+  "workbench.startupEditor": "none",
+  "workbench.sideBar.location": "left",
+  "workbench.activityBar.location": "top",
+  "workbench.secondarySideBar.defaultVisibility": "hidden",
+  "breadcrumbs.enabled": true,
+  "workbench.editor.enablePreview": true,
+  "workbench.editor.enablePreviewFromQuickOpen": true,
+  // ===========================================================================
+  // ✍️ EDITOR (DISPLAY & CURSOR)
+  // ===========================================================================
+  "editor.fontSize": 16,
+  "editor.lineHeight": 24,
+  "editor.fontLigatures": true,
+  "editor.cursorStyle": "line",
+  "editor.cursorBlinking": "blink",
+  "editor.renderWhitespace": "selection",
+  "editor.minimap.enabled": false,
+  // ===========================================================================
+  // 📏 EDITOR (STRUCTURE, GUIDES & SCROLLING)
+  // ===========================================================================
+  "editor.stickyScroll.enabled": true,
+  "editor.guides.indentation": true,
+  "editor.guides.bracketPairs": true,
+  "editor.guides.highlightActiveBracketPair": true,
+  "editor.bracketPairColorization.enabled": true,
+  "editor.occurrencesHighlight": "singleFile",
+  "editor.rulers": [
+    80,
+    120
+  ],
+  "editor.wordWrap": "on",
+  "editor.scrollBeyondLastLine": false,
+  "editor.mouseWheelZoom": false,
+  "editor.multiCursorModifier": "ctrlCmd",
+  // ===========================================================================
+  // 💾 SAVE, FORMATTING & EDITING BEHAVIOR
+  // ===========================================================================
+  "editor.autoIndent": "advanced",
+  "editor.autoClosingBrackets": "always",
+  "editor.autoClosingQuotes": "always",
+  "editor.autoSurround": "languageDefined",
+  "editor.linkedEditing": true,
+  "editor.formatOnSave": true,
+  "editor.formatOnPaste": false,
+  "editor.formatOnType": false,
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": "explicit",
+    "source.fixAll": "explicit"
+  },
+  "files.insertFinalNewline": true,
+  "files.trimTrailingWhitespace": true,
+  "files.eol": "\n",
+  "files.autoSave": "onFocusChange",
+  "files.autoSaveDelay": 1000,
+  // ===========================================================================
+  // 🧠 INTELLISENSE & PURE LSP
+  // ===========================================================================
+  "python.defaultInterpreterPath": "python",
+  "python.venvFolders": [
+    "envs",
+    ".venv",
+    "venv"
+  ],
+  "python.venvPath": "${workspaceFolder}/.venv",
+  // Autocomplete & Suggestions
+  "editor.quickSuggestions": {
+    "other": "on",
+    "comments": "on",
+    "strings": "on"
+  },
+  "editor.suggestSelection": "first",
+  "editor.suggest.preview": true,
+  "editor.suggest.showDeprecated": false,
+  "editor.suggest.shareSuggestSelections": true,
+  "editor.acceptSuggestionOnEnter": "on",
+  "editor.acceptSuggestionOnCommitCharacter": true,
+  "editor.tabCompletion": "on",
+  // Hover & Hints
+  "editor.hover.delay": 300,
+  "editor.hover.enabled": "on",
+  "editor.parameterHints.enabled": true,
+  "editor.inlayHints.enabled": "on",
+  // ===========================================================================
+  // 📂 EXPLORER & SEARCH
+  // ===========================================================================
+  "explorer.compactFolders": false,
+  "explorer.confirmDelete": false,
+  "explorer.confirmDragAndDrop": false,
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/bower_components": true,
+    "**/dist": true,
+    "**/build": true,
+    "**/coverage": true,
+    "**/__pycache__": true,
+    "**/.venv": true,
+    "**/venv": true,
+    "**/target": true,
+    "**/vendor": true
+  },
+  // ===========================================================================
+  // 🔀 GIT & VERSION CONTROL
+  // ===========================================================================
+  "git.decorations.enabled": true,
+  "git.autofetch": false,
+  "git.autorefresh": true,
+  "git.enableSmartCommit": true,
+  "git.confirmSync": false,
+  // ===========================================================================
+  // 💻 TERMINAL
+  // ===========================================================================
+  "terminal.integrated.fontFamily": "'JetBrainsMono Nerd Font Mono', monospace",
+  "terminal.integrated.fontSize": 14,
+  "terminal.integrated.cursorBlinking": true,
+  "terminal.integrated.scrollback": 10000,
+  "terminal.integrated.cwd": "${workspaceFolder}",
+  // ===========================================================================
+  // 🧩 EXTENSIONS MANAGEMENT
+  // ===========================================================================
+  "extensions.autoUpdate": "off",
+  "extensions.ignoreRecommendations": true,
+  // ===========================================================================
+  // 🗄️ FILE EXCLUSIONS & WATCHER RULES
+  // ===========================================================================
+  "files.exclude": {
+    "**/.DS_Store": true,
+    "**/.git": true,
+    "**/build": true,
+    "**/dist": true,
+    "**/node_modules": true,
+    "**/__pycache__": true,
+    "**/.venv": true,
+    "**/venv": true,
+    "**/target": true,
+    "**/vendor": true
+  },
+  "files.watcherExclude": {
+    "**/.git/objects/**": true,
+    "**/.git/subtree-cache/**": true,
+    "**/node_modules/**": true,
+    "**/dist/**": true,
+    "**/build/**": true,
+    "**/coverage/**": true,
+    "**/.venv/**": true,
+    "**/venv/**": true,
+    "**/__pycache__/**": true,
+    "**/.mypy_cache/**": true,
+    "**/.pytest_cache/**": true,
+    "**/.npm/**": true,
+    "**/.pnpm-store/**": true,
+    "**/.yarn/**": true,
+    "**/.yarn/cache/**": true,
+    "**/.yarn/unplugged/**": true,
+    "**/.bun/**": true,
+    "**/.cache/**": true,
+    "**/.turbo/**": true,
+    "**/target/**": true,
+    "**/vendor/**": true
+  }
+}
