@@ -7,51 +7,41 @@
 theme = "default"
 
 # btm does not support import, copy and paste the themes here from bottom/themes
-# ------------------------------------------------------------------------------
-# ☀️ EVERFOREST MEDIUM LIGHT
-# ------------------------------------------------------------------------------
-
-[styles.widgets]
-bg_colour = "#F4F0D9"
-border_colour = "#939F91"
-selected_border_colour = "#3A94C5"
-text = "#5C6A72"
-selected_text = { colour = "#FDF6E3", bg_colour = "#3A94C5", bold = true }
-disabled_text = "#A6B0A0"
-thread_text = "#8DA101"
-widget_title = { colour = "#3A94C5", bg_colour = "#EFEBD4", bold = true }
+# ==============================================================================
+# Catppuccin 🌻 Latte
+# ==============================================================================
 
 [styles.cpu]
-all_entry_colour = "#3A94C5"
-avg_entry_colour = "#35A77C"
-cpu_core_colours = ["#F85552", "#DFA000", "#8DA101", "#3A94C5", "#DF69BA", "#35A77C", "#F57D26"]
-
-[styles.temp_graph]
-temp_graph_colour_styles = ["#F85552", "#F57D26", "#DFA000"]
-
+all_entry_color = "#dc8a78"
+avg_entry_color = "#e64553"
+cpu_core_colors = ["#d20f39","#fe640b","#df8e1d","#40a02b","#209fb5","#8839ef"]
 [styles.memory]
-ram_colour = "#8DA101"
-cache_colour = "#35A77C"
-swap_colour = "#DFA000"
-arc_colour = "#DF69BA"
-
+ram_color = "#40a02b"
+cache_color = "#d20f39"
+swap_color = "#fe640b"
+gpu_colors = ["#209fb5","#8839ef","#d20f39","#fe640b","#df8e1d","#40a02b"]
+arc_color = "#04a5e5"
 [styles.network]
-rx_colour = "#8DA101"
-tx_colour = "#3A94C5"
-rx_total_colour = "#35A77C"
-tx_total_colour = "#DF69BA"
-
+rx_color = "#40a02b"
+tx_color = "#d20f39"
+rx_total_color = "#04a5e5"
+tx_total_color = "#40a02b"
 [styles.battery]
-high_battery_colour = "#8DA101"
-medium_battery_colour = "#DFA000"
-low_battery_colour = "#F85552"
-
+high_battery_color = "#40a02b"
+medium_battery_color = "#df8e1d"
+low_battery_color = "#d20f39"
 [styles.tables]
-headers = { colour = "#FDF6E3", bg_colour = "#3A94C5", bold = true }
-
+headers = {color = "#dc8a78"}
 [styles.graphs]
-graph_colour = "#939F91"
-legend_text = { colour = "#5C6A72", bg_colour = "#F4F0D9" }
+graph_color = "#6c6f85"
+legend_text = {color = "#6c6f85"}
+[styles.widgets]
+border_color = "#acb0be"
+selected_border_color = "#ea76cb"
+widget_title = {color = "#dd7878"}
+text = {color = "#4c4f69"}
+selected_text = {color = "#dce0e8", bg_color = "#8839ef"}
+disabled_text = {color = "#eff1f5"}
 
 # ==============================================================================
 # 🛠️ PART 2: CORE BEHAVIOR & FLAGS

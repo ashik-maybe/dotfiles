@@ -13,9 +13,8 @@
   // 🎨 THEME & WORKBENCH UI
   // ===========================================================================
   "window.autoDetectColorScheme": true,
-  // https://marketplace.visualstudio.com/items?itemName=AndreiLucaci.everforest-pro
-  "workbench.preferredLightColorTheme": "Everforest Pro Light",
-  "workbench.preferredDarkColorTheme": "Everforest Pro Dark",
+  "workbench.preferredLightColorTheme": "Catppuccin Latte",
+  "workbench.preferredDarkColorTheme": "Catppuccin Macchiato",
   "editor.fontFamily": "'JetBrainsMono Nerd Font Mono', monospace",
   "workbench.startupEditor": "none",
   "workbench.sideBar.location": "left",

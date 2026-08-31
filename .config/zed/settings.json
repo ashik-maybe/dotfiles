@@ -4,9 +4,8 @@
   // ===========================================================================
   "theme": {
     "mode": "system",
-    // https://github.com/albertsko/zed-everforest
-    "light": "Everforest Light Medium (regular)",
-    "dark": "Everforest Dark Medium (regular)",
+    "light": "Catppuccin Latte",
+    "dark": "Catppuccin Macchiato",
   },
   "icon_theme": {
     "mode": "system",
