@@ -3,14 +3,14 @@
 # ------------------------------------------------------------------------------
 
 [styles.widgets]
-bg_colour = "#343F44"
+bg_colour = "#2D353B"
 border_colour = "#859289"
 selected_border_colour = "#7FBBB3"
 text = "#D3C6AA"
 selected_text = { colour = "#2D353B", bg_colour = "#7FBBB3", bold = true }
 disabled_text = "#7A8478"
 thread_text = "#A7C080"
-widget_title = { colour = "#7FBBB3", bg_colour = "#3D484D", bold = true }
+widget_title = { colour = "#7FBBB3", bg_colour = "#343F44", bold = true }
 
 [styles.cpu]
 all_entry_colour = "#7FBBB3"
@@ -42,4 +42,4 @@ headers = { colour = "#2D353B", bg_colour = "#7FBBB3", bold = true }
 
 [styles.graphs]
 graph_colour = "#859289"
-legend_text = { colour = "#D3C6AA", bg_colour = "#343F44" }
+legend_text = { colour = "#D3C6AA", bg_colour = "#2D353B" }

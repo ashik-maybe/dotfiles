@@ -2,44 +2,44 @@
 # ☀️ EVERFOREST MEDIUM LIGHT
 # ------------------------------------------------------------------------------
 
-# [styles.widgets]
-# bg_colour = "#F4F0D9"
-# border_colour = "#939F91"
-# selected_border_colour = "#3A94C5"
-# text = "#5C6A72"
-# selected_text = { colour = "#FDF6E3", bg_colour = "#3A94C5", bold = true }
-# disabled_text = "#A6B0A0"
-# thread_text = "#8DA101"
-# widget_title = { colour = "#3A94C5", bg_colour = "#EFEBD4", bold = true }
+[styles.widgets]
+bg_colour = "#F4F0D9"
+border_colour = "#939F91"
+selected_border_colour = "#3A94C5"
+text = "#5C6A72"
+selected_text = { colour = "#FDF6E3", bg_colour = "#3A94C5", bold = true }
+disabled_text = "#A6B0A0"
+thread_text = "#8DA101"
+widget_title = { colour = "#3A94C5", bg_colour = "#EFEBD4", bold = true }
 
-# [styles.cpu]
-# all_entry_colour = "#3A94C5"
-# avg_entry_colour = "#35A77C"
-# cpu_core_colours = ["#F85552", "#DFA000", "#8DA101", "#3A94C5", "#DF69BA", "#35A77C", "#F57D26"]
+[styles.cpu]
+all_entry_colour = "#3A94C5"
+avg_entry_colour = "#35A77C"
+cpu_core_colours = ["#F85552", "#DFA000", "#8DA101", "#3A94C5", "#DF69BA", "#35A77C", "#F57D26"]
 
-# [styles.temp_graph]
-# temp_graph_colour_styles = ["#F85552", "#F57D26", "#DFA000"]
+[styles.temp_graph]
+temp_graph_colour_styles = ["#F85552", "#F57D26", "#DFA000"]
 
-# [styles.memory]
-# ram_colour = "#8DA101"
-# cache_colour = "#35A77C"
-# swap_colour = "#DFA000"
-# arc_colour = "#DF69BA"
+[styles.memory]
+ram_colour = "#8DA101"
+cache_colour = "#35A77C"
+swap_colour = "#DFA000"
+arc_colour = "#DF69BA"
 
-# [styles.network]
-# rx_colour = "#8DA101"
-# tx_colour = "#3A94C5"
-# rx_total_colour = "#35A77C"
-# tx_total_colour = "#DF69BA"
+[styles.network]
+rx_colour = "#8DA101"
+tx_colour = "#3A94C5"
+rx_total_colour = "#35A77C"
+tx_total_colour = "#DF69BA"
 
-# [styles.battery]
-# high_battery_colour = "#8DA101"
-# medium_battery_colour = "#DFA000"
-# low_battery_colour = "#F85552"
+[styles.battery]
+high_battery_colour = "#8DA101"
+medium_battery_colour = "#DFA000"
+low_battery_colour = "#F85552"
 
-# [styles.tables]
-# headers = { colour = "#FDF6E3", bg_colour = "#3A94C5", bold = true }
+[styles.tables]
+headers = { colour = "#FDF6E3", bg_colour = "#3A94C5", bold = true }
 
-# [styles.graphs]
-# graph_colour = "#939F91"
-# legend_text = { colour = "#5C6A72", bg_colour = "#F4F0D9" }
+[styles.graphs]
+graph_colour = "#939F91"
+legend_text = { colour = "#5C6A72", bg_colour = "#F4F0D9" }

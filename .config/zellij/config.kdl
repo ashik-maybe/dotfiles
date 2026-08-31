@@ -7,7 +7,7 @@
 // ----------------------------------------------------------------------------
 
 // Sets the global color palette for the application interface.
-theme "everforest-medium-dark"
+theme "everforest-medium-light"
 
 // Disables decorative borders around panes for a minimalist, borderless layout.
 pane_frames false
