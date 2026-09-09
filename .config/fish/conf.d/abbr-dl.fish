@@ -6,13 +6,13 @@
 # ==============================================================================
 
 # 1080p download
-abbr -a ytd1080 'yt-dlp -f "bestvideo[height<=1080]+bestaudio/best[height<=1080]" --merge-output-format mkv --embed-metadata --embed-thumbnail --write-auto-subs --sub-langs "en.*" --embed-subs -o "%(title)s - %(uploader)s [%(height)sp].%(ext)s" -P "~/Downloads/Videos"'
+abbr -a ytd1080 'yt-dlp -f "bestvideo[height<=1080]+bestaudio/best[height<=1080]" --merge-output-format mkv --embed-metadata --embed-thumbnail --write-auto-subs --sub-langs "en.*" --embed-subs -o "%(title)s - %(uploader)s [%(height)sp].%(ext)s" -P "~/Downloads/Video"'
 
 # 720p download
-abbr -a ytd720 'yt-dlp -f "bestvideo[height<=720]+bestaudio/best[height<=720]" --merge-output-format mkv --embed-metadata --embed-thumbnail --write-auto-subs --sub-langs "en.*" --embed-subs -o "%(title)s - %(uploader)s [%(height)sp].%(ext)s" -P "~/Downloads/Videos"'
+abbr -a ytd720 'yt-dlp -f "bestvideo[height<=720]+bestaudio/best[height<=720]" --merge-output-format mkv --embed-metadata --embed-thumbnail --write-auto-subs --sub-langs "en.*" --embed-subs -o "%(title)s - %(uploader)s [%(height)sp].%(ext)s" -P "~/Downloads/Video"'
 
 # mp3 download
-abbr -a ytda 'yt-dlp -x --audio-format mp3 --audio-quality 0 --embed-metadata --embed-thumbnail --convert-thumbnails jpg -o "%(artist,uploader)s - %(title)s.%(ext)s" -P "~/Downloads/Music"'
+abbr -a ytda 'yt-dlp -x --audio-format mp3 --audio-quality 0 --embed-metadata --embed-thumbnail --convert-thumbnails jpg -o "%(artist,uploader)s - %(title)s.%(ext)s" -P "~/Downloads/Audio"'
 
 # 1080p streaming with en subs in mpv
 abbr -a mpv1080 'mpv --ytdl-format="bestvideo[height<=1080]+bestaudio/best[height<=1080]" --slang="en,en-US" --ytdl-raw-options="sub-langs=\"en.*\",write-subs=,write-auto-subs="'
