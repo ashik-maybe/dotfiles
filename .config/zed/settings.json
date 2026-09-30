@@ -9,8 +9,8 @@
   },
   "icon_theme": {
     "mode": "system",
-    "light": "Zed (Default)",
-    "dark": "Zed (Default)",
+    "light": "Catppuccin Latte",
+    "dark": "Catppuccin Macchiato",
   },
   "ui_font_family": ".ZedSans",
   "ui_font_size": 15,
@@ -274,7 +274,7 @@
 
   // Inlay Hints (Inline Parameters and Types)
   "inlay_hints": {
-    "enabled": true,
+    "enabled": false,
     "edit_debounce_ms": 100,
     "scroll_debounce_ms": 50,
     "show_background": true,
