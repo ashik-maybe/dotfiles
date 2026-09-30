@@ -42,10 +42,7 @@
   "editor.guides.highlightActiveBracketPair": true,
   "editor.bracketPairColorization.enabled": true,
   "editor.occurrencesHighlight": "singleFile",
-  "editor.rulers": [
-    80,
-    120
-  ],
+  "editor.rulers": [80, 120],
   "editor.wordWrap": "on",
   "editor.scrollBeyondLastLine": false,
   "editor.mouseWheelZoom": false,
@@ -74,11 +71,7 @@
   // 🧠 INTELLISENSE & PURE LSP
   // ===========================================================================
   "python.defaultInterpreterPath": "python",
-  "python.venvFolders": [
-    "envs",
-    ".venv",
-    "venv"
-  ],
+  "python.venvFolders": ["envs", ".venv", "venv"],
   "python.venvPath": "${workspaceFolder}/.venv",
   // Autocomplete & Suggestions
   "editor.quickSuggestions": {
