@@ -30,3 +30,13 @@ Daily:   gs, ga, gaa, gc, gpush, gpl, gco, gcb, glog
 Helpers: gb, gd, gds, g-undo
 "
 end
+
+# ============================================================================
+# DELTA — pretty git diffs. After installing git-delta, run ONCE (copy-paste):
+# ============================================================================
+# git config --global core.pager delta
+# git config --global interactive.diffFilter "delta --color-only"
+# git config --global delta.navigate true
+# git config --global delta.line-numbers true
+# git config --global delta.side-by-side true
+# git config --global merge.conflictStyle zdiff3
