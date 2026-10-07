@@ -36,5 +36,5 @@ abbr -a xxz  'xz -dk'           # Extract standalone .xz
 # ------------------------------------------------------------------------------
 abbr -a ltar 'tar -tvf'         # List contents of ANY tar archive
 abbr -a lzip 'unzip -l'         # List contents of .zip archive
-abbr -a lr   'unar -t'          # List contents of .rar archive
+abbr -a lr   'lsar'             # List contents of .rar archive
 abbr -a l7   '7z l'             # List contents of .7z archive
