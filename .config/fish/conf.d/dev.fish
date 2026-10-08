@@ -17,6 +17,8 @@ abbr -a m 'mise'                              # Core CLI
 abbr -a mu 'mise use'                         # Set local tool version
 abbr -a mug 'mise use -g'                     # Set global tool version
 abbr -a mr 'mise run'                         # Run mise.toml tasks
+abbr -a msup 'mise self-update --yes'         # Get latest mise update
+abbr -a mup 'mise upgrade --minimum-release-age 0s' # Get latest package upgrades without wait
 
 # ==============================================================================
 # PROJECT SCAFFOLDING
