@@ -23,5 +23,7 @@ abbr -a mup 'mise upgrade --minimum-release-age 0s' # Get latest package upgrade
 # ==============================================================================
 # PROJECT SCAFFOLDING
 # ==============================================================================
-abbr -a cv 'mise x -- pnpm create vite'
-abbr -a ask 'mise x -- npx autoskills'
+    # Create a Vite project via mise (https://vite.dev/)
+abbr -a cv 'mise x -- bun create vite'
+    # Create a Better-T-Stack project via mise (https://www.better-t-stack.dev/)
+abbr -a ct 'mise x -- bunx create-better-t-stack'
