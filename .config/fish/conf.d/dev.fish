@@ -18,4 +18,4 @@ abbr -a mup 'mise upgrade --minimum-release-age 0s' # Get latest package upgrade
 
 # Scaffolding: create a project with mise. See https://vite.dev/ and https://www.better-t-stack.dev/
 abbr -a cv 'mise x -- bun create vite'
-abbr -a ct 'mise x -- bunx create-better-t-stack'
+abbr -a cbt 'mise x -- bunx create-better-t-stack'
