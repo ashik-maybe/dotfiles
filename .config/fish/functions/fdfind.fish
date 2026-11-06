@@ -6,5 +6,10 @@
 #   fdfind --type d           # directories only
 # See also: ff, fn.
 function fdfind --description "Fast and user-friendly alternative to find"
-    command fdfind --hidden --exclude .git $argv
+    # Debian/Ubuntu ship the binary as fdfind, Fedora as fd.
+    if command -q fdfind
+        command fdfind --hidden --exclude .git $argv
+    else
+        command fd --hidden --exclude .git $argv
+    end
 end
