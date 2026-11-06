@@ -21,7 +21,7 @@ abbr -a gd 'git diff'                                     # View unstaged change
 abbr -a gds 'git diff --staged'                           # View staged changes
 abbr -a gunstage 'git restore --staged'                   # Unstage an accidental gaa
 abbr -a gamend 'git commit --amend --no-edit'             # Add forgotten file to last commit
-abbr -a g-undo 'git reset --soft HEAD~1'                  # Undo last commit, keep staged
+abbr -a gundo 'git reset --soft HEAD~1'                  # Undo last commit, keep staged
 
 # Pull requests: requires gh. Install gh, then run `gh auth login`.
 abbr -a gpr  'gh pr create'                               # Open a pull request
@@ -33,7 +33,7 @@ abbr -a gprx 'gh pr checkout'                             # Check out a PR local
 function ghelp --description "List all Git abbreviations"
     echo "
 Daily:   gs, ga, gaa, gc, gpush, gpl, gss, gsp, gsl, gco, gcb, glog, glg
-Helpers: gb, gd, gds, gunstage, gamend, g-undo
+Helpers: gb, gd, gds, gunstage, gamend, gundo
 PRs:     gpr, gprl, gprv, gprx (needs gh)
 "
 end
