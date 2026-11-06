@@ -1,0 +1,30 @@
+// Zellij dev-compact layout — shell-first dev workspace, 2 tabs, 4 panes.
+// `zj` starts this layout. Plain `zellij` starts the full default layout.
+// Main pane gets focus. Git and monitor panes start suspended: press Enter to run.
+layout {
+    pane_template name="shell" {
+    }
+
+    default_tab_template {
+        pane size=1 borderless=true {
+            plugin location="zellij:tab-bar"
+        }
+        children
+        pane size=2 borderless=true {
+            plugin location="zellij:status-bar"
+        }
+    }
+
+    tab name="dev" focus=true split_direction="horizontal" {
+        shell focus=true size="70%"
+        pane split_direction="vertical" size="30%" {
+            pane name="git" command="lazygit" start_suspended=true
+            pane name="monitor" command="btop" start_suspended=true
+        }
+    }
+
+    tab name="run" split_direction="vertical" {
+        shell size="75%"
+        shell size="25%"
+    }
+}
