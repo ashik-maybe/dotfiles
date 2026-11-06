@@ -1,7 +1,5 @@
 {
-  // ===========================================================================
-  // 🎨 THEME & USER INTERFACE
-  // ===========================================================================
+  // 🎨 Theme
   "cli_default_open_behavior": "existing_window",
   "theme": {
     "mode": "system",
@@ -20,10 +18,8 @@
     "dock": "left",
   },
 
-  // ===========================================================================
-  // 🧩 EXTENSIONS
-  // ===========================================================================
-  // Auto-install necessary language and tool extensions for portability
+  // 🧩 Extensions
+  // Auto-install language and tool extensions. Keeps the setup portable.
   "auto_install_extensions": {
     "csv": true,
     "dockerfile": true,
@@ -37,9 +33,7 @@
     "yaml": true,
   },
 
-  // ===========================================================================
-  // ✍️ EDITOR (FONTS, CURSOR, VISUALS)
-  // ===========================================================================
+  // ✍️ Editor
   "buffer_font_family": "JetBrainsMono Nerd Font Mono",
   "buffer_font_fallbacks": [".ZedMono", "Apple Color Emoji", "Noto Color Emoji", "Segoe UI Emoji"],
   "buffer_font_size": 16,
@@ -56,9 +50,7 @@
   "rounded_selection": true,
   "unnecessary_code_fade": 0.2,
 
-  // ===========================================================================
-  // 📏 INDENTATION, WRAPPING & GUIDES
-  // ===========================================================================
+  // 📏 Indentation and wrapping
   "preferred_line_length": 100,
   "soft_wrap": "editor_width",
   "show_wrap_guides": true,
@@ -70,9 +62,7 @@
     "active_line_width": 2,
   },
 
-  // ===========================================================================
-  // 🧭 GUTTER, SCROLLING & NAVIGATION
-  // ===========================================================================
+  // 🧭 Gutter and scrolling
   "gutter": {
     "line_numbers": true,
     "folds": true,
@@ -103,9 +93,7 @@
     "cursors": true,
   },
 
-  // ===========================================================================
-  // 💾 SAVE & EDITING BEHAVIOR
-  // ===========================================================================
+  // 💾 Save and editing
   "autosave": "on_focus_change",
   "format_on_save": "on",
   "ensure_final_newline_on_save": true,
@@ -117,9 +105,7 @@
   "linked_edits": true,
   "extend_comment_on_newline": true,
 
-  // ===========================================================================
-  // 🗂️ TABS, PANELS & LAYOUT
-  // ===========================================================================
+  // 🗂️ Tabs and layout
   "max_tabs": 15,
   "active_pane_modifiers": {
     "border_size": 1.0,
@@ -183,9 +169,7 @@
     },
   },
 
-  // ===========================================================================
-  // 🔀 GIT & VERSION CONTROL
-  // ===========================================================================
+  // 🔀 Git
   "git": {
     "git_gutter": "tracked_files",
     "gutter_style": "detailed",
@@ -205,9 +189,7 @@
     "sort_by_path": false,
   },
 
-  // ===========================================================================
-  // 💻 TERMINAL
-  // ===========================================================================
+  // 💻 Terminal
   "terminal": {
     "button": true,
     "dock": "bottom",
@@ -235,9 +217,7 @@
   },
   "load_direnv": "shell_hook",
 
-  // ===========================================================================
-  // 🔍 SEARCH & FIND
-  // ===========================================================================
+  // 🔍 Search
   "use_system_path_prompts": false,
   "seed_search_query_from_cursor": "selection",
   "search": {
@@ -247,17 +227,15 @@
     "whole_word": false,
   },
 
-  // ===========================================================================
-  // 🧠 LANGUAGE SERVER PROTOCOL (LSP) & AUTOCOMPLETE
-  // ===========================================================================
-  // AI features disabled in favor of pure LSP capabilities
+  // 🧠 LSP and autocomplete
+  // AI is off. Only LSP provides completion and predictions.
   "disable_ai": true,
   "show_edit_predictions": false,
   "edit_predictions": {
     "provider": "none",
   },
 
-  // Code Completion Settings
+  // Completion
   "show_completions_on_input": true,
   "show_completion_documentation": true,
   "snippet_sort_order": "inline",
@@ -268,12 +246,12 @@
     },
   },
 
-  // Signatures & Documentation Hover
+  // Signature help and hover documentation
   "auto_signature_help": true,
   "hover_popover_enabled": true,
   "hover_popover_delay": 400,
 
-  // Inlay Hints (Inline Parameters and Types)
+  // Inlay hints (off: parameters and types stay out of the text)
   "inlay_hints": {
     "enabled": false,
     "edit_debounce_ms": 100,
@@ -284,11 +262,11 @@
     "show_other_hints": true,
   },
 
-  // Syntax Visuals & Tokens
+  // Syntax highlighting and colors
   "semantic_tokens": "combined",
   "lsp_document_colors": "inlay",
 
-  // Global LSP behavior
+  // LSP behavior
   "global_lsp_settings": {
     "button": true,
     "request_timeout": 120,
@@ -297,7 +275,7 @@
     },
   },
 
-  // Inline Diagnostics & Warnings
+  // Diagnostics
   "diagnostics": {
     "include_warnings": true,
     "inline": {
@@ -306,9 +284,7 @@
   },
   "diagnostics_max_severity": "warning",
 
-  // ===========================================================================
-  // 🗄️ FILE SCAN & EXCLUSIONS
-  // ===========================================================================
+  // 🗄️ File exclusions
   "file_scan_exclusions": [
     "**/.git",
     "**/.svn",
@@ -339,9 +315,7 @@
     "Shell Script": [".env.*"],
   },
 
-  // ===========================================================================
-  // ⚙️ SYSTEM, SESSION & PRIVACY
-  // ===========================================================================
+  // ⚙️ System and privacy
   "telemetry": {
     "diagnostics": false,
     "metrics": false,

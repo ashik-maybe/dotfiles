@@ -1,7 +1,5 @@
 {
-  // ===========================================================================
-  // 🚀 PERFORMANCE, PRIVACY & SYSTEM
-  // ===========================================================================
+  // 🚀 Performance and privacy
   "window.titleBarStyle": "custom",
   "window.restoreWindows": "folders",
   "workbench.list.smoothScrolling": false,
@@ -9,9 +7,7 @@
   "search.smartCase": true,
   "telemetry.telemetryLevel": "off",
   "update.mode": "manual",
-  // ===========================================================================
-  // 🎨 THEME & WORKBENCH UI
-  // ===========================================================================
+  // 🎨 Theme
   "window.autoDetectColorScheme": true,
   "workbench.preferredLightColorTheme": "Catppuccin Latte",
   "workbench.preferredDarkColorTheme": "Catppuccin Macchiato",
@@ -23,9 +19,7 @@
   "breadcrumbs.enabled": true,
   "workbench.editor.enablePreview": true,
   "workbench.editor.enablePreviewFromQuickOpen": true,
-  // ===========================================================================
-  // ✍️ EDITOR (DISPLAY & CURSOR)
-  // ===========================================================================
+  // ✍️ Editor
   "editor.fontSize": 16,
   "editor.lineHeight": 24,
   "editor.fontLigatures": true,
@@ -33,9 +27,7 @@
   "editor.cursorBlinking": "blink",
   "editor.renderWhitespace": "selection",
   "editor.minimap.enabled": false,
-  // ===========================================================================
-  // 📏 EDITOR (STRUCTURE, GUIDES & SCROLLING)
-  // ===========================================================================
+  // 📏 Structure and scrolling
   "editor.stickyScroll.enabled": true,
   "editor.guides.indentation": true,
   "editor.guides.bracketPairs": true,
@@ -47,9 +39,7 @@
   "editor.scrollBeyondLastLine": false,
   "editor.mouseWheelZoom": false,
   "editor.multiCursorModifier": "ctrlCmd",
-  // ===========================================================================
-  // 💾 SAVE, FORMATTING & EDITING BEHAVIOR
-  // ===========================================================================
+  // 💾 Save and formatting
   "editor.autoIndent": "advanced",
   "editor.autoClosingBrackets": "always",
   "editor.autoClosingQuotes": "always",
@@ -67,13 +57,11 @@
   "files.eol": "\n",
   "files.autoSave": "onFocusChange",
   "files.autoSaveDelay": 1000,
-  // ===========================================================================
-  // 🧠 INTELLISENSE & PURE LSP
-  // ===========================================================================
+  // 🧠 IntelliSense and LSP
   "python.defaultInterpreterPath": "python",
   "python.venvFolders": ["envs", ".venv", "venv"],
   "python.venvPath": "${workspaceFolder}/.venv",
-  // Autocomplete & Suggestions
+  // Autocomplete and suggestions
   "editor.quickSuggestions": {
     "other": "on",
     "comments": "on",
@@ -86,14 +74,12 @@
   "editor.acceptSuggestionOnEnter": "on",
   "editor.acceptSuggestionOnCommitCharacter": true,
   "editor.tabCompletion": "on",
-  // Hover & Hints
+  // Hover and inlay hints
   "editor.hover.delay": 300,
   "editor.hover.enabled": "on",
   "editor.parameterHints.enabled": true,
   "editor.inlayHints.enabled": "on",
-  // ===========================================================================
-  // 📂 EXPLORER & SEARCH
-  // ===========================================================================
+  // 📂 Explorer and search
   "explorer.compactFolders": false,
   "explorer.confirmDelete": false,
   "explorer.confirmDragAndDrop": false,
@@ -109,30 +95,22 @@
     "**/target": true,
     "**/vendor": true
   },
-  // ===========================================================================
-  // 🔀 GIT & VERSION CONTROL
-  // ===========================================================================
+  // 🔀 Git
   "git.decorations.enabled": true,
   "git.autofetch": false,
   "git.autorefresh": true,
   "git.enableSmartCommit": true,
   "git.confirmSync": false,
-  // ===========================================================================
-  // 💻 TERMINAL
-  // ===========================================================================
+  // 💻 Terminal
   "terminal.integrated.fontFamily": "'JetBrainsMono Nerd Font Mono', monospace",
   "terminal.integrated.fontSize": 14,
   "terminal.integrated.cursorBlinking": true,
   "terminal.integrated.scrollback": 10000,
   "terminal.integrated.cwd": "${workspaceFolder}",
-  // ===========================================================================
-  // 🧩 EXTENSIONS MANAGEMENT
-  // ===========================================================================
+  // 🧩 Extensions
   "extensions.autoUpdate": "off",
   "extensions.ignoreRecommendations": true,
-  // ===========================================================================
-  // 🗄️ FILE EXCLUSIONS & WATCHER RULES
-  // ===========================================================================
+  // 🗄️ File exclusions
   "files.exclude": {
     "**/.DS_Store": true,
     "**/.git": true,
