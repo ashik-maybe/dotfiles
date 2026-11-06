@@ -29,3 +29,14 @@ layout {
         pane name="logs" size="25%"
     }
 }
+
+// Keybinds: layout-local shortcuts. Active only when session starts with this layout.
+keybinds {
+    shared {
+        bind "Alt 1" { Run "git" "status"; }
+        bind "Alt 2" { Run "git" "diff"; }
+        bind "Alt 3" { Run "eza" "-l"; }
+        bind "Alt g" { Run "lazygit"; }
+        bind "Alt m" { Run "top" "-o" "%CPU" "-d" "1"; }
+    }
+}
