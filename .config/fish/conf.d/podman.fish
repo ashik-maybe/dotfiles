@@ -13,6 +13,7 @@ abbr -a prun 'podman run -d -P --name'                    # Run new container (s
 abbr -a pbuild 'podman build -t'                          # Build own image (tag then context)
 
 # Compose: manage multi-container stacks with podman-compose.
+# Standalone podman-compose: `podman compose` delegates to it and prints a banner. Direct call avoids the banner.
 abbr -a pcu 'podman-compose up -d --build'                # Start stack (rebuilds changed images)
 abbr -a pcd 'podman-compose down'                         # Stop and remove stack
 abbr -a pcl 'podman-compose logs -f --tail 100'           # Tail stack logs
