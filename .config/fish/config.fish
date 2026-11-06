@@ -56,8 +56,8 @@ if status is-interactive
             echo -n (prompt_pwd)
             set_color normal
             echo -n (fish_git_prompt)
-            if test -n "$CMD_DURATION" -a "$CMD_DURATION" -gt 2000
-                set -l secs (math --scale=1 "$CMD_DURATION / 1000")
+            if test -n "$cmd_duration" -a "$cmd_duration" -gt 2000
+                set -l secs (math --scale=1 "$cmd_duration / 1000")
                 set_color brblack
                 echo -n " ["$secs"s]"
                 set_color normal
