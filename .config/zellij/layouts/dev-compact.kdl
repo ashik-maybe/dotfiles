@@ -14,11 +14,11 @@ layout {
         }
     }
 
-    tab name="dev" focus=true split_direction="vertical" {
-        pane name="editor" focus=true size="70%"
-        pane split_direction="horizontal" size="30%" {
-            pane name="git" command="lazygit" start_suspended=true size="50%"
-            pane name="monitor" command="top" size="50%" {
+    tab name="dev" focus=true split_direction="horizontal" {
+        pane name="editor" focus=true size="65%"
+        pane split_direction="vertical" size="35%" {
+            pane name="git" command="lazygit" start_suspended=true size="55%"
+            pane name="monitor" command="top" size="45%" {
                 args "-o" "%CPU" "-d" "1"
             }
         }
