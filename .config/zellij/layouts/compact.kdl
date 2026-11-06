@@ -1,5 +1,0 @@
-// Zellij compact layout — single pane, no extra tabs.
-// Use with `zj` for a minimal session. Use `zellij` for the full default layout.
-layout {
-    pane
-}
