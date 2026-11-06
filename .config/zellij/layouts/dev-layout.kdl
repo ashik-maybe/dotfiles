@@ -11,10 +11,7 @@
 // New pane: Alt n. Toggle floating panes: Alt f. Fullscreen pane: Ctrl g, p, f.
 // Resize pane: Ctrl n, then h/j/k/l. Scroll pane: Ctrl s, then j/k.
 // Layout shortcuts: Alt 1 git status, Alt 2 git diff, Alt 3 eza -l, Alt g lazygit, Alt m top.
-
-// Themes: auto light/dark from host terminal. No manual editing.
-theme_dark "catppuccin-macchiato"
-theme_light "catppuccin-latte"
+// Themes: inherited from config.kdl. Dark Macchiato, light Latte, auto switch.
 
 layout {
     default_tab_template {
