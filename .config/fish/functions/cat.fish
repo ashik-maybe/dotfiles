@@ -1,10 +1,11 @@
-# cat — byte-level file inspector. FORCES: line numbers, squeezed blank runs and
-#        visible non-printables through less — but ONLY on a TTY: anything
-#        redirected or piped gets raw, byte-exact output.
-#   cat notes.txt             # TTY view: line #s, ^I tabs, $ ends, no double blanks
-#   cat Makefile              # tabs vs spaces, CRLF (^M), trailing spaces jump out
-#   cat a.txt > b.txt         # not a TTY → exact copy, nothing injected
-#   command cat f | sha256sum # bypass the wrapper when you mean bytes
+# cat — Inspect raw bytes of a file.
+# FORCES: line numbers, squeezed blank lines, visible non-printables through less.
+# On a TTY only. Piped or redirected output stays byte-exact.
+#   cat notes.txt             # TTY view: numbers, ^I tabs, $ line ends
+#   cat Makefile              # tabs vs spaces and CRLF stand out
+#   cat a.txt > b.txt         # not a TTY: exact copy, nothing added
+#   command cat f | sha256sum # bypass this wrapper for raw bytes
+# See also: bat.
 function cat --description "Inspect raw file formatting, invisible characters, and line endings"
     if not isatty stdout
         command cat $argv

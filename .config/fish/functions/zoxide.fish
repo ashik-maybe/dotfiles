@@ -1,9 +1,9 @@
-# zoxide — smart cd by frecency. FIRST call per shell installs:
-#   z                         # jump to the best match; bare `z` = $HOME
+# zoxide — Jump to directories by frequency and recency. First call per shell installs the hook.
+#   z                         # best match; bare z goes to $HOME
 #   zi                        # interactive picker
-#   z -                       # back to the previous directory
-#   zoxide query -l           # list the entire jump database
-#   zoxide query foo          # show where `z foo` would land
+#   z -                       # previous directory
+#   zoxide query -l           # list the jump database
+#   zoxide query foo          # show where z foo lands
 function zoxide --description "Smarter cd command with frecency-based directory jumping"
     if not functions -q __zoxide_hook
         command zoxide init fish | source

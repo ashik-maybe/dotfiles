@@ -1,9 +1,9 @@
-# ncdu — interactive disk usage: browse the tree and delete from inside it.
-#   ncdu .                    # scan current directory, then navigate
-#   sudo ncdu /               # whole system (permission blind spots need root)
-#   ncdu -x /                 # stay on one filesystem, skip other mounts
-#   ncdu -o scan.json .       # scan now …
-#   ncdu -i scan.json         # … browse later, or on another machine
+# ncdu — Browse disk usage interactively and delete from inside.
+#   ncdu .                    # scan the current directory
+#   sudo ncdu /               # whole system (some paths need root)
+#   ncdu -x /                 # stay on one filesystem
+#   ncdu -o scan.json .       # scan now, browse later with -i scan.json
+# See also: dust, du.
 function ncdu --description "NCurses disk usage analyzer"
     command ncdu $argv
 end

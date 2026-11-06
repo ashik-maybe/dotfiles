@@ -1,8 +1,8 @@
-# hexyl — colored hex viewer for binaries, images, fonts, firmware.
-#   hexyl firmware.bin        # offset + bytes + ASCII column, color-coded
-#   hexyl -n 64 image.png     # first 64 bytes only — check magic numbers
+# hexyl — View binary files as colored hex.
+#   hexyl firmware.bin        # offset, bytes, and ASCII column
+#   hexyl -n 64 image.png     # first 64 bytes only
 #   hexyl -s 4096 blob.bin    # skip ahead (negative counts from the end)
-#   curl -s URL | hexyl       # no file arg → reads stdin
+#   curl -s URL | hexyl       # no file argument reads stdin
 function hexyl --description "Colored hex viewer for binary files"
     command hexyl $argv
 end

@@ -1,9 +1,9 @@
-# shellcheck — static analysis for shell scripts; catches the classic gotchas.
+# shellcheck — Check shell scripts for common errors.
 #   shellcheck build.sh       # all default warnings
-#   shellcheck -x build.sh    # also follow `source`d files
-#   shellcheck -S error s.sh  # gate CI on errors only
-#   shellcheck -f gcc s.sh    # compiler-style output editors understand
-#   # shellcheck disable=SC2086  # inline: silence one intentional case
+#   shellcheck -x build.sh    # also follow sourced files
+#   shellcheck -S error s.sh  # fail CI on errors only
+#   shellcheck -f gcc s.sh    # compiler-style output for editors
+#   # shellcheck disable=SC2086 # silence one warning on a line
 function shellcheck --description "Static analysis for shell scripts"
     command shellcheck $argv
 end

@@ -1,8 +1,8 @@
-# tldr — simplified man pages: practical examples instead of prose.
-#   tldr tar                  # the 5 commands everyone forgets, instantly
-#   tldr ssh                  # same energy for any CLI
+# tldr — Quick examples for a command. Shorter than man pages.
+#   tldr tar                  # the common tar commands
+#   tldr ssh                  # same for any command
 #   tldr -u                   # refresh the page cache (tealdeer)
-#   man tar                   # when you need the full reference
+#   man tar                   # full reference when examples are not enough
 function tldr --description "Simplified man pages with practical examples"
     command tldr $argv
 end
