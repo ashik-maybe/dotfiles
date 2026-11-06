@@ -1,7 +1,7 @@
 # Dev abbreviations — multiplexer, navigation, mise, and scaffolding.
 
-# Daily: start a compact Zellij session. Use `zj` to enter the multiplexer.
-abbr -a zj 'zellij --layout compact'          # Compact Zellij session
+# Daily: start a Zellij session. Use `zj` to enter the multiplexer.
+abbr -a zj 'zellij'                            # Start Zellij session
 
 # Navigation: jump to common directories.
 abbr -a cdd 'cd ~/Downloads'                  # Open Downloads
