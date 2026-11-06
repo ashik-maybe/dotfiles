@@ -12,8 +12,11 @@ function yazi --description "Blazing fast terminal file manager"
     set -l yazi_status $status
 
     # Read the target path; change directory only if it exists and differs.
+    # cat strips the trailing newline yazi writes; read would keep it and
+    # test -d would fail on the path with the newline attached.
+    set -l cwd (cat -- "$tmp" 2>/dev/null)
     set -l cd_status 0
-    if read -z cwd < "$tmp"; and [ "$cwd" != "$PWD" ]; and test -d "$cwd"
+    if test -n "$cwd"; and [ "$cwd" != "$PWD" ]; and test -d "$cwd"
         builtin cd -- "$cwd"
         or set cd_status $status
     end
