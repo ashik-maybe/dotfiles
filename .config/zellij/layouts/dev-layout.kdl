@@ -4,6 +4,14 @@
 // Monitor pane auto-runs top sorted by CPU. Top ships with procps, no extra install.
 // LazyGit is required for the git pane and Alt g keybind. Install it separately.
 
+// Keyboard shortcuts. Prefix is Ctrl g, unless stated otherwise.
+// Quit session: Ctrl q. Detach and keep running: Ctrl o, then d. Reattach: zellij attach.
+// Close pane: Ctrl g, p, x. Close tab: Ctrl g, t, x.
+// Switch pane: Alt h, Alt j, Alt k, Alt l. Switch tab: Ctrl g, t, l/h or Ctrl g, t, 1/2.
+// New pane: Alt n. Toggle floating panes: Alt f. Fullscreen pane: Ctrl g, p, f.
+// Resize pane: Ctrl n, then h/j/k/l. Scroll pane: Ctrl s, then j/k.
+// Layout shortcuts: Alt 1 git status, Alt 2 git diff, Alt 3 eza -l, Alt g lazygit, Alt m top.
+
 // Themes: auto light/dark from host terminal. No manual editing.
 theme_dark "catppuccin-macchiato"
 theme_light "catppuccin-latte"
