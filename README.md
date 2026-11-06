@@ -1,76 +1,60 @@
 # 🗂️ Dotfiles
 
-[![GNU](https://img.shields.io/badge/GNU-Stow-000000?logo=gnu&logoColor=white)](#)
-[![Linux](https://img.shields.io/badge/Linux-FCC624?logo=linux&logoColor=black)](#)
-[![Fedora](https://img.shields.io/badge/Fedora-51A2DA?logo=fedora&logoColor=fff)](#)
-[![Mint](https://img.shields.io/badge/Linux_Mint-87CF3E?logo=linuxmint&logoColor=fff)](#)
+Fish shell, terminal, and editor configuration for Fedora and Linux Mint. Managed with GNU Stow.
 
-## 🚀 Quick Start
+## Prerequisites
 
-Here’s how to get up and running:
+| Program | Purpose |
+|---|---|
+| fish | Shell |
+| stow | Symlink manager |
+| git | Version control |
+| eza, bat, dust, duf, fdfind, tealdeer, tokei, yazi, zoxide, tree, less | Used by `functions/*.fish` |
+| mise (optional) | Tool versions and project tasks |
+| gh (optional) | GitHub pull-request abbreviations |
+| podman, podman-compose (optional) | Container abbreviations |
+| yt-dlp, aria2c, mpv (optional) | Download and media abbreviations |
 
-### 1. Install Fish and Dependencies
-
-Install Fish shell:
-
-```bash
-sudo dnf install fish
-```
-
-Install CLI tools:
+## Install
 
 ```bash
-sudo dnf install unzip unrar 7zip
-sudo dnf install stow
+sudo dnf install fish stow git
+chsh -s "$(which fish)"
+cd ~
+git clone https://github.com/ashik-maybe/dotfiles ~/dotfiles
+cd ~/dotfiles
+stow .
 ```
 
-### 2. Set Fish as Your Default Shell
+On Linux Mint, replace `dnf` with `apt` and install the same programs.
 
-```bash
-chsh -s $(which fish)
-```
+## Apps
 
-> Running the above line again would upgrade Starship
+| App | Config | Theme | Font |
+|---|---|---|---|
+| fish | `.config/fish/` | — | — |
+| alacritty | `.config/alacritty/` | Catppuccin Macchiato | JetBrainsMono Nerd Font Mono |
+| kitty | `.config/kitty/` | Catppuccin Macchiato | JetBrainsMono Nerd Font Mono |
+| foot | `.config/foot/` | Catppuccin Macchiato | JetBrainsMono Nerd Font Mono |
+| zellij | `.config/zellij/` | Catppuccin Macchiato | — |
+| btop | `.config/btop/` | Catppuccin Macchiato | — |
+| lazygit | `.config/lazygit/` | Terminal-native | — |
+| mpv | `.config/mpv/` | — | Roboto (subtitles) |
+| VSCodium | `.config/VSCodium/User/settings.json`, `.config/VSCodium/product.json` | Catppuccin Latte / Macchiato by OS | JetBrainsMono Nerd Font Mono |
+| Zed | `.config/zed/` | Catppuccin Latte / Macchiato by OS | JetBrainsMono Nerd Font Mono |
 
----
+Alternative themes are kept in each app's `themes/` directory. Select one in the app config to switch.
 
-## 📦 Dotfiles Installation
+## Fonts
 
-```bash
-cd  ~
-git  clone  https://github.com/ashik-maybe/dotfiles  ~/dotfiles
-cd  ~/dotfiles
-stow  .
-```
+Fonts live in `.fonts/` and reach `~/.fonts` through Stow. Fontconfig picks them up without extra steps. Run `fc-cache -fv` only if a terminal does not see the font.
 
----
+## Tools
 
-## 🗄️ Programs
+Keep personal binaries in `~/bin` and add `~/bin` to `PATH`. Fish already adds it.
 
-```bash
-mkdir -p ~/bin
-```
+## Troubleshooting
 
-> ⚠ Keep the binaries into `~/bin` and make sure `~/bin` is in your `PATH`.
-
-<!--
-### [mise-en-place](https://mise.jdx.dev/)
-
-_The front-end to your dev env_
-
-```bash
-curl https://mise.run | sh
-```
--->
-
----
-
-#### Fonts
-
-> Store fonts in **`~/.local/share/fonts`** or **`~/.fonts`** and run `fc-cache -fv`
-
-<!--[Commit Mono](https://commitmono.com/)-->
-<!--[JetBrains Mono](https://www.jetbrains.com/lp/mono/)-->
-<!--[Maple Mono](https://github.com/subframe7536/Maple-font)-->
-
----
+- **Config not applied:** run `stow .` again, then open a new shell.
+- **Stow conflict:** back up the existing file in `~/.config/`, then run `stow .` again.
+- **Missing command in Fish:** install the program from the Prerequisites table.
