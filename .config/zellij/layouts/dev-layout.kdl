@@ -3,8 +3,8 @@
 // Layout name is `dev-layout`. Old name `dev-compact` no longer exists.
 
 // Layout map:
-// Tab `dev`: main shell (editor) left, git pane top-right, monitor pane bottom-right.
-// Tab `run`: run pane top, logs pane bottom. Use for servers, tests, watchers.
+// Tab `Develop`: main shell left, git pane top-right, monitor pane bottom-right.
+// Tab `Run program`: run pane top, logs pane bottom. Use for servers, tests, watchers.
 // Why shell-first: main file is unknown at layout time. You pick editor, tests, builds.
 // Why git suspended: lazygit is heavy and needs a git repo. Press Enter to run it.
 // Why monitor auto-runs: top is light and always present. Sorted by CPU, 1s refresh.
@@ -33,19 +33,19 @@ layout {
         }
     }
 
-    tab name="dev" focus=true split_direction="horizontal" {
-        pane name="editor" focus=true size="65%"
+    tab name="Develop" focus=true split_direction="horizontal" {
+        pane name="Edit code" focus=true size="65%"
         pane split_direction="vertical" size="35%" {
-            pane name="git" command="lazygit" start_suspended=true size="55%"
-            pane name="monitor" command="top" size="45%" {
+            pane name="Check git status" command="lazygit" start_suspended=true size="55%"
+            pane name="Watch CPU use" command="top" size="45%" {
                 args "-o" "%CPU" "-d" "1"
             }
         }
     }
 
-    tab name="run" split_direction="vertical" {
-        pane name="run" size="75%"
-        pane name="logs" size="25%"
+    tab name="Run program" split_direction="vertical" {
+        pane name="Run program" size="75%"
+        pane name="Read program logs" size="25%"
     }
 }
 
