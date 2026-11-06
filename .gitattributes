@@ -1,7 +1,7 @@
-# Auto-detect text files and normalize line endings to LF
+# Text files use LF line endings.
 * text=auto eol=lf
 
-# Force specific dotfile configs to stay LF (crucial for cross-platform Unix setups)
+# Dotfiles stay LF on every platform.
 *.fish text eol=lf
 *.conf text eol=lf
 *.toml text eol=lf
@@ -9,7 +9,7 @@
 *.json text eol=lf
 *.ini  text eol=lf
 
-# Mark binary files explicitly to protect against accidental corruption
+# Binary files: do not convert line endings.
 *.png binary
 *.jpg binary
 *.ico binary

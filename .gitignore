@@ -1,28 +1,17 @@
-# .gitignore - tells Git which files/directories to exclude from version control
-
 # OS junk
 .DS_Store
 Thumbs.db
 
-# Machine-specific Fish universal variables
+# Fish universal variables are machine-specific.
 .config/fish/fish_variables
 .config/fish/completions/
 
-# Local overrides (optional, but good practice for machine-specific tweaks)
+# Local overrides
 *.local
 
-# --- VSCodium Config Tracking ---
-# 1. Ignore everything inside VSCodium by default
+# VSCodium: ignore everything, then allow only the two tracked files.
 .config/VSCodium/*
-
-# 2. Whitelist product.json at the root level
 !.config/VSCodium/product.json
-
-# 3. Allow Git to enter the User directory
 !.config/VSCodium/User/
-
-# 4. Ignore everything inside User/ by default...
 .config/VSCodium/User/*
-
-# 5. ...except settings.json
 !.config/VSCodium/User/settings.json

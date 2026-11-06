@@ -1,4 +1,4 @@
-# .stow-local-ignore
+# Files Stow must not link into the home directory.
 
 # Git internals
 .git
@@ -6,9 +6,9 @@
 .gitattributes
 .gitmodules
 
-# Stow local ignore file
+# Stow itself
 .stow-local-ignore
 
-# Repository documentation
+# Documentation
 README.md
 LICENSE
