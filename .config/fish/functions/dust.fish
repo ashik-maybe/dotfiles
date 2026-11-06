@@ -7,6 +7,11 @@
 #   dust -t                   # group by file type
 # See also: du, ncdu.
 function dust --description 'Interactive tree-view disk space analyzer'
+    # TTY only: piped output (dust -j | jq) must not hit the pager.
+    if not isatty stdout
+        command dust -r -d 2 $argv
+        return
+    end
     command dust -r -d 2 $argv | less -RFX --mouse
     return $pipestatus[1]
 end
