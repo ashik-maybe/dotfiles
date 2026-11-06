@@ -62,7 +62,7 @@ if status is-interactive
                 echo -n " ["$secs"s]"
                 set_color normal
             end
-            if test "$USER" = "root"
+            if fish_is_root_user
                 set_color red --bold
                 echo -n " # "
             else if test $last_status -eq 0
