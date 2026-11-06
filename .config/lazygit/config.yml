@@ -1,31 +1,25 @@
-# ============================================================================
-# Lazygit Configuration (`config.yml`)
-# ============================================================================
-
-# ----------------------------------------------------------------------------
-# Graphical User Interface Settings
-# ----------------------------------------------------------------------------
+# Lazygit — terminal-native theme, Zed as editor.
 
 gui:
-  # Maintains a 3-line scroll margin context to prevent losing your place.
+  # 3-line scroll margin keeps context around the selection.
   scrollOffMargin: 3
 
-  # Displays status arrows and numeric indicators for divergent remote branches.
+  # Show arrows and counts for branches diverged from their base.
   showDivergenceFromBaseBranch: arrowAndNumber
 
-  # Enables Nerd Fonts v3 integration for file icon rendering.
+  # Nerd Fonts v3 icons available, file icons off.
   nerdFontsVersion: "3"
   showFileIcons: false
 
-  # Configures author name character limits for compact commit views.
+  # Short author names in compact views, longer in full views.
   commitAuthorShortLength: 2
   commitAuthorLongLength: 17
 
-  # Displays a visual warning indicator when commit messages exceed standard limits.
+  # Warn when a commit message exceeds the standard length.
   commitLength:
     show: true
 
-  # Defines a terminal-native, theme-agnostic interface palette.
+  # Theme: terminal-native colors. Selected line uses reverse contrast.
   theme:
     activeBorderColor:
       - green
@@ -34,7 +28,6 @@ gui:
       - default
     optionsTextColor:
       - cyan
-    # Highlights the currently selected line background with reverse contrast.
     selectedLineBgColor:
       - reverse
     unstagedChangesColor:
@@ -42,43 +35,31 @@ gui:
     defaultFgColor:
       - default
 
-# ----------------------------------------------------------------------------
-# Git Integration & Repository Behavior
-# ----------------------------------------------------------------------------
-
 git:
-  # Defines primary branch names recognized by git workflows.
+  # Branches that git workflows treat as primary.
   mainBranches:
     - main
     - master
     - develop
 
-  # Automatically stages files once merge conflicts are manually resolved.
+  # Stage a file when its merge conflicts are resolved.
   autoStageResolvedConflicts: true
 
-  # Configures commit history graph rendering and sorting strategy.
+  # Commit history: topological order, graph always shown.
   log:
     order: topo-order
     showGraph: always
 
-  # Truncates copied commit hashes to a standard 8-character length.
+  # Copied commit hashes are truncated to 8 characters.
   truncateCopiedCommitHashesTo: 8
 
-# ----------------------------------------------------------------------------
-# Operating System & Editor Integration
-# ----------------------------------------------------------------------------
-
 os:
-  # Sets the default external text editor preset.
+  # External editor preset.
   editPreset: "zed"
 
-  # Optional syntax-highlighting pager integration (uncomment if delta is installed):
+  # Syntax-highlighting pager. Uncomment after installing delta:
   # pagers:
   #   - pager: delta --dark --paging=never
 
-# ----------------------------------------------------------------------------
-# Application Quality of Life
-# ----------------------------------------------------------------------------
-
-# Suppresses introductory tutorial popups on startup for immediate access.
+# No startup tutorial popups.
 disableStartupPopups: true

@@ -1,20 +1,11 @@
-# =============================================================================
-# ALACRITTY TERMINAL CONFIGURATION
-# =============================================================================
-
-# =============================================================================
-# GENERAL
-# =============================================================================
+# Alacritty — Catppuccin Macchiato theme. Shell inherits $SHELL (fish).
 
 general.import = [
   "~/.config/alacritty/themes/catppuccin-macchiato.toml",
 ]
 
 
-# =============================================================================
-# WINDOW
-# =============================================================================
-
+# Window: maximized at startup, full decorations, 1px padding, opaque.
 [window]
 startup_mode = "Maximized"
 decorations = "Full"
@@ -22,10 +13,7 @@ padding = { x = 1, y = 1 }
 opacity = 1
 
 
-# =============================================================================
-# FONTS
-# =============================================================================
-
+# Font: JetBrainsMono Nerd Font Mono, 12pt. Regular, Bold, Italic, Bold Italic.
 [font]
 normal = { family = "JetBrainsMono Nerd Font Mono", style = "Regular" }
 bold = { family = "JetBrainsMono Nerd Font Mono", style = "Bold" }
@@ -34,54 +22,36 @@ bold_italic = { family = "JetBrainsMono Nerd Font Mono", style = "Bold Italic" }
 size = 12
 
 
-# =============================================================================
-# CURSOR
-# =============================================================================
-
+# Cursor: beam, blinking, thin.
 [cursor]
 style = { shape = "Beam", blinking = "On" }
 thickness = 0.15
 
 
-# =============================================================================
-# SCROLLBACK
-# =============================================================================
-
+# Scrollback: 20000 lines, 3 lines per wheel step.
 [scrolling]
 history = 20000
 multiplier = 3
 
 
-# =============================================================================
-# SELECTION
-# =============================================================================
-
+# Selection: copy to clipboard on select. Semantic chars group words for double-click.
 [selection]
 save_to_clipboard = true
 semantic_escape_chars = ",│`|:\"' ()[]{}<>\t"
 
 
-# =============================================================================
-# MOUSE
-# =============================================================================
-
+# Mouse: hide the pointer while typing.
 [mouse]
 hide_when_typing = true
 
 
-# =============================================================================
-# BELL
-# =============================================================================
-
+# Bell: no sound, no animation.
 [bell]
 animation = "Linear"
 duration = 0
 
 
-# =============================================================================
-# KEYBOARD
-# =============================================================================
-
+# Keyboard: clipboard, font scaling, fullscreen. Same as kitty and foot.
 [keyboard]
 bindings = [
   # Clipboard
@@ -98,10 +68,6 @@ bindings = [
 ]
 
 
-# =============================================================================
-# TERMINAL
-# =============================================================================
-
+# Terminal: shell defaults to $SHELL. OSC52: copy only, no paste from escape sequences.
 [terminal]
-# Shell = defaults to $SHELL
 osc52 = "OnlyCopy"
