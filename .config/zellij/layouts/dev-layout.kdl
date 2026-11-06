@@ -3,6 +3,11 @@
 // Main pane gets focus. Git pane starts suspended: press Enter to run lazygit.
 // Monitor pane auto-runs top sorted by CPU. Top ships with procps, no extra install.
 // LazyGit is required for the git pane and Alt g keybind. Install it separately.
+
+// Themes: auto light/dark from host terminal. No manual editing.
+theme_dark "catppuccin-macchiato"
+theme_light "catppuccin-latte"
+
 layout {
     default_tab_template {
         pane size=1 borderless=true {
