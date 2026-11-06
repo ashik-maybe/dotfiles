@@ -1,9 +1,21 @@
 // Zellij — Catppuccin Macchiato theme, borderless panes, detach on close.
 
-// Appearance: theme, no pane frames, simplified UI to avoid rendering glitches.
+// Appearance: Catppuccin Macchiato, pinned dark. No pane frames, simplified UI to avoid rendering glitches.
 theme "catppuccin-macchiato"
+theme_dark "catppuccin-macchiato"
+explicit_theme_hue "dark"
 pane_frames false
 simplified_ui true
+
+// UI: hide session name, rounded corners, no mouse hover noise.
+ui {
+    pane_frames {
+        hide_session_name true
+        rounded_corners true
+    }
+}
+mouse_hover_effects false
+mouse_hover_tips false
 
 // Behavior: detach (do not kill panes) when the session is force-closed.
 on_force_close "detach"
