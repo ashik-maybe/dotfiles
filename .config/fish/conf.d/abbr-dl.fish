@@ -22,4 +22,4 @@ abbr -a a2 'aria2c -x 16 -s 16 -k 1M -d ~/Downloads'
 abbr -a a2c 'aria2c -c -x 16 -s 16 -k 1M -d ~/Downloads'
 
 # Files: download every URL listed in a text file, one URL per line.
-abbr -a a2i 'aria2c -x 16 -s 16 -i'
+abbr -a a2i 'aria2c -x 16 -s 16 -k 1M -d ~/Downloads -i'
