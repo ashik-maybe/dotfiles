@@ -1,24 +1,25 @@
-# ~/.config/fish/config.fish
+# Fish — editor, paths, history, and prompt.
 
-# Environment
+# Editor: nano for quick edits. Tools that need a full editor open Zed.
 set -gx EDITOR nano
 set -gx VISUAL nano
 
-# Path
+# Paths: user binaries first. Background priority keeps system paths usable.
 fish_add_path -g -m $HOME/.local/bin
 fish_add_path -g -m $HOME/sdk
 fish_add_path -g -m $HOME/bin
 
-# Shell Options
+# History: 20000 lines. Autocd: type a directory name to enter it.
+# Greeting: cleared. Command-not-found: disabled (use `command-not-found` explicitly).
 set -g fish_history 20000
 set -g fish_autocd_enabled 1
 set -U fish_greeting
 set -g fish_features no-command-not-found
 
-# Interactive Configuration
+# Interactive shells: adaptive git prompt. Non-interactive shells skip it for speed.
 if status is-interactive
 
-    # Adaptive Git Status Config
+    # Git prompt: branch, dirtiness, stash, and upstream state in one segment.
     set -g __fish_git_prompt_show_informative_status 1
     set -g __fish_git_prompt_showdirtystate 1
     set -g __fish_git_prompt_showuntrackedfiles 1
@@ -26,19 +27,19 @@ if status is-interactive
     set -g __fish_git_prompt_showupstream "informative"
     set -g __fish_git_prompt_showcolorhints 1
 
-    # Adaptive Indicators
-    set -g __fish_git_prompt_char_cleanstate ""           # nothing changed
-    set -g __fish_git_prompt_char_dirtystate "●"          # modified files (unstaged)
-    set -g __fish_git_prompt_char_stagedstate "+"         # ready to commit
-    set -g __fish_git_prompt_char_untrackedfiles "…"      # new files (not tracked yet)
-    set -g __fish_git_prompt_char_conflictedstate "×"     # merge conflict
-    set -g __fish_git_prompt_char_stashstate "*"          # saved safely aside
-    set -g __fish_git_prompt_char_upstream_ahead "↑"      # ahead of remote (need to push)
-    set -g __fish_git_prompt_char_upstream_behind "↓"     # behind remote (need to pull)
-    set -g __fish_git_prompt_char_diverged "⥄"            # local & remote histories split
-    set -g __fish_git_prompt_char_stateseparator " "      # spacing between indicators
+    # Indicators: each symbol means one state.
+    set -g __fish_git_prompt_char_cleanstate ""           # Clean tree
+    set -g __fish_git_prompt_char_dirtystate "●"          # Modified files (unstaged)
+    set -g __fish_git_prompt_char_stagedstate "+"         # Staged changes
+    set -g __fish_git_prompt_char_untrackedfiles "…"      # Untracked files
+    set -g __fish_git_prompt_char_conflictedstate "×"     # Merge conflict
+    set -g __fish_git_prompt_char_stashstate "*"          # Stash present
+    set -g __fish_git_prompt_char_upstream_ahead "↑"      # Ahead of remote (push)
+    set -g __fish_git_prompt_char_upstream_behind "↓"     # Behind remote (pull)
+    set -g __fish_git_prompt_char_diverged "⥄"            # Local and remote split
+    set -g __fish_git_prompt_char_stateseparator " "      # Space between indicators
 
-    # Theme-Adaptive Colors
+    # Colors: branch in bold yellow, dirtiness in bold red. Matches Catppuccin.
     set -g __fish_git_prompt_color_branch yellow --bold
     set -g __fish_git_prompt_color_cleanstate green
     set -g __fish_git_prompt_color_dirtystate red --bold
@@ -47,23 +48,20 @@ if status is-interactive
     set -g __fish_git_prompt_color_stashstate white --bold
     set -g __fish_git_prompt_color_upstream cyan
 
-    # High-Performance Adaptive Prompt
+    # Prompt: directory, git state, slow commands, then status symbol.
+    # Slow commands show duration after 2 seconds. Red # marks root shells.
     function fish_prompt
             set -l last_status $status
-            # 1. Directory Context
             set_color $fish_color_cwd
             echo -n (prompt_pwd)
             set_color normal
-            # 2. Git Context
             echo -n (fish_git_prompt)
-            # 3. Execution Duration (>2000ms)
             if test -n "$CMD_DURATION" -a "$CMD_DURATION" -gt 2000
                 set -l secs (math --scale=1 "$CMD_DURATION / 1000")
                 set_color brblack
                 echo -n " ["$secs"s]"
                 set_color normal
             end
-            # 4. Status & Privilege Aware Prompt Symbol
             if test "$USER" = "root"
                 set_color red --bold
                 echo -n " # "

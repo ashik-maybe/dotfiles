@@ -1,8 +1,6 @@
-# ~/.config/fish/conf.d/git.fish
+# Git abbreviations — daily workflow, helpers, and pull requests.
 
-# ============================================================================
-# DAILY WORKFLOW (The 20% you use 80% of the time)
-# ============================================================================
+# Daily: the 20% of git you use most.
 abbr -a gs 'git status -s'                                # Short status view
 abbr -a ga 'git add'                                      # Stage specific file
 abbr -a gaa 'git add -A'                                  # Stage all changes
@@ -17,9 +15,7 @@ abbr -a gcb 'git switch -c'                               # Create & switch to n
 abbr -a glog 'git log --oneline'                          # Compact commit log
 abbr -a glg 'git log --oneline --graph --all --decorate'  # Visual branch history
 
-# ============================================================================
-# HELPERS
-# ============================================================================
+# Helpers: inspect and undo without leaving the shell.
 abbr -a gb 'git branch'                                   # List local branches
 abbr -a gd 'git diff'                                     # View unstaged changes
 abbr -a gds 'git diff --staged'                           # View staged changes
@@ -27,17 +23,13 @@ abbr -a gunstage 'git restore --staged'                   # Unstage an accidenta
 abbr -a gamend 'git commit --amend --no-edit'             # Add forgotten file to last commit
 abbr -a g-undo 'git reset --soft HEAD~1'                  # Undo last commit, keep staged
 
-# ============================================================================
-# GITHUB PULL REQUESTS (requires gh — install + `gh auth login` when ready)
-# ============================================================================
+# Pull requests: requires gh. Install gh, then run `gh auth login`.
 abbr -a gpr  'gh pr create'                               # Open a pull request
 abbr -a gprl 'gh pr list'                                 # List this repo's PRs
 abbr -a gprv 'gh pr view'                                 # Current branch's PR (add --web for browser)
 abbr -a gprx 'gh pr checkout'                             # Check out a PR locally (x — gpr is create)
 
-# ============================================================================
-# HELP
-# ============================================================================
+# Help: list all git abbreviations.
 function ghelp --description "List all Git abbreviations"
     echo "
 Daily:   gs, ga, gaa, gc, gpush, gpl, gss, gsp, gsl, gco, gcb, glog, glg
@@ -46,9 +38,7 @@ PRs:     gpr, gprl, gprv, gprx (needs gh)
 "
 end
 
-# ============================================================================
-# DELTA — pretty git diffs. After installing git-delta, run ONCE (copy-paste):
-# ============================================================================
+# Delta: pretty diffs. After installing git-delta, run once:
 # git config --global core.pager delta
 # git config --global interactive.diffFilter "delta --color-only"
 # git config --global delta.navigate true
