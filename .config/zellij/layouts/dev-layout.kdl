@@ -1,8 +1,17 @@
-// Zellij dev-compact layout — shell-first dev workspace, 2 tabs, 4 panes.
-// `zj` starts this layout. Plain `zellij` starts the full default layout.
-// Main pane gets focus. Git pane starts suspended: press Enter to run lazygit.
-// Monitor pane auto-runs top sorted by CPU. Top ships with procps, no extra install.
-// LazyGit is required for the git pane and Alt g keybind. Install it separately.
+// Zellij dev-layout — shell-first dev workspace, 2 tabs, 5 panes.
+// Start with `zj`. Plain `zellij` starts the default layout, not this one.
+// Layout name is `dev-layout`. Old name `dev-compact` no longer exists.
+
+// Layout map:
+// Tab `dev`: main shell (editor) left, git pane top-right, monitor pane bottom-right.
+// Tab `run`: run pane top, logs pane bottom. Use for servers, tests, watchers.
+// Why shell-first: main file is unknown at layout time. You pick editor, tests, builds.
+// Why git suspended: lazygit is heavy and needs a git repo. Press Enter to run it.
+// Why monitor auto-runs: top is light and always present. Sorted by CPU, 1s refresh.
+// Why no cwd: inherit launch directory. Works in any project, no path edits.
+// Themes: inherited from config.kdl. Dark Macchiato, light Latte, auto switch.
+// Bars: line 1 tab-bar for navigation, line 2 status-bar for mode and tips. No overlap.
+// Requirements: lazygit for git pane and Alt g. Top from procps. Eza for Alt 3.
 
 // Keyboard shortcuts. Prefix is Ctrl g, unless stated otherwise.
 // Quit session: Ctrl q. Detach and keep running: Ctrl o, then d. Reattach: zellij attach.
@@ -11,6 +20,7 @@
 // New pane: Alt n. Toggle floating panes: Alt f. Fullscreen pane: Ctrl g, p, f.
 // Resize pane: Ctrl n, then h/j/k/l. Scroll pane: Ctrl s, then j/k.
 // Layout shortcuts: Alt 1 git status, Alt 2 git diff, Alt 3 eza -l, Alt g lazygit, Alt m top.
+// Troubleshooting: layout not found means wrong name, use `zj`. Session resurrects after quit by default.
 
 layout {
     default_tab_template {
