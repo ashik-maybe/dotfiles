@@ -2,6 +2,7 @@
   // ===========================================================================
   // 🎨 THEME & USER INTERFACE
   // ===========================================================================
+  "cli_default_open_behavior": "existing_window",
   "theme": {
     "mode": "system",
     "light": "Catppuccin Latte",
