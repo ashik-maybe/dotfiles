@@ -25,14 +25,14 @@ gui:
       - "#7daea3"
       - bold
     inactiveBorderColor:
-      - "#7c7364"
+      - "#7c6f64"
     searchingActiveBorderColor:
       - "#d8a657"
       - bold
     optionsTextColor:
       - "#89b482"
     selectedLineBgColor:
-      - "#7c7364"
+      - "#7c6f64"
     inactiveViewSelectedLineBgColor:
       - "#45403d"
       - bold

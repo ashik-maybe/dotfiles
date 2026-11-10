@@ -40,8 +40,8 @@ On Linux Mint, replace `dnf` with `apt` and install the same programs.
 | btop | `.config/btop/` | Eye Care Night | — |
 | lazygit | `.config/lazygit/` | Eye Care Night | — |
 | mpv | `.config/mpv/` | — | Roboto (subtitles) |
-| VSCodium | `.config/VSCodium/User/settings.json`, `.config/VSCodium/product.json` | Catppuccin Latte / Macchiato by OS | JetBrainsMono Nerd Font Mono |
-| Zed | `.config/zed/` | Catppuccin Latte / Macchiato by OS | JetBrainsMono Nerd Font Mono |
+| VSCodium | `.config/VSCodium/User/settings.json`, `.config/VSCodium/product.json` | Modern Light / Modern Dark by OS | JetBrainsMono Nerd Font Mono |
+| Zed | `.config/zed/` | Eye Care Day / Eye Care Night by OS | JetBrainsMono Nerd Font Mono |
 
 Alternative themes are kept in each app's `themes/` directory. Select one in the app config to switch.
 
