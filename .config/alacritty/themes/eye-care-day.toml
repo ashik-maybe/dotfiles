@@ -1,0 +1,75 @@
+# Colors section of "Alacritty - TOML configuration file format"
+# https://github.com/alacritty/alacritty/blob/master/extra/man/alacritty.5.scd#colors
+# Eye Care Day (tuned from Gruvbox Material Medium Light)
+
+[colors.primary]
+foreground = "#4c4f69"
+background = "#e6ead2"
+dim_foreground = "#665c54"
+bright_foreground = "#4c4f69"
+
+[colors.cursor]
+text = "#4c4f69"
+cursor = "#a89984"
+
+[colors.vi_mode_cursor]
+text = "#4c4f69"
+cursor = "#a89984"
+
+[colors.search.matches]
+foreground = "#4c4f69"
+background = "#eee0b7"
+
+[colors.search.focused_match]
+foreground = "#e6ead2"
+background = "#b47109"
+
+[colors.hints.start]
+foreground = "#665c54"
+background = "#eee0b7"
+
+[colors.hints.end]
+foreground = "#665c54"
+background = "#eee0b7"
+
+[colors.line_indicator]
+foreground = "None"
+background = "None"
+
+[colors.footer_bar]
+foreground = "#4c4f69"
+background = "#f4e8be"
+
+[colors.selection]
+text = "#4c4f69"
+background = "#a89984"
+
+[colors.normal]
+black = "#3c3836"
+red = "#c14a4a"
+green = "#6c782e"
+yellow = "#b47109"
+blue = "#45707a"
+magenta = "#945e80"
+cyan = "#4c7a5d"
+white = "#eee0b7"
+
+[colors.bright]
+black = "#665c54"
+red = "#e07878"
+green = "#82984a"
+yellow = "#c88f30"
+blue = "#64a09f"
+magenta = "#a87898"
+cyan = "#64a084"
+white = "#f9f5d7"
+
+[colors.dim]
+black = "#665c54"
+red = "#c14a4a"
+green = "#6c782e"
+yellow = "#b47109"
+blue = "#45707a"
+magenta = "#945e80"
+cyan = "#4c7a5d"
+white = "#eee0b7"
