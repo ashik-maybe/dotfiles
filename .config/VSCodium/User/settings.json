@@ -9,8 +9,8 @@
   "update.mode": "manual",
   // 🎨 Theme
   "window.autoDetectColorScheme": true,
-  "workbench.preferredLightColorTheme": "Catppuccin Latte",
-  "workbench.preferredDarkColorTheme": "Catppuccin Macchiato",
+  "workbench.preferredLightColorTheme": "Light Modern",
+  "workbench.preferredDarkColorTheme": "Dark Modern",
   "editor.fontFamily": "'JetBrainsMono Nerd Font Mono', monospace",
   "workbench.startupEditor": "none",
   "workbench.sideBar.location": "left",
@@ -34,7 +34,10 @@
   "editor.guides.highlightActiveBracketPair": true,
   "editor.bracketPairColorization.enabled": true,
   "editor.occurrencesHighlight": "singleFile",
-  "editor.rulers": [80, 120],
+  "editor.rulers": [
+    80,
+    120
+  ],
   "editor.wordWrap": "on",
   "editor.scrollBeyondLastLine": false,
   "editor.mouseWheelZoom": false,
@@ -59,7 +62,11 @@
   "files.autoSaveDelay": 1000,
   // 🧠 IntelliSense and LSP
   "python.defaultInterpreterPath": "python",
-  "python.venvFolders": ["envs", ".venv", "venv"],
+  "python.venvFolders": [
+    "envs",
+    ".venv",
+    "venv"
+  ],
   "python.venvPath": "${workspaceFolder}/.venv",
   // Autocomplete and suggestions
   "editor.quickSuggestions": {
