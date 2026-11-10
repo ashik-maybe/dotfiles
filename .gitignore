@@ -15,3 +15,6 @@ Thumbs.db
 !.config/VSCodium/User/
 .config/VSCodium/User/*
 !.config/VSCodium/User/settings.json
+
+# Lazygit: ignore machine-specific UI state.
+.config/lazygit/state.yml
