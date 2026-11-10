@@ -1,3 +1,4 @@
+# Eye Care dark theme for Helix.
 inherits = "default"
 
 "ui.background" = { bg = "bg" }

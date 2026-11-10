@@ -1,3 +1,4 @@
+// Zed — user settings.
 {
   // Note: This is the user (global) settings file, stowed to ~/.config/zed/settings.json.
   // Keys like theme, telemetry, diagnostics, agent, session are global-only.
