@@ -1,8 +1,8 @@
 // Zellij — defaults with auto light/dark theme.
 // Plain `zellij` uses the default layout. `zj` starts dev-layout.
 
-theme_dark "catppuccin-macchiato"
-theme_light "catppuccin-latte"
+theme_dark "eye-care-night"
+theme_light "eye-care-day"
 
 mouse_mode true
 copy_on_select true

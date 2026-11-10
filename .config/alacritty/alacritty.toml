@@ -1,7 +1,7 @@
-# Alacritty — Catppuccin Macchiato theme. Shell inherits $SHELL (fish).
+# Alacritty — Eye Care Night theme. Shell inherits $SHELL (fish).
 
 general.import = [
-  "~/.config/alacritty/themes/catppuccin-macchiato.toml",
+  "~/.config/alacritty/themes/eye-care-night.toml",
 ]
 
 
@@ -13,9 +13,9 @@ padding = { x = 1, y = 1 }
 opacity = 1
 
 
-# Font: JetBrainsMono Nerd Font Mono, 12pt. Regular, Bold, Italic, Bold Italic.
+# Font: JetBrainsMono Nerd Font Mono, 12pt. Medium, Bold, Italic, Bold Italic.
 [font]
-normal = { family = "JetBrainsMono Nerd Font Mono", style = "Regular" }
+normal = { family = "JetBrainsMono Nerd Font Mono", style = "Medium" }
 bold = { family = "JetBrainsMono Nerd Font Mono", style = "Bold" }
 italic = { family = "JetBrainsMono Nerd Font Mono", style = "Italic" }
 bold_italic = { family = "JetBrainsMono Nerd Font Mono", style = "Bold Italic" }

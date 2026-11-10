@@ -1,4 +1,4 @@
-# Lazygit — terminal-native theme, Zed as editor.
+# Lazygit — Eye Care Night theme (themes/eye-care-night.yml), Zed as editor.
 
 gui:
   # 3-line scroll margin keeps context around the selection.
@@ -19,21 +19,35 @@ gui:
   commitLength:
     show: true
 
-  # Theme: terminal-native colors. Selected line uses reverse contrast.
+  # Theme: Eye Care Night. Day variant in themes/eye-care-day.yml.
   theme:
     activeBorderColor:
-      - green
+      - "#7daea3"
       - bold
     inactiveBorderColor:
-      - default
+      - "#7c7364"
+    searchingActiveBorderColor:
+      - "#d8a657"
+      - bold
     optionsTextColor:
-      - cyan
+      - "#89b482"
     selectedLineBgColor:
-      - reverse
+      - "#7c7364"
+    inactiveViewSelectedLineBgColor:
+      - "#45403d"
+      - bold
+    cherryPickedCommitFgColor:
+      - "#1d2021"
+    cherryPickedCommitBgColor:
+      - "#d8a657"
+    markedBaseCommitFgColor:
+      - "#89b482"
+    markedBaseCommitBgColor:
+      - "#d8a657"
     unstagedChangesColor:
-      - red
+      - "#ea6962"
     defaultFgColor:
-      - default
+      - "#d5dae2"
 
 git:
   # Branches that git workflows treat as primary.
