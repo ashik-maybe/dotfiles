@@ -25,7 +25,7 @@ size = 12
 # Cursor: beam, blinking, thin.
 [cursor]
 style = { shape = "Beam", blinking = "On" }
-thickness = 0.15
+thickness = 0.5
 
 
 # Scrollback: 20000 lines, 3 lines per wheel step.

@@ -52,7 +52,7 @@ yellow = "#935c07"
 blue = "#446e78"
 magenta = "#8c5879"
 cyan = "#467156"
-white = "#eee0b7"
+white = "#4c4f69"
 
 [colors.bright]
 black = "#665c54"
@@ -62,7 +62,7 @@ yellow = "#886120"
 blue = "#456f6f"
 magenta = "#825d76"
 cyan = "#47715d"
-white = "#f9f5d7"
+white = "#4c4f69"
 
 [colors.dim]
 black = "#665c54"
@@ -72,4 +72,4 @@ yellow = "#935c07"
 blue = "#446e78"
 magenta = "#8c5879"
 cyan = "#467156"
-white = "#eee0b7"
+white = "#665c54"
