@@ -104,7 +104,7 @@
   },
   // 🔀 Git
   "git.decorations.enabled": true,
-  "git.autofetch": false,
+  "git.autofetch": true,
   "git.autorefresh": true,
   "git.enableSmartCommit": true,
   "git.confirmSync": false,
@@ -112,7 +112,7 @@
   "terminal.integrated.fontFamily": "'JetBrainsMono Nerd Font Mono', monospace",
   "terminal.integrated.fontSize": 14,
   "terminal.integrated.cursorBlinking": true,
-  "terminal.integrated.scrollback": 10000,
+  "terminal.integrated.scrollback": 20000,
   "terminal.integrated.cwd": "${workspaceFolder}",
   // 🧩 Extensions
   "extensions.autoUpdate": "off",
