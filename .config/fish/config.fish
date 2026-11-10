@@ -39,7 +39,7 @@ if status is-interactive
     set -g __fish_git_prompt_char_diverged "⥄"            # Local and remote split
     set -g __fish_git_prompt_char_stateseparator " "      # Space between indicators
 
-    # Colors: branch in bold yellow, dirtiness in bold red. Matches Catppuccin.
+    # Colors: branch in bold yellow, dirtiness in bold red.
     set -g __fish_git_prompt_color_branch yellow --bold
     set -g __fish_git_prompt_color_cleanstate green
     set -g __fish_git_prompt_color_dirtystate red --bold
