@@ -1,4 +1,4 @@
-# Lazygit — Eye Care Night theme (themes/eye-care-night.yml), Zed as editor.
+# Lazygit — Eye Care Night theme (themes/eye-care-night.yml), Helix as editor.
 
 gui:
   # 3-line scroll margin keeps context around the selection.
@@ -68,8 +68,9 @@ git:
   truncateCopiedCommitHashesTo: 8
 
 os:
-  # External editor preset.
-  editPreset: "zed"
+  # Open files in Helix.
+  edit: 'hx {{filename}}'
+  editAtLine: 'hx {{filename}}:{{line}}'
 
   # Syntax-highlighting pager. Uncomment after installing delta:
   # pagers:

@@ -1,0 +1,37 @@
+theme = "eye-care-dark"
+
+[editor]
+line-number = "relative"
+cursorline = true
+color-modes = true
+auto-save = true
+auto-format = true
+idle-timeout = 250
+completion-timeout = 5
+soft-wrap.enable = true
+rulers = [80, 120]
+bufferline = "multiple"
+completion-trigger-len = 2
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"
+
+[editor.statusline]
+left = ["mode", "spinner", "file-name", "file-modification-indicator"]
+center = []
+right = ["diagnostics", "selections", "position", "file-encoding", "file-line-ending", "file-type"]
+separator = "|"
+
+[editor.search]
+smart-case = true
+
+[editor.lsp]
+display-messages = true
+
+[editor.file-picker]
+hidden = false
+
+[keys.normal]
+"C-g" = [":new", ":insert-output lazygit", ":buffer-close!", ":redraw"]
