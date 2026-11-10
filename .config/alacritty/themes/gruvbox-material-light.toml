@@ -1,0 +1,75 @@
+# Colors section of "Alacritty - TOML configuration file format"
+# https://github.com/alacritty/alacritty/blob/master/extra/man/alacritty.5.scd#colors
+# Gruvbox Material Medium Light (sainnhe/gruvbox-material)
+
+[colors.primary]
+foreground = "#654735"
+background = "#fbf1c7"
+dim_foreground = "#a89984"
+bright_foreground = "#654735"
+
+[colors.cursor]
+text = "#654735"
+cursor = "#a89984"
+
+[colors.vi_mode_cursor]
+text = "#654735"
+cursor = "#a89984"
+
+[colors.search.matches]
+foreground = "#654735"
+background = "#eee0b7"
+
+[colors.search.focused_match]
+foreground = "#fbf1c7"
+background = "#b47109"
+
+[colors.hints.start]
+foreground = "#a89984"
+background = "#f4e8be"
+
+[colors.hints.end]
+foreground = "#a89984"
+background = "#f4e8be"
+
+[colors.line_indicator]
+foreground = "None"
+background = "None"
+
+[colors.footer_bar]
+foreground = "#654735"
+background = "#f4e8be"
+
+[colors.selection]
+text = "#654735"
+background = "#eee0b7"
+
+[colors.normal]
+black = "#654735"
+red = "#c14a4a"
+green = "#6c782e"
+yellow = "#b47109"
+blue = "#45707a"
+magenta = "#945e80"
+cyan = "#4c7a5d"
+white = "#eee0b7"
+
+[colors.bright]
+black = "#a89984"
+red = "#c14a4a"
+green = "#6c782e"
+yellow = "#b47109"
+blue = "#45707a"
+magenta = "#945e80"
+cyan = "#4c7a5d"
+white = "#f9f5d7"
+
+[colors.dim]
+black = "#a89984"
+red = "#c14a4a"
+green = "#6c782e"
+yellow = "#b47109"
+blue = "#45707a"
+magenta = "#945e80"
+cyan = "#4c7a5d"
+white = "#eee0b7"
