@@ -1,0 +1,22 @@
+# Ghostty — Eye Care theme. Shell inherits $SHELL.
+
+theme = light:eye-care-light,dark:eye-care-dark
+
+font-family = JetBrainsMono Nerd Font Mono
+font-size = 12
+
+cursor-style = bar
+cursor-style-blink = true
+cursor-text = cell-background
+mouse-hide-while-typing = true
+copy-on-select = true
+
+notify-on-command-finish = unfocused
+notify-on-command-finish-action = bell,notify
+notify-on-command-finish-after = 5s
+
+scrollback-limit = 20000
+
+window-padding-x = 1
+window-padding-y = 1
+maximize = true
