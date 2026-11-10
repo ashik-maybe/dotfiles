@@ -68,9 +68,9 @@ git:
   truncateCopiedCommitHashesTo: 8
 
 os:
-  # Open files in Helix.
-  edit: 'hx {{filename}}'
-  editAtLine: 'hx {{filename}}:{{line}}'
+  # Open files in the context-aware editor wrapper.
+  edit: '~/.config/lazygit/edit.sh {{filename}}'
+  editAtLine: '~/.config/lazygit/edit.sh {{filename}} {{line}}'
 
   # Syntax-highlighting pager. Uncomment after installing delta:
   # pagers:
