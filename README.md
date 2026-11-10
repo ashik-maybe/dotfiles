@@ -33,12 +33,12 @@ On Linux Mint, replace `dnf` with `apt` and install the same programs.
 | App | Config | Theme | Font |
 |---|---|---|---|
 | fish | `.config/fish/` | — | — |
-| alacritty | `.config/alacritty/` | Catppuccin Macchiato | JetBrainsMono Nerd Font Mono |
-| kitty | `.config/kitty/` | Catppuccin Macchiato | JetBrainsMono Nerd Font Mono |
-| foot | `.config/foot/` | Catppuccin Macchiato | JetBrainsMono Nerd Font Mono |
-| zellij | `.config/zellij/` | Catppuccin Macchiato | — |
-| btop | `.config/btop/` | Catppuccin Macchiato | — |
-| lazygit | `.config/lazygit/` | Terminal-native | — |
+| alacritty | `.config/alacritty/` | Eye Care Night | JetBrainsMono Nerd Font Mono |
+| kitty | `.config/kitty/` | Eye Care Night | JetBrainsMono Nerd Font Mono |
+| foot | `.config/foot/` | Eye Care Night | JetBrainsMono Nerd Font Mono |
+| zellij | `.config/zellij/` | Eye Care Night / Eye Care Day by OS | — |
+| btop | `.config/btop/` | Eye Care Night | — |
+| lazygit | `.config/lazygit/` | Eye Care Night | — |
 | mpv | `.config/mpv/` | — | Roboto (subtitles) |
 | VSCodium | `.config/VSCodium/User/settings.json`, `.config/VSCodium/product.json` | Catppuccin Latte / Macchiato by OS | JetBrainsMono Nerd Font Mono |
 | Zed | `.config/zed/` | Catppuccin Latte / Macchiato by OS | JetBrainsMono Nerd Font Mono |
