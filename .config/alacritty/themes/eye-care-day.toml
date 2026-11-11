@@ -9,12 +9,12 @@ dim_foreground = "#665c54"
 bright_foreground = "#4c4f69"
 
 [colors.cursor]
-text = "#4c4f69"
-cursor = "#a89984"
+text = "#e6ead2"
+cursor = "#4c4f69"
 
 [colors.vi_mode_cursor]
-text = "#4c4f69"
-cursor = "#a89984"
+text = "#e6ead2"
+cursor = "#4c4f69"
 
 [colors.search.matches]
 foreground = "#4c4f69"
@@ -42,7 +42,7 @@ background = "#f4e8be"
 
 [colors.selection]
 text = "#4c4f69"
-background = "#a89984"
+background = "#d8d0b4"
 
 [colors.normal]
 black = "#3c3836"

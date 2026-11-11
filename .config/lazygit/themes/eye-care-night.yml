@@ -16,7 +16,7 @@ gui:
       - "#89b482"
 
     selectedLineBgColor:
-      - "#7c6f64"
+      - "#665c54"
 
     inactiveViewSelectedLineBgColor:
       - "#45403d"
@@ -29,7 +29,7 @@ gui:
       - "#e09853"
 
     markedBaseCommitFgColor:
-      - "#89b482"
+      - "#1d2021"
 
     markedBaseCommitBgColor:
       - "#e09853"

@@ -15,7 +15,7 @@ theme[hi_fg]="#935c07"
 # yellow
 
 # Background color of selected item in processes box
-theme[selected_bg]="#a89984"
+theme[selected_bg]="#d8d0b4"
 # muted
 
 # Foreground color of selected item in processes box

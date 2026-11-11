@@ -18,18 +18,18 @@ themes {
       emphasis_3 140 88 121
     }
     ribbon_selected {
-      base 76 79 105
+      base 230 234 210
       background 68 110 120
-      emphasis_0 60 56 54
-      emphasis_1 177 68 68
-      emphasis_2 140 88 121
-      emphasis_3 70 113 86
+      emphasis_0 230 234 210
+      emphasis_1 238 224 183
+      emphasis_2 238 224 183
+      emphasis_3 238 224 183
     }
     ribbon_unselected {
       base 76 79 105
       background 238 224 183
       emphasis_0 60 56 54
-      emphasis_1 177 68 68
+      emphasis_1 238 224 183
       emphasis_2 98 109 42
       emphasis_3 70 113 86
     }
@@ -133,7 +133,7 @@ themes {
     bright_blue 69 111 111
     bright_magenta 130 93 118
     bright_cyan 71 113 93
-    bright_white 230 234 210
+    bright_white 76 79 105
     }
   }
 }
