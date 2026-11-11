@@ -1,4 +1,4 @@
-# Lazygit — Eye Care Night theme (themes/eye-care-night.yml), Helix as editor.
+# Lazygit — Eye Care Day theme (themes/eye-care-day.yml), Helix as editor.
 
 gui:
   # 3-line scroll margin keeps context around the selection.
@@ -19,36 +19,46 @@ gui:
   commitLength:
     show: true
 
-  # Theme: Eye Care Night. Day variant in themes/eye-care-day.yml.
+  # Theme: Eye Care Day. Night variant in themes/eye-care-night.yml.
   theme:
     activeBorderColor:
-      - "#7daea3"
+      - "#446e78"
       - bold
-    inactiveBorderColor:
-      - "#7c6f64"
-    searchingActiveBorderColor:
-      - "#d8a657"
-      - bold
-    optionsTextColor:
-      - "#89b482"
-    selectedLineBgColor:
-      - "#7c6f64"
-    inactiveViewSelectedLineBgColor:
-      - "#45403d"
-      - bold
-    cherryPickedCommitFgColor:
-      - "#1d2021"
-    cherryPickedCommitBgColor:
-      - "#d8a657"
-    markedBaseCommitFgColor:
-      - "#89b482"
-    markedBaseCommitBgColor:
-      - "#d8a657"
-    unstagedChangesColor:
-      - "#ea6962"
-    defaultFgColor:
-      - "#d5dae2"
 
+    inactiveBorderColor:
+      - "#665c54"
+
+    searchingActiveBorderColor:
+      - "#935c07"
+      - bold
+
+    optionsTextColor:
+      - "#467156"
+
+    selectedLineBgColor:
+      - "#d8d0b4"
+
+    inactiveViewSelectedLineBgColor:
+      - "#eee0b7"
+      - bold
+
+    cherryPickedCommitFgColor:
+      - "#e6ead2"
+
+    cherryPickedCommitBgColor:
+      - "#935c07"
+
+    markedBaseCommitFgColor:
+      - "#e6ead2"
+
+    markedBaseCommitBgColor:
+      - "#935c07"
+
+    unstagedChangesColor:
+      - "#b14444"
+
+    defaultFgColor:
+      - "#3c3836"
 git:
   # Branches that git workflows treat as primary.
   mainBranches:

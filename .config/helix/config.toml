@@ -1,5 +1,5 @@
 # Helix — editor settings.
-theme = "eye-care-dark"
+theme = "eye-care-light"
 
 [editor]
 line-number = "relative"
