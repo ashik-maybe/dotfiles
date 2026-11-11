@@ -1,0 +1,69 @@
+# Eye Care Day by default. For night, replace the include below with:
+#   include themes/eye-care-night
+include themes/eye-care-day
+
+# Recolor document pages onto the Eye Care surface. Ctrl+r toggles it off.
+set recolor true
+set recolor-keephue false
+set recolor-reverse-video true
+
+# Reading behaviour
+set adjust-open best-fit
+set scroll-page-aware true
+set scroll-full-overlap 0.01
+set selection-clipboard clipboard
+set window-title-basename true
+set statusbar-basename true
+set statusbar-home-tilde true
+set guioptions s
+set font "JetBrainsMono Nerd Font Mono 11"
+
+# ---------------------------------------------------------------------------
+# Beginner-friendly shortcuts (added on top of the vim-style defaults)
+# ---------------------------------------------------------------------------
+# Ctrl+F  find            (full-page-down stays on Space / PageDown / J)
+# F3      next match      Shift+F3 previous match
+# Ctrl+O  open file       (jumplist back stays on Alt+Left)
+# Ctrl+G  go to page
+# Ctrl+T  table of contents (horizontal scroll stays on h / l)
+# Ctrl+W  close window
+# Ctrl+=  zoom in         Ctrl+- zoom out      Ctrl+0 reset to 100%
+# Ctrl+L  clear search highlighting
+#
+# These are mirrored into fullscreen and presentation modes because zathura
+# keeps per-mode bindings (normal-mode maps do not apply there).
+
+map <C-f> focus_inputbar "/"
+map [fullscreen] <C-f> focus_inputbar "/"
+map [presentation] <C-f> focus_inputbar "/"
+
+map <F3> search forward
+map <S-F3> search backward
+map [fullscreen] <F3> search forward
+map [fullscreen] <S-F3> search backward
+map [presentation] <F3> search forward
+map [presentation] <S-F3> search backward
+
+map <C-o> file_chooser
+map [fullscreen] <C-o> file_chooser
+map [presentation] <C-o> file_chooser
+
+map <C-g> focus_inputbar ":goto "
+map [fullscreen] <C-g> focus_inputbar ":goto "
+map [presentation] <C-g> focus_inputbar ":goto "
+
+map <C-t> toggle_index
+map [fullscreen] <C-t> toggle_index
+map [presentation] <C-t> toggle_index
+
+map <C-w> quit
+map [fullscreen] <C-w> quit
+map [presentation] <C-w> quit
+
+map <C-=> zoom in
+map <C-KPAdd> zoom in
+map <C--> zoom out
+map <C-KPSubtract> zoom out
+map <C-0> zoom specific
+
+map <C-l> nohlsearch

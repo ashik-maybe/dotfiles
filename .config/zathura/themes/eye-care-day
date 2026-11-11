@@ -1,0 +1,32 @@
+# Eye Care Day
+set default-bg "#e6ead2"
+set default-fg "#4c4f69"
+set recolor-lightcolor "#e6ead2"
+set recolor-darkcolor "#4c4f69"
+
+set statusbar-bg "#eee0b7"
+set statusbar-fg "#4c4f69"
+set inputbar-bg "#f5efd0"
+set inputbar-fg "#4c4f69"
+
+set notification-bg "#f5efd0"
+set notification-fg "#4c4f69"
+set notification-error-bg "#b14444"
+set notification-error-fg "#e6ead2"
+set notification-warning-bg "#935c07"
+set notification-warning-fg "#e6ead2"
+
+set completion-bg "#f5efd0"
+set completion-fg "#4c4f69"
+set completion-group-bg "#eee0b7"
+set completion-group-fg "#665c54"
+set completion-highlight-bg "#d8d0b4"
+set completion-highlight-fg "#4c4f69"
+
+set index-bg "#e6ead2"
+set index-fg "#4c4f69"
+set index-active-bg "#446e78"
+set index-active-fg "#e6ead2"
+
+set render-loading-bg "#e6ead2"
+set render-loading-fg "#665c54"
