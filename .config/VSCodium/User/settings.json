@@ -27,6 +27,7 @@
   "editor.cursorStyle": "line",
   "editor.cursorBlinking": "blink",
   "editor.renderWhitespace": "selection",
+  "editor.lineNumbers": "on",
   "editor.minimap.enabled": false,
   // 📏 Structure and scrolling
   "editor.stickyScroll.enabled": true,

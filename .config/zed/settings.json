@@ -72,7 +72,7 @@
     "runnables": true,
     "min_line_number_digits": 2,
   },
-  "relative_line_numbers": "enabled",
+  "relative_line_numbers": "disabled",
   "scroll_beyond_last_line": "off",
   "horizontal_scroll_margin": 5,
   "vertical_scroll_margin": 3,
