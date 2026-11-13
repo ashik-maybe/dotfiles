@@ -1,4 +1,4 @@
-# Lazygit — Eye Care Day theme (themes/eye-care-day.yml), Helix as editor.
+# Lazygit — Catppuccin Latte theme (themes/catppuccin-latte.yml), Helix as editor.
 
 gui:
   # 3-line scroll margin keeps context around the selection.
@@ -19,46 +19,49 @@ gui:
   commitLength:
     show: true
 
-  # Theme: Eye Care Day. Night variant in themes/eye-care-night.yml.
+  # Theme: Catppuccin Latte (mauve). Macchiato variant in themes/catppuccin-macchiato.yml.
   theme:
     activeBorderColor:
-      - "#446e78"
+      - "#8839ef"
       - bold
 
     inactiveBorderColor:
-      - "#665c54"
+      - "#6c6f85"
 
     searchingActiveBorderColor:
-      - "#935c07"
+      - "#df8e1d"
       - bold
 
     optionsTextColor:
-      - "#467156"
+      - "#1e66f5"
 
     selectedLineBgColor:
-      - "#d8d0b4"
+      - "#ccd0da"
 
     inactiveViewSelectedLineBgColor:
-      - "#eee0b7"
+      - "#9ca0b0"
       - bold
 
     cherryPickedCommitFgColor:
-      - "#e6ead2"
+      - "#8839ef"
 
     cherryPickedCommitBgColor:
-      - "#935c07"
+      - "#bcc0cc"
 
     markedBaseCommitFgColor:
-      - "#e6ead2"
+      - "#1e66f5"
 
     markedBaseCommitBgColor:
-      - "#935c07"
+      - "#df8e1d"
 
     unstagedChangesColor:
-      - "#b14444"
+      - "#d20f39"
 
     defaultFgColor:
-      - "#3c3836"
+      - "#4c4f69"
+
+    authorColors:
+      "*": "#7287fd"
 git:
   # Branches that git workflows treat as primary.
   mainBranches:

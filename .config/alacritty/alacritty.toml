@@ -1,7 +1,7 @@
-# Alacritty — Eye Care Day theme. Shell inherits $SHELL (fish).
+# Alacritty — Catppuccin Latte theme. Shell inherits $SHELL (fish).
 
 general.import = [
-  "~/.config/alacritty/themes/eye-care-day.toml",
+  "~/.config/alacritty/themes/catppuccin-latte.toml",
 ]
 
 

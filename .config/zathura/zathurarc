@@ -1,8 +1,8 @@
-# Eye Care Day by default. For night, replace the include below with:
-#   include themes/eye-care-night
-include themes/eye-care-day
+# Catppuccin Latte by default. For Macchiato, replace the include below with:
+#   include themes/catppuccin-macchiato
+include themes/catppuccin-latte
 
-# Recolor document pages onto the Eye Care surface. Ctrl+r toggles it off.
+# Recolor document pages onto the Catppuccin surface. Ctrl+r toggles it off.
 set recolor true
 set recolor-keephue false
 set recolor-reverse-video true

@@ -1,88 +1,88 @@
--- WezTerm — Eye Care theme. Follows the system light/dark appearance.
+-- WezTerm — Catppuccin theme. Follows the system light/dark appearance.
 
 local wezterm = require 'wezterm'
 local mux = wezterm.mux
 local config = wezterm.config_builder()
 
 
--- Palette: same ANSI colors as kitty, ghostty, alacritty, and foot.
-local eye_care_day = {
+-- Palette: Catppuccin Latte (light) and Catppuccin Macchiato (dark).
+local catppuccin_latte = {
   foreground = '#4c4f69',
-  background = '#e6ead2',
-  cursor_bg = '#4c4f69',
-  cursor_fg = '#e6ead2',
-  cursor_border = '#4c4f69',
-  selection_fg = '#4c4f69',
-  selection_bg = '#d8d0b4',
-  scrollbar_thumb = '#a89984',
-  split = '#446e78',
+  background = '#eff1f5',
+  cursor_bg = '#dc8a78',
+  cursor_fg = '#eff1f5',
+  cursor_border = '#dc8a78',
+  selection_fg = '#eff1f5',
+  selection_bg = '#dc8a78',
+  scrollbar_thumb = '#acb0be',
+  split = '#ccd0da',
   ansi = {
-    '#3c3836', -- black
-    '#b14444', -- red
-    '#626d2a', -- green
-    '#935c07', -- yellow
-    '#446e78', -- blue
-    '#8c5879', -- magenta
-    '#467156', -- cyan
-    '#4c4f69', -- white
+    '#5c5f77', -- black
+    '#d20f39', -- red
+    '#40a02b', -- green
+    '#df8e1d', -- yellow
+    '#1e66f5', -- blue
+    '#ea76cb', -- magenta
+    '#179299', -- cyan
+    '#acb0be', -- white
   },
   brights = {
-    '#665c54', -- black
-    '#9c5353', -- red
-    '#5e6e36', -- green
-    '#886120', -- yellow
-    '#456f6f', -- blue
-    '#825d76', -- magenta
-    '#47715d', -- cyan
-    '#4c4f69', -- white
+    '#6c6f85', -- black
+    '#d20f39', -- red
+    '#40a02b', -- green
+    '#df8e1d', -- yellow
+    '#1e66f5', -- blue
+    '#ea76cb', -- magenta
+    '#179299', -- cyan
+    '#bcc0cc', -- white
   },
 }
 
-local eye_care_night = {
-  foreground = '#d5dae2',
-  background = '#1d2021',
-  cursor_bg = '#a89984',
-  cursor_fg = '#1d2021',
-  cursor_border = '#a89984',
-  selection_fg = '#d5dae2',
-  selection_bg = '#665c54',
-  scrollbar_thumb = '#665c54',
-  split = '#7daea3',
+local catppuccin_macchiato = {
+  foreground = '#cad3f5',
+  background = '#24273a',
+  cursor_bg = '#f4dbd6',
+  cursor_fg = '#24273a',
+  cursor_border = '#f4dbd6',
+  selection_fg = '#24273a',
+  selection_bg = '#f4dbd6',
+  scrollbar_thumb = '#5b6078',
+  split = '#363a4f',
   ansi = {
-    '#3c3836', -- black
-    '#ea6962', -- red
-    '#a9b665', -- green
-    '#e09853', -- yellow
-    '#7daea3', -- blue
-    '#d3869b', -- magenta
-    '#89b482', -- cyan
-    '#d5dae2', -- white
+    '#494d64', -- black
+    '#ed8796', -- red
+    '#a6da95', -- green
+    '#eed49f', -- yellow
+    '#8aadf4', -- blue
+    '#f5bde6', -- magenta
+    '#8bd5ca', -- cyan
+    '#b8c0e0', -- white
   },
   brights = {
-    '#7c6f64', -- black
-    '#fcbfaf', -- red
-    '#c3d282', -- green
-    '#eee0b7', -- yellow
-    '#a0c8be', -- blue
-    '#f0b4af', -- magenta
-    '#a5cd9e', -- cyan
-    '#eee0b7', -- white
+    '#5b6078', -- black
+    '#ed8796', -- red
+    '#a6da95', -- green
+    '#eed49f', -- yellow
+    '#8aadf4', -- blue
+    '#f5bde6', -- magenta
+    '#8bd5ca', -- cyan
+    '#a5adcb', -- white
   },
 }
 
 config.color_schemes = {
-  ['Eye Care Day'] = eye_care_day,
-  ['Eye Care Night'] = eye_care_night,
+  ['Catppuccin Latte'] = catppuccin_latte,
+  ['Catppuccin Macchiato'] = catppuccin_macchiato,
 }
 
 
--- Appearance: Day for light, Night for dark. WezTerm reloads this file when the
--- system appearance changes. The mux server has no GUI, so fall back to Day.
+-- Appearance: Latte for light, Macchiato for dark. WezTerm reloads this file when
+-- the system appearance changes. The mux server has no GUI, so fall back to Latte.
 local function scheme_for_appearance(appearance)
   if appearance:find 'Dark' then
-    return 'Eye Care Night'
+    return 'Catppuccin Macchiato'
   end
-  return 'Eye Care Day'
+  return 'Catppuccin Latte'
 end
 
 local appearance = 'Light'
