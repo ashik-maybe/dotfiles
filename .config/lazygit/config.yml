@@ -11,6 +11,18 @@ gui:
   nerdFontsVersion: "3"
   showFileIcons: false
 
+  # Render changed files as a tree for easier navigation in nested projects.
+  showFileTree: true
+
+  # Show the git commands lazygit runs (educational + debuggable).
+  showCommandLog: true
+
+  # Hide the rotating tip banner.
+  showRandomTip: false
+
+  # Widen the side panel for long branch names.
+  sidePanelWidth: 0.333
+
   # Short author names in compact views, longer in full views.
   commitAuthorShortLength: 2
   commitAuthorLongLength: 17
@@ -63,6 +75,10 @@ gui:
     authorColors:
       "*": "#7287fd"
 git:
+  # Keep remote branch status fresh without manual fetch.
+  autoFetch: true
+  autoRefresh: true
+
   # Branches that git workflows treat as primary.
   mainBranches:
     - main
@@ -76,6 +92,10 @@ git:
   log:
     order: topo-order
     showGraph: always
+
+  # Include the diff in the commit-message editor.
+  commit:
+    verbose: true
 
   # Copied commit hashes are truncated to 8 characters.
   truncateCopiedCommitHashesTo: 8
@@ -91,3 +111,10 @@ os:
 
 # No startup tutorial popups.
 disableStartupPopups: true
+
+# Quit instantly from the top level (no confirmation prompt).
+confirmOnQuit: false
+
+# Refresh status every 10 seconds.
+refresher:
+  refreshInterval: 10
