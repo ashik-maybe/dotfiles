@@ -8,13 +8,13 @@
   "cli_default_open_behavior": "existing_window",
   "theme": {
     "mode": "system",
-    "light": "Eye Care Day",
-    "dark": "Eye Care Night",
+    "light": "Catppuccin Latte",
+    "dark": "Catppuccin Macchiato",
   },
   "icon_theme": {
     "mode": "system",
-    "light": "Zed (Default)",
-    "dark": "Zed (Default)",
+    "light": "Catppuccin Latte",
+    "dark": "Catppuccin Macchiato",
   },
   "ui_font_family": ".ZedSans",
   "ui_font_size": 15,
